@@ -1,0 +1,21 @@
+# Dependencies (future Astro phase)
+node_modules/
+.pnpm-store/
+
+# Build outputs (future Astro phase)
+dist/
+.astro/
+
+# Cloudflare / Wrangler
+.wrangler/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Env
+.env
+.env.*
+!.env.example
