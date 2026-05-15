@@ -98,7 +98,7 @@ Some services (especially Google Search Console) accept an alternative to the TX
 2. Admin center → Setup → Domains → Add domain → `bbqtech.ca`
 3. M365 shows a **TXT record for verification** — add it to CF DNS, wait 5-15 min, click Verify
 4. M365 then displays the full list of records needed (MX, CNAMEs, TXT). Copy them into CF DNS (see table above)
-5. Create user: `nicholas@bbqtech.ca` (primary) and/or alias `hello@bbqtech.ca`
+5. Create user: `nicholas@bbqtech.com` (primary) and alias `info@bbqtech.com` (public-facing on site). Optional: add `hello@`, `contact@`, `support@` as catch-all aliases so no client gets bounced.
 6. Test: send and receive an email with an external Gmail/Outlook address
 7. Set up DMARC manually (M365 setup doesn't include DMARC by default — add TXT record per table above)
 

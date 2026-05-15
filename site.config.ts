@@ -10,7 +10,7 @@ export const siteConfig = {
   } satisfies Bilingual,
   phone: "819-561-0762",
   phoneRaw: "+18195610762",
-  email: "hello@bbqtech.com",
+  email: "info@bbqtech.com",
   city: "Gatineau · Ottawa",
   region: "QC",
   country: "CA",
