@@ -1,6 +1,6 @@
 ---
 import { siteConfig } from "../../site.config";
-import { type Locale, t, localeHref } from "../i18n/utils";
+import { type Locale, t, localeHref, bookingHref } from "../i18n/utils";
 
 interface Props {
   lang: Locale;
@@ -9,7 +9,8 @@ interface Props {
 }
 
 const { lang, title, subtitle } = Astro.props;
-const ctaHref = localeHref(siteConfig.cta.primary.hrefPath, lang);
+const booking = bookingHref(siteConfig.bookingUrl, lang);
+const secondaryHref = localeHref(siteConfig.cta.secondary.hrefPath, lang);
 const orCallLabel = lang === "fr" ? "ou appelez" : "or call";
 ---
 
@@ -20,16 +21,18 @@ const orCallLabel = lang === "fr" ? "ou appelez" : "or call";
     {subtitle && <p class="text-lg text-white/75 mb-8 max-w-2xl mx-auto">{subtitle}</p>}
     <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
       <a
-        href={ctaHref}
+        href={booking.href}
+        target={booking.external ? "_blank" : undefined}
+        rel={booking.external ? "noopener noreferrer" : undefined}
         class="inline-block text-center bg-accent text-white px-10 py-4 rounded-lg text-base font-bold hover:bg-accent-hover hover:-translate-y-0.5 transition-all no-underline shadow-lg shadow-accent/20"
       >
         {t(siteConfig.cta.primary.label, lang)}
       </a>
       <a
-        href={`tel:${siteConfig.phoneRaw}`}
+        href={secondaryHref}
         class="inline-block text-center text-white border-2 border-white/30 px-10 py-4 rounded-lg text-base font-bold hover:border-white hover:bg-white/5 transition-all no-underline"
       >
-        📞 {siteConfig.phone}
+        {t(siteConfig.cta.secondary.label, lang)}
       </a>
     </div>
     <p class="mt-6 text-sm text-white/50">

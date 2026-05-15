@@ -1,14 +1,15 @@
 ---
 import { siteConfig } from "../../site.config";
-import { type Locale, t, localeHref } from "../i18n/utils";
+import { type Locale, t, bookingHref } from "../i18n/utils";
 
 interface Props {
   lang: Locale;
 }
 
 const { lang } = Astro.props;
-const ctaHref = localeHref(siteConfig.cta.primary.hrefPath, lang);
+const booking = bookingHref(siteConfig.bookingUrl, lang);
 const r = siteConfig.repair;
+const prepLabel = lang === "fr" ? "Préparation pour accélérer le diagnostic" : "Preparation to speed up the diagnostic";
 ---
 
 <section class="py-16 md:py-20 bg-light" id="reparation">
@@ -39,7 +40,9 @@ const r = siteConfig.repair;
         </div>
         <div class="space-y-3">
           <a
-            href={ctaHref}
+            href={booking.href}
+            target={booking.external ? "_blank" : undefined}
+            rel={booking.external ? "noopener noreferrer" : undefined}
             class="block text-center bg-accent text-white px-5 py-3.5 rounded-lg text-sm font-bold no-underline hover:bg-accent-hover transition-colors"
           >
             {t(r.ctaLabel, lang)}
@@ -75,6 +78,13 @@ const r = siteConfig.repair;
         <p class="mt-6 p-4 bg-accent/10 border border-accent/30 rounded-lg text-sm text-dark leading-relaxed">
           💡 {t(r.comboNote, lang)}
         </p>
+
+        <div class="mt-4 p-4 bg-white border border-grey-mid/50 rounded-lg">
+          <p class="text-xs font-bold uppercase tracking-wider text-grey mb-2">
+            🛠 {prepLabel}
+          </p>
+          <p class="text-sm text-grey leading-relaxed">{t(r.diagnosticPrep, lang)}</p>
+        </div>
       </div>
     </div>
   </div>

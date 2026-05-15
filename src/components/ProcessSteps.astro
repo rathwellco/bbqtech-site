@@ -1,6 +1,6 @@
 ---
 import { siteConfig } from "../../site.config";
-import { type Locale, t, localeHref } from "../i18n/utils";
+import { type Locale, t, bookingHref } from "../i18n/utils";
 
 interface Props {
   lang: Locale;
@@ -8,26 +8,28 @@ interface Props {
 }
 
 const { lang, title } = Astro.props;
-const ctaHref = localeHref(siteConfig.cta.primary.hrefPath, lang);
+const booking = bookingHref(siteConfig.bookingUrl, lang);
 ---
 
 <section class="py-16 md:py-20 bg-white" id="process">
   <div class="max-w-[1200px] mx-auto px-6">
     <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12">{title}</h2>
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-4 mb-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-4 mb-12">
       {siteConfig.process.map((step) => (
-        <div class="text-center px-4">
+        <div class="text-center px-3">
           <div class="w-14 h-14 rounded-full bg-accent text-white text-2xl font-extrabold flex items-center justify-center mx-auto mb-4">
             {step.number}
           </div>
-          <h3 class="text-lg font-bold mb-2">{t(step.title, lang)}</h3>
+          <h3 class="text-base font-bold mb-2">{t(step.title, lang)}</h3>
           <p class="text-sm text-grey leading-relaxed">{t(step.description, lang)}</p>
         </div>
       ))}
     </div>
     <div class="text-center">
       <a
-        href={ctaHref}
+        href={booking.href}
+        target={booking.external ? "_blank" : undefined}
+        rel={booking.external ? "noopener noreferrer" : undefined}
         class="inline-block bg-accent text-white px-8 py-4 rounded-lg font-bold hover:bg-accent-hover hover:-translate-y-0.5 transition-all no-underline"
       >
         {t(siteConfig.cta.primary.label, lang)}

@@ -22,7 +22,6 @@ const lang = "en" as const;
     lang={lang}
     title={t(siteConfig.hero.h1, lang)}
     subtitle={t(siteConfig.hero.sub, lang)}
-    showPillars={true}
   />
 
   <TrustBar lang={lang} />
@@ -40,7 +39,7 @@ const lang = "en" as const;
             title={t(s.name, lang)}
             price={t(s.priceLabel, lang)}
             description={t(s.summary, lang)}
-            ctaLabel="Book this service"
+            ctaLabel="Request a quote"
             ctaHref={localeHref("/contact", lang)}
           />
         ))}
@@ -58,8 +57,8 @@ const lang = "en" as const;
 
   <WhyBBQTech
     lang={lang}
-    title="Why BBQTech"
-    subtitle="A specialized professional mobile BBQ service, not a generic pressure-washing company."
+    title="Why choose BBQTech?"
+    subtitle="A specialized approach for your BBQ — mobile service, clear packages, and methods adapted to your equipment."
   />
 
   <ProcessSteps lang={lang} title="How it works" />

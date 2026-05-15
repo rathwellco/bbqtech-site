@@ -40,7 +40,7 @@ export function getAltLocaleUrl(pathname: string, currentLang: Locale): string {
  * t-aware: pass a FR slug for both locales, EN gets /en prefix.
  */
 export function localeHref(path: string, lang: Locale): string {
-  if (path.startsWith("http") || path.startsWith("tel:") || path.startsWith("mailto:") || path.startsWith("#")) {
+  if (path.startsWith("http") || path.startsWith("tel:") || path.startsWith("mailto:") || path.startsWith("sms:") || path.startsWith("#")) {
     return path;
   }
   if (lang === "en") {
@@ -48,4 +48,28 @@ export function localeHref(path: string, lang: Locale): string {
     return `/en${path}`;
   }
   return path;
+}
+
+/**
+ * Resolve the "Réserver" CTA href. If siteConfig.bookingUrl is set
+ * (Zoho Calendar), use it externally. Otherwise fall back to /contact.
+ * Returns { href, external } so callers can render target=_blank when needed.
+ */
+export function bookingHref(
+  bookingUrl: string,
+  lang: Locale,
+  fallbackPath: string = "/contact"
+): { href: string; external: boolean } {
+  const trimmed = (bookingUrl || "").trim();
+  if (trimmed) {
+    return { href: trimmed, external: true };
+  }
+  return { href: localeHref(fallbackPath, lang), external: false };
+}
+
+/**
+ * Build the sms: link with prefilled body.
+ */
+export function smsHref(phoneRaw: string, body: string): string {
+  return `sms:${phoneRaw}?&body=${encodeURIComponent(body)}`;
 }

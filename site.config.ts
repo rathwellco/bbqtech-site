@@ -42,13 +42,32 @@ export const siteConfig = {
     { href: "#pourquoi", label: { fr: "Pourquoi BBQTech", en: "Why BBQTech" } satisfies Bilingual },
     { href: "#faq", label: { fr: "FAQ", en: "FAQ" } satisfies Bilingual },
   ],
+  // ─── BOOKING URL (Zoho Calendar — placeholder until provided) ───
+  // When set to a non-empty string, all "Réserver" CTAs link to this URL
+  // (in a new tab). When empty, they fall back to /contact.
+  bookingUrl: "",
+
   cta: {
     primary: {
       label: { fr: "Réserver mon service", en: "Book my service" } satisfies Bilingual,
       hrefPath: "/contact",
     },
+    secondary: {
+      label: { fr: "Demander une soumission", en: "Request a quote" } satisfies Bilingual,
+      hrefPath: "/contact",
+    },
+    sms: {
+      label: { fr: "Envoyer une photo par SMS", en: "Send a photo by SMS" } satisfies Bilingual,
+      shortLabel: { fr: "📸 SMS · 819-561-0762", en: "📸 SMS · 819-561-0762" } satisfies Bilingual,
+    },
     callLabel: { fr: "Appeler 819-561-0762", en: "Call 819-561-0762" } satisfies Bilingual,
   },
+
+  // SMS body prefilled when user taps the photo-by-SMS link
+  smsBody: {
+    fr: "Bonjour BBQTech, voici une photo de mon BBQ pour une recommandation de forfait.",
+    en: "Hello BBQTech, here is a photo of my BBQ for a package recommendation.",
+  } satisfies Bilingual,
 
   // ─── HERO (HOME) ───
   hero: {
@@ -57,47 +76,56 @@ export const siteConfig = {
       en: "Professional on-site BBQ cleaning — from $195.",
     } satisfies Bilingual,
     sub: {
-      fr: "Service mobile spécialisé de nettoyage, entretien et réparation de BBQ à Gatineau et Ottawa. Trois forfaits clairs — Essential, Signature et Prestige — adaptés à l'état de votre BBQ.",
-      en: "Specialized mobile service for BBQ cleaning, maintenance, and repair in Gatineau and Ottawa. Three clear packages — Essential, Signature, and Prestige — matched to the condition of your grill.",
+      fr: "Service mobile spécialisé de nettoyage, entretien, diagnostic et réparation de BBQ à Gatineau et Ottawa. Méthodes adaptées selon l'état du BBQ, son accès et le forfait choisi.",
+      en: "Specialized mobile service for BBQ cleaning, maintenance, diagnostic and repair in Gatineau and Ottawa. Methods adapted to your grill's condition, access, and the chosen package.",
     } satisfies Bilingual,
   },
 
-  // ─── 4 PILLARS (universal differentiators across all packages) ───
+  // ─── 5 PILLARS (positive positioning, no competitor-bashing) ───
   pillars: [
     {
-      icon: "🔧",
-      shortLabel: { fr: "Spécialiste BBQ", en: "BBQ specialist" } satisfies Bilingual,
-      title: { fr: "Spécialiste BBQ, pas un lavage à pression générique", en: "BBQ specialist, not a generic pressure-washing service" } satisfies Bilingual,
-      body: {
-        fr: "Expertise technique sur les marques résidentielles et premium (Weber, Napoleon, Broil King, Lynx, DCS, Twin Eagles, kamado, pellet). Méthode adaptée au modèle — pressure washer ou vapeur — produits Hawco commerciaux biodégradables.",
-        en: "Technical expertise on residential and premium brands (Weber, Napoleon, Broil King, Lynx, DCS, Twin Eagles, kamado, pellet). Method matched to your grill — pressure washer or steam — Hawco biodegradable commercial products.",
-      } satisfies Bilingual,
-    },
-    {
       icon: "🚐",
-      shortLabel: { fr: "Service à domicile", en: "Mobile on-site service" } satisfies Bilingual,
-      title: { fr: "Service mobile à domicile", en: "Mobile on-site service" } satisfies Bilingual,
+      shortLabel: { fr: "Service mobile spécialisé", en: "Specialized mobile service" } satisfies Bilingual,
+      title: { fr: "Service mobile spécialisé", en: "Specialized mobile service" } satisfies Bilingual,
       body: {
-        fr: "Votre BBQ reste sur place. On arrive avec tout l'équipement — pressure washer, vapeur, berm de confinement, produits. Vous n'avez rien à déplacer, rien à transporter.",
-        en: "Your BBQ stays put. We bring all the equipment — pressure washer, steam, containment berm, products. Nothing to move, nothing to haul.",
+        fr: "BBQTech se concentre sur les BBQ : nettoyage, entretien, diagnostic et réparation de composantes accessibles.",
+        en: "BBQTech focuses on BBQs: cleaning, maintenance, diagnostic and repair of accessible components.",
       } satisfies Bilingual,
     },
     {
       icon: "💰",
-      shortLabel: { fr: "Forfaits clairs publiés", en: "Transparent packages" } satisfies Bilingual,
-      title: { fr: "Trois forfaits clairs, prix publiés", en: "Three clear packages, transparent pricing" } satisfies Bilingual,
+      shortLabel: { fr: "Forfaits clairs", en: "Clear packages" } satisfies Bilingual,
+      title: { fr: "Forfaits clairs", en: "Clear packages" } satisfies Bilingual,
       body: {
-        fr: "Essential dès 195 $, Signature 295 $ (recommandé), Prestige Steam Restoration à partir de 495 $. Vous savez ce que vous payez avant qu'on arrive. Aucun devis caché.",
-        en: "Essential from $195, Signature $295 (recommended), Prestige Steam Restoration from $495. You know what you pay before we show up. No hidden quotes.",
+        fr: "Essential, Signature et Prestige permettent de choisir le bon niveau de service selon l'état du BBQ, son accès et vos attentes.",
+        en: "Essential, Signature and Prestige let you pick the right service level based on your BBQ's condition, access, and your expectations.",
+      } satisfies Bilingual,
+    },
+    {
+      icon: "🔥",
+      shortLabel: { fr: "Approche adaptée", en: "Adapted approach" } satisfies Bilingual,
+      title: { fr: "Approche adaptée à votre BBQ", en: "Approach adapted to your BBQ" } satisfies Bilingual,
+      body: {
+        fr: "Gaz propane, gaz naturel, pellet, kamado, griddle, cuisines extérieures ou BBQ premium : nous adaptons l'approche selon l'équipement.",
+        en: "Propane gas, natural gas, pellet, kamado, griddle, outdoor kitchens or premium BBQs: we adapt the approach to your equipment.",
+      } satisfies Bilingual,
+    },
+    {
+      icon: "🛡️",
+      shortLabel: { fr: "Zone de travail contrôlée", en: "Controlled work zone" } satisfies Bilingual,
+      title: { fr: "Zone de travail contrôlée", en: "Controlled work zone" } satisfies Bilingual,
+      body: {
+        fr: "Selon le forfait choisi, nous pouvons utiliser une zone de travail protégée, un système de confinement, un nettoyage plus détaillé ou la vapeur.",
+        en: "Depending on the chosen package, we can use a protected work zone, a containment system, more detailed cleaning, or steam.",
       } satisfies Bilingual,
     },
     {
       icon: "📍",
-      shortLabel: { fr: "Local Gatineau · Ottawa", en: "Local Gatineau · Ottawa" } satisfies Bilingual,
-      title: { fr: "Opérateur local Gatineau · Ottawa, bilingue", en: "Local Gatineau · Ottawa operator, bilingual" } satisfies Bilingual,
+      shortLabel: { fr: "Service local et bilingue", en: "Local & bilingual" } satisfies Bilingual,
+      title: { fr: "Service local et bilingue", en: "Local and bilingual service" } satisfies Bilingual,
       body: {
-        fr: "Physiquement basé à Gatineau. Pas une équipe envoyée de Toronto ou de Montréal. Ligne directe avec l'opérateur. Service en français et anglais.",
-        en: "Physically based in Gatineau. Not a crew shipped from Toronto or Montréal. Direct line to the operator. Service in French and English.",
+        fr: "BBQTech est basé à Gatineau et dessert Gatineau, Aylmer, Hull, Plateau, Buckingham et Ottawa.",
+        en: "BBQTech is based in Gatineau and serves Gatineau, Aylmer, Hull, Plateau, Buckingham and Ottawa.",
       } satisfies Bilingual,
     },
   ],
@@ -282,6 +310,10 @@ export const siteConfig = {
       fr: "Astuce : combinez avec un nettoyage Signature ou Prestige pour économiser une visite.",
       en: "Tip: combine with a Signature or Prestige cleaning to save a visit.",
     } satisfies Bilingual,
+    diagnosticPrep: {
+      fr: "Pour accélérer le diagnostic, préparez si possible la marque, le modèle, le numéro de série, des photos des pièces problématiques et une description du symptôme : allumage, flamme faible, brûleur endommagé, régulateur, grilles, plaques, etc.",
+      en: "To speed up the diagnostic, prepare if possible the brand, model, serial number, photos of problem parts, and a description of the symptom: ignition, weak flame, damaged burner, regulator, grates, plates, etc.",
+    } satisfies Bilingual,
     processHeading: { fr: "Comment ça fonctionne", en: "How it works" } satisfies Bilingual,
     steps: [
       {
@@ -329,42 +361,50 @@ export const siteConfig = {
   },
 
   packagesNote: {
-    fr: "Prix valides pour BBQ standards jusqu'à 4 brûleurs principaux. Supplément de 100 $ pour 5 brûleurs et plus. Les cuisines extérieures, BBQ encastrés et équipements très encrassés peuvent nécessiter une estimation personnalisée.",
-    en: "Prices valid for standard BBQs up to 4 main burners. $100 surcharge for 5+ burners. Outdoor kitchens, built-ins, and heavily soiled equipment may require a custom estimate.",
+    fr: "Prix de base clairs. Si l'état du BBQ, son accès ou la configuration nécessite un ajustement, on vous informe avant tout changement de service ou de tarif. Supplément de 100 $ pour BBQ de 5 brûleurs principaux et plus. Cuisines extérieures, built-ins et équipements très encrassés peuvent nécessiter une estimation personnalisée.",
+    en: "Clear base pricing. If the BBQ's condition, access, or configuration requires an adjustment, we let you know before any change in service or price. $100 surcharge for BBQs with 5+ main burners. Outdoor kitchens, built-ins, and heavily soiled equipment may require a custom estimate.",
   } satisfies Bilingual,
 
-  // ─── PROCESS ───
+  // ─── PROCESS (5 steps) ───
   process: [
     {
       number: "1",
-      title: { fr: "Envoyez-nous une photo", en: "Send us a photo" } satisfies Bilingual,
+      title: { fr: "Réservez votre service en ligne", en: "Book your service online" } satisfies Bilingual,
       description: {
-        fr: "Photo du BBQ + marque + modèle. On vous recommande le bon forfait et on confirme le tarif.",
-        en: "Photo of your BBQ + brand + model. We recommend the right package and confirm the price.",
+        fr: "Choisissez votre forfait ou votre diagnostic via notre formulaire de réservation. Si vous n'êtes pas certain, choisissez « Demande de soumission ».",
+        en: "Choose your package or diagnostic via our booking form. If you're not sure, pick \"Request a quote\".",
       } satisfies Bilingual,
     },
     {
       number: "2",
-      title: { fr: "Rendez-vous fixé", en: "Booking confirmed" } satisfies Bilingual,
+      title: { fr: "Envoyez une photo si nécessaire", en: "Send a photo if needed" } satisfies Bilingual,
       description: {
-        fr: "On confirme une plage horaire précise. Pas de fenêtre de 4 heures — on respecte votre temps.",
-        en: "We lock in a precise time slot. No 4-hour windows — we respect your time.",
+        fr: "Une photo du BBQ, de la marque/modèle et de l'emplacement nous aide à recommander le bon forfait et à éviter les surprises.",
+        en: "A photo of the BBQ, brand/model and location helps us recommend the right package and avoid surprises.",
       } satisfies Bilingual,
     },
     {
       number: "3",
-      title: { fr: "Service à domicile", en: "On-site service" } satisfies Bilingual,
+      title: { fr: "On confirme les détails", en: "We confirm the details" } satisfies Bilingual,
       description: {
-        fr: "On arrive avec tout l'équipement. Selon le forfait : pressure washer, spill berm, vapeur. Le BBQ reste sur place.",
-        en: "We arrive with all the equipment. Per the package: pressure washer, spill berm, steam. BBQ stays put.",
+        fr: "Nous validons l'accès, l'eau disponible, le type de BBQ, le nombre de brûleurs et toute condition particulière.",
+        en: "We confirm access, available water, BBQ type, number of burners, and any special conditions.",
       } satisfies Bilingual,
     },
     {
       number: "4",
-      title: { fr: "Remise propre + suivi", en: "Clean handoff + follow-up" } satisfies Bilingual,
+      title: { fr: "Service à domicile", en: "On-site service" } satisfies Bilingual,
       description: {
-        fr: "BBQ propre, sécuritaire, prêt à utiliser. Photos avant/après sur Prestige. Reprise garantie si non satisfait.",
-        en: "Clean, food-safe BBQ ready to use. Before/after photos on Prestige. Re-do guarantee if not satisfied.",
+        fr: "Vous n'avez pas besoin d'être présent pendant toute la durée du service. L'important est que le BBQ soit accessible à l'heure prévue.",
+        en: "You don't need to be present for the entire service. What matters is that the BBQ is accessible at the scheduled time.",
+      } satisfies Bilingual,
+    },
+    {
+      number: "5",
+      title: { fr: "Résultat + recommandations", en: "Result + recommendations" } satisfies Bilingual,
+      description: {
+        fr: "On termine le service, on vous informe s'il y a des pièces usées ou des réparations recommandées, et on vous envoie des photos lorsque pertinent.",
+        en: "We finish the service, let you know about worn parts or recommended repairs, and send photos when relevant.",
       } satisfies Bilingual,
     },
   ],
@@ -378,13 +418,19 @@ export const siteConfig = {
     },
     {
       icon: "💰",
-      title: { fr: "Tarifs publiés", en: "Transparent pricing" } satisfies Bilingual,
-      body: { fr: "Aucun devis caché. Vous savez ce que vous payez avant le rendez-vous.", en: "No hidden quotes. You know what you pay before we show up." } satisfies Bilingual,
+      title: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
+      body: {
+        fr: "Aucun changement sans votre accord. Si l'état du BBQ, son accès ou la configuration nécessite un ajustement, on vous informe avant tout changement de service ou de tarif.",
+        en: "No change without your approval. If the BBQ's condition, access, or configuration requires an adjustment, we inform you before any change in service or price.",
+      } satisfies Bilingual,
     },
     {
       icon: "✅",
-      title: { fr: "Reprise garantie", en: "Re-do guarantee" } satisfies Bilingual,
-      body: { fr: "Non satisfait du résultat ? On revient sans frais.", en: "Not happy with the result? We come back at no cost." } satisfies Bilingual,
+      title: { fr: "Service à la hauteur", en: "Service that holds up" } satisfies Bilingual,
+      body: {
+        fr: "Si quelque chose inclus dans le forfait n'est pas à la hauteur, contactez-nous rapidement et nous corrigerons la situation.",
+        en: "If something included in the package falls short, contact us quickly and we'll make it right.",
+      } satisfies Bilingual,
     },
     {
       icon: "🇨🇦",
@@ -397,8 +443,8 @@ export const siteConfig = {
   philosophy: {
     headline: { fr: "Notre philosophie", en: "Our philosophy" } satisfies Bilingual,
     quote: {
-      fr: "« Un BBQ propre, ce n'est pas juste esthétique — c'est sécuritaire pour votre famille et ça prolonge la vie de l'équipement. On n'est pas un service de lavage à pression générique : on est des spécialistes BBQ. Pressure washer, vapeur, berm de confinement, produits Hawco. Trois forfaits clairs pour trois besoins différents. »",
-      en: "\"A clean BBQ isn't just about looks — it's food safety for your family and longer equipment life. We're not a generic pressure-washing service: we're BBQ specialists. Pressure washer, steam, spill berm, Hawco products. Three clear packages for three different needs.\"",
+      fr: "« Mon objectif est simple : offrir un service BBQ professionnel, clair et bien structuré. Chaque appareil est différent, alors on adapte l'approche selon l'état du BBQ, son accès et le résultat recherché. »",
+      en: "\"My goal is simple: deliver a professional, clear and well-structured BBQ service. Every grill is different, so we adapt our approach to the BBQ's condition, access, and the desired result.\"",
     } satisfies Bilingual,
     attribution: {
       fr: "— Nicholas, opérateur · BBQTech",
@@ -437,6 +483,27 @@ export const siteConfig = {
       } satisfies Bilingual,
     },
     {
+      q: { fr: "Dois-je être présent pendant le service ?", en: "Do I need to be present during the service?" } satisfies Bilingual,
+      a: {
+        fr: "Non, pas nécessairement. Tant que le BBQ est accessible à l'heure prévue et que nous avons accès à l'eau lorsque requis, vous n'avez pas besoin d'être présent pendant tout le service. Nous planifions les détails avec vous à l'avance.",
+        en: "Not necessarily. As long as the BBQ is accessible at the scheduled time and we have water access when required, you don't need to be there the whole time. We plan the details with you in advance.",
+      } satisfies Bilingual,
+    },
+    {
+      q: { fr: "Pourquoi envoyer une photo ?", en: "Why send a photo?" } satisfies Bilingual,
+      a: {
+        fr: "Une photo nous aide à valider la taille, l'état, l'accès et le type de BBQ. Cela permet de recommander le bon forfait et de réduire les surprises sur place.",
+        en: "A photo helps us check the size, condition, access, and type of BBQ. It lets us recommend the right package and reduce surprises on-site.",
+      } satisfies Bilingual,
+    },
+    {
+      q: { fr: "De quoi avez-vous besoin sur place ?", en: "What do you need on-site?" } satisfies Bilingual,
+      a: {
+        fr: "Le BBQ doit être accessible à l'heure prévue. Selon le forfait, nous pouvons avoir besoin d'un accès à l'eau extérieure et d'un espace de travail suffisant. Pour le forfait Signature, un espace d'environ 8' × 8' est recommandé.",
+        en: "The BBQ must be accessible at the scheduled time. Depending on the package, we may need outdoor water access and adequate work space. For the Signature package, an area of about 8' × 8' is recommended.",
+      } satisfies Bilingual,
+    },
+    {
       q: { fr: "Vous servez Ottawa ?", en: "Do you serve Ottawa?" } satisfies Bilingual,
       a: {
         fr: "Oui. Gatineau (Aylmer, Hull, Plateau, Buckingham) et Ottawa. Frais de déplacement inclus dans le tarif du forfait.",
@@ -472,8 +539,8 @@ export const siteConfig = {
     season: { fr: "Saison : Avril à Octobre", en: "Season: April to October" } satisfies Bilingual,
     formHeading: { fr: "Réservez votre service BBQ", en: "Book your BBQ service" } satisfies Bilingual,
     formSub: {
-      fr: "Réservation de nettoyage, appel de service ou demande de soumission. Réponse sous 24 h pendant la saison. Joignez des photos de votre BBQ par SMS au 819-561-0762 ou par courriel pour une recommandation précise.",
-      en: "Cleaning booking, service call, or quote request. Reply within 24 h during the season. Send photos of your BBQ by SMS to 819-561-0762 or email for a precise recommendation.",
+      fr: "Réservation de nettoyage, appel de service, demande de soumission ou question. Réponse confirmée sous 24 h pendant la saison. Joignez des photos par SMS au 819-561-0762 ou par courriel à info@bbqtech.com pour une recommandation précise.",
+      en: "Cleaning booking, service call, quote request, or general question. Confirmed reply within 24 h during the season. Send photos by SMS to 819-561-0762 or email info@bbqtech.com for a precise recommendation.",
     } satisfies Bilingual,
   },
 
