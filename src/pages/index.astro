@@ -5,6 +5,7 @@ import TrustBar from "../components/TrustBar.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import WhyBBQTech from "../components/WhyBBQTech.astro";
 import PricingTable from "../components/PricingTable.astro";
+import RepairDiagnostic from "../components/RepairDiagnostic.astro";
 import ProcessSteps from "../components/ProcessSteps.astro";
 import Philosophy from "../components/Philosophy.astro";
 import Commitments from "../components/Commitments.astro";
@@ -31,8 +32,8 @@ const homeTitle = t(siteConfig.seo.homeTitle, lang);
   <section class="py-16 md:py-20 bg-white" id="services">
     <div class="max-w-[1200px] mx-auto px-6">
       <div class="text-center mb-12 md:mb-14">
-        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Quatre services, un seul opérateur</h2>
-        <p class="text-lg text-grey max-w-2xl mx-auto">Nettoyage, entretien, assemblage et réparation. Tarifs publiés, service à domicile à Gatineau et Ottawa.</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Quatre services, un seul opérateur spécialisé</h2>
+        <p class="text-lg text-grey max-w-2xl mx-auto">Nettoyage, entretien, assemblage et réparation de BBQ. Service mobile à domicile à Gatineau et Ottawa.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {siteConfig.services.map((s) => (
@@ -41,7 +42,7 @@ const homeTitle = t(siteConfig.seo.homeTitle, lang);
             title={t(s.name, lang)}
             price={t(s.priceLabel, lang)}
             description={t(s.summary, lang)}
-            ctaLabel="Demander un tarif"
+            ctaLabel="Réserver ce service"
             ctaHref={localeHref("/contact", lang)}
           />
         ))}
@@ -49,16 +50,18 @@ const homeTitle = t(siteConfig.seo.homeTitle, lang);
     </div>
   </section>
 
+  <PricingTable
+    lang={lang}
+    title="Trois forfaits de nettoyage clairs"
+    subtitle="Choisissez selon l'état de votre BBQ, son accès et le niveau de nettoyage souhaité. Pas certain ? Envoyez-nous une photo, on vous recommande le bon forfait."
+  />
+
+  <RepairDiagnostic lang={lang} />
+
   <WhyBBQTech
     lang={lang}
     title="Pourquoi BBQTech"
-    subtitle="Quatre piliers qu'aucun concurrent dans la région ne combine. C'est ça, le moat."
-  />
-
-  <PricingTable
-    lang={lang}
-    title="Tarifs publiés — Nettoyage en profondeur"
-    subtitle="Pas de devis caché. Vous savez ce que vous payez avant qu'on arrive."
+    subtitle="Un service mobile professionnel spécialisé en BBQ, pas un lavage à pression générique."
   />
 
   <ProcessSteps lang={lang} title="Comment ça marche" />
@@ -71,7 +74,7 @@ const homeTitle = t(siteConfig.seo.homeTitle, lang);
 
   <CTABanner
     lang={lang}
-    title="Prêt à réserver un nettoyage ?"
-    subtitle="Envoyez-nous une photo + le modèle de votre BBQ. On revient avec un tarif fixe en moins de 24 h."
+    title="Réservez votre nettoyage ou votre appel de service."
+    subtitle="Envoyez-nous une photo + la marque de votre BBQ. On confirme le forfait, le tarif et le rendez-vous sous 24 h."
   />
 </Base>

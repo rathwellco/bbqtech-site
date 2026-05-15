@@ -9,7 +9,7 @@ interface Props {
 const { lang } = Astro.props;
 const ctaHref = localeHref(siteConfig.cta.primary.hrefPath, lang);
 const callLabel = lang === "fr" ? "Appeler" : "Call";
-const quoteLabel = lang === "fr" ? "Soumission" : "Quote";
+const quoteLabel = lang === "fr" ? "Réserver" : "Book";
 ---
 
 <div class="fixed bottom-0 left-0 right-0 z-40 grid grid-cols-2 md:hidden border-t border-black">
@@ -23,6 +23,6 @@ const quoteLabel = lang === "fr" ? "Soumission" : "Quote";
     href={ctaHref}
     class="bg-accent text-white text-center py-4 font-bold text-sm no-underline flex items-center justify-center gap-2"
   >
-    💬 {quoteLabel}
+    📅 {quoteLabel}
   </a>
 </div>

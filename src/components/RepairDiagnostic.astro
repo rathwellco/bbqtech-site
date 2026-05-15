@@ -1,0 +1,81 @@
+---
+import { siteConfig } from "../../site.config";
+import { type Locale, t, localeHref } from "../i18n/utils";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const ctaHref = localeHref(siteConfig.cta.primary.hrefPath, lang);
+const r = siteConfig.repair;
+---
+
+<section class="py-16 md:py-20 bg-light" id="reparation">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="text-center mb-12 md:mb-14">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4">{t(r.title, lang)}</h2>
+      <p class="text-lg text-grey max-w-2xl mx-auto">{t(r.subtitle, lang)}</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6 md:gap-10 max-w-[1100px] mx-auto items-start">
+      <!-- Price card -->
+      <div class="bg-black text-white rounded-2xl p-7 md:p-8 shadow-xl">
+        <p class="text-sm font-bold uppercase tracking-wider text-accent mb-2">
+          {t(r.diagnosticHeading, lang)}
+        </p>
+        <p class="text-4xl md:text-5xl font-extrabold mb-4 leading-none">
+          {t(r.diagnosticPriceLabel, lang)}
+        </p>
+        <div class="space-y-3 text-sm text-white/85 leading-relaxed mb-6">
+          <p class="flex items-start gap-2">
+            <span class="text-accent font-bold shrink-0 mt-0.5">✓</span>
+            <span>{t(r.creditNote, lang)}</span>
+          </p>
+          <p class="flex items-start gap-2">
+            <span class="text-white/40 shrink-0 mt-0.5">ⓘ</span>
+            <span class="text-white/70">{t(r.disclaimer, lang)}</span>
+          </p>
+        </div>
+        <div class="space-y-3">
+          <a
+            href={ctaHref}
+            class="block text-center bg-accent text-white px-5 py-3.5 rounded-lg text-sm font-bold no-underline hover:bg-accent-hover transition-colors"
+          >
+            {t(r.ctaLabel, lang)}
+          </a>
+          <a
+            href={`tel:${siteConfig.phoneRaw}`}
+            class="block text-center text-white border-2 border-white/30 px-5 py-3 rounded-lg text-sm font-bold no-underline hover:border-white hover:bg-white/5 transition-colors"
+          >
+            📞 {siteConfig.phone}
+          </a>
+        </div>
+      </div>
+
+      <!-- Process steps -->
+      <div>
+        <p class="text-xs font-bold uppercase tracking-wider text-grey mb-4">
+          {t(r.processHeading, lang)}
+        </p>
+        <ol class="space-y-4">
+          {r.steps.map((step) => (
+            <li class="flex items-start gap-4 bg-white rounded-xl p-4 md:p-5 border border-grey-mid/40">
+              <span class="w-9 h-9 rounded-full bg-accent text-white text-sm font-extrabold flex items-center justify-center shrink-0">
+                {step.number}
+              </span>
+              <div>
+                <h3 class="text-base font-bold text-dark mb-1">{t(step.title, lang)}</h3>
+                <p class="text-sm text-grey leading-relaxed">{t(step.desc, lang)}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <p class="mt-6 p-4 bg-accent/10 border border-accent/30 rounded-lg text-sm text-dark leading-relaxed">
+          💡 {t(r.comboNote, lang)}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

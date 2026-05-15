@@ -9,40 +9,116 @@ interface Props {
 
 const { lang, source = "Website - Contact Page" } = Astro.props;
 
-const labels = lang === "fr"
+const isFr = lang === "fr";
+
+const labels = isFr
   ? {
       name: "Nom complet",
       email: "Courriel",
       phone: "Téléphone",
-      postal: "Code postal",
-      service: "Service demandé",
-      servicePlaceholder: "Choisir un service…",
-      bbqModel: "Marque / modèle de BBQ",
-      message: "Détails (taille, état, particularités)",
-      submit: "Envoyer ma demande",
-      privacy: "Réponse sous 24 h. Aucun pourriel.",
-      sentSuccess: "Merci, votre demande a été reçue. On vous répond dans les 24 h.",
-      sentError: "Une erreur est survenue. Appelez 819-790-0414 ou réessayez.",
+      postal: "Ville / secteur",
+      city: "Gatineau ou Ottawa",
+      package: "Forfait souhaité",
+      packagePlaceholder: "Recommandez-moi un forfait",
+      bbqModel: "Marque + modèle BBQ",
+      bbqType: "Type de BBQ",
+      bbqTypePlaceholder: "Sélectionnez…",
+      burners: "Nb. de brûleurs principaux",
+      access: "Accès au BBQ",
+      accessPlaceholder: "Sélectionnez…",
+      message: "Détails (état, particularités, problèmes connus)",
+      submit: "Réserver mon service",
+      privacy: "Réponse confirmée sous 24 h. Aucun pourriel.",
+      photoNote: "Pour une recommandation précise, envoyez aussi des photos de votre BBQ par SMS au 819-561-0762 ou par courriel à hello@bbqtech.com.",
+      sentSuccess: "Merci, votre demande a été reçue. On vous répond sous 24 h.",
+      sentError: "Une erreur est survenue. Appelez 819-561-0762 ou réessayez.",
     }
   : {
       name: "Full name",
       email: "Email",
       phone: "Phone",
-      postal: "Postal code",
-      service: "Service needed",
-      servicePlaceholder: "Choose a service…",
-      bbqModel: "BBQ brand / model",
-      message: "Details (size, condition, specifics)",
-      submit: "Send my request",
-      privacy: "Reply within 24 h. No spam, ever.",
+      postal: "City / area",
+      city: "Gatineau or Ottawa",
+      package: "Package preference",
+      packagePlaceholder: "Recommend me a package",
+      bbqModel: "BBQ brand + model",
+      bbqType: "BBQ type",
+      bbqTypePlaceholder: "Select…",
+      burners: "Number of main burners",
+      access: "BBQ access",
+      accessPlaceholder: "Select…",
+      message: "Details (condition, specifics, known issues)",
+      submit: "Book my service",
+      privacy: "Confirmed reply within 24 h. No spam, ever.",
+      photoNote: "For a precise recommendation, also send photos of your BBQ by SMS to 819-561-0762 or email hello@bbqtech.com.",
       sentSuccess: "Thanks, your request was received. We'll reply within 24 h.",
-      sentError: "Something went wrong. Call 819-790-0414 or try again.",
+      sentError: "Something went wrong. Call 819-561-0762 or try again.",
     };
+
+const packageOptions = isFr
+  ? [
+      { v: "Essential", l: "Nettoyage Essential — 195 $" },
+      { v: "Signature", l: "Nettoyage Signature — 295 $ (recommandé)" },
+      { v: "Prestige", l: "Nettoyage Prestige Steam — dès 495 $" },
+      { v: "Diagnostic", l: "Diagnostic réparation — 125 $" },
+      { v: "Nettoyage + Réparation", l: "Combo nettoyage + diagnostic" },
+      { v: "Entretien saisonnier", l: "Entretien saisonnier (multi-visites)" },
+      { v: "Assemblage", l: "Assemblage BBQ" },
+      { v: "Réparation", l: "Autre / réparation connue" },
+    ]
+  : [
+      { v: "Essential", l: "Essential Cleaning — $195" },
+      { v: "Signature", l: "Signature Cleaning — $295 (recommended)" },
+      { v: "Prestige", l: "Prestige Steam Cleaning — from $495" },
+      { v: "Diagnostic", l: "Repair diagnostic — $125" },
+      { v: "Cleaning + Repair", l: "Combo cleaning + diagnostic" },
+      { v: "Seasonal Maintenance", l: "Seasonal Maintenance (multi-visit)" },
+      { v: "Assembly", l: "BBQ Assembly" },
+      { v: "Repair", l: "Other / known repair" },
+    ];
+
+const bbqTypes = isFr
+  ? [
+      "Gaz propane",
+      "Gaz naturel",
+      "Charcoal",
+      "Pellet / fumoir",
+      "Kamado",
+      "Griddle / plancha",
+      "Cuisine extérieure / built-in",
+      "Autre",
+    ]
+  : [
+      "Propane gas",
+      "Natural gas",
+      "Charcoal",
+      "Pellet / smoker",
+      "Kamado",
+      "Griddle / plancha",
+      "Outdoor kitchen / built-in",
+      "Other",
+    ];
+
+const accessOptions = isFr
+  ? [
+      "Aucun escalier — accès direct",
+      "Quelques marches",
+      "Escalier complet",
+      "Built-in / encastré",
+      "Non sûr",
+    ]
+  : [
+      "No stairs — direct access",
+      "A few steps",
+      "Full staircase",
+      "Built-in",
+      "Not sure",
+    ];
 ---
 
-<section class="py-16 md:py-20 bg-light" id="contact-form">
+<section class="py-12 md:py-16 bg-light" id="contact-form">
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="max-w-[640px] mx-auto">
+    <div class="max-w-[720px] mx-auto">
       <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-3">{t(siteConfig.contact.formHeading, lang)}</h2>
       <p class="text-center text-grey mb-8">{t(siteConfig.contact.formSub, lang)}</p>
 
@@ -66,90 +142,81 @@ const labels = lang === "fr"
 
         <div class="mb-4">
           <label for="name" class="block text-sm font-bold text-dark mb-1.5">{labels.name} *</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            autocomplete="name"
-            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm transition-colors"
-          />
+          <input type="text" id="name" name="name" required autocomplete="name"
+            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div>
             <label for="email" class="block text-sm font-bold text-dark mb-1.5">{labels.email} *</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              autocomplete="email"
-              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm transition-colors"
-            />
+            <input type="email" id="email" name="email" required autocomplete="email"
+              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
           </div>
           <div>
             <label for="phone" class="block text-sm font-bold text-dark mb-1.5">{labels.phone}</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              autocomplete="tel"
-              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm transition-colors"
-            />
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-          <div>
-            <label for="postal" class="block text-sm font-bold text-dark mb-1.5">{labels.postal}</label>
-            <input
-              type="text"
-              id="postal"
-              name="postal"
-              autocomplete="postal-code"
-              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm transition-colors"
-            />
-          </div>
-          <div>
-            <label for="bbq-model" class="block text-sm font-bold text-dark mb-1.5">{labels.bbqModel}</label>
-            <input
-              type="text"
-              id="bbq-model"
-              name="bbq_model"
-              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm transition-colors"
-            />
+            <input type="tel" id="phone" name="phone" autocomplete="tel"
+              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
           </div>
         </div>
 
         <div class="mb-4">
-          <label for="service" class="block text-sm font-bold text-dark mb-1.5">{labels.service}</label>
-          <select
-            id="service"
-            name="service"
-            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm transition-colors"
-          >
-            <option value="">{labels.servicePlaceholder}</option>
-            {siteConfig.services.map((s) => (
-              <option value={t(s.name, "en")}>{t(s.name, lang)}</option>
-            ))}
+          <label for="postal" class="block text-sm font-bold text-dark mb-1.5">{labels.postal}</label>
+          <input type="text" id="postal" name="postal" placeholder={labels.city}
+            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
+        </div>
+
+        <div class="mb-4">
+          <label for="package" class="block text-sm font-bold text-dark mb-1.5">{labels.package}</label>
+          <select id="package" name="package"
+            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm">
+            <option value="">{labels.packagePlaceholder}</option>
+            {packageOptions.map((o) => <option value={o.v}>{o.l}</option>)}
           </select>
         </div>
 
-        <div class="mb-6">
-          <label for="message" class="block text-sm font-bold text-dark mb-1.5">{labels.message}</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="4"
-            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm transition-colors resize-y"
-          ></textarea>
+        <div class="mb-4">
+          <label for="bbq-model" class="block text-sm font-bold text-dark mb-1.5">{labels.bbqModel}</label>
+          <input type="text" id="bbq-model" name="bbq_model" placeholder="Weber Spirit, Napoleon Prestige…"
+            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
         </div>
 
-        <button
-          type="submit"
-          class="w-full bg-accent text-white py-4 rounded-lg font-bold text-base hover:bg-accent-hover hover:-translate-y-0.5 transition-all cursor-pointer border-none"
-        >
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label for="bbq-type" class="block text-sm font-bold text-dark mb-1.5">{labels.bbqType}</label>
+            <select id="bbq-type" name="bbq_type"
+              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm">
+              <option value="">{labels.bbqTypePlaceholder}</option>
+              {bbqTypes.map((tp) => <option value={tp}>{tp}</option>)}
+            </select>
+          </div>
+          <div>
+            <label for="burners" class="block text-sm font-bold text-dark mb-1.5">{labels.burners}</label>
+            <input type="number" id="burners" name="burners" min="1" max="20" placeholder="4"
+              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="access" class="block text-sm font-bold text-dark mb-1.5">{labels.access}</label>
+          <select id="access" name="access"
+            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm">
+            <option value="">{labels.accessPlaceholder}</option>
+            {accessOptions.map((a) => <option value={a}>{a}</option>)}
+          </select>
+        </div>
+
+        <div class="mb-5">
+          <label for="message" class="block text-sm font-bold text-dark mb-1.5">{labels.message}</label>
+          <textarea id="message" name="message" rows="4"
+            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
+        </div>
+
+        <div class="mb-6 p-3 bg-light border border-accent/30 rounded-lg">
+          <p class="text-xs text-dark leading-relaxed">📸 {labels.photoNote}</p>
+        </div>
+
+        <button type="submit"
+          class="w-full bg-accent text-white py-4 rounded-lg font-bold text-base hover:bg-accent-hover hover:-translate-y-0.5 transition-all cursor-pointer border-none">
           {labels.submit}
         </button>
         <p class="text-center text-xs text-grey mt-3">{labels.privacy}</p>
