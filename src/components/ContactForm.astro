@@ -67,23 +67,21 @@ const packageOptions = isFr
   ? [
       { v: "Essential", l: "Nettoyage Essential — 195 $" },
       { v: "Signature", l: "Nettoyage Signature — 295 $ (recommandé)" },
-      { v: "Prestige", l: "Nettoyage Prestige Steam — dès 495 $" },
+      { v: "Steam Clean", l: "Nettoyage VIP: Steam Clean — 395 $" },
       { v: "Diagnostic", l: "Diagnostic réparation — 125 $" },
       { v: "Nettoyage + Réparation", l: "Combo nettoyage + diagnostic" },
-      { v: "Entretien saisonnier", l: "Entretien saisonnier (multi-visites)" },
-      { v: "Assemblage", l: "Assemblage BBQ" },
-      { v: "Soumission", l: "Demande de soumission (pas certain)" },
+      { v: "Assemblage", l: "Assemblage BBQ — 195 $" },
+      { v: "Soumission", l: "Demande de soumission personnalisée" },
       { v: "Information", l: "Demande d'information générale" },
     ]
   : [
       { v: "Essential", l: "Essential Cleaning — $195" },
       { v: "Signature", l: "Signature Cleaning — $295 (recommended)" },
-      { v: "Prestige", l: "Prestige Steam Cleaning — from $495" },
+      { v: "Steam Clean", l: "VIP: Steam Clean — $395" },
       { v: "Diagnostic", l: "Repair diagnostic — $125" },
       { v: "Cleaning + Repair", l: "Combo cleaning + diagnostic" },
-      { v: "Seasonal Maintenance", l: "Seasonal Maintenance (multi-visit)" },
-      { v: "Assembly", l: "BBQ Assembly" },
-      { v: "Quote", l: "Quote request (not sure yet)" },
+      { v: "Assembly", l: "BBQ Assembly — $195" },
+      { v: "Quote", l: "Custom quote request" },
       { v: "Information", l: "General inquiry" },
     ];
 
@@ -204,7 +202,7 @@ const accessOptions = isFr
 
         <div class="mb-4">
           <label for="bbq-model" class="block text-sm font-bold text-dark mb-1.5">{labels.bbqModel}</label>
-          <input type="text" id="bbq-model" name="bbq_model" placeholder="Weber Spirit, Napoleon Prestige…"
+          <input type="text" id="bbq-model" name="bbq_model" placeholder="Weber Spirit, Napoleon Rogue, Broil King…"
             class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
         </div>
 

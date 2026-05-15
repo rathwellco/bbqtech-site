@@ -1,6 +1,6 @@
 ---
 import { siteConfig } from "../../site.config";
-import { type Locale, t, localeHref } from "../i18n/utils";
+import { type Locale, t, bookingHref } from "../i18n/utils";
 
 interface Props {
   lang: Locale;
@@ -9,18 +9,34 @@ interface Props {
 }
 
 const { lang, title, subtitle } = Astro.props;
-const ctaHref = localeHref(siteConfig.cta.primary.hrefPath, lang);
-const includesLabel = lang === "fr" ? "Inclus" : "Includes";
-const conditionsLabel = lang === "fr" ? "Conditions" : "Conditions";
+const booking = bookingHref(siteConfig.bookingUrl, lang);
+const baseScope = siteConfig.packagesBaseScope;
+const baseScopeItems = baseScope.items[lang] ?? baseScope.items.fr;
 ---
 
 <section class="py-16 md:py-20 bg-white" id="forfaits">
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="text-center mb-12 md:mb-14">
+    <div class="text-center mb-10 md:mb-12">
       <h2 class="text-3xl md:text-4xl font-extrabold mb-4">{title}</h2>
       {subtitle && <p class="text-lg text-grey max-w-2xl mx-auto">{subtitle}</p>}
     </div>
 
+    <!-- Base scope shared by all packages -->
+    <div class="max-w-[920px] mx-auto mb-10 md:mb-12 bg-light border border-grey-mid/50 rounded-xl p-5 md:p-6">
+      <p class="text-xs font-bold uppercase tracking-wider text-grey mb-3 text-center">
+        ✓ {t(baseScope.heading, lang)}
+      </p>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5">
+        {baseScopeItems.map((item) => (
+          <li class="flex items-start gap-2 text-sm text-dark leading-snug">
+            <span class="text-accent font-bold shrink-0">✓</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- 3 package cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 max-w-[1100px] mx-auto items-stretch">
       {siteConfig.packages.map((pkg) => {
         const isRecommended = pkg.key === "signature";
@@ -34,7 +50,7 @@ const conditionsLabel = lang === "fr" ? "Conditions" : "Conditions";
             {pkg.badge && (
               <span class:list={[
                 "absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap",
-                isRecommended ? "bg-accent text-white" : "bg-black text-white"
+                isRecommended ? "bg-accent text-white" : "bg-dark text-white"
               ]}>
                 {t(pkg.badge, lang)}
               </span>
@@ -42,27 +58,13 @@ const conditionsLabel = lang === "fr" ? "Conditions" : "Conditions";
 
             <h3 class="text-xl font-extrabold text-dark mb-1">{t(pkg.name, lang)}</h3>
             <p class="text-2xl md:text-3xl font-extrabold text-accent mb-3">{t(pkg.priceLabel, lang)}</p>
-            <p class="text-sm text-grey leading-relaxed mb-5">{t(pkg.tagline, lang)}</p>
-
-            <div class="mb-5">
-              <p class="text-xs font-bold uppercase tracking-wider text-grey mb-2">{includesLabel}</p>
-              <ul class="space-y-1.5">
-                {(pkg.includes[lang] ?? pkg.includes.fr).map((item) => (
-                  <li class="flex items-start gap-2 text-sm text-dark leading-snug">
-                    <span class="text-accent font-bold shrink-0 mt-0.5">✓</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div class="mb-6 pb-6 border-b border-grey-mid/40">
-              <p class="text-xs font-bold uppercase tracking-wider text-grey mb-2">{conditionsLabel}</p>
-              <p class="text-xs text-grey leading-relaxed">{t(pkg.conditions, lang)}</p>
-            </div>
+            <p class="text-sm font-bold text-dark mb-2 leading-snug">{t(pkg.method, lang)}</p>
+            <p class="text-sm text-grey leading-relaxed mb-6">{t(pkg.useCase, lang)}</p>
 
             <a
-              href={ctaHref}
+              href={booking.href}
+              target={booking.external ? "_blank" : undefined}
+              rel={booking.external ? "noopener noreferrer" : undefined}
               class:list={[
                 "block text-center px-5 py-3 rounded-lg text-sm font-bold no-underline transition-all mt-auto",
                 isRecommended
@@ -80,14 +82,5 @@ const conditionsLabel = lang === "fr" ? "Conditions" : "Conditions";
     <p class="text-center text-sm text-grey mt-10 max-w-3xl mx-auto leading-relaxed">
       {t(siteConfig.packagesNote, lang)}
     </p>
-
-    <div class="text-center mt-8">
-      <a
-        href={ctaHref}
-        class="inline-block bg-black text-white px-7 py-4 rounded-lg font-bold hover:bg-accent transition-colors no-underline"
-      >
-        {t(siteConfig.cta.primary.label, lang)}
-      </a>
-    </div>
   </div>
 </section>

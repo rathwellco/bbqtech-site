@@ -5,6 +5,7 @@ import TrustBar from "../components/TrustBar.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import WhyBBQTech from "../components/WhyBBQTech.astro";
 import PricingTable from "../components/PricingTable.astro";
+import CustomQuote from "../components/CustomQuote.astro";
 import RepairDiagnostic from "../components/RepairDiagnostic.astro";
 import ProcessSteps from "../components/ProcessSteps.astro";
 import Philosophy from "../components/Philosophy.astro";
@@ -31,10 +32,10 @@ const homeTitle = t(siteConfig.seo.homeTitle, lang);
   <section class="py-16 md:py-20 bg-white" id="services">
     <div class="max-w-[1200px] mx-auto px-6">
       <div class="text-center mb-12 md:mb-14">
-        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Quatre services, un seul opérateur spécialisé</h2>
-        <p class="text-lg text-grey max-w-2xl mx-auto">Nettoyage, entretien, assemblage et réparation de BBQ. Service mobile à domicile à Gatineau et Ottawa.</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Trois services, un seul opérateur spécialisé</h2>
+        <p class="text-lg text-grey max-w-2xl mx-auto">Nettoyage / entretien, assemblage et diagnostic / réparation de BBQ. Service mobile à domicile à Gatineau et Ottawa.</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
         {siteConfig.services.map((s) => (
           <ServiceCard
             icon={s.icon}
@@ -54,6 +55,8 @@ const homeTitle = t(siteConfig.seo.homeTitle, lang);
     title="Trois forfaits de nettoyage clairs"
     subtitle="Choisissez selon l'état de votre BBQ, son accès et le niveau de nettoyage souhaité. Pas certain ? Envoyez-nous une photo, on vous recommande le bon forfait."
   />
+
+  <CustomQuote lang={lang} />
 
   <RepairDiagnostic lang={lang} />
 
