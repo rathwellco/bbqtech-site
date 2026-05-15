@@ -1,0 +1,61 @@
+---
+import { siteConfig } from "../../site.config";
+import { type Locale, t, localeHref } from "../i18n/utils";
+
+interface Props {
+  lang: Locale;
+  title: string;
+  subtitle: string;
+  showPillars?: boolean;
+  short?: boolean;
+}
+
+const { lang, title, subtitle, showPillars = true, short = false } = Astro.props;
+const ctaHref = localeHref(siteConfig.cta.primary.hrefPath, lang);
+---
+
+<section class:list={[
+  "relative bg-black text-white overflow-hidden",
+  short ? "pt-12 pb-10 md:pt-16 md:pb-14" : "pt-16 pb-14 md:pt-24 md:pb-20"
+]}>
+  <!-- subtle gradient -->
+  <div class="absolute inset-0 bg-gradient-to-br from-black via-[#0a0a0a] to-[#1a1a1a] -z-10"></div>
+  <!-- subtle accent glow -->
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-accent/10 blur-[120px] -z-10"></div>
+
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="max-w-3xl">
+      <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight mb-6">
+        {title}
+      </h1>
+      <p class="text-lg md:text-xl text-white/80 leading-relaxed max-w-2xl mb-8">
+        {subtitle}
+      </p>
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+        <a
+          href={ctaHref}
+          class="inline-block text-center bg-accent text-white px-7 py-4 rounded-lg text-base font-bold hover:bg-accent-hover hover:-translate-y-0.5 transition-all no-underline shadow-lg shadow-accent/20"
+        >
+          {t(siteConfig.cta.primary.label, lang)}
+        </a>
+        <a
+          href={`tel:${siteConfig.phoneRaw}`}
+          class="inline-block text-center text-white border-2 border-white/30 px-7 py-4 rounded-lg text-base font-bold hover:border-white hover:bg-white/5 transition-all no-underline"
+        >
+          📞 {t(siteConfig.cta.callLabel, lang)}
+        </a>
+      </div>
+    </div>
+
+    {showPillars && (
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12 md:mt-16 pt-8 border-t border-white/10">
+        {siteConfig.pillars.map((p) => (
+          <div class="flex items-start gap-3">
+            <span class="text-2xl shrink-0" aria-hidden="true">{p.icon}</span>
+            <span class="text-sm font-semibold text-white/90 leading-snug">{t(p.shortLabel, lang)}</span>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</section>

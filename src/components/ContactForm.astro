@@ -1,0 +1,192 @@
+---
+import { siteConfig } from "../../site.config";
+import { type Locale, t } from "../i18n/utils";
+
+interface Props {
+  lang: Locale;
+  source?: string;
+}
+
+const { lang, source = "Website - Contact Page" } = Astro.props;
+
+const labels = lang === "fr"
+  ? {
+      name: "Nom complet",
+      email: "Courriel",
+      phone: "Téléphone",
+      postal: "Code postal",
+      service: "Service demandé",
+      servicePlaceholder: "Choisir un service…",
+      bbqModel: "Marque / modèle de BBQ",
+      message: "Détails (taille, état, particularités)",
+      submit: "Envoyer ma demande",
+      privacy: "Réponse sous 24 h. Aucun pourriel.",
+      sentSuccess: "Merci, votre demande a été reçue. On vous répond dans les 24 h.",
+      sentError: "Une erreur est survenue. Appelez 819-790-0414 ou réessayez.",
+    }
+  : {
+      name: "Full name",
+      email: "Email",
+      phone: "Phone",
+      postal: "Postal code",
+      service: "Service needed",
+      servicePlaceholder: "Choose a service…",
+      bbqModel: "BBQ brand / model",
+      message: "Details (size, condition, specifics)",
+      submit: "Send my request",
+      privacy: "Reply within 24 h. No spam, ever.",
+      sentSuccess: "Thanks, your request was received. We'll reply within 24 h.",
+      sentError: "Something went wrong. Call 819-790-0414 or try again.",
+    };
+---
+
+<section class="py-16 md:py-20 bg-light" id="contact-form">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="max-w-[640px] mx-auto">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-3">{t(siteConfig.contact.formHeading, lang)}</h2>
+      <p class="text-center text-grey mb-8">{t(siteConfig.contact.formSub, lang)}</p>
+
+      <div id="form-status-success" class="hidden mb-6 p-4 bg-green-50 border border-green-200 text-green-800 rounded-lg text-sm">
+        {labels.sentSuccess}
+      </div>
+      <div id="form-status-error" class="hidden mb-6 p-4 bg-red-50 border border-red-200 text-red-800 rounded-lg text-sm">
+        {labels.sentError}
+      </div>
+
+      <form
+        method="POST"
+        action="/api/lead"
+        accept-charset="UTF-8"
+        class="bg-white rounded-xl p-6 md:p-8 shadow-sm border border-grey-mid/40"
+        data-lead-form
+        id="bbqtech-lead-form"
+      >
+        <input type="hidden" name="source" value={source} />
+        <input type="hidden" name="language" value={lang} />
+
+        <div class="mb-4">
+          <label for="name" class="block text-sm font-bold text-dark mb-1.5">{labels.name} *</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            autocomplete="name"
+            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm transition-colors"
+          />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label for="email" class="block text-sm font-bold text-dark mb-1.5">{labels.email} *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              autocomplete="email"
+              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm transition-colors"
+            />
+          </div>
+          <div>
+            <label for="phone" class="block text-sm font-bold text-dark mb-1.5">{labels.phone}</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              autocomplete="tel"
+              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm transition-colors"
+            />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label for="postal" class="block text-sm font-bold text-dark mb-1.5">{labels.postal}</label>
+            <input
+              type="text"
+              id="postal"
+              name="postal"
+              autocomplete="postal-code"
+              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm transition-colors"
+            />
+          </div>
+          <div>
+            <label for="bbq-model" class="block text-sm font-bold text-dark mb-1.5">{labels.bbqModel}</label>
+            <input
+              type="text"
+              id="bbq-model"
+              name="bbq_model"
+              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm transition-colors"
+            />
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="service" class="block text-sm font-bold text-dark mb-1.5">{labels.service}</label>
+          <select
+            id="service"
+            name="service"
+            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm transition-colors"
+          >
+            <option value="">{labels.servicePlaceholder}</option>
+            {siteConfig.services.map((s) => (
+              <option value={t(s.name, "en")}>{t(s.name, lang)}</option>
+            ))}
+          </select>
+        </div>
+
+        <div class="mb-6">
+          <label for="message" class="block text-sm font-bold text-dark mb-1.5">{labels.message}</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm transition-colors resize-y"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-accent text-white py-4 rounded-lg font-bold text-base hover:bg-accent-hover hover:-translate-y-0.5 transition-all cursor-pointer border-none"
+        >
+          {labels.submit}
+        </button>
+        <p class="text-center text-xs text-grey mt-3">{labels.privacy}</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById("bbqtech-lead-form") as HTMLFormElement | null;
+  const success = document.getElementById("form-status-success");
+  const error = document.getElementById("form-status-error");
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      success?.classList.add("hidden");
+      error?.classList.add("hidden");
+
+      const submitBtn = form.querySelector("button[type=submit]") as HTMLButtonElement | null;
+      if (submitBtn) submitBtn.disabled = true;
+
+      try {
+        const fd = new FormData(form);
+        const res = await fetch("/api/lead", { method: "POST", body: fd });
+        if (res.ok) {
+          form.reset();
+          success?.classList.remove("hidden");
+          success?.scrollIntoView({ behavior: "smooth", block: "center" });
+        } else {
+          error?.classList.remove("hidden");
+        }
+      } catch {
+        error?.classList.remove("hidden");
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  }
+</script>

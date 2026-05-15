@@ -1,0 +1,75 @@
+---
+import Base from "../../layouts/Base.astro";
+import Hero from "../../components/Hero.astro";
+import TrustBar from "../../components/TrustBar.astro";
+import ServiceCard from "../../components/ServiceCard.astro";
+import WhyBBQTech from "../../components/WhyBBQTech.astro";
+import PricingTable from "../../components/PricingTable.astro";
+import ProcessSteps from "../../components/ProcessSteps.astro";
+import Philosophy from "../../components/Philosophy.astro";
+import Commitments from "../../components/Commitments.astro";
+import FAQ from "../../components/FAQ.astro";
+import CTABanner from "../../components/CTABanner.astro";
+import { siteConfig } from "../../../site.config";
+import { t, localeHref } from "../../i18n/utils";
+
+const lang = "en" as const;
+---
+
+<Base lang={lang} title="Home" description={t(siteConfig.seo.defaultDescription, lang)}>
+  <Hero
+    lang={lang}
+    title={t(siteConfig.hero.h1, lang)}
+    subtitle={t(siteConfig.hero.sub, lang)}
+    showPillars={true}
+  />
+
+  <TrustBar lang={lang} />
+
+  <section class="py-16 md:py-20 bg-white" id="services">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="text-center mb-12 md:mb-14">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Four services, one operator</h2>
+        <p class="text-lg text-grey max-w-2xl mx-auto">Cleaning, maintenance, assembly, and repair. Transparent pricing, on-site service in Gatineau and Ottawa.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {siteConfig.services.map((s) => (
+          <ServiceCard
+            icon={s.icon}
+            title={t(s.name, lang)}
+            price={t(s.priceLabel, lang)}
+            description={t(s.summary, lang)}
+            ctaLabel="Get a quote"
+            ctaHref={localeHref("/contact", lang)}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <WhyBBQTech
+    lang={lang}
+    title="Why BBQTech"
+    subtitle="Four pillars no competitor in the region combines. That's the moat."
+  />
+
+  <PricingTable
+    lang={lang}
+    title="Transparent pricing — Deep Cleaning"
+    subtitle="No hidden quotes. You know what you pay before we show up."
+  />
+
+  <ProcessSteps lang={lang} title="How it works" />
+
+  <Philosophy lang={lang} />
+
+  <Commitments lang={lang} title="Our commitments" />
+
+  <FAQ lang={lang} title="Frequently asked questions" />
+
+  <CTABanner
+    lang={lang}
+    title="Ready to book a cleaning?"
+    subtitle="Send us a photo + your BBQ model. We come back with a fixed price within 24 h."
+  />
+</Base>

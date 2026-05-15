@@ -1,0 +1,28 @@
+---
+import { siteConfig } from "../../site.config";
+import { type Locale, t, localeHref } from "../i18n/utils";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const ctaHref = localeHref(siteConfig.cta.primary.hrefPath, lang);
+const callLabel = lang === "fr" ? "Appeler" : "Call";
+const quoteLabel = lang === "fr" ? "Soumission" : "Quote";
+---
+
+<div class="fixed bottom-0 left-0 right-0 z-40 grid grid-cols-2 md:hidden border-t border-black">
+  <a
+    href={`tel:${siteConfig.phoneRaw}`}
+    class="bg-black text-white text-center py-4 font-bold text-sm no-underline flex items-center justify-center gap-2"
+  >
+    📞 {callLabel}
+  </a>
+  <a
+    href={ctaHref}
+    class="bg-accent text-white text-center py-4 font-bold text-sm no-underline flex items-center justify-center gap-2"
+  >
+    💬 {quoteLabel}
+  </a>
+</div>

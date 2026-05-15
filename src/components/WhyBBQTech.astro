@@ -1,0 +1,37 @@
+---
+import { siteConfig } from "../../site.config";
+import { type Locale, t } from "../i18n/utils";
+
+interface Props {
+  lang: Locale;
+  title: string;
+  subtitle?: string;
+}
+
+const { lang, title, subtitle } = Astro.props;
+---
+
+<section class="py-16 md:py-20 bg-light" id="pourquoi">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="text-center mb-12 md:mb-14">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4">{title}</h2>
+      {subtitle && <p class="text-lg text-grey max-w-2xl mx-auto">{subtitle}</p>}
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 max-w-[1080px] mx-auto">
+      {siteConfig.pillars.map((p) => (
+        <div class="bg-white rounded-xl p-6 md:p-7 border border-grey-mid/40 hover:border-accent/40 hover:shadow-lg transition-all">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center text-2xl shrink-0" aria-hidden="true">
+              {p.icon}
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-dark mb-2">{t(p.title, lang)}</h3>
+              <p class="text-sm text-grey leading-relaxed">{t(p.body, lang)}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,77 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import TrustBar from "../components/TrustBar.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import WhyBBQTech from "../components/WhyBBQTech.astro";
+import PricingTable from "../components/PricingTable.astro";
+import ProcessSteps from "../components/ProcessSteps.astro";
+import Philosophy from "../components/Philosophy.astro";
+import Commitments from "../components/Commitments.astro";
+import FAQ from "../components/FAQ.astro";
+import CTABanner from "../components/CTABanner.astro";
+import { siteConfig } from "../../site.config";
+import { t, localeHref } from "../i18n/utils";
+
+const lang = "fr" as const;
+const homeTitle = t(siteConfig.seo.homeTitle, lang);
+---
+
+<Base lang={lang} title="Accueil" description={t(siteConfig.seo.defaultDescription, lang)}>
+  <Hero
+    lang={lang}
+    title={t(siteConfig.hero.h1, lang)}
+    subtitle={t(siteConfig.hero.sub, lang)}
+    showPillars={true}
+  />
+
+  <TrustBar lang={lang} />
+
+  <!-- Services -->
+  <section class="py-16 md:py-20 bg-white" id="services">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="text-center mb-12 md:mb-14">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Quatre services, un seul opérateur</h2>
+        <p class="text-lg text-grey max-w-2xl mx-auto">Nettoyage, entretien, assemblage et réparation. Tarifs publiés, service à domicile à Gatineau et Ottawa.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {siteConfig.services.map((s) => (
+          <ServiceCard
+            icon={s.icon}
+            title={t(s.name, lang)}
+            price={t(s.priceLabel, lang)}
+            description={t(s.summary, lang)}
+            ctaLabel="Demander un tarif"
+            ctaHref={localeHref("/contact", lang)}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <WhyBBQTech
+    lang={lang}
+    title="Pourquoi BBQTech"
+    subtitle="Quatre piliers qu'aucun concurrent dans la région ne combine. C'est ça, le moat."
+  />
+
+  <PricingTable
+    lang={lang}
+    title="Tarifs publiés — Nettoyage en profondeur"
+    subtitle="Pas de devis caché. Vous savez ce que vous payez avant qu'on arrive."
+  />
+
+  <ProcessSteps lang={lang} title="Comment ça marche" />
+
+  <Philosophy lang={lang} />
+
+  <Commitments lang={lang} title="Notre engagement" />
+
+  <FAQ lang={lang} title="Questions fréquentes" />
+
+  <CTABanner
+    lang={lang}
+    title="Prêt à réserver un nettoyage ?"
+    subtitle="Envoyez-nous une photo + le modèle de votre BBQ. On revient avec un tarif fixe en moins de 24 h."
+  />
+</Base>

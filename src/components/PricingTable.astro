@@ -1,0 +1,72 @@
+---
+import { siteConfig } from "../../site.config";
+import { type Locale, t, localeHref } from "../i18n/utils";
+
+interface Props {
+  lang: Locale;
+  title: string;
+  subtitle?: string;
+}
+
+const { lang, title, subtitle } = Astro.props;
+const ctaHref = localeHref(siteConfig.cta.primary.hrefPath, lang);
+
+const labels = lang === "fr"
+  ? { tier: "Format", example: "Exemples", price: "Tarif fixe", note: "Tous les tarifs incluent le déplacement à Gatineau et Ottawa, la vapeur commerciale, le berm anti-déversement et les produits Hawco." }
+  : { tier: "Size", example: "Examples", price: "Fixed price", note: "All prices include travel to Gatineau and Ottawa, commercial steam, spill berm, and Hawco products." };
+---
+
+<section class="py-16 md:py-20 bg-white" id="tarifs">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="text-center mb-10 md:mb-14">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4">{title}</h2>
+      {subtitle && <p class="text-lg text-grey max-w-2xl mx-auto">{subtitle}</p>}
+    </div>
+
+    <!-- Desktop table -->
+    <div class="hidden md:block max-w-[960px] mx-auto overflow-hidden rounded-xl border border-grey-mid/60">
+      <table class="w-full text-left">
+        <thead class="bg-black text-white">
+          <tr>
+            <th class="px-6 py-4 text-sm font-bold uppercase tracking-wider">{labels.tier}</th>
+            <th class="px-6 py-4 text-sm font-bold uppercase tracking-wider">{labels.example}</th>
+            <th class="px-6 py-4 text-sm font-bold uppercase tracking-wider text-right">{labels.price}</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-grey-mid/60">
+          {siteConfig.pricingTiers.map((tier) => (
+            <tr class="hover:bg-light transition-colors">
+              <td class="px-6 py-5 font-bold text-dark">{t(tier.label, lang)}</td>
+              <td class="px-6 py-5 text-sm text-grey">{t(tier.example, lang)}</td>
+              <td class="px-6 py-5 text-right text-2xl font-extrabold text-accent">${tier.price}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mobile cards -->
+    <div class="md:hidden space-y-4 max-w-md mx-auto">
+      {siteConfig.pricingTiers.map((tier) => (
+        <div class="bg-white border border-grey-mid/60 rounded-xl p-5">
+          <div class="flex items-baseline justify-between gap-3 mb-2">
+            <h3 class="font-bold text-dark">{t(tier.label, lang)}</h3>
+            <span class="text-2xl font-extrabold text-accent shrink-0">${tier.price}</span>
+          </div>
+          <p class="text-sm text-grey">{t(tier.example, lang)}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-center text-sm text-grey mt-8 max-w-2xl mx-auto">{labels.note}</p>
+
+    <div class="text-center mt-10">
+      <a
+        href={ctaHref}
+        class="inline-block bg-accent text-white px-8 py-4 rounded-lg font-bold hover:bg-accent-hover hover:-translate-y-0.5 transition-all no-underline"
+      >
+        {t(siteConfig.cta.primary.label, lang)}
+      </a>
+    </div>
+  </div>
+</section>

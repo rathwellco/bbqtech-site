@@ -1,0 +1,118 @@
+---
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import StickyMobileCTA from "../components/StickyMobileCTA.astro";
+import { siteConfig } from "../../site.config";
+import { type Locale, t, getAltLocaleUrl } from "../i18n/utils";
+
+interface Props {
+  lang: Locale;
+  title: string;
+  description?: string;
+  canonicalUrl?: string;
+}
+
+const { lang, title, description, canonicalUrl } = Astro.props;
+const pageTitle = t(siteConfig.seo.titleTemplate, lang).replace("%s", title);
+const pageDescription = description || t(siteConfig.seo.defaultDescription, lang);
+const pageOgImage = siteConfig.seo.ogImage;
+
+const currentPath = Astro.url.pathname;
+const altUrl = getAltLocaleUrl(currentPath, lang);
+const frUrl = lang === "fr" ? currentPath : altUrl;
+const enUrl = lang === "en" ? currentPath : altUrl;
+const canonical = canonicalUrl || `${siteConfig.url}${currentPath}`;
+
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": siteConfig.url,
+  name: siteConfig.name,
+  url: siteConfig.url,
+  telephone: siteConfig.phoneRaw,
+  email: siteConfig.email,
+  priceRange: "$$",
+  description: t(siteConfig.seo.defaultDescription, lang),
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Gatineau",
+    addressRegion: siteConfig.region,
+    addressCountry: siteConfig.country,
+  },
+  areaServed: [
+    { "@type": "City", name: "Gatineau" },
+    { "@type": "City", name: "Aylmer" },
+    { "@type": "City", name: "Hull" },
+    { "@type": "City", name: "Ottawa" },
+  ],
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "08:00",
+    closes: "18:00",
+  },
+};
+---
+
+<!DOCTYPE html>
+<html lang={lang === "fr" ? "fr-CA" : "en-CA"}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDescription} />
+  <link rel="canonical" href={canonical} />
+
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="fr-CA" href={`${siteConfig.url}${frUrl}`} />
+  <link rel="alternate" hreflang="en-CA" href={`${siteConfig.url}${enUrl}`} />
+  <link rel="alternate" hreflang="x-default" href={`${siteConfig.url}${frUrl}`} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={pageDescription} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:locale" content={lang === "fr" ? "fr_CA" : "en_CA"} />
+  <meta property="og:image" content={`${siteConfig.url}${pageOgImage}`} />
+  <meta property="og:site_name" content={siteConfig.name} />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={pageDescription} />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href={siteConfig.fonts.googleFontsUrl} rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessJsonLd)} />
+
+  <!-- Tracking (placeholder) -->
+  {siteConfig.tracking.ga4Id && (
+    <script is:inline src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.tracking.ga4Id}`}></script>
+  )}
+  {siteConfig.tracking.ga4Id && (
+    <script is:inline define:vars={{ ga4Id: siteConfig.tracking.ga4Id }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', ga4Id);
+    </script>
+  )}
+</head>
+<body class="text-dark leading-relaxed bg-white" style={`font-family: ${siteConfig.fonts.body}`}>
+  <Nav lang={lang} />
+  <main>
+    <slot />
+  </main>
+  <Footer lang={lang} />
+  <StickyMobileCTA lang={lang} />
+</body>
+</html>

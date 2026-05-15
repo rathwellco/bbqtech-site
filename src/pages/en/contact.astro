@@ -1,0 +1,56 @@
+---
+import Base from "../../layouts/Base.astro";
+import Hero from "../../components/Hero.astro";
+import ContactForm from "../../components/ContactForm.astro";
+import { siteConfig } from "../../../site.config";
+import { t } from "../../i18n/utils";
+
+const lang = "en" as const;
+---
+
+<Base
+  lang={lang}
+  title="Contact"
+  description="BBQ quote requests in Gatineau and Ottawa. Reply within 24 h during the season. Call 819-790-0414."
+>
+  <Hero
+    lang={lang}
+    title="Contact"
+    subtitle="Send a request — we come back with a fixed price within 24 h. For faster service, call directly."
+    showPillars={false}
+    short={true}
+  />
+
+  <div class="py-12 md:py-16 bg-white">
+    <div class="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-10 lg:gap-14">
+      <div>
+        <ContactForm lang={lang} />
+      </div>
+
+      <aside class="space-y-7 lg:pt-20">
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-grey mb-2">Phone</h3>
+          <a href={`tel:${siteConfig.phoneRaw}`} class="text-2xl text-accent font-extrabold no-underline hover:underline">
+            📞 {siteConfig.phone}
+          </a>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-grey mb-2">Email</h3>
+          <a href={`mailto:${siteConfig.email}`} class="text-base text-dark font-semibold no-underline hover:text-accent">
+            {siteConfig.email}
+          </a>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-grey mb-2">Service area</h3>
+          <p class="text-base text-dark">Gatineau · Ottawa</p>
+          <p class="text-sm text-grey mt-1">Aylmer · Hull · Plateau · Buckingham · Ottawa</p>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-grey mb-2">Hours</h3>
+          <p class="text-base text-dark">{t(siteConfig.contact.hours, lang)}</p>
+          <p class="text-sm text-grey mt-1">{t(siteConfig.contact.season, lang)}</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</Base>

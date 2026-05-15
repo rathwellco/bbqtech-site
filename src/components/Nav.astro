@@ -1,0 +1,158 @@
+---
+import { siteConfig } from "../../site.config";
+import { type Locale, t, getAltLocaleUrl, localeHref } from "../i18n/utils";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const homeHref = lang === "en" ? "/en/" : "/";
+const ctaHref = localeHref(siteConfig.cta.primary.hrefPath, lang);
+const altHref = getAltLocaleUrl(Astro.url.pathname, lang);
+const altLabel = lang === "fr" ? "EN" : "FR";
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/10">
+  <div class="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-[72px]">
+    <!-- Logo -->
+    <a href={homeHref} class="flex items-center gap-2 no-underline" aria-label="BBQTech">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="#E81B1B" aria-hidden="true">
+        <path d="M12 2C10 6 6 8 6 13a6 6 0 0012 0c0-3-2-5-3-7-1 2-2 3-3 3 0-2 1-4 0-7z"/>
+      </svg>
+      <span class="text-xl font-extrabold tracking-tight">
+        <span class="text-white">BBQ</span><span class="text-accent">TECH</span>
+      </span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-7">
+      {siteConfig.nav.map((item) => (
+        <a href={localeHref(item.href, lang)} class="text-sm font-semibold text-white/75 hover:text-white transition-opacity no-underline">
+          {t(item.label, lang)}
+        </a>
+      ))}
+      <a href={altHref} class="text-sm font-bold text-white/75 hover:text-accent transition-colors no-underline border border-white/20 px-2.5 py-1 rounded">
+        {altLabel}
+      </a>
+      <a
+        href={`tel:${siteConfig.phoneRaw}`}
+        class="text-sm font-bold text-white hover:text-accent no-underline"
+      >
+        {siteConfig.phone}
+      </a>
+      <a
+        href={ctaHref}
+        class="bg-accent text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-accent-hover hover:-translate-y-0.5 transition-all no-underline"
+      >
+        {t(siteConfig.cta.primary.label, lang)}
+      </a>
+    </nav>
+
+    <!-- Hamburger -->
+    <button
+      id="hamburger"
+      class="md:hidden relative w-10 h-10 flex items-center justify-center bg-transparent border-none cursor-pointer z-50"
+      aria-label="Menu"
+      aria-expanded="false"
+    >
+      <span id="bar1" class="absolute w-6 h-[2px] bg-white rounded-full transition-all duration-300 -translate-y-[7px]"></span>
+      <span id="bar2" class="absolute w-6 h-[2px] bg-white rounded-full transition-all duration-300"></span>
+      <span id="bar3" class="absolute w-6 h-[2px] bg-white rounded-full transition-all duration-300 translate-y-[7px]"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 top-[72px] bg-black z-40 flex flex-col items-center justify-center gap-2 opacity-0 pointer-events-none transition-opacity duration-300"
+  >
+    {siteConfig.nav.map((item) => (
+      <a
+        href={localeHref(item.href, lang)}
+        class="mobile-link text-2xl font-bold text-white no-underline py-3 translate-y-4 opacity-0 transition-all duration-300"
+      >
+        {t(item.label, lang)}
+      </a>
+    ))}
+    <a
+      href={altHref}
+      class="mobile-link text-lg font-bold text-white/70 no-underline py-2 translate-y-4 opacity-0 transition-all duration-300 border border-white/20 px-4 rounded mt-2"
+    >
+      {altLabel}
+    </a>
+    <div class="mt-4 translate-y-4 opacity-0 transition-all duration-300 mobile-link">
+      <a
+        href={ctaHref}
+        class="bg-accent text-white px-10 py-4 rounded-xl text-lg font-bold no-underline inline-block hover:bg-accent-hover transition-colors"
+      >
+        {t(siteConfig.cta.primary.label, lang)}
+      </a>
+    </div>
+    <a
+      href={`tel:${siteConfig.phoneRaw}`}
+      class="mobile-link mt-4 text-lg text-accent font-bold no-underline translate-y-4 opacity-0 transition-all duration-300"
+    >
+      📞 {siteConfig.phone}
+    </a>
+  </div>
+</header>
+
+<!-- Spacer for fixed header -->
+<div class="h-[72px]"></div>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const menu = document.getElementById("mobile-menu");
+  const bar1 = document.getElementById("bar1");
+  const bar2 = document.getElementById("bar2");
+  const bar3 = document.getElementById("bar3");
+  const links = menu?.querySelectorAll(".mobile-link");
+  let isOpen = false;
+
+  function toggle() {
+    isOpen = !isOpen;
+    hamburger?.setAttribute("aria-expanded", String(isOpen));
+
+    if (isOpen) {
+      bar1?.classList.remove("-translate-y-[7px]");
+      bar1?.classList.add("rotate-45", "translate-y-0");
+      bar2?.classList.add("opacity-0", "scale-x-0");
+      bar3?.classList.remove("translate-y-[7px]");
+      bar3?.classList.add("-rotate-45", "translate-y-0");
+    } else {
+      bar1?.classList.add("-translate-y-[7px]");
+      bar1?.classList.remove("rotate-45", "translate-y-0");
+      bar2?.classList.remove("opacity-0", "scale-x-0");
+      bar3?.classList.add("translate-y-[7px]");
+      bar3?.classList.remove("-rotate-45", "translate-y-0");
+    }
+
+    if (isOpen) {
+      menu?.classList.remove("opacity-0", "pointer-events-none");
+      menu?.classList.add("opacity-100", "pointer-events-auto");
+      document.body.style.overflow = "hidden";
+      links?.forEach((link, i) => {
+        setTimeout(() => {
+          link.classList.remove("translate-y-4", "opacity-0");
+          link.classList.add("translate-y-0", "opacity-100");
+        }, 80 + i * 60);
+      });
+    } else {
+      menu?.classList.add("opacity-0", "pointer-events-none");
+      menu?.classList.remove("opacity-100", "pointer-events-auto");
+      document.body.style.overflow = "";
+      links?.forEach((link) => {
+        link.classList.add("translate-y-4", "opacity-0");
+        link.classList.remove("translate-y-0", "opacity-100");
+      });
+    }
+  }
+
+  hamburger?.addEventListener("click", toggle);
+  links?.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (isOpen) toggle();
+    });
+  });
+</script>

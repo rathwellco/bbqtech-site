@@ -1,0 +1,82 @@
+---
+import { siteConfig } from "../../site.config";
+import { type Locale, t, getAltLocaleUrl, localeHref } from "../i18n/utils";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const homeHref = lang === "en" ? "/en/" : "/";
+const altHref = getAltLocaleUrl(Astro.url.pathname, lang);
+const altLabel = lang === "fr" ? "English" : "Français";
+const year = new Date().getFullYear();
+const contactHref = localeHref("/contact", lang);
+
+const labels = lang === "fr"
+  ? { services: "Services", contact: "Contact", areas: "Zones desservies", language: "Langue" }
+  : { services: "Services", contact: "Contact", areas: "Service areas", language: "Language" };
+---
+
+<footer class="bg-[#0a0a0a] pt-16 pb-24 md:pb-12 text-white/70">
+  <div class="max-w-[1200px] mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+    <!-- Brand -->
+    <div>
+      <a href={homeHref} class="flex items-center gap-2 no-underline mb-3" aria-label="BBQTech">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#E81B1B" aria-hidden="true">
+          <path d="M12 2C10 6 6 8 6 13a6 6 0 0012 0c0-3-2-5-3-7-1 2-2 3-3 3 0-2 1-4 0-7z"/>
+        </svg>
+        <span class="text-xl font-extrabold tracking-tight">
+          <span class="text-white">BBQ</span><span class="text-accent">TECH</span>
+        </span>
+      </a>
+      <p class="text-sm text-white/50 leading-relaxed">{t(siteConfig.footer.description, lang)}</p>
+      <p class="text-xs text-white/40 mt-3">{t(siteConfig.tagline, lang)}</p>
+    </div>
+
+    <!-- Services -->
+    <div>
+      <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-3">{labels.services}</h4>
+      {siteConfig.services.map((s) => (
+        <p class="text-sm text-white/60 mb-2">{t(s.name, lang)}</p>
+      ))}
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-3">{labels.contact}</h4>
+      <a href={`tel:${siteConfig.phoneRaw}`} class="block text-sm text-white/60 hover:text-white mb-2 no-underline">
+        📞 {siteConfig.phone}
+      </a>
+      <a href={`mailto:${siteConfig.email}`} class="block text-sm text-white/60 hover:text-white mb-2 no-underline">
+        ✉ {siteConfig.email}
+      </a>
+      <a href={contactHref} class="block text-sm text-accent hover:text-white mb-2 no-underline font-semibold">
+        {t(siteConfig.cta.primary.label, lang)} →
+      </a>
+      <p class="text-xs text-white/40 mt-3">{t(siteConfig.contact.hours, lang)}</p>
+      <p class="text-xs text-white/40">{t(siteConfig.contact.season, lang)}</p>
+    </div>
+
+    <!-- Service Areas -->
+    <div>
+      <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-3">{labels.areas}</h4>
+      {siteConfig.footer.serviceAreas.map((area) => (
+        <p class="text-sm text-white/60 mb-1">{area}</p>
+      ))}
+      <div class="mt-4">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-white/70 mb-2">{labels.language}</h4>
+        <a href={altHref} class="inline-block text-sm text-white/60 hover:text-white no-underline border border-white/20 px-3 py-1 rounded">
+          {altLabel}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="mt-10 py-5 border-t border-white/10 text-center text-xs text-white/40">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <p>© {year} {siteConfig.footer.copyrightOwner}</p>
+    </div>
+  </div>
+</footer>

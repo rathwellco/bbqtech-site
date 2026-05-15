@@ -1,0 +1,29 @@
+---
+import { siteConfig } from "../../site.config";
+import { type Locale, t } from "../i18n/utils";
+
+interface Props {
+  lang: Locale;
+  title: string;
+}
+
+const { lang, title } = Astro.props;
+---
+
+<section class="py-16 md:py-20 bg-light" id="faq">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12">{title}</h2>
+    <div class="max-w-[760px] mx-auto">
+      {siteConfig.faq.map((item) => (
+        <details class="border-b border-grey-mid/60 group">
+          <summary class="py-5 font-bold text-dark cursor-pointer list-none flex justify-between items-center gap-4">
+            <span>{t(item.q, lang)}</span>
+            <span class="text-accent text-2xl font-light group-open:hidden shrink-0">+</span>
+            <span class="text-accent text-2xl font-light hidden group-open:inline shrink-0">−</span>
+          </summary>
+          <p class="pb-5 text-grey text-[15px] leading-relaxed">{t(item.a, lang)}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

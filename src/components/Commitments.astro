@@ -1,0 +1,26 @@
+---
+import { siteConfig } from "../../site.config";
+import { type Locale, t } from "../i18n/utils";
+
+interface Props {
+  lang: Locale;
+  title: string;
+}
+
+const { lang, title } = Astro.props;
+---
+
+<section class="py-16 md:py-20 bg-white" id="engagement">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12">{title}</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-[1080px] mx-auto">
+      {siteConfig.commitments.map((c) => (
+        <div class="text-center p-5 md:p-6 rounded-xl border border-grey-mid/40 hover:border-accent/40 hover:shadow-md transition-all">
+          <div class="text-3xl mb-3" aria-hidden="true">{c.icon}</div>
+          <h3 class="text-base font-bold text-dark mb-2">{t(c.title, lang)}</h3>
+          <p class="text-xs md:text-sm text-grey leading-relaxed">{t(c.body, lang)}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
