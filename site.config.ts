@@ -72,12 +72,12 @@ export const siteConfig = {
   // ─── HERO (HOME) ───
   hero: {
     h1: {
-      fr: "Nettoyage BBQ professionnel à domicile — dès 195 $.",
-      en: "Professional on-site BBQ cleaning — from $195.",
+      fr: "Nettoyage BBQ professionnel à domicile — dès 249 $.",
+      en: "Professional on-site BBQ cleaning — from $249.",
     } satisfies Bilingual,
     sub: {
-      fr: "Service mobile spécialisé de nettoyage, entretien, assemblage, diagnostic et réparation de BBQ à Gatineau et Ottawa. Trois forfaits simples : Essential, Signature ou VIP: Steam Clean.",
-      en: "Specialized mobile service for BBQ cleaning, maintenance, assembly, diagnostic and repair in Gatineau and Ottawa. Three simple packages: Essential, Signature, or VIP: Steam Clean.",
+      fr: "Service mobile spécialisé de nettoyage, entretien, assemblage, diagnostic et réparation de BBQ à Gatineau et Ottawa. Offre de lancement en cours : nettoyage à domicile dès 249 $ (prix régulier 349 $).",
+      en: "Specialized mobile service for BBQ cleaning, maintenance, assembly, diagnostic and repair in Gatineau and Ottawa. Launch offer in effect: on-site cleaning from $249 (regular price $349).",
     } satisfies Bilingual,
   },
 
@@ -94,11 +94,11 @@ export const siteConfig = {
     },
     {
       icon: "💰",
-      shortLabel: { fr: "Forfaits clairs", en: "Clear packages" } satisfies Bilingual,
-      title: { fr: "Forfaits clairs", en: "Clear packages" } satisfies Bilingual,
+      shortLabel: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
+      title: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       body: {
-        fr: "Essential, Signature et Steam Clean permettent de choisir le bon niveau de service selon l'état du BBQ, son accès et vos attentes.",
-        en: "Essential, Signature and Steam Clean let you pick the right service level based on your BBQ's condition, access, and your expectations.",
+        fr: "Nettoyage à domicile dès 249 $ pendant notre offre de lancement, assemblage dès 149 $, diagnostic 99 $. Aucun changement de tarif sans votre accord.",
+        en: "On-site cleaning from $249 during our launch offer, assembly from $149, diagnostic $99. No price change without your approval.",
       } satisfies Bilingual,
     },
     {
@@ -130,36 +130,47 @@ export const siteConfig = {
     },
   ],
 
-  // ─── SERVICES (3 categories shown on homepage) ───
+  // ─── SERVICES (4 categories shown on homepage) ───
   services: [
     {
       slug: "nettoyage",
       icon: "🔥",
-      name: { fr: "Nettoyage / entretien BBQ", en: "BBQ Cleaning / Maintenance" } satisfies Bilingual,
-      priceLabel: { fr: "Dès 195 $", en: "From $195" } satisfies Bilingual,
+      name: { fr: "Nettoyage BBQ à domicile", en: "On-site BBQ Cleaning" } satisfies Bilingual,
+      priceLabel: { fr: "Dès 249 $ — offre de lancement", en: "From $249 — launch offer" } satisfies Bilingual,
+      regularPriceLabel: { fr: "Prix régulier : 349 $", en: "Regular price: $349" } satisfies Bilingual,
       summary: {
-        fr: "Trois forfaits simples : Essential, Signature ou Steam Clean. Adaptés à l'état du BBQ et au niveau de nettoyage souhaité.",
-        en: "Three simple packages: Essential, Signature or Steam Clean. Matched to your BBQ's condition and the desired cleaning level.",
+        fr: "Service mobile professionnel de nettoyage et d'entretien de BBQ à domicile. Méthode adaptée selon l'état, l'accès et la configuration de votre BBQ.",
+        en: "Professional mobile service for on-site BBQ cleaning and maintenance. Method adapted to the condition, access and configuration of your BBQ.",
       } satisfies Bilingual,
     },
     {
       slug: "assemblage",
       icon: "🔧",
       name: { fr: "Assemblage BBQ", en: "BBQ Assembly" } satisfies Bilingual,
-      priceLabel: { fr: "195 $ + taxes", en: "$195 + tax" } satisfies Bilingual,
+      priceLabel: { fr: "Dès 149 $", en: "From $149" } satisfies Bilingual,
       summary: {
-        fr: "Assemblage à domicile d'un BBQ neuf chez le client. Tarif standard pour la plupart des modèles. Grand format, pellet, kamado ou cuisine extérieure : soumission personnalisée.",
-        en: "On-site assembly of a new BBQ at your home. Standard pricing for most models. Large format, pellet, kamado or outdoor kitchen: custom quote.",
+        fr: "Assemblage à domicile d'un BBQ neuf chez le client. Modèles standards à partir de 149 $. Grand format, pellet, kamado ou cuisine extérieure : soumission personnalisée.",
+        en: "On-site assembly of a new BBQ at your home. Standard models from $149. Large format, pellet, kamado or outdoor kitchen: custom quote.",
       } satisfies Bilingual,
     },
     {
       slug: "reparation",
       icon: "🛠️",
       name: { fr: "Diagnostic & Réparation", en: "Diagnostic & Repair" } satisfies Bilingual,
-      priceLabel: { fr: "Diagnostic 125 $", en: "Diagnostic $125" } satisfies Bilingual,
+      priceLabel: { fr: "99 $", en: "$99" } satisfies Bilingual,
       summary: {
-        fr: "Diagnostic à domicile professionnel. 55 $ crédités si la réparation est effectuée par BBQTech. Pièces et main-d'œuvre en sus.",
-        en: "Professional on-site diagnostic. $55 credited if BBQTech does the repair. Parts and labor extra.",
+        fr: "Diagnostic à domicile professionnel. Estimation transparente avant tout travail. Pièces et main-d'œuvre en sus si la réparation est effectuée.",
+        en: "Professional on-site diagnostic. Transparent estimate before any work. Parts and labor extra if the repair is carried out.",
+      } satisfies Bilingual,
+    },
+    {
+      slug: "commercial",
+      icon: "🏢",
+      name: { fr: "Entretien commercial / multi-unités", en: "Commercial / Multi-unit Maintenance" } satisfies Bilingual,
+      priceLabel: { fr: "Sur soumission", en: "Custom quote" } satisfies Bilingual,
+      summary: {
+        fr: "Entretien régulier pour restaurants, food trucks, condos, propriétés à plusieurs unités ou flottes de BBQ commerciaux. Programme adapté à votre opération.",
+        en: "Regular maintenance for restaurants, food trucks, condos, multi-unit properties or commercial BBQ fleets. Program tailored to your operation.",
       } satisfies Bilingual,
     },
   ],
@@ -248,8 +259,8 @@ export const siteConfig = {
       en: "Some BBQs require a custom quote",
     } satisfies Bilingual,
     intro: {
-      fr: "Les forfaits en ligne s'appliquent aux BBQ standards, mobiles et accessibles.",
-      en: "Online packages apply to standard, mobile and accessible BBQs.",
+      fr: "Notre nettoyage à domicile en ligne s'applique aux BBQ standards, mobiles et accessibles.",
+      en: "Our online on-site cleaning applies to standard, mobile and accessible BBQs.",
     } satisfies Bilingual,
     cueLine: {
       fr: "Demandez une soumission si votre BBQ est :",
@@ -299,19 +310,19 @@ export const siteConfig = {
       fr: "Brûleurs, allumage, régulateur, grilles, plaques. Diagnostic professionnel avant de remplacer.",
       en: "Burners, ignition, regulator, grates, plates. Pro diagnostic before you replace.",
     } satisfies Bilingual,
-    diagnosticPriceLabel: { fr: "125 $ + taxes", en: "$125 + tax" } satisfies Bilingual,
+    diagnosticPriceLabel: { fr: "99 $ + taxes", en: "$99 + tax" } satisfies Bilingual,
     diagnosticHeading: { fr: "Diagnostic à domicile", en: "On-site diagnostic" } satisfies Bilingual,
     creditNote: {
-      fr: "55 $ crédités sur la facture finale si la réparation est effectuée par BBQTech.",
-      en: "$55 credited to the final invoice if the repair is done by BBQTech.",
+      fr: "Estimation transparente envoyée avant tout travail. Vous décidez ensuite si vous souhaitez aller de l'avant avec la réparation.",
+      en: "Transparent estimate sent before any work. You then decide whether to proceed with the repair.",
     } satisfies Bilingual,
     disclaimer: {
-      fr: "Pièces et main-d'œuvre en sus. Certaines réparations nécessitent une deuxième visite selon la disponibilité des pièces.",
-      en: "Parts and labor extra. Some repairs require a second visit depending on parts availability.",
+      fr: "Pièces et main-d'œuvre en sus si la réparation est effectuée. Certaines réparations nécessitent une deuxième visite selon la disponibilité des pièces.",
+      en: "Parts and labor extra if the repair is carried out. Some repairs require a second visit depending on parts availability.",
     } satisfies Bilingual,
     comboNote: {
-      fr: "Astuce : combinez avec un nettoyage Signature ou VIP: Steam Clean pour économiser une visite.",
-      en: "Tip: combine with a Signature or VIP: Steam Clean cleaning to save a visit.",
+      fr: "Astuce : combinez avec un nettoyage à domicile pour économiser une visite.",
+      en: "Tip: combine with an on-site cleaning to save a visit.",
     } satisfies Bilingual,
     diagnosticPrep: {
       fr: "Pour accélérer le diagnostic, préparez si possible la marque, le modèle, le numéro de série, des photos des pièces problématiques et une description du symptôme : allumage, flamme faible, brûleur endommagé, régulateur, grilles, plaques, etc.",
@@ -331,8 +342,8 @@ export const siteConfig = {
         number: "2",
         title: { fr: "Diagnostic à domicile", en: "On-site diagnostic" } satisfies Bilingual,
         desc: {
-          fr: "125 $ + taxes. Inspection pro, identification des pièces nécessaires.",
-          en: "$125 + tax. Pro inspection, identification of parts needed.",
+          fr: "99 $ + taxes. Inspection pro, identification des pièces nécessaires.",
+          en: "$99 + tax. Pro inspection, identification of parts needed.",
         } satisfies Bilingual,
       },
       {
@@ -458,10 +469,10 @@ export const siteConfig = {
   // ─── FAQ ───
   faq: [
     {
-      q: { fr: "Quel forfait dois-je choisir ?", en: "Which package should I pick?" } satisfies Bilingual,
+      q: { fr: "Combien coûte un nettoyage de BBQ ?", en: "How much does a BBQ cleaning cost?" } satisfies Bilingual,
       a: {
-        fr: "Essential = pressure washer sans berm. Signature = pressure washer avec berm de confinement (recommandé). VIP: Steam Clean = berm + nettoyage vapeur. Pas certain ? Envoyez-nous une photo du BBQ et de son emplacement.",
-        en: "Essential = pressure washer, no berm. Signature = pressure washer with containment berm (recommended). VIP: Steam Clean = berm + steam cleaning. Not sure? Send us a photo of the BBQ and its location.",
+        fr: "Notre nettoyage à domicile débute à 249 $ + taxes pendant notre offre de lancement (prix régulier 349 $). Le tarif final dépend de l'état du BBQ, de sa taille, de sa configuration et de son accès. Envoyez-nous une photo pour obtenir une recommandation précise.",
+        en: "Our on-site cleaning starts at $249 + tax during our launch offer (regular price $349). The final price depends on the BBQ's condition, size, configuration and access. Send us a photo for a precise recommendation.",
       } satisfies Bilingual,
     },
     {
@@ -488,15 +499,15 @@ export const siteConfig = {
     {
       q: { fr: "De quoi avez-vous besoin sur place ?", en: "What do you need on-site?" } satisfies Bilingual,
       a: {
-        fr: "Le BBQ doit être accessible à l'heure prévue. Selon le forfait, nous pouvons avoir besoin d'un accès à l'eau extérieure et d'un espace de travail suffisant. Pour les forfaits Signature et VIP: Steam Clean, un espace d'environ 8' × 8' est recommandé.",
-        en: "The BBQ must be accessible at the scheduled time. Depending on the package, we may need outdoor water access and adequate work space. For Signature and VIP: Steam Clean packages, an area of about 8' × 8' is recommended.",
+        fr: "Le BBQ doit être accessible à l'heure prévue. Selon le service, nous pouvons avoir besoin d'un accès à l'eau extérieure et d'un espace de travail suffisant — idéalement environ 8' × 8' pour un nettoyage à domicile.",
+        en: "The BBQ must be accessible at the scheduled time. Depending on the service, we may need outdoor water access and adequate work space — ideally about 8' × 8' for on-site cleaning.",
       } satisfies Bilingual,
     },
     {
       q: { fr: "Combien coûte l'assemblage d'un BBQ ?", en: "How much does BBQ assembly cost?" } satisfies Bilingual,
       a: {
-        fr: "L'assemblage à domicile est de 195 $ + taxes pour la plupart des BBQ standards. Certains modèles grands formats, complexes, pellet, kamado ou cuisines extérieures peuvent nécessiter une soumission personnalisée.",
-        en: "On-site assembly is $195 + tax for most standard BBQs. Larger, more complex models, pellet, kamado or outdoor kitchens may require a custom quote.",
+        fr: "L'assemblage à domicile débute à 149 $ + taxes pour la plupart des BBQ standards. Certains modèles grands formats, complexes, pellet, kamado ou cuisines extérieures peuvent nécessiter une soumission personnalisée.",
+        en: "On-site assembly starts at $149 + tax for most standard BBQs. Larger, more complex models, pellet, kamado or outdoor kitchens may require a custom quote.",
       } satisfies Bilingual,
     },
     {
@@ -509,8 +520,8 @@ export const siteConfig = {
     {
       q: { fr: "Comment fonctionne le diagnostic de réparation ?", en: "How does the repair diagnostic work?" } satisfies Bilingual,
       a: {
-        fr: "Diagnostic à domicile pour 125 $ + taxes. Le technicien identifie les pièces nécessaires et envoie une estimation transparente (pièces + main-d'œuvre). 55 $ sont crédités sur la facture finale si la réparation est effectuée par BBQTech. Certaines réparations nécessitent une 2e visite selon la disponibilité des pièces. Astuce : combinez avec un nettoyage Signature ou VIP: Steam Clean pour économiser une visite.",
-        en: "On-site diagnostic for $125 + tax. The technician identifies the parts needed and sends a transparent estimate (parts + labor). $55 is credited to the final invoice if BBQTech does the repair. Some repairs require a 2nd visit depending on parts availability. Tip: combine with a Signature or VIP: Steam Clean cleaning to save a visit.",
+        fr: "Diagnostic à domicile pour 99 $ + taxes. Le technicien identifie les pièces nécessaires et envoie une estimation transparente (pièces + main-d'œuvre). Vous décidez ensuite si vous souhaitez aller de l'avant avec la réparation. Certaines réparations nécessitent une 2e visite selon la disponibilité des pièces. Astuce : combinez avec un nettoyage à domicile pour économiser une visite.",
+        en: "On-site diagnostic for $99 + tax. The technician identifies the parts needed and sends a transparent estimate (parts + labor). You then decide whether to proceed with the repair. Some repairs require a 2nd visit depending on parts availability. Tip: combine with an on-site cleaning to save a visit.",
       } satisfies Bilingual,
     },
     {
@@ -562,8 +573,8 @@ export const siteConfig = {
       en: "BBQ Cleaning & Repair Gatineau · Ottawa | BBQTech",
     } satisfies Bilingual,
     defaultDescription: {
-      fr: "Service mobile professionnel de nettoyage, entretien, assemblage, diagnostic et réparation de BBQ à Gatineau et Ottawa. Trois forfaits simples : Essential 195 $, Signature 295 $, VIP: Steam Clean 395 $.",
-      en: "Professional mobile service for BBQ cleaning, maintenance, assembly, diagnostic and repair in Gatineau and Ottawa. Three simple packages: Essential $195, Signature $295, VIP: Steam Clean $395.",
+      fr: "Service mobile professionnel de nettoyage, entretien, assemblage, diagnostic et réparation de BBQ à Gatineau et Ottawa. Nettoyage dès 249 $ (offre de lancement), assemblage dès 149 $, diagnostic 99 $.",
+      en: "Professional mobile service for BBQ cleaning, maintenance, assembly, diagnostic and repair in Gatineau and Ottawa. Cleaning from $249 (launch offer), assembly from $149, diagnostic $99.",
     } satisfies Bilingual,
     ogImage: "/og-default.svg",
   },

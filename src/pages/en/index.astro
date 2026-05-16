@@ -4,7 +4,7 @@ import Hero from "../../components/Hero.astro";
 import TrustBar from "../../components/TrustBar.astro";
 import ServiceCard from "../../components/ServiceCard.astro";
 import WhyBBQTech from "../../components/WhyBBQTech.astro";
-import PricingTable from "../../components/PricingTable.astro";
+import OwnerOperator from "../../components/OwnerOperator.astro";
 import CustomQuote from "../../components/CustomQuote.astro";
 import RepairDiagnostic from "../../components/RepairDiagnostic.astro";
 import ProcessSteps from "../../components/ProcessSteps.astro";
@@ -30,10 +30,10 @@ const lang = "en" as const;
   <section class="py-16 md:py-20 bg-white" id="services">
     <div class="max-w-[1200px] mx-auto px-6">
       <div class="text-center mb-12 md:mb-14">
-        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Three services, one specialized operator</h2>
-        <p class="text-lg text-grey max-w-2xl mx-auto">BBQ cleaning / maintenance, assembly, and diagnostic / repair. Mobile on-site service in Gatineau and Ottawa.</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Four services, one specialized operator</h2>
+        <p class="text-lg text-grey max-w-2xl mx-auto">BBQ cleaning, assembly, diagnostic / repair and commercial maintenance. Mobile on-site service in Gatineau and Ottawa.</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {siteConfig.services.map((s) => (
           <ServiceCard
             icon={s.icon}
@@ -48,11 +48,7 @@ const lang = "en" as const;
     </div>
   </section>
 
-  <PricingTable
-    lang={lang}
-    title="Three clear cleaning packages"
-    subtitle="Pick the one that matches the condition, access, and cleaning level you want. Not sure? Send us a photo — we'll recommend the right package."
-  />
+  <OwnerOperator lang={lang} />
 
   <CustomQuote lang={lang} />
 
