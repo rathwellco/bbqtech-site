@@ -9,6 +9,7 @@ interface Props {
 const { lang } = Astro.props;
 const booking = bookingHref(siteConfig.bookingUrl, lang);
 
+const eyebrow = lang === "fr" ? "Propriétaire-opérateur" : "Owner-operator";
 const headline = lang === "fr"
   ? "Service local par propriétaire-opérateur"
   : "Local service by an owner-operator";
@@ -17,43 +18,33 @@ const body = lang === "fr"
   ? "BBQTech est une entreprise locale basée à Gatineau, fondée par Nicholas Rathwell. Mon objectif est simple : offrir un service mobile professionnel, clair et fiable pour le nettoyage, l'entretien, l'assemblage et le diagnostic de BBQ à domicile dans la région de Gatineau–Ottawa."
   : "BBQTech is a local business based in Gatineau, founded by Nicholas Rathwell. My goal is simple: deliver a professional, clear and reliable mobile service for on-site BBQ cleaning, maintenance, assembly and diagnostic in the Gatineau–Ottawa region.";
 
-const credentialsLabel = lang === "fr" ? "Opérateur" : "Operator";
-const operatorName = "Nicholas Rathwell";
-const operatorTitle = lang === "fr"
-  ? "Fondateur · BBQTech"
-  : "Founder · BBQTech";
-const photoCaption = lang === "fr" ? "Photo à venir" : "Photo coming soon";
+const altText = lang === "fr"
+  ? "Nicholas Rathwell, fondateur de BBQTech, devant le véhicule de service à Gatineau."
+  : "Nicholas Rathwell, founder of BBQTech, in front of the service vehicle in Gatineau.";
 ---
 
-<section class="py-16 md:py-24 bg-white" id="proprietaire-operateur">
+<section class="py-16 md:py-24 bg-light" id="proprietaire-operateur">
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-10 md:gap-14 items-center max-w-[1100px] mx-auto">
-      <!-- Photo (placeholder until image is provided) -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-14 items-center max-w-[1100px] mx-auto">
+      <!-- Photo -->
       <div class="order-1 lg:order-1">
-        <div class="relative aspect-[4/5] w-full max-w-[440px] mx-auto rounded-2xl overflow-hidden bg-gradient-to-br from-[#1a1a1a] via-[#0a0a0a] to-black border border-grey-mid/20 shadow-2xl">
-          <!-- Subtle accent glow -->
-          <div class="absolute top-0 right-0 w-[60%] h-[60%] rounded-full bg-accent/15 blur-[80px]"></div>
-          <!-- Centered placeholder content -->
-          <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="#E81B1B" aria-hidden="true" class="mb-4 opacity-80">
-              <path d="M12 2C10 6 6 8 6 13a6 6 0 0012 0c0-3-2-5-3-7-1 2-2 3-3 3 0-2 1-4 0-7z"/>
-            </svg>
-            <p class="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-1">
-              {credentialsLabel}
-            </p>
-            <p class="text-lg font-extrabold text-white">{operatorName}</p>
-            <p class="text-sm text-white/60 mt-1">{operatorTitle}</p>
-            <p class="text-[10px] uppercase tracking-wider text-white/30 mt-6">
-              ▢ {photoCaption}
-            </p>
-          </div>
+        <div class="relative rounded-2xl overflow-hidden bg-black shadow-2xl border border-grey-mid/30">
+          <img
+            src="/images/operator-nicholas.jpg"
+            alt={altText}
+            width="905"
+            height="600"
+            loading="lazy"
+            decoding="async"
+            class="block w-full h-auto"
+          />
         </div>
       </div>
 
       <!-- Copy + CTA -->
       <div class="order-2 lg:order-2">
         <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-4">
-          {lang === "fr" ? "Propriétaire-opérateur" : "Owner-operator"}
+          {eyebrow}
         </p>
         <h2 class="text-3xl md:text-4xl font-extrabold leading-tight mb-6">
           {headline}
