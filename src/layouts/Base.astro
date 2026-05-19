@@ -114,5 +114,33 @@ const localBusinessJsonLd = {
   </main>
   <Footer lang={lang} />
   <StickyMobileCTA lang={lang} />
+
+  <!-- Attribution capture — first-touch per session.
+       Stored in sessionStorage, injected into any [data-lead-form] submit. -->
+  <script is:inline>
+    (function () {
+      const KEY = "bbqtech_attribution";
+      if (sessionStorage.getItem(KEY)) return;
+      const p = new URL(window.location.href).searchParams;
+      sessionStorage.setItem(
+        KEY,
+        JSON.stringify({
+          landing_page: window.location.href,
+          referrer: document.referrer,
+          utm_source: p.get("utm_source") || "",
+          utm_medium: p.get("utm_medium") || "",
+          utm_campaign: p.get("utm_campaign") || "",
+          utm_term: p.get("utm_term") || "",
+          utm_content: p.get("utm_content") || "",
+          gclid: p.get("gclid") || "",
+          gbraid: p.get("gbraid") || "",
+          wbraid: p.get("wbraid") || "",
+          fbclid: p.get("fbclid") || "",
+          msclkid: p.get("msclkid") || "",
+          session_start: new Date().toISOString(),
+        })
+      );
+    })();
+  </script>
 </body>
 </html>

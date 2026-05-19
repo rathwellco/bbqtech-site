@@ -156,6 +156,21 @@ const serviceOptions = isFr
 
       try {
         const fd = new FormData(form);
+
+        // Inject first-touch attribution captured in Base.astro
+        try {
+          const attribution = JSON.parse(sessionStorage.getItem("bbqtech_attribution") || "{}");
+          Object.entries(attribution).forEach(([k, v]) => fd.append(k, String(v)));
+        } catch {
+          /* sessionStorage unavailable or malformed — skip silently */
+        }
+
+        // Last-touch context captured at submit time
+        fd.append("page_url", window.location.href);
+        fd.append("page_title", document.title);
+        fd.append("user_agent", navigator.userAgent);
+        fd.append("submitted_at", new Date().toISOString());
+
         const res = await fetch("/api/lead", { method: "POST", body: fd });
         if (res.ok) {
           form.reset();
