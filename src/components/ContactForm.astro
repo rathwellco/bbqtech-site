@@ -14,135 +14,59 @@ const isFr = lang === "fr";
 const labels = isFr
   ? {
       name: "Nom complet",
-      email: "Courriel",
       phone: "Téléphone",
-      postal: "Ville / secteur",
-      city: "Gatineau ou Ottawa",
-      package: "Type de demande",
-      packagePlaceholder: "Recommandez-moi",
-      bbqModel: "Marque + modèle BBQ",
-      bbqType: "Type de BBQ",
-      bbqTypePlaceholder: "Sélectionnez…",
-      burners: "Nb. de brûleurs principaux",
-      mount: "Configuration",
-      mountPlaceholder: "Sélectionnez…",
-      access: "Accès au BBQ",
-      accessPlaceholder: "Sélectionnez…",
-      presence: "Serez-vous présent ?",
-      presencePlaceholder: "Sélectionnez…",
-      message: "Détails (état, particularités, problèmes connus)",
+      email: "Courriel",
+      address: "Adresse",
+      addressPlaceholder: "123 rue Principale, Gatineau QC J8X 1A1",
+      service: "Service demandé",
+      servicePlaceholder: "Recommandez-moi",
+      message: "Détails",
+      messagePlaceholder: "Marque/modèle, taille, état du BBQ, particularités…",
       submit: "Envoyer ma demande",
       privacy: "Réponse confirmée sous 24 h. Aucun pourriel.",
-      photoNote: "Pour une recommandation précise, envoyez aussi des photos de votre BBQ par SMS au 819-561-0762 ou par courriel à info@bbqtech.com.",
       sentSuccess: "Merci, votre demande a été reçue. On vous répond sous 24 h.",
       sentError: "Une erreur est survenue. Appelez 819-561-0762 ou réessayez.",
     }
   : {
       name: "Full name",
-      email: "Email",
       phone: "Phone",
-      postal: "City / area",
-      city: "Gatineau or Ottawa",
-      package: "Request type",
-      packagePlaceholder: "Recommend me",
-      bbqModel: "BBQ brand + model",
-      bbqType: "BBQ type",
-      bbqTypePlaceholder: "Select…",
-      burners: "Number of main burners",
-      mount: "Configuration",
-      mountPlaceholder: "Select…",
-      access: "BBQ access",
-      accessPlaceholder: "Select…",
-      presence: "Will you be present?",
-      presencePlaceholder: "Select…",
-      message: "Details (condition, specifics, known issues)",
+      email: "Email",
+      address: "Address",
+      addressPlaceholder: "123 Main St, Gatineau QC J8X 1A1",
+      service: "Service needed",
+      servicePlaceholder: "Recommend me",
+      message: "Details",
+      messagePlaceholder: "Brand/model, size, BBQ condition, specifics…",
       submit: "Send my request",
       privacy: "Confirmed reply within 24 h. No spam, ever.",
-      photoNote: "For a precise recommendation, also send photos of your BBQ by SMS to 819-561-0762 or email info@bbqtech.com.",
       sentSuccess: "Thanks, your request was received. We'll reply within 24 h.",
       sentError: "Something went wrong. Call 819-561-0762 or try again.",
     };
 
-const packageOptions = isFr
+const serviceOptions = isFr
   ? [
-      { v: "Nettoyage", l: "Nettoyage BBQ à domicile — dès 249 $ (offre de lancement)" },
+      { v: "Nettoyage", l: "Nettoyage BBQ à domicile — dès 249 $" },
       { v: "Assemblage", l: "Assemblage BBQ — dès 149 $" },
       { v: "Diagnostic", l: "Diagnostic & réparation — 99 $" },
       { v: "Nettoyage + Réparation", l: "Combo nettoyage + diagnostic" },
-      { v: "Commercial", l: "Entretien commercial / multi-unités — sur soumission" },
-      { v: "Soumission", l: "Demande de soumission personnalisée" },
-      { v: "Information", l: "Demande d'information générale" },
+      { v: "Commercial", l: "Entretien commercial / multi-unités" },
+      { v: "Soumission", l: "Soumission personnalisée" },
+      { v: "Information", l: "Information générale" },
     ]
   : [
-      { v: "Cleaning", l: "On-site BBQ Cleaning — from $249 (launch offer)" },
+      { v: "Cleaning", l: "On-site BBQ Cleaning — from $249" },
       { v: "Assembly", l: "BBQ Assembly — from $149" },
       { v: "Diagnostic", l: "Diagnostic & Repair — $99" },
       { v: "Cleaning + Repair", l: "Combo cleaning + diagnostic" },
-      { v: "Commercial", l: "Commercial / Multi-unit maintenance — custom quote" },
-      { v: "Quote", l: "Custom quote request" },
+      { v: "Commercial", l: "Commercial / Multi-unit maintenance" },
+      { v: "Quote", l: "Custom quote" },
       { v: "Information", l: "General inquiry" },
-    ];
-
-const mountOptions = isFr
-  ? ["Mobile", "Encastré / built-in", "Cuisine extérieure complète"]
-  : ["Mobile", "Built-in", "Full outdoor kitchen"];
-
-const presenceOptions = isFr
-  ? [
-      "Oui, toute la durée",
-      "Oui, partiellement",
-      "Non, BBQ accessible sans moi",
-      "Pas sûr",
-    ]
-  : [
-      "Yes, full duration",
-      "Yes, partially",
-      "No, BBQ accessible without me",
-      "Not sure",
-    ];
-
-const bbqTypes = isFr
-  ? [
-      "Gaz propane",
-      "Gaz naturel",
-      "Charcoal",
-      "Pellet / fumoir",
-      "Kamado",
-      "Griddle / plancha",
-      "Cuisine extérieure / built-in",
-      "Autre",
-    ]
-  : [
-      "Propane gas",
-      "Natural gas",
-      "Charcoal",
-      "Pellet / smoker",
-      "Kamado",
-      "Griddle / plancha",
-      "Outdoor kitchen / built-in",
-      "Other",
-    ];
-
-const accessOptions = isFr
-  ? [
-      "Aucun escalier — accès direct",
-      "Quelques marches",
-      "Escalier complet",
-      "Built-in / encastré",
-      "Non sûr",
-    ]
-  : [
-      "No stairs — direct access",
-      "A few steps",
-      "Full staircase",
-      "Built-in",
-      "Not sure",
     ];
 ---
 
 <section class="py-12 md:py-16 bg-light" id="contact-form">
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="max-w-[720px] mx-auto">
+    <div class="max-w-[640px] mx-auto">
       <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-3">{t(siteConfig.contact.formHeading, lang)}</h2>
       <p class="text-center text-grey mb-8">{t(siteConfig.contact.formSub, lang)}</p>
 
@@ -172,90 +96,38 @@ const accessOptions = isFr
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div>
+            <label for="phone" class="block text-sm font-bold text-dark mb-1.5">{labels.phone} *</label>
+            <input type="tel" id="phone" name="phone" required autocomplete="tel"
+              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
+          </div>
+          <div>
             <label for="email" class="block text-sm font-bold text-dark mb-1.5">{labels.email} *</label>
             <input type="email" id="email" name="email" required autocomplete="email"
               class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
           </div>
-          <div>
-            <label for="phone" class="block text-sm font-bold text-dark mb-1.5">{labels.phone}</label>
-            <input type="tel" id="phone" name="phone" autocomplete="tel"
-              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
-          </div>
         </div>
 
         <div class="mb-4">
-          <label for="postal" class="block text-sm font-bold text-dark mb-1.5">{labels.postal}</label>
-          <input type="text" id="postal" name="postal" placeholder={labels.city}
+          <label for="address" class="block text-sm font-bold text-dark mb-1.5">{labels.address}</label>
+          <input type="text" id="address" name="address" autocomplete="street-address"
+            placeholder={labels.addressPlaceholder}
             class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
         </div>
 
         <div class="mb-4">
-          <label for="package" class="block text-sm font-bold text-dark mb-1.5">{labels.package}</label>
-          <select id="package" name="package"
+          <label for="service" class="block text-sm font-bold text-dark mb-1.5">{labels.service}</label>
+          <select id="service" name="service"
             class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm">
-            <option value="">{labels.packagePlaceholder}</option>
-            {packageOptions.map((o) => <option value={o.v}>{o.l}</option>)}
+            <option value="">{labels.servicePlaceholder}</option>
+            {serviceOptions.map((o) => <option value={o.v}>{o.l}</option>)}
           </select>
         </div>
 
-        <div class="mb-4">
-          <label for="bbq-model" class="block text-sm font-bold text-dark mb-1.5">{labels.bbqModel}</label>
-          <input type="text" id="bbq-model" name="bbq_model" placeholder="Weber Spirit, Napoleon Rogue, Broil King…"
-            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-          <div>
-            <label for="bbq-type" class="block text-sm font-bold text-dark mb-1.5">{labels.bbqType}</label>
-            <select id="bbq-type" name="bbq_type"
-              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm">
-              <option value="">{labels.bbqTypePlaceholder}</option>
-              {bbqTypes.map((tp) => <option value={tp}>{tp}</option>)}
-            </select>
-          </div>
-          <div>
-            <label for="burners" class="block text-sm font-bold text-dark mb-1.5">{labels.burners}</label>
-            <input type="number" id="burners" name="burners" min="1" max="20" placeholder="4"
-              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-          <div>
-            <label for="mount" class="block text-sm font-bold text-dark mb-1.5">{labels.mount}</label>
-            <select id="mount" name="mount"
-              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm">
-              <option value="">{labels.mountPlaceholder}</option>
-              {mountOptions.map((m) => <option value={m}>{m}</option>)}
-            </select>
-          </div>
-          <div>
-            <label for="access" class="block text-sm font-bold text-dark mb-1.5">{labels.access}</label>
-            <select id="access" name="access"
-              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm">
-              <option value="">{labels.accessPlaceholder}</option>
-              {accessOptions.map((a) => <option value={a}>{a}</option>)}
-            </select>
-          </div>
-        </div>
-
-        <div class="mb-4">
-          <label for="presence" class="block text-sm font-bold text-dark mb-1.5">{labels.presence}</label>
-          <select id="presence" name="presence"
-            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm">
-            <option value="">{labels.presencePlaceholder}</option>
-            {presenceOptions.map((p) => <option value={p}>{p}</option>)}
-          </select>
-        </div>
-
-        <div class="mb-5">
+        <div class="mb-6">
           <label for="message" class="block text-sm font-bold text-dark mb-1.5">{labels.message}</label>
           <textarea id="message" name="message" rows="4"
+            placeholder={labels.messagePlaceholder}
             class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
-        </div>
-
-        <div class="mb-6 p-3 bg-light border border-accent/30 rounded-lg">
-          <p class="text-xs text-dark leading-relaxed">📸 {labels.photoNote}</p>
         </div>
 
         <button type="submit"
