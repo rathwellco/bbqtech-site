@@ -1,11 +1,12 @@
 // BBQTech lead intake — relays form submissions to Zoho Flow webhooks.
 // Same pattern as ROG (clients/rog/06_build/site/functions/api/lead.ts).
 //
-// TODO BEFORE LAUNCH: replace placeholders below with the BBQTech Zoho Flow
-// webhook URLs (one for FR leads, one for EN leads). The form sets a hidden
-// `language` field that this function routes on.
-const WEBHOOK_EN = "TODO_BBQTECH_ZOHO_WEBHOOK_EN";
-const WEBHOOK_FR = "TODO_BBQTECH_ZOHO_WEBHOOK_FR";
+// The form sets a hidden `language` field. We route to a dedicated FR or EN
+// Zoho Flow workflow that creates the Contact + Deal in Bigin.
+const WEBHOOK_FR =
+  "https://flow.zohocloud.ca/110002806512/flow/webhook/incoming?zapikey=1001.2dfdfd5cde4f37e4a1ac7f8e0269ac46.0c9ad8ab7345cf191e3f25f004b9cc4e&isdebug=false";
+const WEBHOOK_EN =
+  "https://flow.zohocloud.ca/110002806512/flow/webhook/incoming?zapikey=1001.c48b5caabdebf148e7372f8517158625.287ff193abfe1659849ab851ef0c4326&isdebug=false";
 
 const TURNSTILE_VERIFY = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
