@@ -111,6 +111,8 @@ const serviceOptions = isFr
           <label for="address" class="block text-sm font-bold text-dark mb-1.5">{labels.address}</label>
           <input type="text" id="address" name="address" autocomplete="street-address"
             placeholder={labels.addressPlaceholder}
+            data-places-key={siteConfig.googleMapsApiKey || ""}
+            data-places-lang={lang}
             class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
         </div>
 
@@ -141,6 +143,48 @@ const serviceOptions = isFr
 </section>
 
 <script>
+  // ───── Google Places Autocomplete (lazy-loaded on address focus) ─────
+  // Only activates if siteConfig.googleMapsApiKey is set. Otherwise the
+  // input keeps native HTML5 autofill (autocomplete="street-address").
+  const addressInput = document.getElementById("address") as HTMLInputElement | null;
+  if (addressInput) {
+    const apiKey = addressInput.dataset.placesKey || "";
+    const placesLang = addressInput.dataset.placesLang || "fr";
+    if (apiKey) {
+      let placesLoaded = false;
+      addressInput.addEventListener(
+        "focus",
+        () => {
+          if (placesLoaded) return;
+          placesLoaded = true;
+          (window as any).__bbqtechInitPlaces = function () {
+            const g = (window as any).google;
+            if (!g?.maps?.places?.Autocomplete) return;
+            const ac = new g.maps.places.Autocomplete(addressInput, {
+              componentRestrictions: { country: ["ca"] },
+              fields: ["formatted_address"],
+              types: ["address"],
+            });
+            ac.addListener("place_changed", () => {
+              const place = ac.getPlace();
+              if (place?.formatted_address) {
+                addressInput.value = place.formatted_address;
+                addressInput.dispatchEvent(new Event("input", { bubbles: true }));
+              }
+            });
+          };
+          const script = document.createElement("script");
+          script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&libraries=places&language=${encodeURIComponent(placesLang)}&region=CA&loading=async&callback=__bbqtechInitPlaces`;
+          script.async = true;
+          script.defer = true;
+          document.head.appendChild(script);
+        },
+        { once: true }
+      );
+    }
+  }
+
+  // ───── Form submission ─────
   const form = document.getElementById("bbqtech-lead-form") as HTMLFormElement | null;
   const success = document.getElementById("form-status-success");
   const error = document.getElementById("form-status-error");
