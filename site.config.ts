@@ -72,12 +72,12 @@ export const siteConfig = {
   // ─── HERO (HOME) ───
   hero: {
     h1: {
-      fr: "Nettoyage BBQ professionnel à domicile — dès 249 $.",
-      en: "Professional on-site BBQ cleaning — from $249.",
+      fr: "Nettoyage BBQ professionnel à domicile — 4 forfaits clairs.",
+      en: "Professional on-site BBQ cleaning — 4 clear packages.",
     } satisfies Bilingual,
     sub: {
-      fr: "Service mobile spécialisé de nettoyage, entretien, assemblage, diagnostic et réparation de BBQ à Gatineau et Ottawa. Offre de lancement en cours : nettoyage à domicile dès 249 $ (prix régulier 349 $).",
-      en: "Specialized mobile service for BBQ cleaning, maintenance, assembly, diagnostic and repair in Gatineau and Ottawa. Launch offer in effect: on-site cleaning from $249 (regular price $349).",
+      fr: "Service mobile spécialisé de nettoyage, entretien, assemblage, diagnostic et réparation de BBQ à Gatineau et Ottawa. Tune-Up dès 195 $, Essential 249 $, Signature 329 $, Prestige Steam Restoration à partir de 495 $.",
+      en: "Specialized mobile service for BBQ cleaning, maintenance, assembly, diagnostic and repair in Gatineau and Ottawa. Tune-Up from $195, Essential $249, Signature $329, Prestige Steam Restoration from $495.",
     } satisfies Bilingual,
   },
 
@@ -97,8 +97,8 @@ export const siteConfig = {
       shortLabel: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       title: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       body: {
-        fr: "Nettoyage à domicile dès 249 $ pendant notre offre de lancement, assemblage dès 149 $, diagnostic 99 $. Aucun changement de tarif sans votre accord.",
-        en: "On-site cleaning from $249 during our launch offer, assembly from $149, diagnostic $99. No price change without your approval.",
+        fr: "4 forfaits clairs : Tune-Up 195 $, Essential 249 $, Signature 329 $, Prestige dès 495 $. Assemblage dès 149 $, diagnostic 99 $. Aucun changement de tarif sans votre accord.",
+        en: "4 clear packages: Tune-Up $195, Essential $249, Signature $329, Prestige from $495. Assembly from $149, diagnostic $99. No price change without your approval.",
       } satisfies Bilingual,
     },
     {
@@ -136,11 +136,10 @@ export const siteConfig = {
       slug: "nettoyage",
       icon: "🔥",
       name: { fr: "Nettoyage BBQ à domicile", en: "On-site BBQ Cleaning" } satisfies Bilingual,
-      priceLabel: { fr: "Dès 249 $ — offre de lancement", en: "From $249 — launch offer" } satisfies Bilingual,
-      regularPriceLabel: { fr: "Prix régulier : 349 $", en: "Regular price: $349" } satisfies Bilingual,
+      priceLabel: { fr: "Dès 195 $", en: "From $195" } satisfies Bilingual,
       summary: {
-        fr: "Service mobile professionnel de nettoyage et d'entretien de BBQ à domicile. Méthode adaptée selon l'état, l'accès et la configuration de votre BBQ.",
-        en: "Professional mobile service for on-site BBQ cleaning and maintenance. Method adapted to the condition, access and configuration of your BBQ.",
+        fr: "Service mobile professionnel de nettoyage et d'entretien de BBQ à domicile. 4 forfaits selon l'état et le niveau souhaité : Tune-Up, Essential, Signature, Prestige Steam Restoration.",
+        en: "Professional mobile service for on-site BBQ cleaning and maintenance. 4 packages by condition and desired level: Tune-Up, Essential, Signature, Prestige Steam Restoration.",
       } satisfies Bilingual,
     },
     {
@@ -175,55 +174,75 @@ export const siteConfig = {
     },
   ],
 
-  // ─── CLEANING PACKAGES (3 tiers — Essential / Signature / Steam Clean) ───
+  // ─── CLEANING PACKAGES (4 tiers — Tune-Up / Essential / Signature / Prestige) ───
   packages: [
     {
-      key: "essential",
-      name: { fr: "Essential", en: "Essential" } satisfies Bilingual,
+      key: "tune-up",
+      name: { fr: "BBQ Tune-Up", en: "BBQ Tune-Up" } satisfies Bilingual,
       price: 195,
       priceLabel: { fr: "195 $ + taxes", en: "$195 + tax" } satisfies Bilingual,
+      surchargePerBurner: 29,
       method: {
-        fr: "Pressure washer · Sans berm",
-        en: "Pressure washer · No berm",
+        fr: "Inspection · Entretien préventif à sec",
+        en: "Inspection · Dry preventive maintenance",
       } satisfies Bilingual,
       useCase: {
-        fr: "Pour BBQ standards accessibles facilement.",
-        en: "For standard BBQs with easy access.",
+        fr: "Pour un BBQ fonctionnel à inspecter et préparer pour la saison.",
+        en: "For a working BBQ to inspect and prep for the season.",
+      } satisfies Bilingual,
+      ctaLabel: { fr: "Réserver Tune-Up", en: "Book Tune-Up" } satisfies Bilingual,
+      badge: null,
+    },
+    {
+      key: "essential",
+      name: { fr: "Essential Clean", en: "Essential Clean" } satisfies Bilingual,
+      price: 249,
+      priceLabel: { fr: "249 $ + taxes", en: "$249 + tax" } satisfies Bilingual,
+      surchargePerBurner: 29,
+      method: {
+        fr: "Nettoyage standard avec eau · Rinçage contrôlé",
+        en: "Standard wet cleaning · Controlled rinse",
+      } satisfies Bilingual,
+      useCase: {
+        fr: "Pour un BBQ moyennement sale en condition normale.",
+        en: "For a moderately dirty BBQ in normal condition.",
       } satisfies Bilingual,
       ctaLabel: { fr: "Réserver Essential", en: "Book Essential" } satisfies Bilingual,
       badge: null,
     },
     {
       key: "signature",
-      name: { fr: "Signature", en: "Signature" } satisfies Bilingual,
-      price: 295,
-      priceLabel: { fr: "295 $ + taxes", en: "$295 + tax" } satisfies Bilingual,
+      name: { fr: "Signature Deep Clean", en: "Signature Deep Clean" } satisfies Bilingual,
+      price: 329,
+      priceLabel: { fr: "329 $ + taxes", en: "$329 + tax" } satisfies Bilingual,
+      surchargePerBurner: 49,
       method: {
-        fr: "Pressure washer · Avec berm de confinement",
-        en: "Pressure washer · With containment berm",
+        fr: "Dégraissage approfondi · Composantes détaillées",
+        en: "Deep degreasing · Detailed components",
       } satisfies Bilingual,
       useCase: {
-        fr: "Recommandé pour mieux contrôler la zone de travail.",
-        en: "Recommended for better control of the work zone.",
+        fr: "Pour un BBQ sale qui a besoin d'un nettoyage plus sérieux.",
+        en: "For a dirty BBQ that needs more serious cleaning.",
       } satisfies Bilingual,
       ctaLabel: { fr: "Réserver Signature", en: "Book Signature" } satisfies Bilingual,
       badge: { fr: "Recommandé", en: "Recommended" } satisfies Bilingual,
     },
     {
-      key: "steam-clean",
-      name: { fr: "VIP: Steam Clean", en: "VIP: Steam Clean" } satisfies Bilingual,
-      price: 395,
-      priceLabel: { fr: "395 $ + taxes", en: "$395 + tax" } satisfies Bilingual,
+      key: "prestige",
+      name: { fr: "Prestige Steam Restoration", en: "Prestige Steam Restoration" } satisfies Bilingual,
+      price: 495,
+      priceLabel: { fr: "Dès 495 $ + taxes", en: "From $495 + tax" } satisfies Bilingual,
+      surchargePerBurner: 49,
       method: {
-        fr: "Berm de confinement · Nettoyage vapeur",
-        en: "Containment berm · Steam cleaning",
+        fr: "Nettoyage vapeur · Finition avancée · Photos + rapport",
+        en: "Steam cleaning · Advanced finish · Photos + report",
       } satisfies Bilingual,
       useCase: {
-        fr: "Pour un nettoyage plus détaillé des zones applicables.",
-        en: "For more detailed cleaning of applicable areas.",
+        fr: "Pour un BBQ premium, vieux, très encrassé ou négligé.",
+        en: "For a premium, old, heavily soiled or neglected BBQ.",
       } satisfies Bilingual,
-      ctaLabel: { fr: "Réserver VIP: Steam Clean", en: "Book VIP: Steam Clean" } satisfies Bilingual,
-      badge: { fr: "VIP", en: "VIP" } satisfies Bilingual,
+      ctaLabel: { fr: "Demander une évaluation Prestige", en: "Request a Prestige evaluation" } satisfies Bilingual,
+      badge: { fr: "Premium", en: "Premium" } satisfies Bilingual,
     },
   ],
 
@@ -232,22 +251,22 @@ export const siteConfig = {
     heading: { fr: "Tous les forfaits incluent", en: "All packages include" } satisfies Bilingual,
     items: {
       fr: [
-        "Nettoyage des grilles",
-        "Nettoyage de la cuve / firebox",
-        "Nettoyage du bac à graisse",
-        "Dégraissage des composantes accessibles",
-        "Nettoyage extérieur",
-        "Rinçage",
-        "Recommandations de base si des pièces semblent usées ou endommagées",
+        "Inspection visuelle et test d'allumage",
+        "Zone de travail protégée (tapis / spill berm)",
+        "Retrait des grilles et sear plates / heat shields",
+        "Nettoyage du bac à graisse et vacuum du firebox",
+        "Inspection des brûleurs accessibles",
+        "Photos avant et après",
+        "Recommandations sur pièces usées ou endommagées",
       ],
       en: [
-        "Grates cleaning",
-        "Firebox cleaning",
-        "Grease pan cleaning",
-        "Degreasing of accessible components",
-        "Exterior cleaning",
-        "Rinse",
-        "Basic recommendations if parts appear worn or damaged",
+        "Visual inspection and ignition test",
+        "Protected work zone (mat / spill berm)",
+        "Removal of grates and sear plates / heat shields",
+        "Grease pan cleaning and firebox vacuum",
+        "Inspection of accessible burners",
+        "Before and after photos",
+        "Recommendations on worn or damaged parts",
       ],
     },
   },
@@ -375,8 +394,8 @@ export const siteConfig = {
   },
 
   packagesNote: {
-    fr: "Prix valides pour BBQ au gaz propane ou naturel standards, mobiles et accessibles jusqu'à 4 brûleurs principaux. Supplément de 100 $ pour les BBQ de plus de 4 brûleurs. Certains smokers, pellet smokers, griddles, kamados et barbecues au charbon peuvent aussi être admissibles selon leur état, leur taille et leur configuration. Les BBQ encastrés, cuisines extérieures, équipements commerciaux ou cas particuliers nécessitent une soumission personnalisée.",
-    en: "Prices apply to standard, mobile and accessible propane or natural gas BBQs (also commonly called gas grills) up to 4 main burners. Add $100 for BBQs with more than 4 burners. Some smokers, pellet smokers, griddles, kamados and charcoal barbecues may also be eligible depending on their condition, size and configuration. Built-in BBQs, outdoor kitchens, commercial equipment and special cases require a custom quote.",
+    fr: "Prix valides pour BBQ standards mobiles et accessibles jusqu'à 4 brûleurs principaux. Supplément par brûleur principal additionnel : +29 $ (Tune-Up et Essential) ou +49 $ (Signature et Prestige). Les brûleurs latéraux, brûleurs arrière, infrarouges, modules de cuisson et accessoires spécialisés peuvent être facturés séparément. Les BBQ très encrassés, négligés depuis plusieurs saisons, encastrés, commerciaux ou haut de gamme peuvent faire l'objet d'une estimation personnalisée. Certaines composantes sont nettoyées seulement si accessibles et sécuritaires à manipuler — les pièces corrodées, saisies ou fragiles peuvent nécessiter une réparation plutôt qu'un nettoyage.",
+    en: "Prices apply to standard, mobile and accessible BBQs up to 4 main burners. Additional main burner surcharge: +$29 (Tune-Up and Essential) or +$49 (Signature and Prestige). Side burners, rear burners, infrared burners, specialty modules and accessories may be billed separately. Heavily soiled BBQs, units neglected for several seasons, built-ins, commercial or high-end equipment may require a custom quote. Some components are cleaned only if accessible and safe to handle — corroded, seized or fragile parts may require repair rather than cleaning.",
   } satisfies Bilingual,
 
   // ─── PROCESS (5 steps) ───
@@ -471,8 +490,8 @@ export const siteConfig = {
     {
       q: { fr: "Combien coûte un nettoyage de BBQ ?", en: "How much does a BBQ cleaning cost?" } satisfies Bilingual,
       a: {
-        fr: "Notre nettoyage à domicile débute à 249 $ + taxes pendant notre offre de lancement (prix régulier 349 $). Le tarif final dépend de l'état du BBQ, de sa taille, de sa configuration et de son accès. Envoyez-nous une photo pour obtenir une recommandation précise.",
-        en: "Our on-site cleaning starts at $249 + tax during our launch offer (regular price $349). The final price depends on the BBQ's condition, size, configuration and access. Send us a photo for a precise recommendation.",
+        fr: "Nos forfaits débutent à 195 $ (BBQ Tune-Up, entretien préventif à sec), puis 249 $ (Essential, nettoyage standard avec eau), 329 $ (Signature, nettoyage approfondi) et à partir de 495 $ (Prestige Steam Restoration, remise en état avec vapeur). Le forfait approprié dépend de l'état du BBQ, de sa taille et du niveau de nettoyage souhaité. Envoyez-nous une photo pour une recommandation précise.",
+        en: "Our packages start at $195 (BBQ Tune-Up, dry preventive maintenance), then $249 (Essential, standard wet cleaning), $329 (Signature, deep cleaning), and from $495 (Prestige Steam Restoration, with steam). The right package depends on the BBQ's condition, size and desired level of cleaning. Send us a photo for a precise recommendation.",
       } satisfies Bilingual,
     },
     {
@@ -513,8 +532,8 @@ export const siteConfig = {
     {
       q: { fr: "Y a-t-il un supplément pour les gros BBQ ?", en: "Is there a surcharge for larger BBQs?" } satisfies Bilingual,
       a: {
-        fr: "Oui. Les BBQ de plus de 4 brûleurs principaux ont un supplément de 100 $. Les BBQ encastrés, cuisines extérieures, équipements commerciaux ou configurations particulières nécessitent une soumission personnalisée.",
-        en: "Yes. BBQs with more than 4 main burners carry a $100 surcharge. Built-in BBQs, outdoor kitchens, commercial equipment or special configurations require a custom quote.",
+        fr: "Oui. Au-delà de 4 brûleurs principaux : +29 $ par brûleur additionnel pour Tune-Up et Essential, +49 $ par brûleur additionnel pour Signature et Prestige. Les brûleurs latéraux, brûleurs arrière, infrarouges et accessoires spécialisés peuvent être facturés séparément. Les BBQ encastrés, cuisines extérieures, équipements commerciaux ou configurations particulières nécessitent une soumission personnalisée.",
+        en: "Yes. Beyond 4 main burners: +$29 per additional burner for Tune-Up and Essential, +$49 per additional burner for Signature and Prestige. Side burners, rear burners, infrared and specialty accessories may be billed separately. Built-in BBQs, outdoor kitchens, commercial equipment or special configurations require a custom quote.",
       } satisfies Bilingual,
     },
     {
@@ -581,8 +600,8 @@ export const siteConfig = {
       en: "BBQ Cleaning & Repair Gatineau · Ottawa | BBQTech",
     } satisfies Bilingual,
     defaultDescription: {
-      fr: "Service mobile professionnel de nettoyage, entretien, assemblage, diagnostic et réparation de BBQ à Gatineau et Ottawa. Nettoyage dès 249 $ (offre de lancement), assemblage dès 149 $, diagnostic 99 $.",
-      en: "Professional mobile service for BBQ cleaning, maintenance, assembly, diagnostic and repair in Gatineau and Ottawa. Cleaning from $249 (launch offer), assembly from $149, diagnostic $99.",
+      fr: "Service mobile professionnel de nettoyage, entretien, assemblage, diagnostic et réparation de BBQ à Gatineau et Ottawa. 4 forfaits clairs (Tune-Up 195 $, Essential 249 $, Signature 329 $, Prestige dès 495 $), assemblage dès 149 $, diagnostic 99 $.",
+      en: "Professional mobile service for BBQ cleaning, maintenance, assembly, diagnostic and repair in Gatineau and Ottawa. 4 clear packages (Tune-Up $195, Essential $249, Signature $329, Prestige from $495), assembly from $149, diagnostic $99.",
     } satisfies Bilingual,
     ogImage: "/og-default.svg",
   },
@@ -597,8 +616,8 @@ export const siteConfig = {
   // ─── FOOTER ───
   footer: {
     description: {
-      fr: "Service mobile spécialisé de nettoyage, entretien, assemblage, diagnostic et réparation de BBQ à Gatineau et Ottawa. Trois forfaits simples.",
-      en: "Specialized mobile service for BBQ cleaning, maintenance, assembly, diagnostic and repair in Gatineau and Ottawa. Three simple packages.",
+      fr: "Service mobile spécialisé de nettoyage, entretien, assemblage, diagnostic et réparation de BBQ à Gatineau et Ottawa. Quatre forfaits clairs.",
+      en: "Specialized mobile service for BBQ cleaning, maintenance, assembly, diagnostic and repair in Gatineau and Ottawa. Four clear packages.",
     } satisfies Bilingual,
     serviceAreas: ["Gatineau", "Aylmer", "Hull", "Plateau", "Buckingham", "Ottawa"],
     copyrightOwner: "BBQTech — Groupe Rathwell inc.",
