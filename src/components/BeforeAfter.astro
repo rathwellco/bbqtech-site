@@ -1,0 +1,88 @@
+---
+import type { Locale } from "../i18n/utils";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+
+// Placeholder structure ready for real photos. Replace `placeholders` with
+// real photo data when photos are available, e.g.:
+//   { before: "/photos/job-01-before.jpg", after: "/photos/job-01-after.jpg",
+//     caption: { fr: "Napoleon Prestige 500 · 8 ans", en: "Napoleon Prestige 500 · 8 years" } }
+const photos: { before: string; after: string; caption: { fr: string; en: string } }[] = [];
+
+const labels = {
+  fr: {
+    title: "Avant / Après — vrais BBQ nettoyés par BBQTECH",
+    subtitle: "Des résultats concrets sur des BBQ standards et premium dans la région.",
+    placeholderLabel: "Photo à venir",
+    placeholderBody: "Premières photos avant/après en ligne dès les premiers services de la saison. En attendant, envoyez-nous une photo et on vous montrera ce que ça donne sur un BBQ similaire au vôtre.",
+    beforeLabel: "Avant",
+    afterLabel: "Après",
+  },
+  en: {
+    title: "Before / After — Real BBQs cleaned by BBQTECH",
+    subtitle: "Concrete results on standard and premium BBQs in the region.",
+    placeholderLabel: "Photo coming soon",
+    placeholderBody: "First before/after photos online from the first services of the season. In the meantime, send us a photo and we'll show you what it looks like on a BBQ similar to yours.",
+    beforeLabel: "Before",
+    afterLabel: "After",
+  },
+}[lang];
+
+const hasPhotos = photos.length > 0;
+---
+
+<section class="py-16 md:py-20 bg-white">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="text-center mb-10 md:mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-3">{labels.title}</h2>
+      <p class="text-lg text-grey max-w-2xl mx-auto">{labels.subtitle}</p>
+    </div>
+
+    {hasPhotos ? (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        {photos.map((photo) => (
+          <div class="bg-light border border-grey-mid/40 rounded-xl overflow-hidden">
+            <div class="grid grid-cols-2">
+              <div class="relative">
+                <img src={photo.before} alt={`${labels.beforeLabel} — ${photo.caption[lang]}`} class="w-full h-48 md:h-56 object-cover" />
+                <span class="absolute top-2 left-2 bg-dark text-white text-xs font-bold uppercase tracking-wider px-2 py-1 rounded">
+                  {labels.beforeLabel}
+                </span>
+              </div>
+              <div class="relative">
+                <img src={photo.after} alt={`${labels.afterLabel} — ${photo.caption[lang]}`} class="w-full h-48 md:h-56 object-cover" />
+                <span class="absolute top-2 left-2 bg-accent text-white text-xs font-bold uppercase tracking-wider px-2 py-1 rounded">
+                  {labels.afterLabel}
+                </span>
+              </div>
+            </div>
+            <p class="px-4 py-3 text-sm text-dark font-semibold">{photo.caption[lang]}</p>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+        {[1, 2, 3].map(() => (
+          <div class="bg-light border border-grey-mid/40 rounded-xl overflow-hidden">
+            <div class="grid grid-cols-2 aspect-[2/1]">
+              <div class="bg-grey-mid/20 flex items-center justify-center text-grey text-xs font-bold uppercase tracking-wider">
+                {labels.beforeLabel}
+              </div>
+              <div class="bg-grey-mid/30 flex items-center justify-center text-grey text-xs font-bold uppercase tracking-wider">
+                {labels.afterLabel}
+              </div>
+            </div>
+            <div class="p-4">
+              <p class="text-xs uppercase font-bold tracking-wider text-grey mb-1">{labels.placeholderLabel}</p>
+              <p class="text-sm text-dark/70 leading-snug">{labels.placeholderBody}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</section>

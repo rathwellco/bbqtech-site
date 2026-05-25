@@ -22,16 +22,16 @@ const labels = {
     compareHeader: "Comparaison rapide",
     compareIntro: "Les 10 critères les plus utiles pour choisir. Pour le détail complet, voyez la page de chaque forfait.",
     rows: [
-      { criterion: "Prix de départ", values: ["195 $", "249 $", "329 $", "Dès 495 $"] },
-      { criterion: "Temps cible", values: ["1h30 – 2h", "2h30 – 3h", "3h – 4h", "5h – 7h+"] },
-      { criterion: "Utilisation d'eau", values: ["✗", "✓", "✓", "✓ + vapeur"] },
-      { criterion: "Dégraissant", values: ["—", "1 application", "2 applications", "Avancé, multiples"] },
-      { criterion: "Nettoyage vapeur", values: ["✗", "✗", "✗", "✓"] },
-      { criterion: "Composantes détaillées", values: ["Léger", "Standard", "Approfondi", "Avancé"] },
-      { criterion: "Polissage inox", values: ["✗", "Léger", "Standard", "Détaillé"] },
-      { criterion: "Photos avant/après", values: ["✓", "✓", "✓", "✓ extensives"] },
-      { criterion: "Rapport sommaire", values: ["✗", "✗", "✗", "✓"] },
-      { criterion: "Brûleur additionnel (>4)", values: ["+29 $", "+29 $", "+49 $", "+49 $"] },
+      { criterion: "Prix", values: ["195 $", "295 $", "395 $"] },
+      { criterion: "Temps cible", values: ["2h – 2h30", "3h – 4h", "5h – 7h+"] },
+      { criterion: "Type de nettoyage", values: ["Léger", "Approfondi", "Avancé + vapeur"] },
+      { criterion: "Dégraissant", values: ["Léger / ponctuel", "2 applications", "Multiples passes"] },
+      { criterion: "Nettoyage vapeur", values: ["✗", "✗", "✓"] },
+      { criterion: "Inspection complète", values: ["✓", "✓", "✓ détaillée"] },
+      { criterion: "Photos avant/après", values: ["✓", "✓", "✓ extensives"] },
+      { criterion: "Rapport sommaire", values: ["✗", "✗", "✓"] },
+      { criterion: "Pour quel BBQ", values: ["Préparer la saison", "Vrai nettoyage annuel", "Premium / très négligé"] },
+      { criterion: "Brûleur additionnel (>4)", values: ["+29 $", "+49 $", "+49 $"] },
     ],
   },
   en: {
@@ -39,16 +39,16 @@ const labels = {
     compareHeader: "Quick comparison",
     compareIntro: "The 10 most useful criteria to decide. For full detail, see each package page.",
     rows: [
-      { criterion: "Starting price", values: ["$195", "$249", "$329", "From $495"] },
-      { criterion: "Target duration", values: ["1.5–2 h", "2.5–3 h", "3–4 h", "5–7+ h"] },
-      { criterion: "Water used", values: ["✗", "✓", "✓", "✓ + steam"] },
-      { criterion: "Degreaser", values: ["—", "1 pass", "2 passes", "Advanced, multi-pass"] },
-      { criterion: "Steam cleaning", values: ["✗", "✗", "✗", "✓"] },
-      { criterion: "Component detail", values: ["Light", "Standard", "Deep", "Advanced"] },
-      { criterion: "Stainless polish", values: ["✗", "Light", "Standard", "Detailed"] },
-      { criterion: "Before/after photos", values: ["✓", "✓", "✓", "✓ extensive"] },
-      { criterion: "Summary report", values: ["✗", "✗", "✗", "✓"] },
-      { criterion: "Add'l burner (>4)", values: ["+$29", "+$29", "+$49", "+$49"] },
+      { criterion: "Price", values: ["$195", "$295", "$395"] },
+      { criterion: "Target duration", values: ["2–2.5 h", "3–4 h", "5–7+ h"] },
+      { criterion: "Cleaning type", values: ["Light", "Deep", "Advanced + steam"] },
+      { criterion: "Degreaser", values: ["Light / spot", "2 passes", "Multi-pass"] },
+      { criterion: "Steam cleaning", values: ["✗", "✗", "✓"] },
+      { criterion: "Full inspection", values: ["✓", "✓", "✓ detailed"] },
+      { criterion: "Before/after photos", values: ["✓", "✓", "✓ extensive"] },
+      { criterion: "Summary report", values: ["✗", "✗", "✓"] },
+      { criterion: "Right BBQ for it", values: ["Season prep", "Real annual clean", "Premium / heavily neglected"] },
+      { criterion: "Add'l burner (>4)", values: ["+$29", "+$49", "+$49"] },
     ],
   },
 }[lang];
@@ -76,8 +76,8 @@ const labels = {
       </ul>
     </div>
 
-    <!-- 4 package cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 max-w-[1200px] mx-auto items-stretch">
+    <!-- 3 package cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 max-w-[1100px] mx-auto items-stretch">
       {siteConfig.packages.map((pkg) => {
         const isRecommended = pkg.key === "signature";
         const detail = packageDetails[pkg.key as keyof typeof packageDetails];
@@ -86,7 +86,7 @@ const labels = {
           <div class:list={[
             "relative bg-white border rounded-2xl p-6 md:p-7 flex flex-col transition-all",
             isRecommended
-              ? "border-accent shadow-xl lg:scale-[1.02]"
+              ? "border-accent shadow-xl md:scale-[1.02]"
               : "border-grey-mid/60 hover:border-accent/40 hover:shadow-md"
           ]}>
             {pkg.badge && (
@@ -158,7 +158,7 @@ const labels = {
               <tr class={rowIdx % 2 === 0 ? "bg-light" : "bg-white"}>
                 <td class={`p-3 md:p-4 font-semibold sticky left-0 z-10 ${rowIdx % 2 === 0 ? "bg-light" : "bg-white"}`}>{row.criterion}</td>
                 {row.values.map((v, colIdx) => {
-                  const isRecommendedCol = colIdx === 2;
+                  const isRecommendedCol = colIdx === 1;
                   return (
                     <td class:list={[
                       "p-3 md:p-4 text-center leading-snug",

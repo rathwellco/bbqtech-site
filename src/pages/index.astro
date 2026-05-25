@@ -4,6 +4,8 @@ import Hero from "../components/Hero.astro";
 import TrustBar from "../components/TrustBar.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import PricingTable from "../components/PricingTable.astro";
+import QuelForfait from "../components/QuelForfait.astro";
+import BeforeAfter from "../components/BeforeAfter.astro";
 import WhyBBQTech from "../components/WhyBBQTech.astro";
 import OwnerOperator from "../components/OwnerOperator.astro";
 import CustomQuote from "../components/CustomQuote.astro";
@@ -29,12 +31,14 @@ const homeTitle = t(siteConfig.seo.homeTitle, lang);
 
   <TrustBar lang={lang} />
 
+  <BeforeAfter lang={lang} />
+
   <!-- Services -->
   <section class="py-16 md:py-20 bg-white" id="services">
     <div class="max-w-[1200px] mx-auto px-6">
       <div class="text-center mb-12 md:mb-14">
-        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Quatre services, un seul opérateur spécialisé</h2>
-        <p class="text-lg text-grey max-w-2xl mx-auto">Nettoyage, assemblage, diagnostic / réparation et entretien commercial de BBQ. Service mobile à domicile à Gatineau et Ottawa.</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Nettoyage, assemblage et réparation BBQ</h2>
+        <p class="text-lg text-grey max-w-2xl mx-auto">Service mobile à domicile à Gatineau et Ottawa. Nettoyage BBQ, assemblage, diagnostic / réparation et entretien commercial.</p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {siteConfig.services.map((s) => (
@@ -53,9 +57,11 @@ const homeTitle = t(siteConfig.seo.homeTitle, lang);
 
   <PricingTable
     lang={lang}
-    title="Quatre forfaits de nettoyage"
-    subtitle="Choisissez le niveau de service adapté à votre BBQ : entretien préventif à sec, nettoyage standard avec eau, nettoyage approfondi, ou restauration avancée à la vapeur."
+    title="Trois forfaits de nettoyage BBQ"
+    subtitle="Choisissez le niveau adapté à votre BBQ : préparer la saison, vrai nettoyage annuel, ou restauration avancée à la vapeur."
   />
+
+  <QuelForfait lang={lang} />
 
   <OwnerOperator lang={lang} />
 
@@ -80,6 +86,6 @@ const homeTitle = t(siteConfig.seo.homeTitle, lang);
   <CTABanner
     lang={lang}
     title="Réservez votre nettoyage ou votre appel de service."
-    subtitle="Envoyez-nous une photo + la marque de votre BBQ. On confirme le forfait, le tarif et le rendez-vous sous 24 h."
+    subtitle="Envoyez-nous une photo. On vous recommande le bon forfait et on confirme les détails du rendez-vous. Si un ajustement est nécessaire sur place, on vous informe avant tout changement."
   />
 </Base>

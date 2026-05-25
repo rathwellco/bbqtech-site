@@ -1,0 +1,114 @@
+---
+import { siteConfig } from "../../site.config";
+import { type Locale, t, smsHref } from "../i18n/utils";
+import { packageDetails } from "../content/packageDetails";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const sms = smsHref(siteConfig.phoneRaw, t(siteConfig.smsBody, lang));
+
+const detailsBase = lang === "fr" ? "/forfaits" : "/en/packages";
+
+const labels = {
+  fr: {
+    title: "Quel forfait choisir?",
+    subtitle: "Trois questions simples pour vous aider à choisir.",
+    rows: [
+      {
+        question: "Vous voulez seulement préparer le BBQ pour la saison?",
+        forfaitKey: "essential" as const,
+        forfaitName: "Entretien Essentiel",
+      },
+      {
+        question: "Votre BBQ est sale et vous voulez un vrai nettoyage annuel?",
+        forfaitKey: "signature" as const,
+        forfaitName: "Nettoyage Signature",
+      },
+      {
+        question: "Votre BBQ est très encrassé, premium ou négligé depuis longtemps?",
+        forfaitKey: "prestige" as const,
+        forfaitName: "Restauration Prestige vapeur",
+      },
+    ],
+    notSure: "Pas certain?",
+    notSureBody: "Envoyez une photo et nous vous recommanderons l'option la plus adaptée à votre BBQ.",
+    smsLabel: "📸 Envoyer une photo par SMS",
+    arrow: "→",
+    seeDetail: "Voir le forfait",
+  },
+  en: {
+    title: "Which package should you pick?",
+    subtitle: "Three simple questions to help you decide.",
+    rows: [
+      {
+        question: "You just want to prep the BBQ for the season?",
+        forfaitKey: "essential" as const,
+        forfaitName: "Essential Maintenance",
+      },
+      {
+        question: "Your BBQ is dirty and you want a real annual cleaning?",
+        forfaitKey: "signature" as const,
+        forfaitName: "Signature Cleaning",
+      },
+      {
+        question: "Your BBQ is heavily soiled, premium, or long-neglected?",
+        forfaitKey: "prestige" as const,
+        forfaitName: "Prestige Steam Restoration",
+      },
+    ],
+    notSure: "Not sure?",
+    notSureBody: "Send a photo and we'll recommend the option that best fits your BBQ.",
+    smsLabel: "📸 Send a photo by SMS",
+    arrow: "→",
+    seeDetail: "See the package",
+  },
+}[lang];
+---
+
+<section class="py-16 md:py-20 bg-light">
+  <div class="max-w-[1000px] mx-auto px-6">
+    <div class="text-center mb-10 md:mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-3">{labels.title}</h2>
+      <p class="text-lg text-grey max-w-2xl mx-auto">{labels.subtitle}</p>
+    </div>
+
+    <div class="space-y-4">
+      {labels.rows.map((row) => {
+        const detail = packageDetails[row.forfaitKey];
+        const url = `${detailsBase}/${detail.slug[lang]}`;
+        return (
+          <a
+            href={url}
+            class="block bg-white border border-grey-mid/50 rounded-xl p-5 md:p-6 hover:border-accent hover:shadow-md transition-all no-underline group"
+          >
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 md:gap-6">
+              <p class="text-base md:text-lg text-dark leading-snug font-semibold flex-1">
+                {row.question}
+              </p>
+              <div class="flex items-center gap-2 shrink-0">
+                <span class="text-accent text-xl font-bold">{labels.arrow}</span>
+                <span class="text-accent font-extrabold text-base md:text-lg group-hover:underline">
+                  {row.forfaitName}
+                </span>
+              </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+
+    <div class="mt-10 bg-dark text-white rounded-xl p-6 md:p-8 text-center">
+      <p class="text-xl md:text-2xl font-extrabold mb-2">{labels.notSure}</p>
+      <p class="text-white/80 mb-5 max-w-xl mx-auto">{labels.notSureBody}</p>
+      <a
+        href={sms}
+        class="inline-block bg-accent text-white px-6 py-3 rounded-lg font-bold no-underline hover:bg-accent-hover transition-colors"
+      >
+        {labels.smsLabel}
+      </a>
+    </div>
+  </div>
+</section>

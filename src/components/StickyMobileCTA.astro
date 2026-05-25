@@ -1,6 +1,6 @@
 ---
 import { siteConfig } from "../../site.config";
-import { type Locale, bookingHref } from "../i18n/utils";
+import { type Locale, t, bookingHref, smsHref } from "../i18n/utils";
 
 interface Props {
   lang: Locale;
@@ -8,23 +8,31 @@ interface Props {
 
 const { lang } = Astro.props;
 const booking = bookingHref(siteConfig.bookingUrl, lang);
+const sms = smsHref(siteConfig.phoneRaw, t(siteConfig.smsBody, lang));
 const callLabel = lang === "fr" ? "Appeler" : "Call";
+const photoLabel = lang === "fr" ? "Photo" : "Photo";
 const bookLabel = lang === "fr" ? "Réserver" : "Book";
 ---
 
-<div class="fixed bottom-0 left-0 right-0 z-40 grid grid-cols-2 md:hidden border-t border-black">
+<div class="fixed bottom-0 left-0 right-0 z-40 grid grid-cols-3 md:hidden border-t border-black text-sm">
   <a
     href={`tel:${siteConfig.phoneRaw}`}
-    class="bg-black text-white text-center py-4 font-bold text-sm no-underline flex items-center justify-center gap-2"
+    class="bg-black text-white text-center py-3.5 font-bold no-underline flex items-center justify-center gap-1.5"
   >
-    📞 {callLabel}
+    <span aria-hidden="true">📞</span> {callLabel}
+  </a>
+  <a
+    href={sms}
+    class="bg-dark text-white text-center py-3.5 font-bold no-underline flex items-center justify-center gap-1.5 border-x border-white/10"
+  >
+    <span aria-hidden="true">📸</span> {photoLabel}
   </a>
   <a
     href={booking.href}
     target={booking.external ? "_blank" : undefined}
     rel={booking.external ? "noopener noreferrer" : undefined}
-    class="bg-accent text-white text-center py-4 font-bold text-sm no-underline flex items-center justify-center gap-2"
+    class="bg-accent text-white text-center py-3.5 font-bold no-underline flex items-center justify-center gap-1.5"
   >
-    📅 {bookLabel}
+    <span aria-hidden="true">📅</span> {bookLabel}
   </a>
 </div>
