@@ -1,6 +1,7 @@
 ---
 import { siteConfig } from "../../site.config";
 import { type Locale, t, bookingHref } from "../i18n/utils";
+import { packageDetails } from "../content/packageDetails";
 
 interface Props {
   lang: Locale;
@@ -12,6 +13,45 @@ const { lang, title, subtitle } = Astro.props;
 const booking = bookingHref(siteConfig.bookingUrl, lang);
 const baseScope = siteConfig.packagesBaseScope;
 const baseScopeItems = baseScope.items[lang] ?? baseScope.items.fr;
+
+const detailsBase = lang === "fr" ? "/forfaits" : "/en/packages";
+
+const labels = {
+  fr: {
+    learnMore: "Voir tous les détails →",
+    compareHeader: "Comparaison rapide",
+    compareIntro: "Les 10 critères les plus utiles pour choisir. Pour le détail complet, voyez la page de chaque forfait.",
+    rows: [
+      { criterion: "Prix de départ", values: ["195 $", "249 $", "329 $", "Dès 495 $"] },
+      { criterion: "Temps cible", values: ["1h30 – 2h", "2h30 – 3h", "3h – 4h", "5h – 7h+"] },
+      { criterion: "Utilisation d'eau", values: ["✗", "✓", "✓", "✓ + vapeur"] },
+      { criterion: "Dégraissant", values: ["—", "1 application", "2 applications", "Avancé, multiples"] },
+      { criterion: "Nettoyage vapeur", values: ["✗", "✗", "✗", "✓"] },
+      { criterion: "Composantes détaillées", values: ["Léger", "Standard", "Approfondi", "Avancé"] },
+      { criterion: "Polissage inox", values: ["✗", "Léger", "Standard", "Détaillé"] },
+      { criterion: "Photos avant/après", values: ["✓", "✓", "✓", "✓ extensives"] },
+      { criterion: "Rapport sommaire", values: ["✗", "✗", "✗", "✓"] },
+      { criterion: "Brûleur additionnel (>4)", values: ["+29 $", "+29 $", "+49 $", "+49 $"] },
+    ],
+  },
+  en: {
+    learnMore: "See full details →",
+    compareHeader: "Quick comparison",
+    compareIntro: "The 10 most useful criteria to decide. For full detail, see each package page.",
+    rows: [
+      { criterion: "Starting price", values: ["$195", "$249", "$329", "From $495"] },
+      { criterion: "Target duration", values: ["1.5–2 h", "2.5–3 h", "3–4 h", "5–7+ h"] },
+      { criterion: "Water used", values: ["✗", "✓", "✓", "✓ + steam"] },
+      { criterion: "Degreaser", values: ["—", "1 pass", "2 passes", "Advanced, multi-pass"] },
+      { criterion: "Steam cleaning", values: ["✗", "✗", "✗", "✓"] },
+      { criterion: "Component detail", values: ["Light", "Standard", "Deep", "Advanced"] },
+      { criterion: "Stainless polish", values: ["✗", "Light", "Standard", "Detailed"] },
+      { criterion: "Before/after photos", values: ["✓", "✓", "✓", "✓ extensive"] },
+      { criterion: "Summary report", values: ["✗", "✗", "✗", "✓"] },
+      { criterion: "Add'l burner (>4)", values: ["+$29", "+$29", "+$49", "+$49"] },
+    ],
+  },
+}[lang];
 ---
 
 <section class="py-16 md:py-20 bg-white" id="forfaits">
@@ -40,6 +80,8 @@ const baseScopeItems = baseScope.items[lang] ?? baseScope.items.fr;
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 max-w-[1200px] mx-auto items-stretch">
       {siteConfig.packages.map((pkg) => {
         const isRecommended = pkg.key === "signature";
+        const detail = packageDetails[pkg.key as keyof typeof packageDetails];
+        const detailUrl = `${detailsBase}/${detail.slug[lang]}`;
         return (
           <div class:list={[
             "relative bg-white border rounded-2xl p-6 md:p-7 flex flex-col transition-all",
@@ -59,24 +101,83 @@ const baseScopeItems = baseScope.items[lang] ?? baseScope.items.fr;
             <h3 class="text-lg lg:text-xl font-extrabold text-dark mb-1 leading-tight">{t(pkg.name, lang)}</h3>
             <p class="text-2xl md:text-3xl font-extrabold text-accent mb-3">{t(pkg.priceLabel, lang)}</p>
             <p class="text-sm font-bold text-dark mb-2 leading-snug">{t(pkg.method, lang)}</p>
-            <p class="text-sm text-grey leading-relaxed mb-6">{t(pkg.useCase, lang)}</p>
+            <p class="text-sm text-grey leading-relaxed mb-5">{t(pkg.useCase, lang)}</p>
 
-            <a
-              href={booking.href}
-              target={booking.external ? "_blank" : undefined}
-              rel={booking.external ? "noopener noreferrer" : undefined}
-              class:list={[
-                "block text-center px-5 py-3 rounded-lg text-sm font-bold no-underline transition-all mt-auto",
-                isRecommended
-                  ? "bg-accent text-white hover:bg-accent-hover"
-                  : "bg-dark text-white hover:bg-accent"
-              ]}
-            >
-              {t(pkg.ctaLabel, lang)}
-            </a>
+            <div class="mt-auto space-y-2">
+              <a
+                href={booking.href}
+                target={booking.external ? "_blank" : undefined}
+                rel={booking.external ? "noopener noreferrer" : undefined}
+                class:list={[
+                  "block text-center px-5 py-3 rounded-lg text-sm font-bold no-underline transition-all",
+                  isRecommended
+                    ? "bg-accent text-white hover:bg-accent-hover"
+                    : "bg-dark text-white hover:bg-accent"
+                ]}
+              >
+                {t(pkg.ctaLabel, lang)}
+              </a>
+              <a
+                href={detailUrl}
+                class="block text-center px-5 py-2 text-sm font-bold text-accent hover:text-accent-hover no-underline transition-colors"
+              >
+                {labels.learnMore}
+              </a>
+            </div>
           </div>
         );
       })}
+    </div>
+
+    <!-- Simplified comparison table -->
+    <div class="mt-14 md:mt-16 max-w-[1100px] mx-auto">
+      <div class="text-center mb-6">
+        <h3 class="text-2xl md:text-3xl font-extrabold mb-2">{labels.compareHeader}</h3>
+        <p class="text-sm text-grey max-w-2xl mx-auto">{labels.compareIntro}</p>
+      </div>
+      <div class="overflow-x-auto border border-grey-mid/40 rounded-xl">
+        <table class="w-full text-sm md:text-base">
+          <thead>
+            <tr class="bg-dark text-white">
+              <th class="text-left p-3 md:p-4 font-bold sticky left-0 bg-dark z-10">{lang === "fr" ? "Critère" : "Criterion"}</th>
+              {siteConfig.packages.map((pkg) => {
+                const isRecommended = pkg.key === "signature";
+                return (
+                  <th class:list={[
+                    "p-3 md:p-4 font-bold text-center min-w-[120px]",
+                    isRecommended ? "bg-accent" : ""
+                  ]}>
+                    <span class="block leading-tight">{t(pkg.name, lang)}</span>
+                  </th>
+                );
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {labels.rows.map((row, rowIdx) => (
+              <tr class={rowIdx % 2 === 0 ? "bg-light" : "bg-white"}>
+                <td class={`p-3 md:p-4 font-semibold sticky left-0 z-10 ${rowIdx % 2 === 0 ? "bg-light" : "bg-white"}`}>{row.criterion}</td>
+                {row.values.map((v, colIdx) => {
+                  const isRecommendedCol = colIdx === 2;
+                  return (
+                    <td class:list={[
+                      "p-3 md:p-4 text-center leading-snug",
+                      isRecommendedCol ? "font-bold" : ""
+                    ]}>{v}</td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center mt-6">
+        <p class="text-sm text-grey">
+          {lang === "fr"
+            ? "Cliquez sur \"Voir tous les détails\" sur une carte ci-dessus pour la liste complète d'inclusions, exclusions, méthode et FAQ."
+            : "Click \"See full details\" on a card above for the complete inclusions, exclusions, method and FAQ list."}
+        </p>
+      </div>
     </div>
 
     <p class="text-center text-sm text-grey mt-10 max-w-3xl mx-auto leading-relaxed">

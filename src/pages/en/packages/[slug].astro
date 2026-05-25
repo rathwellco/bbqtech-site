@@ -1,0 +1,32 @@
+---
+import Base from "../../../layouts/Base.astro";
+import PackageDetailPage from "../../../components/PackageDetailPage.astro";
+import { packageDetails, packageOrder, type PackageDetail } from "../../../content/packageDetails";
+import { t } from "../../../i18n/utils";
+
+export async function getStaticPaths() {
+  return packageOrder.map((key) => {
+    const detail = packageDetails[key];
+    return {
+      params: { slug: detail.slug.en },
+      props: { pkgKey: key },
+    };
+  });
+}
+
+interface Props {
+  pkgKey: PackageDetail["key"];
+}
+
+const { pkgKey } = Astro.props;
+const detail = packageDetails[pkgKey];
+const lang = "en" as const;
+---
+
+<Base
+  lang={lang}
+  title={t(detail.metaTitle, lang)}
+  description={t(detail.metaDescription, lang)}
+>
+  <PackageDetailPage lang={lang} pkgKey={pkgKey} />
+</Base>

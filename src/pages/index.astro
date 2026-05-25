@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import Hero from "../components/Hero.astro";
 import TrustBar from "../components/TrustBar.astro";
 import ServiceCard from "../components/ServiceCard.astro";
+import PricingTable from "../components/PricingTable.astro";
 import WhyBBQTech from "../components/WhyBBQTech.astro";
 import OwnerOperator from "../components/OwnerOperator.astro";
 import CustomQuote from "../components/CustomQuote.astro";
@@ -49,6 +50,12 @@ const homeTitle = t(siteConfig.seo.homeTitle, lang);
       </div>
     </div>
   </section>
+
+  <PricingTable
+    lang={lang}
+    title="Quatre forfaits de nettoyage"
+    subtitle="Choisissez le niveau de service adapté à votre BBQ : entretien préventif à sec, nettoyage standard avec eau, nettoyage approfondi, ou restauration avancée à la vapeur."
+  />
 
   <OwnerOperator lang={lang} />
 

@@ -3,6 +3,7 @@ import Base from "../../layouts/Base.astro";
 import Hero from "../../components/Hero.astro";
 import TrustBar from "../../components/TrustBar.astro";
 import ServiceCard from "../../components/ServiceCard.astro";
+import PricingTable from "../../components/PricingTable.astro";
 import WhyBBQTech from "../../components/WhyBBQTech.astro";
 import OwnerOperator from "../../components/OwnerOperator.astro";
 import CustomQuote from "../../components/CustomQuote.astro";
@@ -47,6 +48,12 @@ const lang = "en" as const;
       </div>
     </div>
   </section>
+
+  <PricingTable
+    lang={lang}
+    title="Four cleaning packages"
+    subtitle="Pick the service level your BBQ needs: dry preventive maintenance, standard wet cleaning, deep degreasing, or advanced steam restoration."
+  />
 
   <OwnerOperator lang={lang} />
 

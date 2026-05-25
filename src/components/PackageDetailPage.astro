@@ -1,0 +1,345 @@
+---
+import { siteConfig } from "../../site.config";
+import { type Locale, t, localeHref, bookingHref, smsHref } from "../i18n/utils";
+import { packageDetails, packageOrder, type PackageDetail } from "../content/packageDetails";
+
+interface Props {
+  lang: Locale;
+  pkgKey: PackageDetail["key"];
+}
+
+const { lang, pkgKey } = Astro.props;
+const detail = packageDetails[pkgKey];
+const cardPkg = siteConfig.packages.find((p) => p.key === pkgKey);
+if (!cardPkg) throw new Error(`Package ${pkgKey} not found in siteConfig.packages`);
+
+const booking = bookingHref(siteConfig.bookingUrl, lang);
+const sms = smsHref(siteConfig.phoneRaw, t(siteConfig.smsBody, lang));
+
+// Locale-specific URLs to other forfaits
+const detailsBasePath = lang === "fr" ? "/forfaits" : "/packages";
+const otherPkgs = packageOrder.filter((k) => k !== pkgKey).map((k) => packageDetails[k]);
+
+const labels = {
+  fr: {
+    forfaitLabel: "Forfait",
+    duration: "Durée sur place",
+    priceFromLabel: "Prix",
+    whoFor: "Pour qui c'est",
+    whoNotFor: "Ce forfait n'est pas pour vous si",
+    whatIncluded: "Ce qui est inclus",
+    whatNotIncluded: "Ce qui n'est pas inclus",
+    method: "Notre méthode — 7 étapes",
+    durationHeading: "Durée et logistique",
+    durationNoteHeading: "Si on dépasse le temps prévu",
+    conditions: "Conditions sur place",
+    surcharges: "Suppléments possibles",
+    comparison: "Comparaison avec les autres forfaits",
+    faq: "Questions fréquentes",
+    ctaPrimary: cardPkg.ctaLabel.fr,
+    ctaSms: "📸 Envoyer une photo par SMS",
+    ctaSecondary: "Demander une soumission",
+    learnMore: "Voir tous les détails →",
+    seeOther: "Voir les autres forfaits :",
+    breadcrumbHome: "Accueil",
+    breadcrumbForfaits: "Forfaits",
+    pointTo: "→ optez plutôt pour le",
+  },
+  en: {
+    forfaitLabel: "Package",
+    duration: "On-site duration",
+    priceFromLabel: "Price",
+    whoFor: "Who it's for",
+    whoNotFor: "This package isn't for you if",
+    whatIncluded: "What's included",
+    whatNotIncluded: "What's not included",
+    method: "Our method — 7 steps",
+    durationHeading: "Duration & logistics",
+    durationNoteHeading: "If we go over time",
+    conditions: "On-site requirements",
+    surcharges: "Possible surcharges",
+    comparison: "Compared to other packages",
+    faq: "Frequently asked questions",
+    ctaPrimary: cardPkg.ctaLabel.en,
+    ctaSms: "📸 Send a photo by SMS",
+    ctaSecondary: "Request a quote",
+    learnMore: "See full details →",
+    seeOther: "See other packages:",
+    breadcrumbHome: "Home",
+    breadcrumbForfaits: "Packages",
+  },
+}[lang];
+
+const surchargeLabel = lang === "fr"
+  ? `+${cardPkg.surchargePerBurner} $ par brûleur principal additionnel (au-delà de 4)`
+  : `+$${cardPkg.surchargePerBurner} per additional main burner (beyond 4)`;
+---
+
+<!-- Breadcrumb -->
+<nav class="bg-light border-b border-grey-mid/30 py-3 text-sm">
+  <div class="max-w-[1200px] mx-auto px-6 flex items-center gap-2 text-grey">
+    <a href={localeHref("/", lang)} class="hover:text-accent transition-colors">{labels.breadcrumbHome}</a>
+    <span aria-hidden="true">›</span>
+    <a href={localeHref("/", lang) + "#forfaits"} class="hover:text-accent transition-colors">{labels.breadcrumbForfaits}</a>
+    <span aria-hidden="true">›</span>
+    <span class="text-dark font-semibold">{t(cardPkg.name, lang)}</span>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="bg-gradient-to-b from-dark to-steel text-white py-16 md:py-20">
+  <div class="max-w-[1100px] mx-auto px-6">
+    {cardPkg.badge && (
+      <span class="inline-block bg-accent text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+        {t(cardPkg.badge, lang)}
+      </span>
+    )}
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight">
+      {t(cardPkg.name, lang)}
+    </h1>
+    <p class="text-lg md:text-xl text-white/85 max-w-3xl mb-8 leading-relaxed">
+      {t(detail.heroSubtitle, lang)}
+    </p>
+    <div class="flex flex-wrap items-baseline gap-x-6 gap-y-3 mb-8">
+      <div>
+        <p class="text-xs uppercase tracking-wider text-white/60 mb-1">{labels.priceFromLabel}</p>
+        <p class="text-3xl md:text-4xl font-extrabold text-accent">{t(cardPkg.priceLabel, lang)}</p>
+        <p class="text-xs text-white/60 mt-1">{surchargeLabel}</p>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-wider text-white/60 mb-1">{labels.duration}</p>
+        <p class="text-xl md:text-2xl font-bold">{t(detail.duration, lang)}</p>
+      </div>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      <a
+        href={booking.href}
+        target={booking.external ? "_blank" : undefined}
+        rel={booking.external ? "noopener noreferrer" : undefined}
+        class="inline-block bg-accent text-white px-6 py-3 rounded-lg font-bold no-underline hover:bg-accent-hover transition-colors"
+      >
+        {labels.ctaPrimary}
+      </a>
+      <a
+        href={sms}
+        class="inline-block bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-bold no-underline transition-colors backdrop-blur"
+      >
+        {labels.ctaSms}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Pour qui c'est / Pour qui c'est PAS -->
+<section class="py-16 md:py-20 bg-white">
+  <div class="max-w-[1100px] mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-12">
+    <div>
+      <h2 class="text-2xl md:text-3xl font-extrabold mb-6 flex items-center gap-2">
+        <span class="text-accent">✓</span>
+        {labels.whoFor}
+      </h2>
+      <ul class="space-y-3">
+        {detail.whoFor[lang].map((item) => (
+          <li class="flex gap-3 text-dark leading-relaxed">
+            <span class="text-accent font-bold shrink-0 mt-1">✓</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-2xl md:text-3xl font-extrabold mb-6 flex items-center gap-2 text-grey">
+        <span>✗</span>
+        {labels.whoNotFor}
+      </h2>
+      <ul class="space-y-4">
+        {detail.whoNotFor[lang].map((item) => (
+          <li class="border border-grey-mid/40 rounded-lg p-4 bg-light">
+            <p class="text-dark leading-snug mb-1">{item.situation}</p>
+            <p class="text-sm text-accent font-semibold">{labels.pointTo ? `${labels.pointTo} ${item.pointTo}` : item.pointTo}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Ce qui est inclus -->
+<section class="py-16 md:py-20 bg-light">
+  <div class="max-w-[1100px] mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-10 text-center">{labels.whatIncluded}</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      {detail.whatIncluded[lang].map((section) => (
+        <div class="bg-white border border-grey-mid/40 rounded-xl p-6 md:p-7">
+          <h3 class="text-lg font-extrabold text-dark mb-4">{section.section}</h3>
+          <ul class="space-y-2">
+            {section.items.map((item) => (
+              <li class="flex gap-2 text-sm leading-relaxed">
+                <span class="text-accent font-bold shrink-0">✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Ce qui n'est PAS inclus -->
+<section class="py-12 md:py-16 bg-white">
+  <div class="max-w-[900px] mx-auto px-6">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-6">{labels.whatNotIncluded}</h2>
+    <ul class="space-y-3">
+      {detail.whatNotIncluded[lang].map((item) => (
+        <li class="flex gap-3 text-dark/80 leading-relaxed">
+          <span class="text-grey font-bold shrink-0 mt-1">—</span>
+          <span set:html={item.replaceAll(/(\d+\s*\$|\$\d+|à\s+\d+\s*\$|from\s+\$\d+)/g, "<strong>$1</strong>")}></span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- Méthode 7 étapes -->
+<section class="py-16 md:py-20 bg-light">
+  <div class="max-w-[1100px] mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-10 text-center">{labels.method}</h2>
+    <div class="space-y-4">
+      {detail.method[lang].map((step, i) => (
+        <div class="bg-white border border-grey-mid/40 rounded-xl p-5 md:p-6 flex gap-4 md:gap-6 items-start">
+          <div class="shrink-0 w-10 h-10 md:w-12 md:h-12 bg-accent text-white rounded-full flex items-center justify-center font-extrabold text-lg md:text-xl">
+            {i + 1}
+          </div>
+          <div>
+            <h3 class="text-lg md:text-xl font-extrabold text-dark mb-1">{step.title}</h3>
+            <p class="text-dark/80 leading-relaxed">{step.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Durée + logistique -->
+<section class="py-12 md:py-16 bg-white">
+  <div class="max-w-[900px] mx-auto px-6">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-6">{labels.durationHeading}</h2>
+    <p class="text-lg text-dark mb-4"><strong>{t(detail.duration, lang)}</strong></p>
+    <div class="bg-light border-l-4 border-accent p-5 rounded-r-lg">
+      <p class="text-sm font-bold text-grey uppercase tracking-wider mb-2">{labels.durationNoteHeading}</p>
+      <p class="text-dark/80 leading-relaxed">{t(detail.durationNote, lang)}</p>
+    </div>
+  </div>
+</section>
+
+<!-- Conditions sur place -->
+<section class="py-12 md:py-16 bg-light">
+  <div class="max-w-[900px] mx-auto px-6">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-6">{labels.conditions}</h2>
+    <ul class="space-y-3">
+      {detail.conditions[lang].map((item) => (
+        <li class="flex gap-3 text-dark leading-relaxed">
+          <span class="text-accent font-bold shrink-0 mt-1">•</span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- Suppléments -->
+<section class="py-12 md:py-16 bg-white">
+  <div class="max-w-[900px] mx-auto px-6">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-6">{labels.surcharges}</h2>
+    <div class="border border-grey-mid/40 rounded-xl overflow-hidden">
+      <table class="w-full text-left text-sm md:text-base">
+        <tbody>
+          {detail.surcharges[lang].map((row, i) => (
+            <tr class={i % 2 === 0 ? "bg-light" : "bg-white"}>
+              <td class="p-4 leading-snug">{row.situation}</td>
+              <td class="p-4 font-bold text-accent text-right whitespace-nowrap">{row.amount}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-sm text-grey mt-4 italic">
+      {lang === "fr"
+        ? "Tout supplément est confirmé avec vous avant d'être appliqué. Aucune facture surprise."
+        : "Any surcharge is confirmed with you before being applied. No surprise invoices."}
+    </p>
+  </div>
+</section>
+
+<!-- Comparaison vs autres forfaits -->
+<section class="py-16 md:py-20 bg-light">
+  <div class="max-w-[1100px] mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-center">{labels.comparison}</h2>
+    <p class="text-center text-grey max-w-2xl mx-auto mb-10 leading-relaxed">{t(detail.comparisonNote, lang)}</p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {otherPkgs.map((other) => {
+        const otherCard = siteConfig.packages.find((p) => p.key === other.key)!;
+        const detailUrl = lang === "fr"
+          ? `/forfaits/${other.slug.fr}`
+          : `/en/packages/${other.slug.en}`;
+        return (
+          <a
+            href={detailUrl}
+            class="block bg-white border border-grey-mid/50 rounded-xl p-5 hover:border-accent hover:shadow-md transition-all no-underline"
+          >
+            <h3 class="text-base font-extrabold text-dark mb-1 leading-tight">{t(otherCard.name, lang)}</h3>
+            <p class="text-2xl font-extrabold text-accent mb-2">{t(otherCard.priceLabel, lang)}</p>
+            <p class="text-sm text-grey leading-snug mb-3">{t(otherCard.useCase, lang)}</p>
+            <p class="text-sm font-bold text-accent">{labels.learnMore}</p>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-16 md:py-20 bg-white">
+  <div class="max-w-[900px] mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-10 text-center">{labels.faq}</h2>
+    <div class="space-y-3">
+      {detail.faq.map((item) => (
+        <details class="group border border-grey-mid/40 rounded-xl bg-light overflow-hidden">
+          <summary class="cursor-pointer list-none px-5 py-4 md:px-6 md:py-5 flex justify-between items-start gap-4 font-bold text-dark hover:bg-light/70">
+            <span class="leading-snug">{t(item.q, lang)}</span>
+            <span class="shrink-0 text-accent text-2xl leading-none group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <div class="px-5 pb-5 md:px-6 md:pb-6 text-dark/80 leading-relaxed border-t border-grey-mid/30 pt-4">
+            {t(item.a, lang)}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA final -->
+<section class="py-16 md:py-20 bg-dark text-white">
+  <div class="max-w-[900px] mx-auto px-6 text-center">
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-4">{t(detail.ctaFinalHeading, lang)}</h2>
+    <p class="text-lg text-white/85 max-w-2xl mx-auto mb-8 leading-relaxed">{t(detail.ctaFinalBody, lang)}</p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a
+        href={booking.href}
+        target={booking.external ? "_blank" : undefined}
+        rel={booking.external ? "noopener noreferrer" : undefined}
+        class="inline-block bg-accent text-white px-6 py-3 rounded-lg font-bold no-underline hover:bg-accent-hover transition-colors"
+      >
+        {labels.ctaPrimary}
+      </a>
+      <a
+        href={sms}
+        class="inline-block bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-bold no-underline transition-colors"
+      >
+        {labels.ctaSms}
+      </a>
+    </div>
+  </div>
+</section>
