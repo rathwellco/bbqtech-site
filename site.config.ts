@@ -76,7 +76,7 @@ export const siteConfig = {
       en: "Professional on-site BBQ cleaning — 4 clear packages.",
     } satisfies Bilingual,
     sub: {
-      fr: "Service mobile spécialisé de nettoyage, entretien, assemblage, diagnostic et réparation de BBQ à Gatineau et Ottawa. Tune-Up dès 195 $, Essential 249 $, Signature 329 $, Prestige Steam Restoration à partir de 495 $.",
+      fr: "Service mobile spécialisé de nettoyage, entretien, assemblage, diagnostic et réparation de BBQ à Gatineau et Ottawa. Mise au point dès 195 $, Nettoyage Essentiel 249 $, Nettoyage Signature 329 $, Restauration Prestige à la vapeur à partir de 495 $.",
       en: "Specialized mobile service for BBQ cleaning, maintenance, assembly, diagnostic and repair in Gatineau and Ottawa. Tune-Up from $195, Essential $249, Signature $329, Prestige Steam Restoration from $495.",
     } satisfies Bilingual,
   },
@@ -97,7 +97,7 @@ export const siteConfig = {
       shortLabel: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       title: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       body: {
-        fr: "4 forfaits clairs : Tune-Up 195 $, Essential 249 $, Signature 329 $, Prestige dès 495 $. Assemblage dès 149 $, diagnostic 99 $. Aucun changement de tarif sans votre accord.",
+        fr: "4 forfaits clairs : Mise au point 195 $, Nettoyage Essentiel 249 $, Nettoyage Signature 329 $, Restauration Prestige à la vapeur dès 495 $. Assemblage dès 149 $, diagnostic 99 $. Aucun changement de tarif sans votre accord.",
         en: "4 clear packages: Tune-Up $195, Essential $249, Signature $329, Prestige from $495. Assembly from $149, diagnostic $99. No price change without your approval.",
       } satisfies Bilingual,
     },
@@ -138,7 +138,7 @@ export const siteConfig = {
       name: { fr: "Nettoyage BBQ à domicile", en: "On-site BBQ Cleaning" } satisfies Bilingual,
       priceLabel: { fr: "Dès 195 $", en: "From $195" } satisfies Bilingual,
       summary: {
-        fr: "Service mobile professionnel de nettoyage et d'entretien de BBQ à domicile. 4 forfaits selon l'état et le niveau souhaité : Tune-Up, Essential, Signature, Prestige Steam Restoration.",
+        fr: "Service mobile professionnel de nettoyage et d'entretien de BBQ à domicile. 4 forfaits selon l'état et le niveau souhaité : Mise au point, Nettoyage Essentiel, Nettoyage Signature, Restauration Prestige à la vapeur.",
         en: "Professional mobile service for on-site BBQ cleaning and maintenance. 4 packages by condition and desired level: Tune-Up, Essential, Signature, Prestige Steam Restoration.",
       } satisfies Bilingual,
     },
@@ -178,7 +178,7 @@ export const siteConfig = {
   packages: [
     {
       key: "tune-up",
-      name: { fr: "BBQ Tune-Up", en: "BBQ Tune-Up" } satisfies Bilingual,
+      name: { fr: "Mise au point BBQ", en: "BBQ Tune-Up" } satisfies Bilingual,
       price: 195,
       priceLabel: { fr: "195 $ + taxes", en: "$195 + tax" } satisfies Bilingual,
       surchargePerBurner: 29,
@@ -190,12 +190,12 @@ export const siteConfig = {
         fr: "Pour un BBQ fonctionnel à inspecter et préparer pour la saison.",
         en: "For a working BBQ to inspect and prep for the season.",
       } satisfies Bilingual,
-      ctaLabel: { fr: "Réserver Tune-Up", en: "Book Tune-Up" } satisfies Bilingual,
+      ctaLabel: { fr: "Réserver Mise au point", en: "Book Tune-Up" } satisfies Bilingual,
       badge: null,
     },
     {
       key: "essential",
-      name: { fr: "Essential Clean", en: "Essential Clean" } satisfies Bilingual,
+      name: { fr: "Nettoyage Essentiel", en: "Essential Clean" } satisfies Bilingual,
       price: 249,
       priceLabel: { fr: "249 $ + taxes", en: "$249 + tax" } satisfies Bilingual,
       surchargePerBurner: 29,
@@ -207,12 +207,12 @@ export const siteConfig = {
         fr: "Pour un BBQ moyennement sale en condition normale.",
         en: "For a moderately dirty BBQ in normal condition.",
       } satisfies Bilingual,
-      ctaLabel: { fr: "Réserver Essential", en: "Book Essential" } satisfies Bilingual,
+      ctaLabel: { fr: "Réserver Essentiel", en: "Book Essential" } satisfies Bilingual,
       badge: null,
     },
     {
       key: "signature",
-      name: { fr: "Signature Deep Clean", en: "Signature Deep Clean" } satisfies Bilingual,
+      name: { fr: "Nettoyage Signature", en: "Signature Deep Clean" } satisfies Bilingual,
       price: 329,
       priceLabel: { fr: "329 $ + taxes", en: "$329 + tax" } satisfies Bilingual,
       surchargePerBurner: 49,
@@ -229,7 +229,7 @@ export const siteConfig = {
     },
     {
       key: "prestige",
-      name: { fr: "Prestige Steam Restoration", en: "Prestige Steam Restoration" } satisfies Bilingual,
+      name: { fr: "Restauration Prestige à la vapeur", en: "Prestige Steam Restoration" } satisfies Bilingual,
       price: 495,
       priceLabel: { fr: "Dès 495 $ + taxes", en: "From $495 + tax" } satisfies Bilingual,
       surchargePerBurner: 49,
@@ -394,7 +394,7 @@ export const siteConfig = {
   },
 
   packagesNote: {
-    fr: "Prix valides pour BBQ standards mobiles et accessibles jusqu'à 4 brûleurs principaux. Supplément par brûleur principal additionnel : +29 $ (Tune-Up et Essential) ou +49 $ (Signature et Prestige). Les brûleurs latéraux, brûleurs arrière, infrarouges, modules de cuisson et accessoires spécialisés peuvent être facturés séparément. Les BBQ très encrassés, négligés depuis plusieurs saisons, encastrés, commerciaux ou haut de gamme peuvent faire l'objet d'une estimation personnalisée. Certaines composantes sont nettoyées seulement si accessibles et sécuritaires à manipuler — les pièces corrodées, saisies ou fragiles peuvent nécessiter une réparation plutôt qu'un nettoyage.",
+    fr: "Prix valides pour BBQ standards mobiles et accessibles jusqu'à 4 brûleurs principaux. Supplément par brûleur principal additionnel : +29 $ (Mise au point et Nettoyage Essentiel) ou +49 $ (Nettoyage Signature et Restauration Prestige). Les brûleurs latéraux, brûleurs arrière, infrarouges, modules de cuisson et accessoires spécialisés peuvent être facturés séparément. Les BBQ très encrassés, négligés depuis plusieurs saisons, encastrés, commerciaux ou haut de gamme peuvent faire l'objet d'une estimation personnalisée. Certaines composantes sont nettoyées seulement si accessibles et sécuritaires à manipuler — les pièces corrodées, saisies ou fragiles peuvent nécessiter une réparation plutôt qu'un nettoyage.",
     en: "Prices apply to standard, mobile and accessible BBQs up to 4 main burners. Additional main burner surcharge: +$29 (Tune-Up and Essential) or +$49 (Signature and Prestige). Side burners, rear burners, infrared burners, specialty modules and accessories may be billed separately. Heavily soiled BBQs, units neglected for several seasons, built-ins, commercial or high-end equipment may require a custom quote. Some components are cleaned only if accessible and safe to handle — corroded, seized or fragile parts may require repair rather than cleaning.",
   } satisfies Bilingual,
 
@@ -490,7 +490,7 @@ export const siteConfig = {
     {
       q: { fr: "Combien coûte un nettoyage de BBQ ?", en: "How much does a BBQ cleaning cost?" } satisfies Bilingual,
       a: {
-        fr: "Nos forfaits débutent à 195 $ (BBQ Tune-Up, entretien préventif à sec), puis 249 $ (Essential, nettoyage standard avec eau), 329 $ (Signature, nettoyage approfondi) et à partir de 495 $ (Prestige Steam Restoration, remise en état avec vapeur). Le forfait approprié dépend de l'état du BBQ, de sa taille et du niveau de nettoyage souhaité. Envoyez-nous une photo pour une recommandation précise.",
+        fr: "Nos forfaits débutent à 195 $ (Mise au point BBQ, entretien préventif à sec), puis 249 $ (Nettoyage Essentiel, avec eau), 329 $ (Nettoyage Signature, dégraissage approfondi) et à partir de 495 $ (Restauration Prestige à la vapeur, remise en état complète). Le forfait approprié dépend de l'état de votre BBQ, de sa taille et du niveau de nettoyage souhaité. Envoyez-nous une photo pour une recommandation précise.",
         en: "Our packages start at $195 (BBQ Tune-Up, dry preventive maintenance), then $249 (Essential, standard wet cleaning), $329 (Signature, deep cleaning), and from $495 (Prestige Steam Restoration, with steam). The right package depends on the BBQ's condition, size and desired level of cleaning. Send us a photo for a precise recommendation.",
       } satisfies Bilingual,
     },
@@ -532,7 +532,7 @@ export const siteConfig = {
     {
       q: { fr: "Y a-t-il un supplément pour les gros BBQ ?", en: "Is there a surcharge for larger BBQs?" } satisfies Bilingual,
       a: {
-        fr: "Oui. Au-delà de 4 brûleurs principaux : +29 $ par brûleur additionnel pour Tune-Up et Essential, +49 $ par brûleur additionnel pour Signature et Prestige. Les brûleurs latéraux, brûleurs arrière, infrarouges et accessoires spécialisés peuvent être facturés séparément. Les BBQ encastrés, cuisines extérieures, équipements commerciaux ou configurations particulières nécessitent une soumission personnalisée.",
+        fr: "Oui. Au-delà de 4 brûleurs principaux : +29 $ par brûleur additionnel pour la Mise au point et le Nettoyage Essentiel, +49 $ par brûleur additionnel pour le Nettoyage Signature et la Restauration Prestige. Les brûleurs latéraux, brûleurs arrière, infrarouges et accessoires spécialisés peuvent être facturés séparément. Les BBQ encastrés, cuisines extérieures, équipements commerciaux ou configurations particulières nécessitent une soumission personnalisée.",
         en: "Yes. Beyond 4 main burners: +$29 per additional burner for Tune-Up and Essential, +$49 per additional burner for Signature and Prestige. Side burners, rear burners, infrared and specialty accessories may be billed separately. Built-in BBQs, outdoor kitchens, commercial equipment or special configurations require a custom quote.",
       } satisfies Bilingual,
     },
@@ -600,7 +600,7 @@ export const siteConfig = {
       en: "BBQ Cleaning & Repair Gatineau · Ottawa | BBQTech",
     } satisfies Bilingual,
     defaultDescription: {
-      fr: "Service mobile professionnel de nettoyage, entretien, assemblage, diagnostic et réparation de BBQ à Gatineau et Ottawa. 4 forfaits clairs (Tune-Up 195 $, Essential 249 $, Signature 329 $, Prestige dès 495 $), assemblage dès 149 $, diagnostic 99 $.",
+      fr: "Service mobile professionnel de nettoyage, entretien, assemblage, diagnostic et réparation de BBQ à Gatineau et Ottawa. 4 forfaits clairs : Mise au point 195 $, Nettoyage Essentiel 249 $, Nettoyage Signature 329 $, Restauration Prestige à la vapeur dès 495 $. Assemblage dès 149 $, diagnostic 99 $.",
       en: "Professional mobile service for BBQ cleaning, maintenance, assembly, diagnostic and repair in Gatineau and Ottawa. 4 clear packages (Tune-Up $195, Essential $249, Signature $329, Prestige from $495), assembly from $149, diagnostic $99.",
     } satisfies Bilingual,
     ogImage: "/og-default.svg",
