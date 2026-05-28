@@ -15,129 +15,225 @@ interface Pair {
   alt: string;
 }
 
-const pairs: Pair[] = [
-  {
-    beforeSrc: "/photos/before-after/broil-king-set-03-close-grates-avant.webp",
-    afterSrc: "/photos/before-after/broil-king-set-03-close-grates-apres.webp",
-    captionFr: "Grilles — gros plan",
-    captionEn: "Grates — close-up",
-    alt: "Broil King Signet 390 grates",
-  },
-  {
-    beforeSrc: "/photos/before-after/broil-king-set-02-grilles-avant.webp",
-    afterSrc: "/photos/before-after/broil-king-set-02-grilles-apres.webp",
-    captionFr: "Grilles principales",
-    captionEn: "Main grates",
-    alt: "Broil King Signet 390 main grates",
-  },
-  {
-    beforeSrc: "/photos/before-after/broil-king-set-04-cookbox-wide-avant.webp",
-    afterSrc: "/photos/before-after/broil-king-set-04-cookbox-wide-apres.webp",
-    captionFr: "Cuve et grilles — vue intérieure",
-    captionEn: "Cookbox and grates — interior view",
-    alt: "Broil King Signet 390 cookbox interior",
-  },
-  {
-    beforeSrc: "/photos/before-after/broil-king-set-01-front-closed-avant.webp",
-    afterSrc: "/photos/before-after/broil-king-set-01-front-closed-apres.webp",
-    captionFr: "Façade extérieure",
-    captionEn: "Exterior front",
-    alt: "Broil King Signet 390 exterior front",
-  },
-];
+interface CaseStudy {
+  bbqFr: string;
+  bbqEn: string;
+  forfaitFr: string;
+  forfaitEn: string;
+  accentLabel: string;
+  badgeStyle: "accent" | "dark";
+  contextFr: { label: string; value: string }[];
+  contextEn: { label: string; value: string }[];
+  pairs: Pair[];
+}
+
+const napoleonFreestyle: CaseStudy = {
+  bbqFr: "Napoléon FreeStyle",
+  bbqEn: "Napoléon FreeStyle",
+  forfaitFr: "Nettoyage Signature — 295 $",
+  forfaitEn: "Signature Cleaning — $295",
+  accentLabel: "Nettoyage Signature",
+  badgeStyle: "accent",
+  contextFr: [
+    { label: "BBQ", value: "Napoléon FreeStyle — entretien annuel après une saison d'utilisation" },
+    { label: "Forfait", value: "Nettoyage Signature — 295 $ + taxes" },
+    { label: "Travail effectué", value: "Dégraissage en 2 applications, grilles et composantes détaillées, intérieur du cabinet" },
+    { label: "Résultat", value: "BBQ propre et prêt pour la saison — meilleure performance, plus agréable à utiliser" },
+  ],
+  contextEn: [
+    { label: "BBQ", value: "Napoléon FreeStyle — annual maintenance after a season of use" },
+    { label: "Package", value: "Signature Cleaning — $295 + tax" },
+    { label: "Work done", value: "Two-pass degreasing, detailed grates and components, cabinet interior" },
+    { label: "Result", value: "Clean BBQ ready for the season — better performance, more pleasant to use" },
+  ],
+  pairs: [
+    {
+      beforeSrc: "/photos/before-after/napoleon-freestyle-set-03-grates-close-avant.webp",
+      afterSrc: "/photos/before-after/napoleon-freestyle-after-03-grilles-closeup.webp",
+      captionFr: "Grilles — gros plan",
+      captionEn: "Grates — close-up",
+      alt: "Napoléon FreeStyle grates close-up",
+    },
+    {
+      beforeSrc: "/photos/before-after/napoleon-freestyle-set-02-grill-open-avant.webp",
+      afterSrc: "/photos/before-after/napoleon-freestyle-after-02-grilles-wide.webp",
+      captionFr: "Couvercle ouvert — grilles et cuve",
+      captionEn: "Hood open — grates and cookbox",
+      alt: "Napoléon FreeStyle hood open",
+    },
+    {
+      beforeSrc: "/photos/before-after/napoleon-freestyle-set-04-cabinet-base-avant.webp",
+      afterSrc: "/photos/before-after/napoleon-freestyle-after-04-base-cabinet.webp",
+      captionFr: "Intérieur du cabinet",
+      captionEn: "Cabinet interior",
+      alt: "Napoléon FreeStyle cabinet interior",
+    },
+    {
+      beforeSrc: "/photos/before-after/napoleon-freestyle-set-01-front-closed-avant.webp",
+      afterSrc: "/photos/before-after/napoleon-freestyle-after-01-front-closed.webp",
+      captionFr: "Façade extérieure",
+      captionEn: "Exterior front",
+      alt: "Napoléon FreeStyle exterior front",
+    },
+  ],
+};
+
+const broilKing: CaseStudy = {
+  bbqFr: "Broil King Signet 390",
+  bbqEn: "Broil King Signet 390",
+  forfaitFr: "Restauration Prestige vapeur — 395 $ + pièces",
+  forfaitEn: "Prestige Steam Restoration — $395 + parts",
+  accentLabel: "Restauration Prestige",
+  badgeStyle: "dark",
+  contextFr: [
+    { label: "BBQ", value: "Broil King Signet 390 — fortement encrassé, plusieurs saisons sans entretien" },
+    { label: "Forfait", value: "Restauration Prestige vapeur — 395 $ + taxes" },
+    { label: "Pièces remplacées", value: "Brûleurs, diffuseurs et collector box (service Diagnostic & Réparation séparé)" },
+    { label: "Résultat", value: "Transformation complète — BBQ propre, plus performant, prolongation de sa durée de vie" },
+  ],
+  contextEn: [
+    { label: "BBQ", value: "Broil King Signet 390 — heavily soiled, multiple seasons without maintenance" },
+    { label: "Package", value: "Prestige Steam Restoration — $395 + tax" },
+    { label: "Parts replaced", value: "Burners, heat diffusers and collector box (separate Diagnostic & Repair service)" },
+    { label: "Result", value: "Complete transformation — clean BBQ, better performance, extended lifespan" },
+  ],
+  pairs: [
+    {
+      beforeSrc: "/photos/before-after/broil-king-set-03-close-grates-avant.webp",
+      afterSrc: "/photos/before-after/broil-king-set-03-close-grates-apres.webp",
+      captionFr: "Grilles — gros plan",
+      captionEn: "Grates — close-up",
+      alt: "Broil King Signet 390 grates",
+    },
+    {
+      beforeSrc: "/photos/before-after/broil-king-set-02-grilles-avant.webp",
+      afterSrc: "/photos/before-after/broil-king-set-02-grilles-apres.webp",
+      captionFr: "Grilles principales",
+      captionEn: "Main grates",
+      alt: "Broil King Signet 390 main grates",
+    },
+    {
+      beforeSrc: "/photos/before-after/broil-king-set-04-cookbox-wide-avant.webp",
+      afterSrc: "/photos/before-after/broil-king-set-04-cookbox-wide-apres.webp",
+      captionFr: "Cuve et grilles — vue intérieure",
+      captionEn: "Cookbox and grates — interior view",
+      alt: "Broil King Signet 390 cookbox interior",
+    },
+    {
+      beforeSrc: "/photos/before-after/broil-king-set-01-front-closed-avant.webp",
+      afterSrc: "/photos/before-after/broil-king-set-01-front-closed-apres.webp",
+      captionFr: "Façade extérieure",
+      captionEn: "Exterior front",
+      alt: "Broil King Signet 390 exterior front",
+    },
+  ],
+};
+
+const caseStudies = [napoleonFreestyle, broilKing];
 
 const labels = {
   fr: {
-    title: "Avant / Après — Broil King Signet 390",
-    subtitle: "Un cas réel de Restauration Prestige vapeur avec remplacement de pièces.",
+    title: "Avant / Après — services BBQTECH",
+    subtitle: "Deux cas concrets : un nettoyage annuel sur un BBQ utilisé en saison, et une restauration complète sur un BBQ négligé depuis plusieurs années.",
     contextLabel: "Contexte du service",
-    contextItems: [
-      { label: "BBQ", value: "Broil King Signet 390 — fortement encrassé, plusieurs saisons sans entretien" },
-      { label: "Forfait", value: "Restauration Prestige vapeur — 395 $ + taxes" },
-      { label: "Pièces remplacées", value: "Brûleurs, diffuseurs et collector box (service Diagnostic & Réparation séparé)" },
-      { label: "Résultat", value: "Transformation complète — BBQ propre, plus performant, prolongation de sa durée de vie" },
-    ],
     beforeLabel: "Avant",
     afterLabel: "Après",
-    disclaimer: "Photos d'un service BBQTECH. Le nettoyage et le remplacement de pièces sont deux services séparés — combinés en une seule visite quand c'est possible.",
+    disclaimer: "Photos de services BBQTECH. Le nettoyage et le remplacement de pièces sont deux services séparés — combinés en une seule visite quand c'est possible.",
   },
   en: {
-    title: "Before / After — Broil King Signet 390",
-    subtitle: "A real Prestige Steam Restoration case with parts replacement.",
+    title: "Before / After — BBQTECH services",
+    subtitle: "Two concrete cases: an annual cleaning on a BBQ used in season, and a full restoration on a BBQ neglected for several years.",
     contextLabel: "Service context",
-    contextItems: [
-      { label: "BBQ", value: "Broil King Signet 390 — heavily soiled, multiple seasons without maintenance" },
-      { label: "Package", value: "Prestige Steam Restoration — $395 + tax" },
-      { label: "Parts replaced", value: "Burners, heat diffusers and collector box (separate Diagnostic & Repair service)" },
-      { label: "Result", value: "Complete transformation — clean BBQ, better performance, extended lifespan" },
-    ],
     beforeLabel: "Before",
     afterLabel: "After",
-    disclaimer: "Photos from a BBQTECH service. Cleaning and parts replacement are two separate services — combined in a single visit when possible.",
+    disclaimer: "Photos from BBQTECH services. Cleaning and parts replacement are two separate services — combined in a single visit when possible.",
   },
 }[lang];
 ---
 
 <section class="py-16 md:py-20 bg-white">
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="text-center mb-10 md:mb-12">
+    <div class="text-center mb-12 md:mb-14">
       <h2 class="text-3xl md:text-4xl font-extrabold mb-3">{labels.title}</h2>
-      <p class="text-lg text-grey max-w-2xl mx-auto">{labels.subtitle}</p>
+      <p class="text-lg text-grey max-w-3xl mx-auto">{labels.subtitle}</p>
     </div>
 
-    <!-- Context bar -->
-    <div class="max-w-[1000px] mx-auto mb-10 md:mb-12 bg-light border border-grey-mid/40 rounded-xl p-5 md:p-6">
-      <p class="text-xs font-bold uppercase tracking-wider text-grey mb-4">{labels.contextLabel}</p>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
-        {labels.contextItems.map((item) => (
-          <div class="flex flex-col">
-            <span class="text-xs font-bold text-accent uppercase tracking-wider mb-0.5">{item.label}</span>
-            <span class="text-sm text-dark leading-snug">{item.value}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    <!-- 4 before/after pairs -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-      {pairs.map((pair) => (
-        <figure class="bg-light border border-grey-mid/40 rounded-xl overflow-hidden">
-          <div class="grid grid-cols-2">
-            <div class="relative">
-              <img
-                src={pair.beforeSrc}
-                alt={`${labels.beforeLabel} — ${pair.alt}`}
-                loading="lazy"
-                width="600"
-                height="450"
-                class="w-full aspect-[4/3] object-cover block"
-              />
-              <span class="absolute top-2 left-2 bg-dark text-white text-xs font-bold uppercase tracking-wider px-2 py-1 rounded">
-                {labels.beforeLabel}
+    {caseStudies.map((cs, csIdx) => {
+      const bbq = lang === "fr" ? cs.bbqFr : cs.bbqEn;
+      const forfait = lang === "fr" ? cs.forfaitFr : cs.forfaitEn;
+      const contextItems = lang === "fr" ? cs.contextFr : cs.contextEn;
+      return (
+        <div class={csIdx > 0 ? "mt-16 md:mt-20" : ""}>
+          <!-- Case study header -->
+          <div class="mb-6 md:mb-8 max-w-[1000px] mx-auto">
+            <div class="flex flex-wrap items-baseline gap-x-3 gap-y-2 mb-2">
+              <span class:list={[
+                "inline-block text-white text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded",
+                cs.badgeStyle === "accent" ? "bg-accent" : "bg-dark"
+              ]}>
+                {cs.accentLabel}
               </span>
+              <h3 class="text-2xl md:text-3xl font-extrabold text-dark">{bbq}</h3>
             </div>
-            <div class="relative">
-              <img
-                src={pair.afterSrc}
-                alt={`${labels.afterLabel} — ${pair.alt}`}
-                loading="lazy"
-                width="600"
-                height="450"
-                class="w-full aspect-[4/3] object-cover block"
-              />
-              <span class="absolute top-2 left-2 bg-accent text-white text-xs font-bold uppercase tracking-wider px-2 py-1 rounded">
-                {labels.afterLabel}
-              </span>
+            <p class="text-base md:text-lg font-bold text-accent">{forfait}</p>
+          </div>
+
+          <!-- Context bar -->
+          <div class="max-w-[1000px] mx-auto mb-6 md:mb-8 bg-light border border-grey-mid/40 rounded-xl p-5 md:p-6">
+            <p class="text-xs font-bold uppercase tracking-wider text-grey mb-4">{labels.contextLabel}</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+              {contextItems.map((item) => (
+                <div class="flex flex-col">
+                  <span class="text-xs font-bold text-accent uppercase tracking-wider mb-0.5">{item.label}</span>
+                  <span class="text-sm text-dark leading-snug">{item.value}</span>
+                </div>
+              ))}
             </div>
           </div>
-          <figcaption class="px-4 py-3 text-sm text-dark font-semibold border-t border-grey-mid/30 bg-white">
-            {lang === "fr" ? pair.captionFr : pair.captionEn}
-          </figcaption>
-        </figure>
-      ))}
-    </div>
 
-    <p class="text-center text-xs text-grey mt-8 max-w-3xl mx-auto leading-relaxed italic">
+          <!-- 4 before/after pairs -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+            {cs.pairs.map((pair) => (
+              <figure class="bg-light border border-grey-mid/40 rounded-xl overflow-hidden">
+                <div class="grid grid-cols-2">
+                  <div class="relative">
+                    <img
+                      src={pair.beforeSrc}
+                      alt={`${labels.beforeLabel} — ${pair.alt}`}
+                      loading="lazy"
+                      width="600"
+                      height="450"
+                      class="w-full aspect-[4/3] object-cover block"
+                    />
+                    <span class="absolute top-2 left-2 bg-dark text-white text-xs font-bold uppercase tracking-wider px-2 py-1 rounded">
+                      {labels.beforeLabel}
+                    </span>
+                  </div>
+                  <div class="relative">
+                    <img
+                      src={pair.afterSrc}
+                      alt={`${labels.afterLabel} — ${pair.alt}`}
+                      loading="lazy"
+                      width="600"
+                      height="450"
+                      class="w-full aspect-[4/3] object-cover block"
+                    />
+                    <span class="absolute top-2 left-2 bg-accent text-white text-xs font-bold uppercase tracking-wider px-2 py-1 rounded">
+                      {labels.afterLabel}
+                    </span>
+                  </div>
+                </div>
+                <figcaption class="px-4 py-3 text-sm text-dark font-semibold border-t border-grey-mid/30 bg-white">
+                  {lang === "fr" ? pair.captionFr : pair.captionEn}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      );
+    })}
+
+    <p class="text-center text-xs text-grey mt-12 max-w-3xl mx-auto leading-relaxed italic">
       {labels.disclaimer}
     </p>
   </div>
