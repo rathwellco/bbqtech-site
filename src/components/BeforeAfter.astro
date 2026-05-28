@@ -129,12 +129,63 @@ const broilKing: CaseStudy = {
   ],
 };
 
-const caseStudies = [napoleonFreestyle, broilKing];
+const napoleonPrestige: CaseStudy = {
+  bbqFr: "Napoléon Prestige 450",
+  bbqEn: "Napoléon Prestige 450",
+  forfaitFr: "Restauration Prestige vapeur — 395 $",
+  forfaitEn: "Prestige Steam Restoration — $395",
+  accentLabel: "Restauration Prestige",
+  badgeStyle: "dark",
+  contextFr: [
+    { label: "BBQ", value: "Napoléon Prestige 450 — 15+ ans, accumulation lourde depuis plusieurs saisons" },
+    { label: "Forfait", value: "Restauration Prestige vapeur — 395 $ + taxes" },
+    { label: "Travail effectué", value: "Vapeur, dégraissage en multiples passes, finition détaillée, polissage inox" },
+    { label: "Résultat", value: "Transformation complète — BBQ ramené à un état de performance significativement meilleur" },
+  ],
+  contextEn: [
+    { label: "BBQ", value: "Napoléon Prestige 450 — 15+ years, heavy buildup over multiple seasons" },
+    { label: "Package", value: "Prestige Steam Restoration — $395 + tax" },
+    { label: "Work done", value: "Steam, multi-pass degreasing, detailed finishing, stainless polish" },
+    { label: "Result", value: "Complete transformation — BBQ brought back to significantly better performance" },
+  ],
+  pairs: [
+    {
+      beforeSrc: "/photos/before-after/napoleon-prestige-450-set-03-cookbox-burners-before.webp",
+      afterSrc: "/photos/before-after/napoleon-prestige-450-set-03-cookbox-burners-apres.webp",
+      captionFr: "Cuve et brûleurs",
+      captionEn: "Cookbox and burners",
+      alt: "Napoléon Prestige 450 cookbox and burners",
+    },
+    {
+      beforeSrc: "/photos/before-after/napoleon-prestige-450-set-02-open-front-grates-before.webp",
+      afterSrc: "/photos/before-after/napoleon-prestige-450-set-02-grilles-apres.webp",
+      captionFr: "Couvercle ouvert — grilles",
+      captionEn: "Hood open — grates",
+      alt: "Napoléon Prestige 450 hood open grates",
+    },
+    {
+      beforeSrc: "/photos/before-after/napoleon-prestige-450-set-04-cabinet-base-before.webp",
+      afterSrc: "/photos/before-after/napoleon-prestige-450-set-04-cabinet-base-apres.webp",
+      captionFr: "Intérieur du cabinet",
+      captionEn: "Cabinet interior",
+      alt: "Napoléon Prestige 450 cabinet interior",
+    },
+    {
+      beforeSrc: "/photos/before-after/napoleon-prestige-450-set-01-exterior-front-before.webp",
+      afterSrc: "/photos/before-after/napoleon-prestige-450-set-01-front-closed-apres.webp",
+      captionFr: "Façade extérieure",
+      captionEn: "Exterior front",
+      alt: "Napoléon Prestige 450 exterior front",
+    },
+  ],
+};
+
+const caseStudies = [napoleonFreestyle, napoleonPrestige, broilKing];
 
 const labels = {
   fr: {
     title: "Avant / Après — services BBQTECH",
-    subtitle: "Deux cas concrets : un nettoyage annuel sur un BBQ utilisé en saison, et une restauration complète sur un BBQ négligé depuis plusieurs années.",
+    subtitle: "Trois cas concrets : un nettoyage annuel, une restauration sur BBQ premium vieillissant, et une remise en état complète avec remplacement de pièces.",
     contextLabel: "Contexte du service",
     beforeLabel: "Avant",
     afterLabel: "Après",
@@ -142,7 +193,7 @@ const labels = {
   },
   en: {
     title: "Before / After — BBQTECH services",
-    subtitle: "Two concrete cases: an annual cleaning on a BBQ used in season, and a full restoration on a BBQ neglected for several years.",
+    subtitle: "Three concrete cases: an annual cleaning, a restoration on an aging premium BBQ, and a full restoration with parts replacement.",
     contextLabel: "Service context",
     beforeLabel: "Before",
     afterLabel: "After",
