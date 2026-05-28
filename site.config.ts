@@ -98,7 +98,7 @@ export const siteConfig = {
       shortLabel: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       title: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       body: {
-        fr: "3 forfaits clairs : Entretien Essentiel à partir de 199 $, Nettoyage Signature à partir de 299 $, Restauration Prestige vapeur à partir de 399 $. Assemblage à partir de 149 $, diagnostic 125 $. Aucun changement de tarif sans votre accord.",
+        fr: "3 forfaits clairs : Entretien Essentiel à partir de 199 $, Nettoyage Signature à partir de 299 $, Restauration Prestige à partir de 399 $. Assemblage à partir de 149 $, diagnostic 125 $. Aucun changement de tarif sans votre accord.",
         en: "3 clear packages: Essential Maintenance $199, Signature Cleaning $299, Prestige Steam Restoration $399. Assembly from $149, diagnostic $125. No price change without your approval.",
       } satisfies Bilingual,
     },
@@ -139,7 +139,7 @@ export const siteConfig = {
       name: { fr: "Nettoyage BBQ à domicile", en: "On-site BBQ Cleaning" } satisfies Bilingual,
       priceLabel: { fr: "À partir de 199 $", en: "From $199" } satisfies Bilingual,
       summary: {
-        fr: "Service mobile de nettoyage et d'entretien de BBQ à domicile. 3 forfaits selon l'état : Entretien Essentiel, Nettoyage Signature, Restauration Prestige vapeur.",
+        fr: "Service mobile de nettoyage et d'entretien de BBQ à domicile. 3 forfaits selon l'état : Entretien Essentiel, Nettoyage Signature, Restauration Prestige.",
         en: "Mobile on-site BBQ cleaning and maintenance service. 3 packages by condition: Essential Maintenance, Signature Cleaning, Prestige Steam Restoration.",
       } satisfies Bilingual,
     },
@@ -213,7 +213,7 @@ export const siteConfig = {
     },
     {
       key: "prestige",
-      name: { fr: "Restauration Prestige vapeur", en: "Prestige Steam Restoration" } satisfies Bilingual,
+      name: { fr: "Restauration Prestige", en: "Prestige Steam Restoration" } satisfies Bilingual,
       price: 399,
       priceLabel: { fr: "À partir de 399 $ + taxes", en: "From $399 + tax" } satisfies Bilingual,
       surchargePerBurner: 49,
@@ -378,7 +378,7 @@ export const siteConfig = {
   },
 
   packagesNote: {
-    fr: "Prix valides pour BBQ standards mobiles et accessibles jusqu'à 4 brûleurs principaux. Supplément par brûleur principal additionnel : +29 $ pour l'Entretien Essentiel, +49 $ pour le Nettoyage Signature et la Restauration Prestige vapeur. Les brûleurs latéraux, brûleurs arrière, infrarouges, modules de cuisson et accessoires spécialisés peuvent être facturés séparément. Les BBQ encastrés, commerciaux ou de très grande taille peuvent faire l'objet d'une estimation personnalisée. Certaines composantes sont nettoyées seulement si accessibles et sécuritaires à manipuler — les pièces corrodées, saisies ou fragiles peuvent nécessiter une réparation plutôt qu'un nettoyage.",
+    fr: "Prix valides pour BBQ standards mobiles et accessibles jusqu'à 4 brûleurs principaux. Supplément par brûleur principal additionnel : +29 $ pour l'Entretien Essentiel, +49 $ pour le Nettoyage Signature et la Restauration Prestige. Les brûleurs latéraux, brûleurs arrière, infrarouges, modules de cuisson et accessoires spécialisés peuvent être facturés séparément. Les BBQ encastrés, commerciaux ou de très grande taille peuvent faire l'objet d'une estimation personnalisée. Certaines composantes sont nettoyées seulement si accessibles et sécuritaires à manipuler — les pièces corrodées, saisies ou fragiles peuvent nécessiter une réparation plutôt qu'un nettoyage.",
     en: "Prices apply to standard, mobile and accessible BBQs up to 4 main burners. Additional main burner surcharge: +$29 for Essential Maintenance, +$49 for Signature Cleaning and Prestige Steam Restoration. Side burners, rear burners, infrared burners, specialty modules and accessories may be billed separately. Built-in, commercial or very large BBQs may require a custom quote. Some components are cleaned only if accessible and safe to handle — corroded, seized or fragile parts may require repair rather than cleaning.",
   } satisfies Bilingual,
 
@@ -474,7 +474,7 @@ export const siteConfig = {
     {
       q: { fr: "Combien coûte un nettoyage de BBQ ?", en: "How much does a BBQ cleaning cost?" } satisfies Bilingual,
       a: {
-        fr: "Nos forfaits sont à 199 $ (Entretien Essentiel — préparer le BBQ pour la saison), 299 $ (Nettoyage Signature — vrai nettoyage annuel) et 399 $ (Restauration Prestige vapeur — pour BBQ très encrassé ou premium). Le forfait approprié dépend de l'état de votre BBQ. Envoyez-nous une photo pour une recommandation précise.",
+        fr: "Nos forfaits sont à 199 $ (Entretien Essentiel — préparer le BBQ pour la saison), 299 $ (Nettoyage Signature — vrai nettoyage annuel) et 399 $ (Restauration Prestige — pour BBQ très encrassé ou premium). Le forfait approprié dépend de l'état de votre BBQ. Envoyez-nous une photo pour une recommandation précise.",
         en: "Our packages are $199 (Essential Maintenance — season prep), $299 (Signature Cleaning — real annual cleaning) and $399 (Prestige Steam Restoration — for heavily soiled or premium BBQs). The right package depends on your BBQ's condition. Send us a photo for a precise recommendation.",
       } satisfies Bilingual,
     },
@@ -516,7 +516,7 @@ export const siteConfig = {
     {
       q: { fr: "Y a-t-il un supplément pour les gros BBQ ?", en: "Is there a surcharge for larger BBQs?" } satisfies Bilingual,
       a: {
-        fr: "Oui. Au-delà de 4 brûleurs principaux : +29 $ par brûleur additionnel pour l'Entretien Essentiel, +49 $ par brûleur additionnel pour le Nettoyage Signature et la Restauration Prestige vapeur. Les brûleurs latéraux, brûleurs arrière, infrarouges et accessoires spécialisés peuvent être facturés séparément. Les BBQ encastrés, cuisines extérieures, équipements commerciaux ou configurations particulières nécessitent une soumission personnalisée.",
+        fr: "Oui. Au-delà de 4 brûleurs principaux : +29 $ par brûleur additionnel pour l'Entretien Essentiel, +49 $ par brûleur additionnel pour le Nettoyage Signature et la Restauration Prestige. Les brûleurs latéraux, brûleurs arrière, infrarouges et accessoires spécialisés peuvent être facturés séparément. Les BBQ encastrés, cuisines extérieures, équipements commerciaux ou configurations particulières nécessitent une soumission personnalisée.",
         en: "Yes. Beyond 4 main burners: +$29 per additional burner for Essential Maintenance, +$49 per additional burner for Signature Cleaning and Prestige Steam Restoration. Side burners, rear burners, infrared and specialty accessories may be billed separately. Built-in BBQs, outdoor kitchens, commercial equipment or special configurations require a custom quote.",
       } satisfies Bilingual,
     },

@@ -53,7 +53,7 @@ const essential: PackageDetail = {
   whoNotFor: {
     fr: [
       { situation: "Votre BBQ a une saison ou plus de graisse accumulée et a besoin d'un vrai nettoyage en profondeur.", pointTo: "Nettoyage Signature à 299 $" },
-      { situation: "BBQ très encrassé, premium ou négligé depuis plusieurs saisons.", pointTo: "Restauration Prestige vapeur à 399 $" },
+      { situation: "BBQ très encrassé, premium ou négligé depuis plusieurs saisons.", pointTo: "Restauration Prestige à 399 $" },
     ],
     en: [
       { situation: "Your BBQ has a season or more of accumulated grease and needs real deep cleaning.", pointTo: "Signature Cleaning at $299" },
@@ -149,7 +149,7 @@ const essential: PackageDetail = {
   whatNotIncluded: {
     fr: [
       "Dégraissage approfondi en multiples passes — c'est le Nettoyage Signature à 299 $",
-      "Nettoyage vapeur — c'est la Restauration Prestige vapeur à 399 $",
+      "Nettoyage vapeur — c'est la Restauration Prestige à 399 $",
       "Polissage inox détaillé",
       "Démontage forcé de pièces corrodées, saisies ou fragiles",
       "Réparation ou remplacement de pièces (notre service Diagnostic à 125 $ couvre ça)",
@@ -186,7 +186,7 @@ const essential: PackageDetail = {
   },
   duration: { fr: "2h à 2h30 sur place", en: "2 to 2.5 hours on site" },
   durationNote: {
-    fr: "Si l'inspection révèle un BBQ beaucoup plus sale que prévu, on vous le dit avant de continuer. On propose soit de rester dans les limites de l'Entretien Essentiel, soit de monter au Nettoyage Signature (299 $) ou à la Restauration Prestige vapeur (399 $) si l'état le justifie. Aucun changement de prix sans votre accord.",
+    fr: "Si l'inspection révèle un BBQ beaucoup plus sale que prévu, on vous le dit avant de continuer. On propose soit de rester dans les limites de l'Entretien Essentiel, soit de monter au Nettoyage Signature (299 $) ou à la Restauration Prestige (399 $) si l'état le justifie. Aucun changement de prix sans votre accord.",
     en: "If inspection reveals a much dirtier BBQ than expected, we tell you before continuing. We offer to either stay within Essential Maintenance limits or step up to Signature Cleaning ($299) or Prestige Steam Restoration ($399) if warranted. No price change without your approval.",
   },
   conditions: {
@@ -309,7 +309,7 @@ const signature: PackageDetail = {
   whoNotFor: {
     fr: [
       { situation: "Vous voulez juste préparer le BBQ pour la saison, peu d'accumulation.", pointTo: "Entretien Essentiel à 199 $" },
-      { situation: "BBQ premium 10+ ans très négligé avec graisse cuite-recuite.", pointTo: "Restauration Prestige vapeur à 399 $" },
+      { situation: "BBQ premium 10+ ans très négligé avec graisse cuite-recuite.", pointTo: "Restauration Prestige à 399 $" },
     ],
     en: [
       { situation: "You just want season prep, minimal buildup.", pointTo: "Essential Maintenance at $199" },
@@ -406,7 +406,7 @@ const signature: PackageDetail = {
   },
   whatNotIncluded: {
     fr: [
-      "Nettoyage vapeur — c'est la Restauration Prestige vapeur qui l'ajoute",
+      "Nettoyage vapeur — c'est la Restauration Prestige qui l'ajoute",
       "Restauration esthétique avancée / polissage inox détaillé — Prestige aussi",
       "Réparation ou remplacement de pièces (Diagnostic à 125 $, pièces et main-d'œuvre en sus si vous procédez)",
       "Démontage forcé de pièces corrodées, saisies ou fragiles",
@@ -448,7 +448,7 @@ const signature: PackageDetail = {
   },
   duration: { fr: "3h à 4h sur place", en: "3 to 4 hours on site" },
   durationNote: {
-    fr: "Si on dépasse 4h, on s'arrête, on vous l'explique, et on propose soit de continuer dans les limites du Signature, soit de monter à la Restauration Prestige vapeur si l'état du BBQ le justifie. Aucun changement de prix sans votre accord.",
+    fr: "Si on dépasse 4h, on s'arrête, on vous l'explique, et on propose soit de continuer dans les limites du Signature, soit de monter à la Restauration Prestige si l'état du BBQ le justifie. Aucun changement de prix sans votre accord.",
     en: "If we go past 4h, we stop, we tell you, and offer to either stay within Signature limits or step up to Prestige Steam Restoration if the BBQ state warrants. No price change without your approval.",
   },
   conditions: {
@@ -484,7 +484,7 @@ const signature: PackageDetail = {
     ],
   },
   comparisonNote: {
-    fr: "Le Signature, c'est l'équilibre entre prix raisonnable et résultat sérieux. Si votre BBQ a 10+ ans et a été négligé plusieurs saisons, la Restauration Prestige vapeur à 399 $ va plus loin avec la vapeur. Mais pour la majorité des BBQ après une saison ou deux de négligence, le Signature suffit.",
+    fr: "Le Signature, c'est l'équilibre entre prix raisonnable et résultat sérieux. Si votre BBQ a 10+ ans et a été négligé plusieurs saisons, la Restauration Prestige à 399 $ va plus loin avec la vapeur. Mais pour la majorité des BBQ après une saison ou deux de négligence, le Signature suffit.",
     en: "Signature is the balance between fair price and serious result. If your BBQ is 10+ years old and neglected for multiple seasons, Prestige Steam Restoration at $399 goes further with steam. But for most BBQs after a season or two of neglect, Signature is plenty.",
   },
   faq: [
@@ -552,7 +552,7 @@ const prestige: PackageDetail = {
   key: "prestige",
   slug: { fr: "restauration-prestige-vapeur", en: "prestige-steam-restoration" },
   metaTitle: {
-    fr: "Restauration Prestige vapeur — Remise en état BBQ premium | BBQTECH Gatineau & Ottawa",
+    fr: "Restauration Prestige — Remise en état BBQ premium | BBQTECH Gatineau & Ottawa",
     en: "Prestige Steam Restoration — Premium BBQ Restoration | BBQTECH Gatineau & Ottawa",
   },
   metaDescription: {
@@ -725,7 +725,7 @@ const prestige: PackageDetail = {
   },
   duration: { fr: "5h à 7h+ sur place", en: "5 to 7+ hours on site" },
   durationNote: {
-    fr: "La Restauration Prestige vapeur prend le temps nécessaire pour bien faire le travail. Pour un BBQ extrêmement négligé, on peut proposer de scinder en deux visites. Toute condition particulière (BBQ très grand, encastré, commercial) peut nécessiter une estimation personnalisée — confirmée avant de commencer.",
+    fr: "La Restauration Prestige prend le temps nécessaire pour bien faire le travail. Pour un BBQ extrêmement négligé, on peut proposer de scinder en deux visites. Toute condition particulière (BBQ très grand, encastré, commercial) peut nécessiter une estimation personnalisée — confirmée avant de commencer.",
     en: "Prestige Steam Restoration takes the time needed to do it right. For an extremely neglected BBQ, we may suggest splitting into two visits. Any special condition (very large, built-in, commercial BBQ) may require a custom estimate — confirmed before starting.",
   },
   conditions: {
@@ -767,7 +767,7 @@ const prestige: PackageDetail = {
     ],
   },
   comparisonNote: {
-    fr: "La Restauration Prestige vapeur, c'est notre niveau le plus poussé. Si votre BBQ a 5 ans ou moins et a été entretenu, vous n'en avez probablement pas besoin — un Nettoyage Signature suffit. Mais pour un BBQ premium de 8-15 ans qui a vécu plusieurs saisons sans nettoyage sérieux, c'est l'option qui aide à le sauver.",
+    fr: "La Restauration Prestige, c'est notre niveau le plus poussé. Si votre BBQ a 5 ans ou moins et a été entretenu, vous n'en avez probablement pas besoin — un Nettoyage Signature suffit. Mais pour un BBQ premium de 8-15 ans qui a vécu plusieurs saisons sans nettoyage sérieux, c'est l'option qui aide à le sauver.",
     en: "Prestige Steam Restoration is our highest level. If your BBQ is 5 years or less and has been maintained, you probably don't need it — Signature is enough. But for a premium 8–15-year-old BBQ that's lived multiple seasons without serious cleaning, it's the option that helps save it.",
   },
   faq: [
@@ -781,21 +781,21 @@ const prestige: PackageDetail = {
     {
       q: { fr: "Vous garantissez « comme neuf »?", en: "Do you guarantee \"like-new\"?" },
       a: {
-        fr: "Non. Un BBQ qui a 10-15 ans de carbone cuit, de rayures, de patine ne redeviendra jamais neuf — et c'est OK. Ce que la Restauration Prestige vapeur fait, c'est ramener le BBQ à l'état le plus propre et le plus fonctionnel raisonnablement possible selon son âge, son matériau et sa condition. Vous serez surpris du résultat, mais vous n'aurez pas un BBQ neuf — vous aurez votre BBQ, beaucoup plus agréable à utiliser.",
+        fr: "Non. Un BBQ qui a 10-15 ans de carbone cuit, de rayures, de patine ne redeviendra jamais neuf — et c'est OK. Ce que la Restauration Prestige fait, c'est ramener le BBQ à l'état le plus propre et le plus fonctionnel raisonnablement possible selon son âge, son matériau et sa condition. Vous serez surpris du résultat, mais vous n'aurez pas un BBQ neuf — vous aurez votre BBQ, beaucoup plus agréable à utiliser.",
         en: "No. A BBQ with 10–15 years of baked carbon, scratches, patina will never look new — and that's OK. What Prestige Steam Restoration does is bring the BBQ to the cleanest and most functional state reasonably possible given its age, material and condition. You'll be surprised by the result, but you won't have a new BBQ — you'll have your BBQ, much more pleasant to use.",
       },
     },
     {
       q: { fr: "Mon Napoleon Prestige de 15 ans, c'est viable de le sauver ou je devrais le remplacer?", en: "My 15-year-old Napoleon Prestige — worth saving or should I replace?" },
       a: {
-        fr: "Ça dépend de l'état. Un Napoleon Prestige bien construit peut souvent durer 18-20 ans avec entretien sérieux et remplacement des pièces critiques (brûleurs, sear plates, igniters). La Restauration Prestige vapeur va vous donner une réponse claire : on documente tout, on vous donne notre opinion honnête. Si le coût de la Restauration + pièces nécessaires dépasse 50 % du prix d'un BBQ neuf équivalent, on vous le dit franchement.",
+        fr: "Ça dépend de l'état. Un Napoleon Prestige bien construit peut souvent durer 18-20 ans avec entretien sérieux et remplacement des pièces critiques (brûleurs, sear plates, igniters). La Restauration Prestige va vous donner une réponse claire : on documente tout, on vous donne notre opinion honnête. Si le coût de la Restauration + pièces nécessaires dépasse 50 % du prix d'un BBQ neuf équivalent, on vous le dit franchement.",
         en: "Depends on condition. A well-built Napoleon Prestige can often last 18–20 years with serious maintenance and replacement of critical parts (burners, sear plates, igniters). Prestige Steam Restoration gives you a clear answer: we document everything, give honest opinion. If Restoration + needed parts exceeds 50% of a new equivalent BBQ, we tell you straight up.",
       },
     },
     {
       q: { fr: "Combien de temps dure le résultat?", en: "How long does the result last?" },
       a: {
-        fr: "Avec entretien régulier ensuite (un Nettoyage Signature ou même Entretien Essentiel chaque saison), le résultat d'une Restauration Prestige vapeur peut tenir 3-5 ans avant qu'une nouvelle restauration soit nécessaire. Sans entretien, c'est plutôt 12-18 mois avant que la graisse recommence à s'accumuler sérieusement.",
+        fr: "Avec entretien régulier ensuite (un Nettoyage Signature ou même Entretien Essentiel chaque saison), le résultat d'une Restauration Prestige peut tenir 3-5 ans avant qu'une nouvelle restauration soit nécessaire. Sans entretien, c'est plutôt 12-18 mois avant que la graisse recommence à s'accumuler sérieusement.",
         en: "With regular maintenance after (a Signature or even Essential Maintenance each season), the Prestige Steam Restoration result can hold 3–5 years before another restoration is needed. Without maintenance, more like 12–18 months before grease seriously rebuilds.",
       },
     },
@@ -826,7 +826,7 @@ const prestige: PackageDetail = {
     en: "Save your premium BBQ.",
   },
   ctaFinalBody: {
-    fr: "La Restauration Prestige vapeur, c'est notre niveau le plus poussé. Vapeur, multiples passes, finition détaillée, photos et rapport sommaire. Pour le BBQ que vous voulez sauver, pas remplacer.",
+    fr: "La Restauration Prestige, c'est notre niveau le plus poussé. Vapeur, multiples passes, finition détaillée, photos et rapport sommaire. Pour le BBQ que vous voulez sauver, pas remplacer.",
     en: "Prestige Steam Restoration is our highest level. Steam, multi-pass degreasing, detailed finish, photos and summary report. For the BBQ you want to save, not replace.",
   },
 };
