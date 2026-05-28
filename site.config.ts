@@ -79,6 +79,7 @@ export const siteConfig = {
       fr: "Service mobile de nettoyage, entretien, assemblage et réparation de BBQ à Gatineau et Ottawa. Réservez votre service ou envoyez-nous une photo pour choisir le bon forfait.",
       en: "Mobile BBQ cleaning, maintenance, assembly and repair service in Gatineau and Ottawa. Book your service or send us a photo to pick the right package.",
     } satisfies Bilingual,
+    // (Hero subtitle stays generic — no specific prices to maintain. Pricing shown in pillars/services/packages.)
   },
 
   // ─── 5 PILLARS (positive positioning, no competitor-bashing) ───
@@ -97,8 +98,8 @@ export const siteConfig = {
       shortLabel: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       title: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       body: {
-        fr: "3 forfaits clairs : Entretien Essentiel 195 $, Nettoyage Signature 295 $, Restauration Prestige vapeur 395 $. Assemblage dès 149 $, diagnostic 125 $. Aucun changement de tarif sans votre accord.",
-        en: "3 clear packages: Essential Maintenance $195, Signature Cleaning $295, Prestige Steam Restoration $395. Assembly from $149, diagnostic $125. No price change without your approval.",
+        fr: "3 forfaits clairs : Entretien Essentiel à partir de 199 $, Nettoyage Signature à partir de 299 $, Restauration Prestige vapeur à partir de 399 $. Assemblage à partir de 149 $, diagnostic 125 $. Aucun changement de tarif sans votre accord.",
+        en: "3 clear packages: Essential Maintenance $199, Signature Cleaning $299, Prestige Steam Restoration $399. Assembly from $149, diagnostic $125. No price change without your approval.",
       } satisfies Bilingual,
     },
     {
@@ -136,7 +137,7 @@ export const siteConfig = {
       slug: "nettoyage",
       icon: "🔥",
       name: { fr: "Nettoyage BBQ à domicile", en: "On-site BBQ Cleaning" } satisfies Bilingual,
-      priceLabel: { fr: "Dès 195 $", en: "From $195" } satisfies Bilingual,
+      priceLabel: { fr: "À partir de 199 $", en: "From $199" } satisfies Bilingual,
       summary: {
         fr: "Service mobile de nettoyage et d'entretien de BBQ à domicile. 3 forfaits selon l'état : Entretien Essentiel, Nettoyage Signature, Restauration Prestige vapeur.",
         en: "Mobile on-site BBQ cleaning and maintenance service. 3 packages by condition: Essential Maintenance, Signature Cleaning, Prestige Steam Restoration.",
@@ -146,7 +147,7 @@ export const siteConfig = {
       slug: "assemblage",
       icon: "🔧",
       name: { fr: "Assemblage BBQ", en: "BBQ Assembly" } satisfies Bilingual,
-      priceLabel: { fr: "Dès 149 $", en: "From $149" } satisfies Bilingual,
+      priceLabel: { fr: "À partir de 149 $", en: "From $149" } satisfies Bilingual,
       summary: {
         fr: "Assemblage à domicile d'un BBQ neuf chez le client. Modèles standards à partir de 149 $. Grand format, pellet, kamado ou cuisine extérieure : soumission personnalisée.",
         en: "On-site assembly of a new BBQ at your home. Standard models from $149. Large format, pellet, kamado or outdoor kitchen: custom quote.",
@@ -179,8 +180,8 @@ export const siteConfig = {
     {
       key: "essential",
       name: { fr: "Entretien Essentiel", en: "Essential Maintenance" } satisfies Bilingual,
-      price: 195,
-      priceLabel: { fr: "195 $ + taxes", en: "$195 + tax" } satisfies Bilingual,
+      price: 199,
+      priceLabel: { fr: "À partir de 199 $ + taxes", en: "From $199 + tax" } satisfies Bilingual,
       surchargePerBurner: 29,
       method: {
         fr: "Inspection · Nettoyage léger · Test d'allumage",
@@ -196,8 +197,8 @@ export const siteConfig = {
     {
       key: "signature",
       name: { fr: "Nettoyage Signature", en: "Signature Cleaning" } satisfies Bilingual,
-      price: 295,
-      priceLabel: { fr: "295 $ + taxes", en: "$295 + tax" } satisfies Bilingual,
+      price: 299,
+      priceLabel: { fr: "À partir de 299 $ + taxes", en: "From $299 + tax" } satisfies Bilingual,
       surchargePerBurner: 49,
       method: {
         fr: "Dégraissage approfondi · Deux applications · Composantes détaillées",
@@ -213,8 +214,8 @@ export const siteConfig = {
     {
       key: "prestige",
       name: { fr: "Restauration Prestige vapeur", en: "Prestige Steam Restoration" } satisfies Bilingual,
-      price: 395,
-      priceLabel: { fr: "395 $ + taxes", en: "$395 + tax" } satisfies Bilingual,
+      price: 399,
+      priceLabel: { fr: "À partir de 399 $ + taxes", en: "From $399 + tax" } satisfies Bilingual,
       surchargePerBurner: 49,
       method: {
         fr: "Vapeur · Multiples passes · Finition détaillée · Rapport",
@@ -473,8 +474,8 @@ export const siteConfig = {
     {
       q: { fr: "Combien coûte un nettoyage de BBQ ?", en: "How much does a BBQ cleaning cost?" } satisfies Bilingual,
       a: {
-        fr: "Nos forfaits sont à 195 $ (Entretien Essentiel — préparer le BBQ pour la saison), 295 $ (Nettoyage Signature — vrai nettoyage annuel) et 395 $ (Restauration Prestige vapeur — pour BBQ très encrassé ou premium). Le forfait approprié dépend de l'état de votre BBQ. Envoyez-nous une photo pour une recommandation précise.",
-        en: "Our packages are $195 (Essential Maintenance — season prep), $295 (Signature Cleaning — real annual cleaning) and $395 (Prestige Steam Restoration — for heavily soiled or premium BBQs). The right package depends on your BBQ's condition. Send us a photo for a precise recommendation.",
+        fr: "Nos forfaits sont à 199 $ (Entretien Essentiel — préparer le BBQ pour la saison), 299 $ (Nettoyage Signature — vrai nettoyage annuel) et 399 $ (Restauration Prestige vapeur — pour BBQ très encrassé ou premium). Le forfait approprié dépend de l'état de votre BBQ. Envoyez-nous une photo pour une recommandation précise.",
+        en: "Our packages are $199 (Essential Maintenance — season prep), $299 (Signature Cleaning — real annual cleaning) and $399 (Prestige Steam Restoration — for heavily soiled or premium BBQs). The right package depends on your BBQ's condition. Send us a photo for a precise recommendation.",
       } satisfies Bilingual,
     },
     {

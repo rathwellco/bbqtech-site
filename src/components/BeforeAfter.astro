@@ -25,24 +25,26 @@ interface CaseStudy {
   contextFr: { label: string; value: string }[];
   contextEn: { label: string; value: string }[];
   pairs: Pair[];
+  comingSoonFr?: { headline: string; body: string };
+  comingSoonEn?: { headline: string; body: string };
 }
 
 const napoleonFreestyle: CaseStudy = {
   bbqFr: "Napoléon FreeStyle",
   bbqEn: "Napoléon FreeStyle",
-  forfaitFr: "Nettoyage Signature — 295 $",
-  forfaitEn: "Signature Cleaning — $295",
+  forfaitFr: "Nettoyage Signature — à partir de 299 $",
+  forfaitEn: "Signature Cleaning — from $299",
   accentLabel: "Nettoyage Signature",
   badgeStyle: "accent",
   contextFr: [
     { label: "BBQ", value: "Napoléon FreeStyle — entretien annuel après une saison d'utilisation" },
-    { label: "Forfait", value: "Nettoyage Signature — 295 $ + taxes" },
+    { label: "Forfait", value: "Nettoyage Signature — à partir de 299 $ + taxes" },
     { label: "Travail effectué", value: "Dégraissage en 2 applications, grilles et composantes détaillées, intérieur du cabinet" },
     { label: "Résultat", value: "BBQ propre et prêt pour la saison — meilleure performance, plus agréable à utiliser" },
   ],
   contextEn: [
     { label: "BBQ", value: "Napoléon FreeStyle — annual maintenance after a season of use" },
-    { label: "Package", value: "Signature Cleaning — $295 + tax" },
+    { label: "Package", value: "Signature Cleaning — from $299 + tax" },
     { label: "Work done", value: "Two-pass degreasing, detailed grates and components, cabinet interior" },
     { label: "Result", value: "Clean BBQ ready for the season — better performance, more pleasant to use" },
   ],
@@ -81,19 +83,19 @@ const napoleonFreestyle: CaseStudy = {
 const broilKing: CaseStudy = {
   bbqFr: "Broil King Signet 390",
   bbqEn: "Broil King Signet 390",
-  forfaitFr: "Restauration Prestige vapeur — 395 $ + pièces",
-  forfaitEn: "Prestige Steam Restoration — $395 + parts",
+  forfaitFr: "Restauration Prestige vapeur — à partir de 399 $ + pièces",
+  forfaitEn: "Prestige Steam Restoration — from $399 + parts",
   accentLabel: "Restauration Prestige",
   badgeStyle: "dark",
   contextFr: [
     { label: "BBQ", value: "Broil King Signet 390 — fortement encrassé, plusieurs saisons sans entretien" },
-    { label: "Forfait", value: "Restauration Prestige vapeur — 395 $ + taxes" },
+    { label: "Forfait", value: "Restauration Prestige vapeur — à partir de 399 $ + taxes" },
     { label: "Pièces remplacées", value: "Brûleurs, diffuseurs et collector box (service Diagnostic & Réparation séparé)" },
     { label: "Résultat", value: "Transformation complète — BBQ propre, plus performant, prolongation de sa durée de vie" },
   ],
   contextEn: [
     { label: "BBQ", value: "Broil King Signet 390 — heavily soiled, multiple seasons without maintenance" },
-    { label: "Package", value: "Prestige Steam Restoration — $395 + tax" },
+    { label: "Package", value: "Prestige Steam Restoration — from $399 + tax" },
     { label: "Parts replaced", value: "Burners, heat diffusers and collector box (separate Diagnostic & Repair service)" },
     { label: "Result", value: "Complete transformation — clean BBQ, better performance, extended lifespan" },
   ],
@@ -129,49 +131,12 @@ const broilKing: CaseStudy = {
   ],
 };
 
-const napoleonPrestige: CaseStudy = {
-  bbqFr: "Napoléon Prestige 450",
-  bbqEn: "Napoléon Prestige 450",
-  forfaitFr: "Restauration Prestige vapeur — 395 $",
-  forfaitEn: "Prestige Steam Restoration — $395",
-  accentLabel: "Restauration Prestige",
-  badgeStyle: "dark",
-  contextFr: [
-    { label: "BBQ", value: "Napoléon Prestige 450 — 15+ ans, accumulation lourde depuis plusieurs saisons" },
-    { label: "Forfait", value: "Restauration Prestige vapeur — 395 $ + taxes" },
-    { label: "Travail effectué", value: "Vapeur, dégraissage en multiples passes, finition détaillée, polissage inox" },
-    { label: "Résultat", value: "Transformation complète — BBQ ramené à un état de performance significativement meilleur" },
-  ],
-  contextEn: [
-    { label: "BBQ", value: "Napoléon Prestige 450 — 15+ years, heavy buildup over multiple seasons" },
-    { label: "Package", value: "Prestige Steam Restoration — $395 + tax" },
-    { label: "Work done", value: "Steam, multi-pass degreasing, detailed finishing, stainless polish" },
-    { label: "Result", value: "Complete transformation — BBQ brought back to significantly better performance" },
-  ],
-  pairs: [
-    {
-      beforeSrc: "/photos/before-after/napoleon-prestige-450-set-01-exterior-front-before.webp",
-      afterSrc: "/photos/before-after/napoleon-prestige-450-set-01-front-closed-apres.webp",
-      captionFr: "Façade extérieure",
-      captionEn: "Exterior front",
-      alt: "Napoléon Prestige 450 exterior front",
-    },
-    {
-      beforeSrc: "/photos/before-after/napoleon-prestige-450-set-04-cabinet-base-before.webp",
-      afterSrc: "/photos/before-after/napoleon-prestige-450-set-04-cabinet-base-apres.webp",
-      captionFr: "Intérieur du cabinet",
-      captionEn: "Cabinet interior",
-      alt: "Napoléon Prestige 450 cabinet interior",
-    },
-  ],
-};
-
-const caseStudies = [napoleonFreestyle, napoleonPrestige, broilKing];
+const caseStudies = [napoleonFreestyle, broilKing];
 
 const labels = {
   fr: {
     title: "Avant / Après — services BBQTECH",
-    subtitle: "Trois cas concrets : un nettoyage annuel, une restauration sur BBQ premium vieillissant, et une remise en état complète avec remplacement de pièces.",
+    subtitle: "Deux cas concrets : un nettoyage annuel sur un BBQ utilisé en saison, et une remise en état complète avec remplacement de pièces sur un BBQ négligé depuis plusieurs années.",
     contextLabel: "Contexte du service",
     beforeLabel: "Avant",
     afterLabel: "Après",
@@ -179,7 +144,7 @@ const labels = {
   },
   en: {
     title: "Before / After — BBQTECH services",
-    subtitle: "Three concrete cases: an annual cleaning, a restoration on an aging premium BBQ, and a full restoration with parts replacement.",
+    subtitle: "Two concrete cases: an annual cleaning on a BBQ used in season, and a full restoration with parts replacement on a BBQ neglected for several years.",
     contextLabel: "Service context",
     beforeLabel: "Before",
     afterLabel: "After",
@@ -228,7 +193,7 @@ const labels = {
             </div>
           </div>
 
-          <!-- 4 before/after pairs -->
+          <!-- before/after pairs -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
             {cs.pairs.map((pair) => (
               <figure class="bg-light border border-grey-mid/40 rounded-xl overflow-hidden">
@@ -266,6 +231,23 @@ const labels = {
               </figure>
             ))}
           </div>
+
+          {(lang === "fr" ? cs.comingSoonFr : cs.comingSoonEn) && (() => {
+            const cs2 = lang === "fr" ? cs.comingSoonFr! : cs.comingSoonEn!;
+            return (
+              <div class="mt-6 md:mt-8 max-w-[1000px] mx-auto bg-dark text-white rounded-xl p-6 md:p-8 border-l-4 border-accent">
+                <div class="flex items-start gap-4">
+                  <div class="shrink-0 w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-2xl">
+                    <span aria-hidden="true">🔧</span>
+                  </div>
+                  <div class="flex-1">
+                    <h4 class="text-lg md:text-xl font-extrabold mb-2 text-accent">{cs2.headline}</h4>
+                    <p class="text-white/85 leading-relaxed">{cs2.body}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
         </div>
       );
     })}

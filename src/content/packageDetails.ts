@@ -29,8 +29,8 @@ const essential: PackageDetail = {
     en: "Essential Maintenance — Seasonal BBQ Prep | BBQTECH Gatineau & Ottawa",
   },
   metaDescription: {
-    fr: "Entretien préventif et nettoyage léger pour préparer votre BBQ pour la saison. Inspection complète et test d'allumage inclus. 195 $ + taxes. Gatineau, Aylmer, Hull, Ottawa.",
-    en: "Preventive maintenance and light cleaning to prep your BBQ for the season. Complete inspection and ignition test included. $195 + tax. Gatineau, Aylmer, Hull, Ottawa.",
+    fr: "Entretien préventif et nettoyage léger pour préparer votre BBQ pour la saison. Inspection complète et test d'allumage inclus. 199 $ + taxes. Gatineau, Aylmer, Hull, Ottawa.",
+    en: "Preventive maintenance and light cleaning to prep your BBQ for the season. Complete inspection and ignition test included. $199 + tax. Gatineau, Aylmer, Hull, Ottawa.",
   },
   heroSubtitle: {
     fr: "L'entretien saisonnier. Inspection complète, nettoyage léger et test d'allumage — pour partir la saison du bon pied.",
@@ -52,12 +52,12 @@ const essential: PackageDetail = {
   },
   whoNotFor: {
     fr: [
-      { situation: "Votre BBQ a une saison ou plus de graisse accumulée et a besoin d'un vrai nettoyage en profondeur.", pointTo: "Nettoyage Signature à 295 $" },
-      { situation: "BBQ très encrassé, premium ou négligé depuis plusieurs saisons.", pointTo: "Restauration Prestige vapeur à 395 $" },
+      { situation: "Votre BBQ a une saison ou plus de graisse accumulée et a besoin d'un vrai nettoyage en profondeur.", pointTo: "Nettoyage Signature à 299 $" },
+      { situation: "BBQ très encrassé, premium ou négligé depuis plusieurs saisons.", pointTo: "Restauration Prestige vapeur à 399 $" },
     ],
     en: [
-      { situation: "Your BBQ has a season or more of accumulated grease and needs real deep cleaning.", pointTo: "Signature Cleaning at $295" },
-      { situation: "Very dirty BBQ, premium, or neglected for multiple seasons.", pointTo: "Prestige Steam Restoration at $395" },
+      { situation: "Your BBQ has a season or more of accumulated grease and needs real deep cleaning.", pointTo: "Signature Cleaning at $299" },
+      { situation: "Very dirty BBQ, premium, or neglected for multiple seasons.", pointTo: "Prestige Steam Restoration at $399" },
     ],
   },
   whatIncluded: {
@@ -148,16 +148,16 @@ const essential: PackageDetail = {
   },
   whatNotIncluded: {
     fr: [
-      "Dégraissage approfondi en multiples passes — c'est le Nettoyage Signature à 295 $",
-      "Nettoyage vapeur — c'est la Restauration Prestige vapeur à 395 $",
+      "Dégraissage approfondi en multiples passes — c'est le Nettoyage Signature à 299 $",
+      "Nettoyage vapeur — c'est la Restauration Prestige vapeur à 399 $",
       "Polissage inox détaillé",
       "Démontage forcé de pièces corrodées, saisies ou fragiles",
       "Réparation ou remplacement de pièces (notre service Diagnostic à 125 $ couvre ça)",
       "Garantie « comme neuf » sur les composantes",
     ],
     en: [
-      "Deep multi-pass degreasing — that's Signature Cleaning at $295",
-      "Steam cleaning — that's Prestige Steam Restoration at $395",
+      "Deep multi-pass degreasing — that's Signature Cleaning at $299",
+      "Steam cleaning — that's Prestige Steam Restoration at $399",
       "Detailed stainless polishing",
       "Forced disassembly of corroded, seized or fragile parts",
       "Repair or part replacement (our $125 Diagnostic service covers that)",
@@ -186,8 +186,8 @@ const essential: PackageDetail = {
   },
   duration: { fr: "2h à 2h30 sur place", en: "2 to 2.5 hours on site" },
   durationNote: {
-    fr: "Si l'inspection révèle un BBQ beaucoup plus sale que prévu, on vous le dit avant de continuer. On propose soit de rester dans les limites de l'Entretien Essentiel, soit de monter au Nettoyage Signature (295 $) ou à la Restauration Prestige vapeur (395 $) si l'état le justifie. Aucun changement de prix sans votre accord.",
-    en: "If inspection reveals a much dirtier BBQ than expected, we tell you before continuing. We offer to either stay within Essential Maintenance limits or step up to Signature Cleaning ($295) or Prestige Steam Restoration ($395) if warranted. No price change without your approval.",
+    fr: "Si l'inspection révèle un BBQ beaucoup plus sale que prévu, on vous le dit avant de continuer. On propose soit de rester dans les limites de l'Entretien Essentiel, soit de monter au Nettoyage Signature (299 $) ou à la Restauration Prestige vapeur (399 $) si l'état le justifie. Aucun changement de prix sans votre accord.",
+    en: "If inspection reveals a much dirtier BBQ than expected, we tell you before continuing. We offer to either stay within Essential Maintenance limits or step up to Signature Cleaning ($299) or Prestige Steam Restoration ($399) if warranted. No price change without your approval.",
   },
   conditions: {
     fr: [
@@ -218,8 +218,8 @@ const essential: PackageDetail = {
     ],
   },
   comparisonNote: {
-    fr: "L'Entretien Essentiel, c'est le forfait d'entrée. Pour un BBQ qui a été utilisé tout l'été ou négligé depuis longtemps, le Nettoyage Signature à 295 $ va beaucoup plus loin avec un dégraissage approfondi en deux applications.",
-    en: "Essential Maintenance is the entry package. For a BBQ used all summer or long-neglected, Signature Cleaning at $295 goes much further with deep two-pass degreasing.",
+    fr: "L'Entretien Essentiel, c'est le forfait d'entrée. Pour un BBQ qui a été utilisé tout l'été ou négligé depuis longtemps, le Nettoyage Signature à 299 $ va beaucoup plus loin avec un dégraissage approfondi en deux applications.",
+    en: "Essential Maintenance is the entry package. For a BBQ used all summer or long-neglected, Signature Cleaning at $299 goes much further with deep two-pass degreasing.",
   },
   faq: [
     {
@@ -283,8 +283,8 @@ const signature: PackageDetail = {
     en: "Signature Cleaning — Recommended Deep BBQ Cleaning | BBQTECH Gatineau & Ottawa",
   },
   metaDescription: {
-    fr: "Nettoyage BBQ approfondi avec dégraissage à deux applications, composantes détaillées et finition propre. Forfait recommandé à 295 $ + taxes. Gatineau, Aylmer, Hull, Ottawa.",
-    en: "Deep BBQ cleaning with two-pass degreasing, detailed components and clean finish. Recommended package at $295 + tax. Gatineau, Aylmer, Hull, Ottawa.",
+    fr: "Nettoyage BBQ approfondi avec dégraissage à deux applications, composantes détaillées et finition propre. Forfait recommandé à 299 $ + taxes. Gatineau, Aylmer, Hull, Ottawa.",
+    en: "Deep BBQ cleaning with two-pass degreasing, detailed components and clean finish. Recommended package at $299 + tax. Gatineau, Aylmer, Hull, Ottawa.",
   },
   heroSubtitle: {
     fr: "Notre forfait le plus populaire. Pour le BBQ qui a besoin d'un vrai nettoyage en profondeur, pas juste d'un coup de torchon.",
@@ -308,12 +308,12 @@ const signature: PackageDetail = {
   },
   whoNotFor: {
     fr: [
-      { situation: "Vous voulez juste préparer le BBQ pour la saison, peu d'accumulation.", pointTo: "Entretien Essentiel à 195 $" },
-      { situation: "BBQ premium 10+ ans très négligé avec graisse cuite-recuite.", pointTo: "Restauration Prestige vapeur à 395 $" },
+      { situation: "Vous voulez juste préparer le BBQ pour la saison, peu d'accumulation.", pointTo: "Entretien Essentiel à 199 $" },
+      { situation: "BBQ premium 10+ ans très négligé avec graisse cuite-recuite.", pointTo: "Restauration Prestige vapeur à 399 $" },
     ],
     en: [
-      { situation: "You just want season prep, minimal buildup.", pointTo: "Essential Maintenance at $195" },
-      { situation: "Premium BBQ 10+ years, heavily neglected, baked-on grease.", pointTo: "Prestige Steam Restoration at $395" },
+      { situation: "You just want season prep, minimal buildup.", pointTo: "Essential Maintenance at $199" },
+      { situation: "Premium BBQ 10+ years, heavily neglected, baked-on grease.", pointTo: "Prestige Steam Restoration at $399" },
     ],
   },
   whatIncluded: {
@@ -484,8 +484,8 @@ const signature: PackageDetail = {
     ],
   },
   comparisonNote: {
-    fr: "Le Signature, c'est l'équilibre entre prix raisonnable et résultat sérieux. Si votre BBQ a 10+ ans et a été négligé plusieurs saisons, la Restauration Prestige vapeur à 395 $ va plus loin avec la vapeur. Mais pour la majorité des BBQ après une saison ou deux de négligence, le Signature suffit.",
-    en: "Signature is the balance between fair price and serious result. If your BBQ is 10+ years old and neglected for multiple seasons, Prestige Steam Restoration at $395 goes further with steam. But for most BBQs after a season or two of neglect, Signature is plenty.",
+    fr: "Le Signature, c'est l'équilibre entre prix raisonnable et résultat sérieux. Si votre BBQ a 10+ ans et a été négligé plusieurs saisons, la Restauration Prestige vapeur à 399 $ va plus loin avec la vapeur. Mais pour la majorité des BBQ après une saison ou deux de négligence, le Signature suffit.",
+    en: "Signature is the balance between fair price and serious result. If your BBQ is 10+ years old and neglected for multiple seasons, Prestige Steam Restoration at $399 goes further with steam. But for most BBQs after a season or two of neglect, Signature is plenty.",
   },
   faq: [
     {
@@ -556,8 +556,8 @@ const prestige: PackageDetail = {
     en: "Prestige Steam Restoration — Premium BBQ Restoration | BBQTECH Gatineau & Ottawa",
   },
   metaDescription: {
-    fr: "Remise en état avancée à la vapeur pour BBQ premium, vieux ou très négligés. 395 $ + taxes. Inclut photos extensives et rapport sommaire. Gatineau et Ottawa.",
-    en: "Advanced steam restoration for premium, old or heavily neglected BBQs. $395 + tax. Includes extensive photos and summary report. Gatineau and Ottawa.",
+    fr: "Remise en état avancée à la vapeur pour BBQ premium, vieux ou très négligés. 399 $ + taxes. Inclut photos extensives et rapport sommaire. Gatineau et Ottawa.",
+    en: "Advanced steam restoration for premium, old or heavily neglected BBQs. $399 + tax. Includes extensive photos and summary report. Gatineau and Ottawa.",
   },
   heroSubtitle: {
     fr: "La remise en état avancée. Vapeur, dégraissage en multiples passes, finition détaillée et rapport complet — pour les BBQ premium, vieux ou très négligés.",
@@ -581,12 +581,12 @@ const prestige: PackageDetail = {
   },
   whoNotFor: {
     fr: [
-      { situation: "BBQ de 1-3 ans, raisonnablement entretenu.", pointTo: "Nettoyage Signature à 295 $" },
-      { situation: "Vous voulez juste préparer le BBQ pour la saison.", pointTo: "Entretien Essentiel à 195 $" },
+      { situation: "BBQ de 1-3 ans, raisonnablement entretenu.", pointTo: "Nettoyage Signature à 299 $" },
+      { situation: "Vous voulez juste préparer le BBQ pour la saison.", pointTo: "Entretien Essentiel à 199 $" },
     ],
     en: [
-      { situation: "BBQ 1–3 years old, reasonably maintained.", pointTo: "Signature Cleaning at $295" },
-      { situation: "You just want season prep.", pointTo: "Essential Maintenance at $195" },
+      { situation: "BBQ 1–3 years old, reasonably maintained.", pointTo: "Signature Cleaning at $299" },
+      { situation: "You just want season prep.", pointTo: "Essential Maintenance at $199" },
     ],
   },
   whatIncluded: {
