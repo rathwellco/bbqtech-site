@@ -1,4 +1,4 @@
-// BBQTech lead intake — relays form submissions to Zoho Flow webhooks.
+// BBQTECH lead intake — relays form submissions to Zoho Flow webhooks.
 // Same pattern as ROG (clients/rog/06_build/site/functions/api/lead.ts).
 //
 // The form sets a hidden `language` field. We route to a dedicated FR or EN
@@ -72,7 +72,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       // Webhook not yet configured — log to CF function logs and accept the
       // submission so the user does not see a failure. Nicholas should wire
       // the Zoho Flow webhooks ASAP after launch.
-      console.error("BBQTech lead received but Zoho webhook URL is not configured:", payload);
+      console.error("BBQTECH lead received but Zoho webhook URL is not configured:", payload);
       return new Response(
         JSON.stringify({ success: true, message: "Lead received (webhook pending configuration)" }),
         { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }

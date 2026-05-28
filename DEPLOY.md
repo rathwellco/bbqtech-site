@@ -1,4 +1,4 @@
-# BBQTech Placeholder Site
+# BBQTECH Placeholder Site
 
 **What:** Minimal single-page placeholder for `bbqtech.ca`, deployed on Cloudflare Pages. Serves as a landing page while the Jobber site is being built, and acts as the host for DNS-level verifications (Google Search Console, etc.) and any verification files Google / Bing / Microsoft might require.
 

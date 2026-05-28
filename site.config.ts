@@ -2,8 +2,8 @@ import type { Bilingual } from "./src/i18n/utils";
 
 export const siteConfig = {
   // ─── BUSINESS INFO ───
-  name: "BBQTech",
-  legalName: "BBQTech — Groupe Rathwell inc.",
+  name: "BBQTECH",
+  legalName: "BBQTECH — Groupe Rathwell inc.",
   tagline: {
     fr: "Nettoyage / entretien · Assemblage · Réparation",
     en: "Cleaning / maintenance · Assembly · Repair",
@@ -39,7 +39,7 @@ export const siteConfig = {
     { href: "#services", label: { fr: "Services", en: "Services" } satisfies Bilingual },
     { href: "#forfaits", label: { fr: "Forfaits", en: "Packages" } satisfies Bilingual },
     { href: "#reparation", label: { fr: "Réparation", en: "Repair" } satisfies Bilingual },
-    { href: "#pourquoi", label: { fr: "Pourquoi BBQTech", en: "Why BBQTech" } satisfies Bilingual },
+    { href: "#pourquoi", label: { fr: "Pourquoi BBQTECH", en: "Why BBQTECH" } satisfies Bilingual },
     { href: "#faq", label: { fr: "FAQ", en: "FAQ" } satisfies Bilingual },
   ],
   // ─── BOOKING URL (Zoho Calendar — placeholder until provided) ───
@@ -65,8 +65,8 @@ export const siteConfig = {
 
   // SMS body prefilled when user taps the photo-by-SMS link
   smsBody: {
-    fr: "Bonjour BBQTech, voici une photo de mon BBQ pour une recommandation de forfait.",
-    en: "Hello BBQTech, here is a photo of my BBQ for a package recommendation.",
+    fr: "Bonjour BBQTECH, voici une photo de mon BBQ pour une recommandation de forfait.",
+    en: "Hello BBQTECH, here is a photo of my BBQ for a package recommendation.",
   } satisfies Bilingual,
 
   // ─── HERO (HOME) ───
@@ -89,8 +89,8 @@ export const siteConfig = {
       shortLabel: { fr: "Service mobile spécialisé", en: "Specialized mobile service" } satisfies Bilingual,
       title: { fr: "Service mobile spécialisé", en: "Specialized mobile service" } satisfies Bilingual,
       body: {
-        fr: "BBQTech se concentre sur les BBQ : nettoyage, entretien, assemblage, diagnostic et réparation de composantes accessibles.",
-        en: "BBQTech focuses on BBQs: cleaning, maintenance, assembly, diagnostic and repair of accessible components.",
+        fr: "BBQTECH se concentre sur les BBQ : nettoyage, entretien, assemblage, diagnostic et réparation de composantes accessibles.",
+        en: "BBQTECH focuses on BBQs: cleaning, maintenance, assembly, diagnostic and repair of accessible components.",
       } satisfies Bilingual,
     },
     {
@@ -125,8 +125,8 @@ export const siteConfig = {
       shortLabel: { fr: "Service local et bilingue", en: "Local & bilingual" } satisfies Bilingual,
       title: { fr: "Service local et bilingue", en: "Local and bilingual service" } satisfies Bilingual,
       body: {
-        fr: "BBQTech est basé à Gatineau et dessert Gatineau, Aylmer, Hull, Plateau, Buckingham et Ottawa.",
-        en: "BBQTech is based in Gatineau and serves Gatineau, Aylmer, Hull, Plateau, Buckingham and Ottawa.",
+        fr: "BBQTECH est basé à Gatineau et dessert Gatineau, Aylmer, Hull, Plateau, Buckingham et Ottawa.",
+        en: "BBQTECH is based in Gatineau and serves Gatineau, Aylmer, Hull, Plateau, Buckingham and Ottawa.",
       } satisfies Bilingual,
     },
   ],
@@ -464,8 +464,8 @@ export const siteConfig = {
       en: "\"My goal is simple: deliver a professional, clear and well-structured BBQ service. Every grill is different, so we adapt our approach to the BBQ's condition, access, and the desired result.\"",
     } satisfies Bilingual,
     attribution: {
-      fr: "— Nicholas, opérateur · BBQTech",
-      en: "— Nicholas, operator · BBQTech",
+      fr: "— Nicholas, opérateur · BBQTECH",
+      en: "— Nicholas, operator · BBQTECH",
     } satisfies Bilingual,
   },
 
@@ -604,7 +604,7 @@ export const siteConfig = {
       en: "Mobile BBQ cleaning, maintenance, assembly and repair service in Gatineau and Ottawa. Three clear packages, local bilingual service.",
     } satisfies Bilingual,
     serviceAreas: ["Gatineau", "Aylmer", "Hull", "Plateau", "Buckingham", "Ottawa"],
-    copyrightOwner: "BBQTech — Groupe Rathwell inc.",
+    copyrightOwner: "BBQTECH — Groupe Rathwell inc.",
   },
 };
 
