@@ -181,7 +181,7 @@ export const siteConfig = {
       key: "essential",
       name: { fr: "Entretien Essentiel", en: "Essential Maintenance" } satisfies Bilingual,
       price: 199,
-      priceLabel: { fr: "À partir de 199 $ + taxes", en: "From $199 + tax" } satisfies Bilingual,
+      priceLabel: { fr: "199 $ + tx", en: "$199 + tx" } satisfies Bilingual,
       surchargePerBurner: 29,
       method: {
         fr: "Inspection · Nettoyage léger · Test d'allumage",
@@ -198,7 +198,7 @@ export const siteConfig = {
       key: "signature",
       name: { fr: "Nettoyage Signature", en: "Signature Cleaning" } satisfies Bilingual,
       price: 299,
-      priceLabel: { fr: "À partir de 299 $ + taxes", en: "From $299 + tax" } satisfies Bilingual,
+      priceLabel: { fr: "299 $ + tx", en: "$299 + tx" } satisfies Bilingual,
       surchargePerBurner: 49,
       method: {
         fr: "Dégraissage approfondi · Deux applications · Composantes détaillées",
@@ -215,7 +215,7 @@ export const siteConfig = {
       key: "prestige",
       name: { fr: "Restauration Prestige", en: "Prestige Steam Restoration" } satisfies Bilingual,
       price: 399,
-      priceLabel: { fr: "À partir de 399 $ + taxes", en: "From $399 + tax" } satisfies Bilingual,
+      priceLabel: { fr: "399 $ + tx", en: "$399 + tx" } satisfies Bilingual,
       surchargePerBurner: 49,
       method: {
         fr: "Vapeur · Multiples passes · Finition détaillée · Rapport",
