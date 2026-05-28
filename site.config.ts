@@ -98,8 +98,8 @@ export const siteConfig = {
       shortLabel: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       title: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       body: {
-        fr: "3 forfaits clairs : Entretien Essentiel à partir de 199 $, Nettoyage Signature à partir de 299 $, Restauration Prestige à partir de 399 $. Assemblage à partir de 149 $, diagnostic 125 $. Aucun changement de tarif sans votre accord.",
-        en: "3 clear packages: Essential Maintenance $199, Signature Cleaning $299, Prestige Steam Restoration $399. Assembly from $149, diagnostic $125. No price change without your approval.",
+        fr: "3 forfaits clairs : Entretien Essentiel à partir de 199 $, Nettoyage Signature à partir de 299 $, Restauration Prestige à partir de 399 $. Assemblage à partir de 149 $, diagnostic 99 $. Aucun changement de tarif sans votre accord.",
+        en: "3 clear packages: Essential Maintenance $199, Signature Cleaning $299, Prestige Steam Restoration $399. Assembly from $149, diagnostic $99. No price change without your approval.",
       } satisfies Bilingual,
     },
     {
@@ -157,10 +157,10 @@ export const siteConfig = {
       slug: "reparation",
       icon: "🛠️",
       name: { fr: "Diagnostic & Réparation", en: "Diagnostic & Repair" } satisfies Bilingual,
-      priceLabel: { fr: "125 $", en: "$125" } satisfies Bilingual,
+      priceLabel: { fr: "99 $", en: "$99" } satisfies Bilingual,
       summary: {
-        fr: "Diagnostic à domicile professionnel. Crédit de 55 $ applicable si la réparation est effectuée par BBQTECH. Pièces et main-d'œuvre en sus.",
-        en: "Professional on-site diagnostic. $55 credit applicable if BBQTECH performs the repair. Parts and labor extra.",
+        fr: "Diagnostic à domicile professionnel. Sur revisit pour l'installation des pièces, seulement pièces et main-d'œuvre — aucun frais de diagnostic additionnel.",
+        en: "Professional on-site diagnostic. On a revisit to install parts, only parts and labor are billed — no additional diagnostic fee.",
       } satisfies Bilingual,
     },
     {
@@ -313,11 +313,11 @@ export const siteConfig = {
       fr: "Brûleurs, allumage, régulateur, grilles, plaques. Diagnostic professionnel avant de remplacer.",
       en: "Burners, ignition, regulator, grates, plates. Pro diagnostic before you replace.",
     } satisfies Bilingual,
-    diagnosticPriceLabel: { fr: "125 $ + taxes", en: "$125 + tax" } satisfies Bilingual,
+    diagnosticPriceLabel: { fr: "99 $ + taxes", en: "$99 + tax" } satisfies Bilingual,
     diagnosticHeading: { fr: "Diagnostic à domicile", en: "On-site diagnostic" } satisfies Bilingual,
     creditNote: {
-      fr: "Crédit de 55 $ applicable sur le diagnostic si la réparation est effectuée par BBQTECH. Estimation transparente envoyée avant tout travail.",
-      en: "$55 credit on the diagnostic if BBQTECH performs the repair. Transparent estimate sent before any work.",
+      fr: "Estimation transparente envoyée avant tout travail. Si une revisit est nécessaire pour l'installation des pièces, seulement les pièces et la main-d'œuvre sont facturées — aucun frais de diagnostic additionnel.",
+      en: "Transparent estimate sent before any work. If a revisit is needed to install parts, only parts and labor are billed — no additional diagnostic fee.",
     } satisfies Bilingual,
     disclaimer: {
       fr: "Pièces et main-d'œuvre en sus si la réparation est effectuée. Certaines réparations nécessitent une deuxième visite selon la disponibilité des pièces.",
@@ -345,8 +345,8 @@ export const siteConfig = {
         number: "2",
         title: { fr: "Diagnostic à domicile", en: "On-site diagnostic" } satisfies Bilingual,
         desc: {
-          fr: "125 $ + taxes. Inspection pro, identification des pièces nécessaires. Crédit de 55 $ si réparation effectuée.",
-          en: "$125 + tax. Pro inspection, identification of parts needed. $55 credit if repair performed.",
+          fr: "99 $ + taxes. Inspection pro, identification des pièces nécessaires.",
+          en: "$99 + tax. Pro inspection, identification of parts needed.",
         } satisfies Bilingual,
       },
       {
@@ -523,8 +523,8 @@ export const siteConfig = {
     {
       q: { fr: "Comment fonctionne le diagnostic de réparation ?", en: "How does the repair diagnostic work?" } satisfies Bilingual,
       a: {
-        fr: "Diagnostic à domicile pour 125 $ + taxes. Le technicien identifie les pièces nécessaires et envoie une estimation transparente (pièces + main-d'œuvre). Crédit de 55 $ appliqué sur le diagnostic si la réparation est effectuée par BBQTECH. Certaines réparations nécessitent une 2e visite selon la disponibilité des pièces. Astuce : combinez avec un nettoyage à domicile pour économiser une visite.",
-        en: "On-site diagnostic for $125 + tax. The technician identifies the parts needed and sends a transparent estimate (parts + labor). $55 credit applied on the diagnostic if BBQTECH performs the repair. Some repairs require a 2nd visit depending on parts availability. Tip: combine with an on-site cleaning to save a visit.",
+        fr: "Diagnostic à domicile pour 99 $ + taxes. Le technicien identifie les pièces nécessaires et envoie une estimation transparente (pièces + main-d'œuvre). Si une revisit est nécessaire pour l'installation des pièces, seulement les pièces et la main-d'œuvre sont facturées — aucun frais de diagnostic additionnel. Astuce : combinez avec un nettoyage à domicile pour économiser une visite.",
+        en: "On-site diagnostic for $99 + tax. The technician identifies the parts needed and sends a transparent estimate (parts + labor). If a revisit is needed to install parts, only parts and labor are billed — no additional diagnostic fee. Tip: combine with an on-site cleaning to save a visit.",
       } satisfies Bilingual,
     },
     {

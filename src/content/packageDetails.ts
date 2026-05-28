@@ -152,7 +152,7 @@ const essential: PackageDetail = {
       "Nettoyage vapeur — c'est la Restauration Prestige à 399 $",
       "Polissage inox détaillé",
       "Démontage forcé de pièces corrodées, saisies ou fragiles",
-      "Réparation ou remplacement de pièces (notre service Diagnostic à 125 $ couvre ça)",
+      "Réparation ou remplacement de pièces (notre service Diagnostic à 99 $ couvre ça)",
       "Garantie « comme neuf » sur les composantes",
     ],
     en: [
@@ -160,7 +160,7 @@ const essential: PackageDetail = {
       "Steam cleaning — that's Prestige Steam Restoration at $399",
       "Detailed stainless polishing",
       "Forced disassembly of corroded, seized or fragile parts",
-      "Repair or part replacement (our $125 Diagnostic service covers that)",
+      "Repair or part replacement (our $99 Diagnostic service covers that)",
       "\"Like-new\" guarantee on components",
     ],
   },
@@ -408,7 +408,7 @@ const signature: PackageDetail = {
     fr: [
       "Nettoyage vapeur — c'est la Restauration Prestige qui l'ajoute",
       "Restauration esthétique avancée / polissage inox détaillé — Prestige aussi",
-      "Réparation ou remplacement de pièces (Diagnostic à 125 $, pièces et main-d'œuvre en sus si vous procédez)",
+      "Réparation ou remplacement de pièces (Diagnostic à 99 $, pièces et main-d'œuvre en sus si vous procédez)",
       "Démontage forcé de pièces corrodées, saisies ou fragiles",
       "BBQ encastrés / cuisines extérieures — sur évaluation",
       "BBQ commerciaux — sur évaluation",
@@ -418,7 +418,7 @@ const signature: PackageDetail = {
     en: [
       "Steam cleaning — that's added by Prestige Steam Restoration",
       "Advanced aesthetic restoration / detailed stainless polishing — Prestige too",
-      "Repair or part replacement ($125 Diagnostic, parts + labor extra if you proceed)",
+      "Repair or part replacement ($99 Diagnostic, parts + labor extra if you proceed)",
       "Forced disassembly of corroded, seized or fragile parts",
       "Built-in BBQs / outdoor kitchens — by evaluation",
       "Commercial BBQs — by evaluation",
@@ -533,8 +533,8 @@ const signature: PackageDetail = {
     {
       q: { fr: "Et si mon BBQ a besoin d'une réparation pendant le nettoyage?", en: "What if my BBQ needs repair during the cleaning?" },
       a: {
-        fr: "On le voit en cours de route et on vous le dit avant de partir. La réparation elle-même n'est pas incluse — c'est notre service Diagnostic & Réparation (125 $ pour le diagnostic à domicile, dont 55 $ crédités si la réparation est effectuée par BBQTECH, pièces et main-d'œuvre en sus). Si possible, on combine en une seule visite pour vous épargner un déplacement.",
-        en: "We notice it as we work and tell you before leaving. The repair itself isn't included — that's our Diagnostic & Repair service ($125 for on-site diagnostic, with $55 credited if repair is done by BBQTECH, parts + labor extra). When possible, we combine into a single visit to save you a trip.",
+        fr: "On le voit en cours de route et on vous le dit avant de partir. La réparation elle-même n'est pas incluse — c'est notre service Diagnostic & Réparation (99 $ pour le diagnostic à domicile, pièces et main-d'œuvre en sus si vous procédez). Si une revisit est nécessaire pour l'installation des pièces, seulement les pièces et la main-d'œuvre sont facturées. Si possible, on combine le diagnostic avec un nettoyage pour vous épargner un déplacement.",
+        en: "We notice it as we work and tell you before leaving. The repair itself isn't included — that's our Diagnostic & Repair service ($99 for on-site diagnostic, parts + labor extra if you proceed). If a revisit is needed to install parts, only parts and labor are billed. When possible, we combine the diagnostic with a cleaning to save you a trip.",
       },
     },
   ],
@@ -809,8 +809,8 @@ const prestige: PackageDetail = {
     {
       q: { fr: "Combien de pièces vais-je devoir remplacer après la Restauration?", en: "How many parts will I need to replace after Restoration?" },
       a: {
-        fr: "Variable. Sur un BBQ premium de 10+ ans, c'est commun de devoir remplacer un ou deux brûleurs, parfois les igniters, parfois les sear plates si elles sont trop rouillées. Le rapport sommaire vous donne la liste exacte. La Restauration elle-même n'inclut pas les pièces — c'est le service Diagnostic & Réparation à 125 $ + pièces + main-d'œuvre (avec crédit de 55 $ si la réparation est effectuée par BBQTECH). On peut combiner les deux services en une visite si vous décidez de procéder pendant qu'on est sur place.",
-        en: "Variable. On a 10+ year premium BBQ, it's common to need 1–2 burner replacements, sometimes igniters, sometimes sear plates if too rusted. The summary report gives you the exact list. The Restoration itself doesn't include parts — that's the $125 Diagnostic & Repair service + parts + labor (with $55 credit if BBQTECH does the repair). We can combine both services in one visit if you decide to proceed while we're there.",
+        fr: "Variable. Sur un BBQ premium de 10+ ans, c'est commun de devoir remplacer un ou deux brûleurs, parfois les igniters, parfois les sear plates si elles sont trop rouillées. Le rapport sommaire vous donne la liste exacte. La Restauration elle-même n'inclut pas les pièces — c'est le service Diagnostic & Réparation à 99 $ + pièces + main-d'œuvre. Si une revisit est nécessaire pour installer les pièces, seulement les pièces et la main-d'œuvre sont facturées. On peut combiner les deux services en une visite si vous décidez de procéder pendant qu'on est sur place.",
+        en: "Variable. On a 10+ year premium BBQ, it's common to need 1–2 burner replacements, sometimes igniters, sometimes sear plates if too rusted. The summary report gives you the exact list. The Restoration itself doesn't include parts — that's the $99 Diagnostic & Repair service + parts + labor. If a revisit is needed to install parts, only parts and labor are billed. We can combine both services in one visit if you decide to proceed while we're there.",
       },
     },
     {
