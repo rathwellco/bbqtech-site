@@ -10,6 +10,8 @@ import WhyBBQTECH from "../components/WhyBBQTECH.astro";
 import OwnerOperator from "../components/OwnerOperator.astro";
 import CustomQuote from "../components/CustomQuote.astro";
 import RepairDiagnostic from "../components/RepairDiagnostic.astro";
+import EquipmentTypes from "../components/EquipmentTypes.astro";
+import Brands from "../components/Brands.astro";
 import ProcessSteps from "../components/ProcessSteps.astro";
 import Philosophy from "../components/Philosophy.astro";
 import Commitments from "../components/Commitments.astro";
@@ -27,6 +29,7 @@ const homeTitle = t(siteConfig.seo.homeTitle, lang);
     lang={lang}
     title={t(siteConfig.hero.h1, lang)}
     subtitle={t(siteConfig.hero.sub, lang)}
+    support={t(siteConfig.hero.support, lang)}
   />
 
   <TrustBar lang={lang} />
@@ -55,10 +58,12 @@ const homeTitle = t(siteConfig.seo.homeTitle, lang);
     </div>
   </section>
 
+  <EquipmentTypes lang={lang} />
+
   <PricingTable
     lang={lang}
     title="Trois forfaits de nettoyage BBQ"
-    subtitle="Choisissez le niveau adapté à votre BBQ : préparer la saison, vrai nettoyage annuel, ou restauration avancée à la vapeur."
+    subtitle="Choisissez le niveau adapté à votre BBQ : préparer la saison, nettoyage annuel plus approfondi, ou remise en état avancée à la vapeur."
   />
 
   <QuelForfait lang={lang} />
@@ -80,6 +85,8 @@ const homeTitle = t(siteConfig.seo.homeTitle, lang);
   <Philosophy lang={lang} />
 
   <Commitments lang={lang} title="Notre engagement" />
+
+  <Brands lang={lang} />
 
   <FAQ lang={lang} title="Questions fréquentes" />
 

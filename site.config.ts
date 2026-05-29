@@ -72,14 +72,17 @@ export const siteConfig = {
   // ─── HERO (HOME) ───
   hero: {
     h1: {
-      fr: "Votre BBQ propre, prêt et performant pour la saison.",
-      en: "Your BBQ clean, ready and performing for the season.",
+      fr: "Votre BBQ propre, prêt et plus agréable à utiliser pour la saison.",
+      en: "Your BBQ clean, ready and easier to enjoy this season.",
     } satisfies Bilingual,
     sub: {
-      fr: "Service mobile de nettoyage, entretien, assemblage et réparation de BBQ à Gatineau et Ottawa. Réservez votre service ou envoyez-nous une photo pour choisir le bon forfait.",
-      en: "Mobile BBQ cleaning, maintenance, assembly and repair service in Gatineau and Ottawa. Book your service or send us a photo to pick the right package.",
+      fr: "Service mobile de nettoyage, entretien, restauration, assemblage et réparation de BBQ, grills, smokers et équipements de cuisson extérieure à Gatineau et Ottawa.",
+      en: "Mobile cleaning, maintenance, restoration, assembly and repair for BBQs, grills, smokers and outdoor cooking equipment in Gatineau and Ottawa.",
     } satisfies Bilingual,
-    // (Hero subtitle stays generic — no specific prices to maintain. Pricing shown in pillars/services/packages.)
+    support: {
+      fr: "Gaz propane, gaz naturel, charbon, granules, kamado, griddle ou cuisine extérieure : nous adaptons l'approche selon l'équipement, son état, son accès et le service requis.",
+      en: "Propane, natural gas, charcoal, pellet, kamado, griddle or outdoor kitchen: we adapt the approach based on the equipment, its condition, access and required service.",
+    } satisfies Bilingual,
   },
 
   // ─── 5 PILLARS (positive positioning, no competitor-bashing) ───
@@ -89,8 +92,8 @@ export const siteConfig = {
       shortLabel: { fr: "Service mobile spécialisé", en: "Specialized mobile service" } satisfies Bilingual,
       title: { fr: "Service mobile spécialisé", en: "Specialized mobile service" } satisfies Bilingual,
       body: {
-        fr: "BBQTECH se concentre sur les BBQ : nettoyage, entretien, assemblage, diagnostic et réparation de composantes accessibles.",
-        en: "BBQTECH focuses on BBQs: cleaning, maintenance, assembly, diagnostic and repair of accessible components.",
+        fr: "BBQTECH se concentre sur les BBQ, grills, smokers et équipements de cuisson extérieure : nettoyage, entretien, assemblage, diagnostic et réparation de composantes accessibles.",
+        en: "BBQTECH focuses on BBQs, grills, smokers and outdoor cooking equipment: cleaning, maintenance, assembly, diagnostic and repair of accessible components.",
       } satisfies Bilingual,
     },
     {
@@ -98,26 +101,26 @@ export const siteConfig = {
       shortLabel: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       title: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       body: {
-        fr: "3 forfaits clairs : Entretien Essentiel à partir de 199 $, Nettoyage Signature à partir de 299 $, Restauration Prestige à partir de 399 $. Assemblage à partir de 149 $, diagnostic 99 $. Aucun changement de tarif sans votre accord.",
-        en: "3 clear packages: Essential Maintenance $199, Signature Cleaning $299, Prestige Steam Restoration $399. Assembly from $149, diagnostic $99. No price change without your approval.",
+        fr: "Forfaits clairs : Entretien Essentiel 199 $, Nettoyage Signature 299 $, Restauration Prestige à partir de 399 $. Assemblage à partir de 149 $, diagnostic réparation 99 $. Aucun changement de tarif sans votre accord.",
+        en: "Clear packages: Essential Maintenance $199, Signature Cleaning $299, Prestige Steam Restoration from $399. Assembly from $149, repair diagnostic $99. No price change without your approval.",
+      } satisfies Bilingual,
+    },
+    {
+      icon: "📸",
+      shortLabel: { fr: "Photos avant / après incluses", en: "Before / after photos included" } satisfies Bilingual,
+      title: { fr: "Photos avant / après incluses", en: "Before / after photos included" } satisfies Bilingual,
+      body: {
+        fr: "Tous les forfaits incluent un minimum d'une photo extérieure et d'une photo intérieure avant / après. Photos additionnelles si des pièces usées, dommages, accumulation excessive ou recommandations doivent être documentés.",
+        en: "Every package includes a minimum of one exterior and one interior before / after photo. Additional photos when worn parts, damage, heavy buildup or recommendations need to be documented.",
       } satisfies Bilingual,
     },
     {
       icon: "🔥",
-      shortLabel: { fr: "Approche adaptée", en: "Adapted approach" } satisfies Bilingual,
-      title: { fr: "Approche adaptée à votre BBQ", en: "Approach adapted to your BBQ" } satisfies Bilingual,
+      shortLabel: { fr: "Approche adaptée à votre équipement", en: "Approach adapted to your equipment" } satisfies Bilingual,
+      title: { fr: "Approche adaptée à votre équipement", en: "Approach adapted to your equipment" } satisfies Bilingual,
       body: {
-        fr: "BBQ au gaz propane ou naturel, pellet smoker, kamado, griddle, barbecue au charbon ou équipement premium : nous adaptons l'approche selon l'équipement.",
-        en: "Propane or natural gas BBQ, pellet smoker, kamado, griddle, charcoal barbecue or premium equipment: we adapt our approach to your gear.",
-      } satisfies Bilingual,
-    },
-    {
-      icon: "🛡️",
-      shortLabel: { fr: "Zone de travail contrôlée", en: "Controlled work zone" } satisfies Bilingual,
-      title: { fr: "Zone de travail contrôlée", en: "Controlled work zone" } satisfies Bilingual,
-      body: {
-        fr: "Selon le forfait choisi, nous pouvons utiliser une zone de travail protégée, un système de confinement, un nettoyage vapeur ou une méthode plus simple.",
-        en: "Depending on the chosen package, we can use a protected work zone, a containment system, steam cleaning, or a simpler method.",
+        fr: "Gaz propane, gaz naturel, charbon, granules, kamado, griddle ou cuisine extérieure : nous adaptons l'approche selon l'équipement, son état, son accès et le service requis.",
+        en: "Propane, natural gas, charcoal, pellet, kamado, griddle or outdoor kitchen: we adapt the approach based on the equipment, its condition, access and required service.",
       } satisfies Bilingual,
     },
     {
@@ -139,8 +142,8 @@ export const siteConfig = {
       name: { fr: "Nettoyage BBQ à domicile", en: "On-site BBQ Cleaning" } satisfies Bilingual,
       priceLabel: { fr: "À partir de 199 $", en: "From $199" } satisfies Bilingual,
       summary: {
-        fr: "Service mobile de nettoyage et d'entretien de BBQ à domicile. 3 forfaits selon l'état : Entretien Essentiel, Nettoyage Signature, Restauration Prestige.",
-        en: "Mobile on-site BBQ cleaning and maintenance service. 3 packages by condition: Essential Maintenance, Signature Cleaning, Prestige Steam Restoration.",
+        fr: "Service mobile de nettoyage et d'entretien à domicile pour BBQ, grills, smokers et équipements de cuisson extérieure. 3 forfaits selon l'état : Entretien Essentiel, Nettoyage Signature, Restauration Prestige.",
+        en: "Mobile on-site cleaning and maintenance service for BBQs, grills, smokers and outdoor cooking equipment. 3 packages by condition: Essential Maintenance, Signature Cleaning, Prestige Steam Restoration.",
       } satisfies Bilingual,
     },
     {
@@ -159,8 +162,8 @@ export const siteConfig = {
       name: { fr: "Diagnostic & Réparation", en: "Diagnostic & Repair" } satisfies Bilingual,
       priceLabel: { fr: "99 $", en: "$99" } satisfies Bilingual,
       summary: {
-        fr: "Diagnostic à domicile professionnel. Sur revisit pour l'installation des pièces, seulement pièces et main-d'œuvre — aucun frais de diagnostic additionnel.",
-        en: "Professional on-site diagnostic. On a revisit to install parts, only parts and labor are billed — no additional diagnostic fee.",
+        fr: "Diagnostic à domicile pour identifier le problème, les pièces possiblement requises et les prochaines étapes recommandées. Réparation facturée selon le temps et le matériel.",
+        en: "On-site diagnostic to identify the issue, potentially required parts and recommended next steps. Repair billed based on time and materials.",
       } satisfies Bilingual,
     },
     {
@@ -169,8 +172,8 @@ export const siteConfig = {
       name: { fr: "Entretien commercial / multi-unités", en: "Commercial / Multi-unit Maintenance" } satisfies Bilingual,
       priceLabel: { fr: "Sur soumission", en: "Custom quote" } satisfies Bilingual,
       summary: {
-        fr: "Entretien régulier pour restaurants, food trucks, condos, propriétés à plusieurs unités ou flottes de BBQ commerciaux. Programme adapté à votre opération.",
-        en: "Regular maintenance for restaurants, food trucks, condos, multi-unit properties or commercial BBQ fleets. Program tailored to your operation.",
+        fr: "Entretien régulier pour restaurants, food trucks, condos, propriétés à plusieurs unités ou équipements commerciaux. Programme adapté selon le type d'équipement, la fréquence, l'accès, les exigences opérationnelles et le niveau de nettoyage requis. Sur soumission seulement.",
+        en: "Regular maintenance for restaurants, food trucks, condos, multi-unit properties or commercial equipment. Program tailored based on equipment type, frequency, access, operational requirements and cleaning level required. Custom quote only.",
       } satisfies Bilingual,
     },
   ],
@@ -182,14 +185,14 @@ export const siteConfig = {
       name: { fr: "Entretien Essentiel", en: "Essential Maintenance" } satisfies Bilingual,
       price: 199,
       priceLabel: { fr: "199 $ + tx", en: "$199 + tx" } satisfies Bilingual,
-      surchargePerBurner: 29,
+      surchargePerBurner: 49,
       method: {
-        fr: "Inspection · Nettoyage léger · Test d'allumage",
-        en: "Inspection · Light cleaning · Ignition test",
+        fr: "Inspection · Nettoyage saisonnier léger",
+        en: "Inspection · Light seasonal cleaning",
       } satisfies Bilingual,
       useCase: {
-        fr: "Pour préparer le BBQ pour la saison.",
-        en: "To prep the BBQ for the season.",
+        fr: "Pour un BBQ fonctionnel qui a besoin d'un entretien saisonnier léger.",
+        en: "For a functional BBQ that needs light seasonal maintenance.",
       } satisfies Bilingual,
       ctaLabel: { fr: "Réserver mon service", en: "Book my service" } satisfies Bilingual,
       badge: null,
@@ -205,8 +208,8 @@ export const siteConfig = {
         en: "Deep degreasing · Two passes · Detailed components",
       } satisfies Bilingual,
       useCase: {
-        fr: "Pour un BBQ sale qui a besoin d'un vrai nettoyage annuel.",
-        en: "For a dirty BBQ that needs a real annual cleaning.",
+        fr: "Pour un BBQ utilisé régulièrement qui a besoin d'un nettoyage annuel plus approfondi.",
+        en: "For a BBQ used regularly that needs a more thorough annual cleaning.",
       } satisfies Bilingual,
       ctaLabel: { fr: "Réserver mon service", en: "Book my service" } satisfies Bilingual,
       badge: { fr: "Recommandé", en: "Recommended" } satisfies Bilingual,
@@ -215,15 +218,15 @@ export const siteConfig = {
       key: "prestige",
       name: { fr: "Restauration Prestige", en: "Prestige Steam Restoration" } satisfies Bilingual,
       price: 399,
-      priceLabel: { fr: "399 $ + tx", en: "$399 + tx" } satisfies Bilingual,
+      priceLabel: { fr: "À partir de 399 $ + tx", en: "From $399 + tax" } satisfies Bilingual,
       surchargePerBurner: 49,
       method: {
         fr: "Vapeur · Multiples passes · Finition détaillée · Rapport",
         en: "Steam · Multiple passes · Detailed finish · Report",
       } satisfies Bilingual,
       useCase: {
-        fr: "Pour un BBQ très encrassé, premium ou négligé depuis longtemps.",
-        en: "For a heavily soiled, premium or long-neglected BBQ.",
+        fr: "Pour les BBQ très encrassés, premium, négligés depuis longtemps ou nécessitant une remise en état plus poussée.",
+        en: "For very dirty, premium, long-neglected BBQs or those needing a more advanced restoration.",
       } satisfies Bilingual,
       ctaLabel: { fr: "Réserver mon service", en: "Book my service" } satisfies Bilingual,
       badge: null,
@@ -235,22 +238,28 @@ export const siteConfig = {
     heading: { fr: "Tous les forfaits incluent", en: "All packages include" } satisfies Bilingual,
     items: {
       fr: [
-        "Inspection visuelle et test d'allumage",
-        "Zone de travail protégée (tapis / spill berm)",
-        "Retrait des grilles et sear plates / heat shields",
-        "Nettoyage du bac à graisse et vacuum du firebox",
-        "Inspection des brûleurs accessibles",
-        "Photos avant et après",
-        "Recommandations sur pièces usées ou endommagées",
+        "Inspection visuelle de base",
+        "Vérification de fonctionnement de base lorsque sécuritaire et applicable",
+        "Nettoyage des composantes accessibles selon le forfait choisi",
+        "Retrait des grilles et composantes accessibles lorsque sécuritaire",
+        "Nettoyage du bac à graisse accessible",
+        "Vacuum du firebox / de la cuve lorsque applicable",
+        "Inspection des brûleurs accessibles lorsque applicable",
+        "Photos avant / après incluses (minimum une extérieure et une intérieure)",
+        "Recommandations sur les pièces usées ou endommagées",
+        "Finition extérieure sur les surfaces compatibles",
       ],
       en: [
-        "Visual inspection and ignition test",
-        "Protected work zone (mat / spill berm)",
-        "Removal of grates and sear plates / heat shields",
-        "Grease pan cleaning and firebox vacuum",
-        "Inspection of accessible burners",
-        "Before and after photos",
+        "Basic visual inspection",
+        "Basic function check when safe and applicable",
+        "Cleaning of accessible components based on the selected package",
+        "Removal of grates and accessible components when safe",
+        "Accessible grease pan cleaning",
+        "Firebox / cookbox vacuum when applicable",
+        "Inspection of accessible burners when applicable",
+        "Before / after photos included (minimum one exterior and one interior)",
         "Recommendations on worn or damaged parts",
+        "Exterior finish on compatible surfaces",
       ],
     },
   },
@@ -310,26 +319,30 @@ export const siteConfig = {
       en: "On-site BBQ Diagnostic & Repair",
     } satisfies Bilingual,
     subtitle: {
-      fr: "Brûleurs, allumage, régulateur, grilles, plaques. Diagnostic professionnel avant de remplacer.",
-      en: "Burners, ignition, regulator, grates, plates. Pro diagnostic before you replace.",
+      fr: "Brûleurs, allumage, régulateur, grilles, plaques. Diagnostic à domicile pour identifier le problème, les pièces possiblement requises et les prochaines étapes recommandées.",
+      en: "Burners, ignition, regulator, grates, plates. On-site diagnostic to identify the issue, potentially required parts and recommended next steps.",
     } satisfies Bilingual,
     diagnosticPriceLabel: { fr: "99 $ + taxes", en: "$99 + tax" } satisfies Bilingual,
     diagnosticHeading: { fr: "Diagnostic à domicile", en: "On-site diagnostic" } satisfies Bilingual,
     creditNote: {
-      fr: "Estimation transparente envoyée avant tout travail. Si une revisit est nécessaire pour l'installation des pièces, seulement les pièces et la main-d'œuvre sont facturées — aucun frais de diagnostic additionnel.",
-      en: "Transparent estimate sent before any work. If a revisit is needed to install parts, only parts and labor are billed — no additional diagnostic fee.",
+      fr: "Le diagnostic inclut le déplacement à domicile, l'inspection du problème et l'identification des pièces ou travaux requis. Une fois le problème identifié, la réparation est facturée selon le temps et le matériel requis.",
+      en: "The diagnostic includes the on-site visit, inspection of the issue and identification of required parts or work. Once the issue is identified, repair work is billed based on time and materials.",
     } satisfies Bilingual,
     disclaimer: {
-      fr: "Pièces et main-d'œuvre en sus si la réparation est effectuée. Certaines réparations nécessitent une deuxième visite selon la disponibilité des pièces.",
-      en: "Parts and labor extra if the repair is carried out. Some repairs require a second visit depending on parts availability.",
+      fr: "Comme BBQTECH ne garde pas un inventaire complet de pièces dans le véhicule, certaines réparations peuvent nécessiter une deuxième visite après réception des pièces. Si une deuxième visite est nécessaire uniquement pour installer les pièces commandées, aucun frais de diagnostic additionnel n'est chargé.",
+      en: "Because BBQTECH does not carry a full parts inventory in the vehicle, some repairs may require a second visit after parts are received. If a second visit is needed only to install ordered parts, no additional diagnostic fee is charged.",
+    } satisfies Bilingual,
+    gasLimit: {
+      fr: "BBQTECH n'intervient pas sur les installations de gaz réglementées. Les travaux sont limités aux composantes accessibles du BBQ et aux pièces pouvant normalement être remplacées par un client selon les recommandations du fabricant. Nous ne modifions pas et ne certifions pas les lignes de gaz, raccordements permanents, conversions propane / gaz naturel ou installations encastrées. Lorsqu'un technicien certifié en gaz est requis, nous vous l'indiquons clairement et pouvons vous référer à un spécialiste qualifié.",
+      en: "BBQTECH does not work on regulated gas installations. Work is limited to accessible BBQ components and parts that can normally be replaced by a customer according to manufacturer recommendations. We do not modify or certify gas lines, permanent connections, propane / natural gas conversions or built-in gas installations. When a certified gas technician is required, we will clearly let you know and can refer you to a qualified specialist.",
     } satisfies Bilingual,
     comboNote: {
       fr: "Astuce : combinez avec un nettoyage à domicile pour économiser une visite.",
       en: "Tip: combine with an on-site cleaning to save a visit.",
     } satisfies Bilingual,
     diagnosticPrep: {
-      fr: "Pour accélérer le diagnostic, préparez si possible la marque, le modèle, le numéro de série, des photos des pièces problématiques et une description du symptôme : allumage, flamme faible, brûleur endommagé, régulateur, grilles, plaques, etc.",
-      en: "To speed up the diagnostic, prepare if possible the brand, model, serial number, photos of problem parts, and a description of the symptom: ignition, weak flame, damaged burner, regulator, grates, plates, etc.",
+      fr: "Pour accélérer le diagnostic, préparez si possible : marque ; modèle ; numéro de série ; photos du BBQ ; photos de la pièce problématique ; description du symptôme ; type de gaz : propane ou gaz naturel.",
+      en: "To speed up the diagnostic, please prepare when possible: brand; model; serial number; photos of the BBQ; photos of the problematic part; symptom description; gas type: propane or natural gas.",
     } satisfies Bilingual,
     processHeading: { fr: "Comment ça fonctionne", en: "How it works" } satisfies Bilingual,
     steps: [
@@ -345,32 +358,32 @@ export const siteConfig = {
         number: "2",
         title: { fr: "Diagnostic à domicile", en: "On-site diagnostic" } satisfies Bilingual,
         desc: {
-          fr: "99 $ + taxes. Inspection pro, identification des pièces nécessaires.",
-          en: "$99 + tax. Pro inspection, identification of parts needed.",
+          fr: "99 $ + taxes. Inspection du problème et identification des pièces ou travaux requis.",
+          en: "$99 + tax. Inspection of the issue and identification of required parts or work.",
         } satisfies Bilingual,
       },
       {
         number: "3",
         title: { fr: "Estimation transparente", en: "Transparent estimate" } satisfies Bilingual,
         desc: {
-          fr: "Pièces + main-d'œuvre détaillées avant tout travail.",
-          en: "Parts + labor detailed before any work.",
+          fr: "Pièces et main-d'œuvre détaillées avant tout travail.",
+          en: "Parts and labor detailed before any work.",
         } satisfies Bilingual,
       },
       {
         number: "4",
         title: { fr: "Approbation + commande", en: "Approval + ordering" } satisfies Bilingual,
         desc: {
-          fr: "Vous approuvez, on commande les pièces (OEM ou compatibles selon disponibilité).",
-          en: "You approve, we order the parts (OEM or compatible based on availability).",
+          fr: "Vous approuvez, on commande les pièces (OEM ou compatibles de qualité selon disponibilité).",
+          en: "You approve, we order the parts (OEM or quality compatible based on availability).",
         } satisfies Bilingual,
       },
       {
         number: "5",
         title: { fr: "Installation des pièces", en: "Parts installation" } satisfies Bilingual,
         desc: {
-          fr: "Installation à domicile — possiblement une 2e visite si commande externe.",
-          en: "On-site installation — possibly a 2nd visit if external order.",
+          fr: "Installation à domicile. Si une 2e visite est nécessaire uniquement pour installer les pièces commandées, aucun frais de diagnostic additionnel.",
+          en: "On-site installation. If a 2nd visit is needed only to install ordered parts, no additional diagnostic fee.",
         } satisfies Bilingual,
       },
     ],
@@ -378,8 +391,8 @@ export const siteConfig = {
   },
 
   packagesNote: {
-    fr: "Prix valides pour BBQ standards mobiles et accessibles jusqu'à 4 brûleurs principaux. Supplément par brûleur principal additionnel : +29 $ pour l'Entretien Essentiel, +49 $ pour le Nettoyage Signature et la Restauration Prestige. Les brûleurs latéraux, brûleurs arrière, infrarouges, modules de cuisson et accessoires spécialisés peuvent être facturés séparément. Les BBQ encastrés, commerciaux ou de très grande taille peuvent faire l'objet d'une estimation personnalisée. Certaines composantes sont nettoyées seulement si accessibles et sécuritaires à manipuler — les pièces corrodées, saisies ou fragiles peuvent nécessiter une réparation plutôt qu'un nettoyage.",
-    en: "Prices apply to standard, mobile and accessible BBQs up to 4 main burners. Additional main burner surcharge: +$29 for Essential Maintenance, +$49 for Signature Cleaning and Prestige Steam Restoration. Side burners, rear burners, infrared burners, specialty modules and accessories may be billed separately. Built-in, commercial or very large BBQs may require a custom quote. Some components are cleaned only if accessible and safe to handle — corroded, seized or fragile parts may require repair rather than cleaning.",
+    fr: "Prix valides pour BBQ standards, mobiles et accessibles jusqu'à 4 brûleurs principaux. Brûleur principal additionnel au-delà de 4 : +49 $ par brûleur. Les brûleurs latéraux, brûleurs arrière, zones infrarouges, modules spécialisés et accessoires peuvent être évalués séparément. Les BBQ encastrés, cuisines extérieures, équipements commerciaux, BBQ de très grande taille ou équipements très encrassés peuvent nécessiter une estimation personnalisée. Certaines composantes sont nettoyées seulement si accessibles et sécuritaires à manipuler — les pièces corrodées, saisies ou fragiles ne sont pas forcées.",
+    en: "Prices apply to standard, mobile and accessible BBQs up to 4 main burners. Additional main burner beyond 4: +$49 per burner. Side burners, rear burners, infrared zones, specialty modules and accessories may be assessed separately. Built-in BBQs, outdoor kitchens, commercial equipment, very large BBQs or heavily soiled equipment may require a custom quote. Some components are cleaned only if accessible and safe to handle — corroded, seized or fragile parts will not be forced.",
   } satisfies Bilingual,
 
   // ─── PROCESS (5 steps) ───
@@ -420,8 +433,8 @@ export const siteConfig = {
       number: "5",
       title: { fr: "Résultat + recommandations", en: "Result + recommendations" } satisfies Bilingual,
       description: {
-        fr: "On termine le service, on vous informe s'il y a des pièces usées ou des réparations recommandées, et on vous envoie des photos lorsque pertinent.",
-        en: "We finish the service, let you know about worn parts or recommended repairs, and send photos when relevant.",
+        fr: "On termine le service et on vous envoie les photos avant / après incluses avec le service, ainsi que nos recommandations lorsque pertinent.",
+        en: "We finish the service and send the before / after photos included with the service, along with recommendations when relevant.",
       } satisfies Bilingual,
     },
   ],
@@ -474,15 +487,22 @@ export const siteConfig = {
     {
       q: { fr: "Combien coûte un nettoyage de BBQ ?", en: "How much does a BBQ cleaning cost?" } satisfies Bilingual,
       a: {
-        fr: "Nos forfaits sont à 199 $ (Entretien Essentiel — préparer le BBQ pour la saison), 299 $ (Nettoyage Signature — vrai nettoyage annuel) et 399 $ (Restauration Prestige — pour BBQ très encrassé ou premium). Le forfait approprié dépend de l'état de votre BBQ. Envoyez-nous une photo pour une recommandation précise.",
-        en: "Our packages are $199 (Essential Maintenance — season prep), $299 (Signature Cleaning — real annual cleaning) and $399 (Prestige Steam Restoration — for heavily soiled or premium BBQs). The right package depends on your BBQ's condition. Send us a photo for a precise recommendation.",
+        fr: "Nos forfaits sont à 199 $ (Entretien Essentiel — entretien saisonnier léger), 299 $ (Nettoyage Signature — nettoyage annuel plus approfondi) et à partir de 399 $ (Restauration Prestige — pour BBQ très encrassé, premium ou négligé depuis longtemps). Le forfait approprié dépend de l'état de votre BBQ. Envoyez-nous une photo pour une recommandation précise.",
+        en: "Our packages are $199 (Essential Maintenance — light seasonal upkeep), $299 (Signature Cleaning — more thorough annual cleaning) and from $399 (Prestige Steam Restoration — for heavily soiled, premium or long-neglected BBQs). The right package depends on your BBQ's condition. Send us a photo for a precise recommendation.",
       } satisfies Bilingual,
     },
     {
       q: { fr: "Est-ce que vous nettoyez seulement les BBQ au gaz ?", en: "Do you only clean gas BBQs?" } satisfies Bilingual,
       a: {
-        fr: "Nos forfaits standards sont principalement conçus pour les BBQ au gaz propane ou naturel. Nous pouvons aussi nettoyer certains smokers, pellet smokers, griddles, kamados et barbecues au charbon, selon leur état, leur taille et leur configuration. Envoyez-nous une photo et nous vous confirmerons la meilleure option.",
-        en: "Our standard packages are primarily designed for propane or natural gas BBQs. We can also clean some smokers, pellet smokers, griddles, kamados and charcoal barbecues, depending on their condition, size and configuration. Send us a photo and we'll confirm the best option.",
+        fr: "Non. BBQTECH travaille aussi sur plusieurs types d'équipements de cuisson extérieure : BBQ au gaz propane ou naturel, BBQ au charbon, pellet grills, kamados, smokers, griddles, BBQ encastrés et cuisines extérieures. Certains équipements spécialisés, commerciaux, encastrés ou très encrassés peuvent nécessiter une estimation personnalisée. Envoyez-nous une photo et nous vous confirmerons la meilleure option.",
+        en: "No. BBQTECH also works on several types of outdoor cooking equipment: propane or natural gas BBQs, charcoal BBQs, pellet grills, kamados, smokers, griddles, built-in BBQs and outdoor kitchens. Specialized, commercial, built-in or heavily soiled equipment may require a custom quote. Send us a photo and we'll confirm the best option.",
+      } satisfies Bilingual,
+    },
+    {
+      q: { fr: "Est-ce que BBQTECH travaille sur les installations de gaz ?", en: "Does BBQTECH work on gas installations?" } satisfies Bilingual,
+      a: {
+        fr: "Non. BBQTECH n'intervient pas sur les installations de gaz réglementées. Nos services se limitent aux composantes accessibles du BBQ et aux pièces pouvant normalement être nettoyées, retirées ou remplacées par un client selon les recommandations du fabricant. Nous ne modifions pas et ne certifions pas les lignes de gaz, raccordements permanents, conversions propane / gaz naturel ou installations encastrées. Lorsqu'un technicien certifié en gaz est requis, nous vous l'indiquons clairement et pouvons vous référer à un spécialiste qualifié.",
+        en: "No. BBQTECH does not work on regulated gas installations. Our services are limited to accessible BBQ components and parts that can normally be cleaned, removed or replaced by a customer according to manufacturer recommendations. We do not modify or certify gas lines, permanent connections, propane / natural gas conversions or built-in gas installations. When a certified gas technician is required, we will clearly let you know and can refer you to a qualified specialist.",
       } satisfies Bilingual,
     },
     {
@@ -516,15 +536,15 @@ export const siteConfig = {
     {
       q: { fr: "Y a-t-il un supplément pour les gros BBQ ?", en: "Is there a surcharge for larger BBQs?" } satisfies Bilingual,
       a: {
-        fr: "Oui. Au-delà de 4 brûleurs principaux : +29 $ par brûleur additionnel pour l'Entretien Essentiel, +49 $ par brûleur additionnel pour le Nettoyage Signature et la Restauration Prestige. Les brûleurs latéraux, brûleurs arrière, infrarouges et accessoires spécialisés peuvent être facturés séparément. Les BBQ encastrés, cuisines extérieures, équipements commerciaux ou configurations particulières nécessitent une soumission personnalisée.",
-        en: "Yes. Beyond 4 main burners: +$29 per additional burner for Essential Maintenance, +$49 per additional burner for Signature Cleaning and Prestige Steam Restoration. Side burners, rear burners, infrared and specialty accessories may be billed separately. Built-in BBQs, outdoor kitchens, commercial equipment or special configurations require a custom quote.",
+        fr: "Oui. Au-delà de 4 brûleurs principaux : +49 $ par brûleur principal additionnel, uniforme pour tous les forfaits. Les brûleurs latéraux, brûleurs arrière, zones infrarouges, modules spécialisés et accessoires peuvent être évalués séparément. Les BBQ encastrés, cuisines extérieures, équipements commerciaux, BBQ de très grande taille ou équipements très encrassés peuvent nécessiter une estimation personnalisée.",
+        en: "Yes. Beyond 4 main burners: +$49 per additional main burner, uniform across all packages. Side burners, rear burners, infrared zones, specialty modules and accessories may be assessed separately. Built-in BBQs, outdoor kitchens, commercial equipment, very large BBQs or heavily soiled equipment may require a custom quote.",
       } satisfies Bilingual,
     },
     {
       q: { fr: "Comment fonctionne le diagnostic de réparation ?", en: "How does the repair diagnostic work?" } satisfies Bilingual,
       a: {
-        fr: "Diagnostic à domicile pour 99 $ + taxes. Le technicien identifie les pièces nécessaires et envoie une estimation transparente (pièces + main-d'œuvre). Si une revisit est nécessaire pour l'installation des pièces, seulement les pièces et la main-d'œuvre sont facturées — aucun frais de diagnostic additionnel. Astuce : combinez avec un nettoyage à domicile pour économiser une visite.",
-        en: "On-site diagnostic for $99 + tax. The technician identifies the parts needed and sends a transparent estimate (parts + labor). If a revisit is needed to install parts, only parts and labor are billed — no additional diagnostic fee. Tip: combine with an on-site cleaning to save a visit.",
+        fr: "Diagnostic à domicile pour 99 $ + taxes. Le déplacement, l'inspection du problème et l'identification des pièces ou travaux requis sont inclus. Une fois le problème identifié, la réparation est facturée selon le temps et le matériel requis. Comme BBQTECH ne garde pas un inventaire complet de pièces dans le véhicule, certaines réparations peuvent nécessiter une deuxième visite après réception des pièces. Si une deuxième visite est nécessaire uniquement pour installer les pièces commandées, aucun frais de diagnostic additionnel n'est chargé. Astuce : combinez avec un nettoyage à domicile pour économiser une visite.",
+        en: "On-site diagnostic for $99 + tax. Includes the on-site visit, inspection of the issue and identification of required parts or work. Once the issue is identified, repair work is billed based on time and materials. Because BBQTECH does not carry a full parts inventory in the vehicle, some repairs may require a second visit after parts are received. If a second visit is needed only to install ordered parts, no additional diagnostic fee is charged. Tip: combine with an on-site cleaning to save a visit.",
       } satisfies Bilingual,
     },
     {
@@ -595,6 +615,79 @@ export const siteConfig = {
     facebook: "",
     instagram: "",
     google: "",
+  },
+
+  // ─── EQUIPMENT TYPES SERVICED ───
+  equipmentTypes: {
+    title: {
+      fr: "Types de BBQ et équipements desservis",
+      en: "Types of BBQs and outdoor cooking equipment we service",
+    } satisfies Bilingual,
+    intro: {
+      fr: "BBQTECH n'est pas limité aux BBQ au gaz. Nous offrons des services de nettoyage, entretien, diagnostic, réparation légère et assemblage sur plusieurs types d'équipements de cuisson extérieure, selon l'état, l'accès, les composantes et la disponibilité des pièces.",
+      en: "BBQTECH is not limited to gas BBQs. We provide cleaning, maintenance, diagnostic, light repair and assembly services for several types of outdoor cooking equipment, depending on condition, access, components and parts availability.",
+    } satisfies Bilingual,
+    list: {
+      fr: [
+        "BBQ au gaz propane",
+        "BBQ au gaz naturel",
+        "BBQ au charbon",
+        "BBQ aux granules / pellet grills",
+        "Kamado grills",
+        "Smokers",
+        "Griddles / plaques de cuisson extérieures",
+        "BBQ encastrés",
+        "Cuisines extérieures",
+        "Fours à pizza extérieurs lorsque applicable",
+        "Équipements commerciaux lorsque applicable",
+      ],
+      en: [
+        "Propane BBQs",
+        "Natural gas BBQs",
+        "Charcoal BBQs",
+        "Pellet grills",
+        "Kamado grills",
+        "Smokers",
+        "Griddles / outdoor flat tops",
+        "Built-in BBQs",
+        "Outdoor kitchens",
+        "Outdoor pizza ovens when applicable",
+        "Commercial equipment when applicable",
+      ],
+    },
+    note: {
+      fr: "Certains équipements spécialisés, encastrés, commerciaux, très encrassés ou haut de gamme peuvent nécessiter une estimation personnalisée.",
+      en: "Specialized, built-in, commercial, heavily soiled or premium equipment may require a custom quote.",
+    } satisfies Bilingual,
+    ctaText: {
+      fr: "Pas certain si votre équipement est admissible ? Envoyez-nous une photo.",
+      en: "Not sure if your equipment qualifies? Send us a photo.",
+    } satisfies Bilingual,
+  },
+
+  // ─── BRANDS / MANUFACTURERS ───
+  brands: {
+    title: {
+      fr: "Marques et manufacturiers",
+      en: "Brands and manufacturers",
+    } satisfies Bilingual,
+    intro: {
+      fr: "BBQTECH travaille avec plusieurs marques populaires de BBQ, grills, smokers et équipements de cuisson extérieure. Nous pouvons nettoyer, entretenir, diagnostiquer ou remplacer certaines composantes accessibles selon le modèle, l'état de l'appareil et la disponibilité des pièces.",
+      en: "BBQTECH works with many popular brands of BBQs, grills, smokers and outdoor cooking equipment. We can clean, maintain, diagnose or replace certain accessible components depending on the model, condition of the unit and parts availability.",
+    } satisfies Bilingual,
+    list: [
+      "Napoleon", "Weber", "Broil King", "Traeger", "Pit Boss",
+      "Kamado Joe", "Big Green Egg", "Masterbuilt", "Char-Broil", "Blackstone",
+      "Camp Chef", "Crown Verity", "Lynx", "DCS", "Twin Eagles",
+      "Blaze", "Coyote", "Broilmaster", "Vermont Castings", "Nexgrill",
+      "Monument Grills", "Member's Mark", "KitchenAid", "Cuisinart", "Coleman",
+      "Centro", "Huntington", "Saber", "Bull BBQ", "Fire Magic",
+      "Alfresco", "Hestan", "Yoder Smokers", "Louisiana Grills", "Green Mountain Grills",
+    ],
+    disclaimer: {
+      fr: "La présence d'une marque dans cette liste ne signifie pas que BBQTECH est un centre de service autorisé ou affilié au manufacturier. Pour les réparations, BBQTECH privilégie les pièces d'origine ou des pièces compatibles de qualité lorsque disponibles. Certaines réparations peuvent nécessiter une commande de pièces ou une référence vers un technicien spécialisé.",
+      en: "The presence of a brand in this list does not mean BBQTECH is an authorized service center or affiliated with the manufacturer. For repairs, BBQTECH prioritizes OEM parts or quality compatible parts when available. Some repairs may require parts ordering or referral to a specialized technician.",
+    } satisfies Bilingual,
   },
 
   // ─── FOOTER ───

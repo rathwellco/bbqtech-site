@@ -1,0 +1,46 @@
+---
+import { siteConfig } from "../../site.config";
+import { type Locale, t, smsHref } from "../i18n/utils";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const eq = siteConfig.equipmentTypes;
+const items = eq.list[lang];
+const sms = smsHref(siteConfig.phoneRaw, t(siteConfig.smsBody, lang));
+const noteLabel = lang === "fr" ? "À noter" : "Note";
+---
+
+<section class="py-16 md:py-20 bg-white" id="equipements">
+  <div class="max-w-[1100px] mx-auto px-6">
+    <div class="text-center mb-10 md:mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4">{t(eq.title, lang)}</h2>
+      <p class="text-lg text-grey max-w-3xl mx-auto leading-relaxed">{t(eq.intro, lang)}</p>
+    </div>
+
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2 max-w-[1000px] mx-auto mb-8">
+      {items.map((item) => (
+        <li class="flex items-start gap-2 text-sm md:text-base text-dark leading-snug">
+          <span class="text-accent font-bold shrink-0 mt-0.5">✓</span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="max-w-[900px] mx-auto bg-light border border-grey-mid/50 rounded-xl p-5 md:p-6 mb-6">
+      <p class="text-xs font-bold uppercase tracking-wider text-grey mb-2">{noteLabel}</p>
+      <p class="text-sm md:text-base text-dark leading-relaxed">{t(eq.note, lang)}</p>
+    </div>
+
+    <div class="text-center">
+      <a
+        href={sms}
+        class="inline-block bg-dark text-white px-6 py-3 rounded-lg font-bold no-underline hover:bg-accent transition-colors"
+      >
+        📸 {t(eq.ctaText, lang)}
+      </a>
+    </div>
+  </div>
+</section>

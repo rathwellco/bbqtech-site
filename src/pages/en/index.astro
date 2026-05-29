@@ -10,6 +10,8 @@ import WhyBBQTECH from "../../components/WhyBBQTECH.astro";
 import OwnerOperator from "../../components/OwnerOperator.astro";
 import CustomQuote from "../../components/CustomQuote.astro";
 import RepairDiagnostic from "../../components/RepairDiagnostic.astro";
+import EquipmentTypes from "../../components/EquipmentTypes.astro";
+import Brands from "../../components/Brands.astro";
 import ProcessSteps from "../../components/ProcessSteps.astro";
 import Philosophy from "../../components/Philosophy.astro";
 import Commitments from "../../components/Commitments.astro";
@@ -26,6 +28,7 @@ const lang = "en" as const;
     lang={lang}
     title={t(siteConfig.hero.h1, lang)}
     subtitle={t(siteConfig.hero.sub, lang)}
+    support={t(siteConfig.hero.support, lang)}
   />
 
   <TrustBar lang={lang} />
@@ -53,10 +56,12 @@ const lang = "en" as const;
     </div>
   </section>
 
+  <EquipmentTypes lang={lang} />
+
   <PricingTable
     lang={lang}
     title="Three BBQ cleaning packages"
-    subtitle="Pick the level that fits your BBQ: season prep, real annual cleaning, or advanced steam restoration."
+    subtitle="Pick the level that fits your BBQ: season prep, more thorough annual cleaning, or advanced steam restoration."
   />
 
   <QuelForfait lang={lang} />
@@ -78,6 +83,8 @@ const lang = "en" as const;
   <Philosophy lang={lang} />
 
   <Commitments lang={lang} title="Our commitments" />
+
+  <Brands lang={lang} />
 
   <FAQ lang={lang} title="Frequently asked questions" />
 

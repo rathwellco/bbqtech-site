@@ -10,6 +10,7 @@ const { lang } = Astro.props;
 const booking = bookingHref(siteConfig.bookingUrl, lang);
 const r = siteConfig.repair;
 const prepLabel = lang === "fr" ? "Préparation pour accélérer le diagnostic" : "Preparation to speed up the diagnostic";
+const gasLimitLabel = lang === "fr" ? "Limites — installations de gaz" : "Limits — gas installations";
 ---
 
 <section class="py-16 md:py-20 bg-light" id="reparation">
@@ -78,6 +79,13 @@ const prepLabel = lang === "fr" ? "Préparation pour accélérer le diagnostic" 
         <p class="mt-6 p-4 bg-accent/10 border border-accent/30 rounded-lg text-sm text-dark leading-relaxed">
           💡 {t(r.comboNote, lang)}
         </p>
+
+        <div class="mt-4 p-4 bg-white border-l-4 border-accent border border-grey-mid/50 rounded-lg">
+          <p class="text-xs font-bold uppercase tracking-wider text-accent mb-2">
+            ⚠ {gasLimitLabel}
+          </p>
+          <p class="text-sm text-dark leading-relaxed">{t(r.gasLimit, lang)}</p>
+        </div>
 
         <div class="mt-4 p-4 bg-white border border-grey-mid/50 rounded-lg">
           <p class="text-xs font-bold uppercase tracking-wider text-grey mb-2">

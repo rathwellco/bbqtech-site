@@ -29,12 +29,12 @@ const essential: PackageDetail = {
     en: "Essential Maintenance — Seasonal BBQ Prep | BBQTECH Gatineau & Ottawa",
   },
   metaDescription: {
-    fr: "Entretien préventif et nettoyage léger pour préparer votre BBQ pour la saison. Inspection complète et test d'allumage inclus. 199 $ + taxes. Gatineau, Aylmer, Hull, Ottawa.",
-    en: "Preventive maintenance and light cleaning to prep your BBQ for the season. Complete inspection and ignition test included. $199 + tax. Gatineau, Aylmer, Hull, Ottawa.",
+    fr: "Entretien saisonnier léger pour un BBQ fonctionnel : inspection visuelle, nettoyage léger et vérification de fonctionnement de base lorsque sécuritaire. 199 $ + taxes. Gatineau, Aylmer, Hull, Ottawa.",
+    en: "Light seasonal maintenance for a functional BBQ: visual inspection, light cleaning and basic function check when safe. $199 + tax. Gatineau, Aylmer, Hull, Ottawa.",
   },
   heroSubtitle: {
-    fr: "L'entretien saisonnier. Inspection complète, nettoyage léger et test d'allumage — pour partir la saison du bon pied.",
-    en: "Seasonal maintenance. Complete inspection, light cleaning and ignition test — to start the season right.",
+    fr: "L'entretien saisonnier. Inspection visuelle, nettoyage léger et vérification de fonctionnement de base — pour un BBQ fonctionnel qui a besoin d'un entretien saisonnier léger.",
+    en: "Seasonal maintenance. Visual inspection, light cleaning and basic function check — for a functional BBQ that needs light seasonal upkeep.",
   },
   whoFor: {
     fr: [
@@ -53,11 +53,11 @@ const essential: PackageDetail = {
   whoNotFor: {
     fr: [
       { situation: "Votre BBQ a une saison ou plus de graisse accumulée et a besoin d'un vrai nettoyage en profondeur.", pointTo: "Nettoyage Signature à 299 $" },
-      { situation: "BBQ très encrassé, premium ou négligé depuis plusieurs saisons.", pointTo: "Restauration Prestige à 399 $" },
+      { situation: "BBQ très encrassé, premium ou négligé depuis plusieurs saisons.", pointTo: "Restauration Prestige à partir de 399 $" },
     ],
     en: [
       { situation: "Your BBQ has a season or more of accumulated grease and needs real deep cleaning.", pointTo: "Signature Cleaning at $299" },
-      { situation: "Very dirty BBQ, premium, or neglected for multiple seasons.", pointTo: "Prestige Steam Restoration at $399" },
+      { situation: "Very dirty BBQ, premium, or neglected for multiple seasons.", pointTo: "Prestige Steam Restoration from $399" },
     ],
   },
   whatIncluded: {
@@ -65,24 +65,24 @@ const essential: PackageDetail = {
       {
         section: "Inspection et préparation",
         items: [
-          "Inspection visuelle complète du BBQ",
-          "Test d'allumage et vérification des flammes sur chaque brûleur",
-          "Photos avant",
+          "Inspection visuelle de base du BBQ",
+          "Vérification de fonctionnement de base lorsque sécuritaire et applicable",
+          "Photos avant (minimum extérieur + intérieur)",
           "Identification des pièces usées ou endommagées",
-          "Zone de travail protégée",
+          "Zone de travail contrôlée selon l'emplacement et le forfait",
         ],
       },
       {
         section: "Démontage contrôlé",
         items: [
-          "Retrait des grilles",
-          "Retrait des sear plates / heat shields",
-          "Retrait du bac à graisse",
-          "Retrait des brûleurs si c'est sécuritaire",
+          "Retrait des grilles lorsque sécuritaire",
+          "Retrait des sear plates / heat shields lorsque sécuritaire",
+          "Retrait du bac à graisse accessible",
+          "Retrait des brûleurs si sécuritaire — pièces saisies, corrodées ou fragiles non forcées",
         ],
       },
       {
-        section: "Nettoyage léger",
+        section: "Nettoyage saisonnier léger",
         items: [
           "Grilles : brossage et grattage des résidus, nettoyage léger avec eau si requis",
           "Sear plates : grattage des dépôts accessibles",
@@ -97,8 +97,8 @@ const essential: PackageDetail = {
         section: "Finition",
         items: [
           "Réassemblage complet",
-          "Test d'allumage final",
-          "Photos après",
+          "Vérification de fonctionnement de base lorsque sécuritaire",
+          "Photos après (minimum extérieur + intérieur)",
           "Recommandations sur les pièces à surveiller pour la saison",
         ],
       },
@@ -107,24 +107,24 @@ const essential: PackageDetail = {
       {
         section: "Inspection & prep",
         items: [
-          "Complete visual inspection of the BBQ",
-          "Ignition test and flame check on every burner",
-          "Before photos",
+          "Basic visual inspection of the BBQ",
+          "Basic function check when safe and applicable",
+          "Before photos (minimum exterior + interior)",
           "Identification of worn or damaged parts",
-          "Protected work zone",
+          "Work zone controlled based on location and package",
         ],
       },
       {
         section: "Controlled disassembly",
         items: [
-          "Grates removed",
-          "Sear plates / heat shields removed",
-          "Grease pan removed",
-          "Burners removed if safe to handle",
+          "Grates removed when safe",
+          "Sear plates / heat shields removed when safe",
+          "Accessible grease pan removed",
+          "Burners removed if safe — seized, corroded or fragile parts not forced",
         ],
       },
       {
-        section: "Light cleaning",
+        section: "Light seasonal cleaning",
         items: [
           "Grates: brushing and scraping of residue, light water cleaning if needed",
           "Sear plates: scraping of accessible deposits",
@@ -139,8 +139,8 @@ const essential: PackageDetail = {
         section: "Finishing",
         items: [
           "Complete reassembly",
-          "Final ignition test",
-          "After photos",
+          "Basic function check when safe",
+          "After photos (minimum exterior + interior)",
           "Recommendations on parts to monitor for the season",
         ],
       },
@@ -149,45 +149,47 @@ const essential: PackageDetail = {
   whatNotIncluded: {
     fr: [
       "Dégraissage approfondi en multiples passes — c'est le Nettoyage Signature à 299 $",
-      "Nettoyage vapeur — c'est la Restauration Prestige à 399 $",
+      "Nettoyage vapeur — c'est la Restauration Prestige à partir de 399 $",
       "Polissage inox détaillé",
       "Démontage forcé de pièces corrodées, saisies ou fragiles",
       "Réparation ou remplacement de pièces (notre service Diagnostic à 99 $ couvre ça)",
-      "Garantie « comme neuf » sur les composantes",
+      "Intervention sur les installations de gaz réglementées",
+      "Garantie « comme neuf », « 100 % garanti » ou résultat showroom",
     ],
     en: [
       "Deep multi-pass degreasing — that's Signature Cleaning at $299",
-      "Steam cleaning — that's Prestige Steam Restoration at $399",
+      "Steam cleaning — that's Prestige Steam Restoration from $399",
       "Detailed stainless polishing",
       "Forced disassembly of corroded, seized or fragile parts",
       "Repair or part replacement (our $99 Diagnostic service covers that)",
-      "\"Like-new\" guarantee on components",
+      "Work on regulated gas installations",
+      "\"Like-new\", \"100% guaranteed\" or showroom-finish promises",
     ],
   },
   method: {
     fr: [
-      { title: "Inspection (5 minutes)", body: "Marque, modèle, condition réelle, brûleurs comptés (>4 = supplément confirmé d'avance). Accès et espace validés." },
-      { title: "Préparation de la zone", body: "Tapis posé sous la zone de travail. Protection des surfaces sensibles à proximité." },
-      { title: "Démontage contrôlé", body: "Grilles, sear plates, bac à graisse, brûleurs si sécuritaire. Pièce qui résiste : on n'insiste pas." },
-      { title: "Nettoyage léger", body: "Vacuum dans la cuve, grattage des résidus, brossage des composantes accessibles. Eau utilisée ponctuellement si nécessaire." },
-      { title: "Inspection brûleurs et venturi", body: "Brossage des ports accessibles, vérification des venturi. On documente ce qui devrait être surveillé." },
+      { title: "Inspection (5 minutes)", body: "Marque, modèle, condition réelle, brûleurs comptés (>4 = supplément confirmé avant tout changement de service ou de tarif). Accès et espace validés." },
+      { title: "Préparation de la zone", body: "Zone de travail contrôlée selon l'emplacement. Protection des surfaces sensibles à proximité." },
+      { title: "Démontage contrôlé", body: "Grilles, sear plates, bac à graisse, brûleurs si sécuritaire. Pièce saisie, corrodée ou fragile : on n'insiste pas et on documente." },
+      { title: "Nettoyage saisonnier léger", body: "Vacuum dans la cuve, grattage des résidus, brossage des composantes accessibles. Eau utilisée ponctuellement si nécessaire." },
+      { title: "Inspection brûleurs et venturi", body: "Brossage des ports accessibles, vérification des venturi accessibles. On documente ce qui devrait être surveillé." },
       { title: "Essuyage extérieur", body: "Surfaces visibles essuyées avec microfibre. Présentation propre, sans polissage avancé." },
-      { title: "Réassemblage, test, photos", body: "Tout remonté, test d'allumage, photos après. Recommandations communiquées en personne ou par texto." },
+      { title: "Réassemblage et photos", body: "Tout remonté, vérification de fonctionnement de base lorsque sécuritaire et applicable, photos avant / après. Recommandations communiquées en personne ou par texto." },
     ],
     en: [
-      { title: "Inspection (5 minutes)", body: "Brand, model, real condition, burners counted (>4 = surcharge confirmed up front). Access and space validated." },
-      { title: "Work zone prep", body: "Mat placed under the work area. Sensitive nearby surfaces protected." },
-      { title: "Controlled disassembly", body: "Grates, sear plates, grease pan, burners if safe. Part resists: we don't force it." },
-      { title: "Light cleaning", body: "Vacuum inside the cookbox, scraping of residue, brushing of accessible components. Water used spot-by-spot if needed." },
-      { title: "Burner & venturi inspection", body: "Brushing of accessible ports, venturi check. We document what should be monitored." },
+      { title: "Inspection (5 minutes)", body: "Brand, model, real condition, burners counted (>4 = surcharge confirmed before any change of service or price). Access and space validated." },
+      { title: "Work zone prep", body: "Controlled work zone based on location. Sensitive nearby surfaces protected." },
+      { title: "Controlled disassembly", body: "Grates, sear plates, grease pan, burners if safe. Seized, corroded or fragile parts: we don't force and we document." },
+      { title: "Light seasonal cleaning", body: "Vacuum inside the cookbox, scraping of residue, brushing of accessible components. Water used spot-by-spot if needed." },
+      { title: "Burner & venturi inspection", body: "Brushing of accessible ports, accessible venturi check. We document what should be monitored." },
       { title: "Exterior wipe", body: "Visible surfaces wiped with microfiber. Clean presentation, no advanced polish." },
-      { title: "Reassembly, test, photos", body: "Reassembled, ignition test, after photos. Recommendations shared in person or via text." },
+      { title: "Reassembly and photos", body: "Reassembled, basic function check when safe and applicable, before / after photos. Recommendations shared in person or via text." },
     ],
   },
   duration: { fr: "2h à 2h30 sur place", en: "2 to 2.5 hours on site" },
   durationNote: {
-    fr: "Si l'inspection révèle un BBQ beaucoup plus sale que prévu, on vous le dit avant de continuer. On propose soit de rester dans les limites de l'Entretien Essentiel, soit de monter au Nettoyage Signature (299 $) ou à la Restauration Prestige (399 $) si l'état le justifie. Aucun changement de prix sans votre accord.",
-    en: "If inspection reveals a much dirtier BBQ than expected, we tell you before continuing. We offer to either stay within Essential Maintenance limits or step up to Signature Cleaning ($299) or Prestige Steam Restoration ($399) if warranted. No price change without your approval.",
+    fr: "Si l'inspection révèle un BBQ beaucoup plus sale que prévu, on vous le dit avant de continuer. On propose soit de rester dans les limites de l'Entretien Essentiel, soit de monter au Nettoyage Signature (299 $) ou à la Restauration Prestige (à partir de 399 $) si l'état le justifie. Aucun changement de prix sans votre accord.",
+    en: "If inspection reveals a much dirtier BBQ than expected, we tell you before continuing. We offer to either stay within Essential Maintenance limits or step up to Signature Cleaning ($299) or Prestige Steam Restoration (from $399) if warranted. No price change without your approval.",
   },
   conditions: {
     fr: [
@@ -205,13 +207,13 @@ const essential: PackageDetail = {
   },
   surcharges: {
     fr: [
-      { situation: "5e brûleur principal et plus", amount: "+29 $ / brûleur" },
+      { situation: "5e brûleur principal et plus (au-delà de 4)", amount: "+49 $ / brûleur" },
       { situation: "Brûleur latéral / arrière / IR", amount: "À évaluer sur place" },
       { situation: "Pizza oven, smoker box, griddle", amount: "Prix séparé" },
       { situation: "BBQ plus sale que prévu", amount: "Upgrade recommandé vers Signature ou Prestige" },
     ],
     en: [
-      { situation: "5th main burner and beyond", amount: "+$29 / burner" },
+      { situation: "5th main burner and beyond", amount: "+$49 / burner" },
       { situation: "Side / rear / IR burner", amount: "Evaluated on site" },
       { situation: "Pizza oven, smoker box, griddle", amount: "Separate price" },
       { situation: "BBQ dirtier than expected", amount: "Upgrade recommended to Signature or Prestige" },
@@ -237,10 +239,10 @@ const essential: PackageDetail = {
       },
     },
     {
-      q: { fr: "Est-ce que ça prolonge la vie de mon BBQ?", en: "Does this extend my BBQ's life?" },
+      q: { fr: "Est-ce que ça aide à entretenir mon BBQ ?", en: "Does this help maintain my BBQ?" },
       a: {
-        fr: "Indirectement, oui. Un BBQ inspecté annuellement où on remplace les pièces usées avant qu'elles ne brisent dure plus longtemps. L'Entretien Essentiel seul ne remplace pas les pièces, mais il vous dit ce qui devrait l'être. Un BBQ moyen entretenu peut durer 8 à 12 ans vs 4 à 6 ans sans aucun entretien.",
-        en: "Indirectly, yes. A BBQ inspected annually where worn parts get replaced before breaking lasts longer. Essential Maintenance alone doesn't replace parts, but it tells you what should be. A typical maintained BBQ can last 8–12 years vs 4–6 without any upkeep.",
+        fr: "Oui — l'Entretien Essentiel aide à mieux entretenir l'équipement et à identifier les pièces à surveiller. Un BBQ inspecté annuellement où on remplace les pièces usées avant qu'elles ne brisent reste fonctionnel plus longtemps. L'Entretien Essentiel seul ne remplace pas les pièces, mais il vous dit ce qui devrait l'être.",
+        en: "Yes — Essential Maintenance helps you better maintain the equipment and spot parts to watch. A BBQ inspected annually where worn parts get replaced before they break stays functional longer. Essential Maintenance alone doesn't replace parts, but it tells you what should be.",
       },
     },
     {
@@ -309,11 +311,11 @@ const signature: PackageDetail = {
   whoNotFor: {
     fr: [
       { situation: "Vous voulez juste préparer le BBQ pour la saison, peu d'accumulation.", pointTo: "Entretien Essentiel à 199 $" },
-      { situation: "BBQ premium 10+ ans très négligé avec graisse cuite-recuite.", pointTo: "Restauration Prestige à 399 $" },
+      { situation: "BBQ premium 10+ ans très négligé avec graisse cuite-recuite.", pointTo: "Restauration Prestige à partir de 399 $" },
     ],
     en: [
       { situation: "You just want season prep, minimal buildup.", pointTo: "Essential Maintenance at $199" },
-      { situation: "Premium BBQ 10+ years, heavily neglected, baked-on grease.", pointTo: "Prestige Steam Restoration at $399" },
+      { situation: "Premium BBQ 10+ years, heavily neglected, baked-on grease.", pointTo: "Prestige Steam Restoration from $399" },
     ],
   },
   whatIncluded: {
@@ -322,8 +324,8 @@ const signature: PackageDetail = {
         section: "Inspection et préparation",
         items: [
           "Inspection visuelle complète",
-          "Test d'allumage et vérification des flammes sur chaque brûleur",
-          "Photos avant",
+          "Vérification de fonctionnement de base lorsque sécuritaire et applicable",
+          "Photos avant (minimum extérieur + intérieur)",
           "Identification des pièces usées ou endommagées",
           "Zone de travail protégée — tapis et spill berm",
         ],
@@ -331,8 +333,8 @@ const signature: PackageDetail = {
       {
         section: "Démontage contrôlé",
         items: [
-          "Retrait des grilles, sear plates, bac à graisse",
-          "Retrait des brûleurs si sécuritaire",
+          "Retrait des grilles, sear plates, bac à graisse accessible",
+          "Retrait des brûleurs si sécuritaire — pièces saisies, corrodées ou fragiles non forcées",
         ],
       },
       {
@@ -352,10 +354,10 @@ const signature: PackageDetail = {
         section: "Finition et fermeture",
         items: [
           "Rinçage contrôlé partout",
-          "Récupération complète des résidus au shop-vac wet",
+          "Récupération des résidus au shop-vac wet",
           "Réassemblage complet",
-          "Test d'allumage final",
-          "Photos après",
+          "Vérification de fonctionnement de base lorsque sécuritaire",
+          "Photos après (minimum extérieur + intérieur)",
           "Recommandations sur les pièces à surveiller pour la prochaine saison",
         ],
       },
@@ -365,8 +367,8 @@ const signature: PackageDetail = {
         section: "Inspection & prep",
         items: [
           "Complete visual inspection",
-          "Ignition test and flame check on every burner",
-          "Before photos",
+          "Basic function check when safe and applicable",
+          "Before photos (minimum exterior + interior)",
           "Identification of worn or damaged parts",
           "Protected work zone — mat and spill berm",
         ],
@@ -374,8 +376,8 @@ const signature: PackageDetail = {
       {
         section: "Controlled disassembly",
         items: [
-          "Removal of grates, sear plates, grease pan",
-          "Burners removed if safe",
+          "Removal of grates, sear plates, accessible grease pan",
+          "Burners removed if safe — seized, corroded or fragile parts not forced",
         ],
       },
       {
@@ -395,10 +397,10 @@ const signature: PackageDetail = {
         section: "Finishing",
         items: [
           "Complete controlled rinse",
-          "Full residue recovery via wet shop-vac",
+          "Residue recovery via wet shop-vac",
           "Complete reassembly",
-          "Final ignition test",
-          "After photos",
+          "Basic function check when safe",
+          "After photos (minimum exterior + interior)",
           "Recommendations on parts to monitor for next season",
         ],
       },
@@ -410,40 +412,42 @@ const signature: PackageDetail = {
       "Restauration esthétique avancée / polissage inox détaillé — Prestige aussi",
       "Réparation ou remplacement de pièces (Diagnostic à 99 $, pièces et main-d'œuvre en sus si vous procédez)",
       "Démontage forcé de pièces corrodées, saisies ou fragiles",
+      "Intervention sur les installations de gaz réglementées",
       "BBQ encastrés / cuisines extérieures — sur évaluation",
       "BBQ commerciaux — sur évaluation",
       "Rapport sommaire écrit envoyé par courriel — ça vient avec la Restauration Prestige",
-      "Garantie « comme neuf » — votre BBQ va sortir beaucoup plus propre et plus agréable à utiliser, mais on n'efface pas 5 ans d'usure",
+      "Garantie « comme neuf », « 100 % garanti » ou résultat showroom — votre BBQ va sortir beaucoup plus propre et plus agréable à utiliser, mais on n'efface pas plusieurs saisons d'usure",
     ],
     en: [
       "Steam cleaning — that's added by Prestige Steam Restoration",
       "Advanced aesthetic restoration / detailed stainless polishing — Prestige too",
       "Repair or part replacement ($99 Diagnostic, parts + labor extra if you proceed)",
       "Forced disassembly of corroded, seized or fragile parts",
+      "Work on regulated gas installations",
       "Built-in BBQs / outdoor kitchens — by evaluation",
       "Commercial BBQs — by evaluation",
       "Written summary report by email — that's with Prestige Steam Restoration",
-      "\"Like-new\" guarantee — your BBQ will come out much cleaner and more pleasant to use, but we don't erase 5 years of wear",
+      "\"Like-new\", \"100% guaranteed\" or showroom-finish promises — your BBQ will come out much cleaner and more pleasant to use, but we don't erase several seasons of wear",
     ],
   },
   method: {
     fr: [
-      { title: "Inspection (5 minutes)", body: "Marque, modèle, état réel. On compte les brûleurs (>4 = supplément confirmé d'avance). Accès, eau, espace validés." },
-      { title: "Préparation de la zone", body: "Spill berm installé, shop-vac prêt, boyau connecté. On protège votre patio, deck, plantes. Aucun résidu sur votre terrain à la fin." },
-      { title: "Démontage contrôlé", body: "Grilles, sear plates, bac à graisse, brûleurs si sécuritaire. Pièce qui résiste : on n'insiste pas, on travaille autour et on vous le dit." },
+      { title: "Inspection (5 minutes)", body: "Marque, modèle, état réel. On compte les brûleurs (>4 = supplément confirmé avant tout changement de service ou de tarif). Accès, eau, espace validés." },
+      { title: "Préparation de la zone", body: "Spill berm installé, shop-vac prêt, boyau connecté. On protège votre patio, deck, plantes. Nous contrôlons la zone de travail et faisons le maximum pour laisser l'espace propre après le service." },
+      { title: "Démontage contrôlé", body: "Grilles, sear plates, bac à graisse, brûleurs si sécuritaire. Pièce saisie, corrodée ou fragile : on n'insiste pas, on travaille autour et on vous le dit." },
       { title: "Nettoyage en profondeur", body: "Dégraissant Hawco biodégradable, deux applications sur les zones graisseuses tenaces, brossage intensif, temps de contact contrôlé. On retourne dans les coins." },
       { title: "Firebox, hood, brûleurs", body: "La partie la moins glamour mais la plus payante. On dégraisse à fond la cuve, l'intérieur du couvercle, on nettoie les brûleurs accessibles." },
       { title: "Extérieur et finition", body: "Inox avec le grain, microfibre, produit selon le matériau. Poignées, boutons, panneaux. Pas de produit agressif sur la porcelaine ou la peinture." },
-      { title: "Réassemblage, test, photos", body: "Tout remonté, test d'allumage, photos après. On vous explique ce qu'on a vu, ce qu'on recommande, ce qu'il faut surveiller." },
+      { title: "Réassemblage et photos", body: "Tout remonté, vérification de fonctionnement de base lorsque sécuritaire, photos avant / après. On vous explique ce qu'on a vu, ce qu'on recommande, ce qu'il faut surveiller." },
     ],
     en: [
-      { title: "Inspection (5 minutes)", body: "Brand, model, real condition. We count burners (>4 = surcharge confirmed up front). Access, water, space validated." },
-      { title: "Work zone prep", body: "Spill berm installed, shop-vac ready, hose connected. We protect your patio, deck, plants. No residue on your property when we leave." },
-      { title: "Controlled disassembly", body: "Grates, sear plates, grease pan, burners if safe. Part resists: we don't force, we work around and tell you." },
+      { title: "Inspection (5 minutes)", body: "Brand, model, real condition. We count burners (>4 = surcharge confirmed before any change of service or price). Access, water, space validated." },
+      { title: "Work zone prep", body: "Spill berm installed, shop-vac ready, hose connected. We protect your patio, deck, plants. We control the work zone and do our best to leave the space clean after the service." },
+      { title: "Controlled disassembly", body: "Grates, sear plates, grease pan, burners if safe. Seized, corroded or fragile parts: we don't force, we work around and tell you." },
       { title: "Deep cleaning", body: "Biodegradable Hawco degreaser, two applications on tough greasy zones, intensive brushing, controlled dwell time. We come back to corners." },
       { title: "Firebox, hood, burners", body: "Least glamorous, most valuable part. We deep-degrease the cookbox, hood interior, clean accessible burners." },
       { title: "Exterior & finishing", body: "Stainless with the grain, microfiber, product per material. Handles, knobs, panels. No aggressive products on porcelain or paint." },
-      { title: "Reassembly, test, photos", body: "Reassembled, ignition test, after photos. We explain what we saw, what we recommend, what to watch for." },
+      { title: "Reassembly and photos", body: "Reassembled, basic function check when safe, before / after photos. We explain what we saw, what we recommend, what to watch for." },
     ],
   },
   duration: { fr: "3h à 4h sur place", en: "3 to 4 hours on site" },
@@ -484,8 +488,8 @@ const signature: PackageDetail = {
     ],
   },
   comparisonNote: {
-    fr: "Le Signature, c'est l'équilibre entre prix raisonnable et résultat sérieux. Si votre BBQ a 10+ ans et a été négligé plusieurs saisons, la Restauration Prestige à 399 $ va plus loin avec la vapeur. Mais pour la majorité des BBQ après une saison ou deux de négligence, le Signature suffit.",
-    en: "Signature is the balance between fair price and serious result. If your BBQ is 10+ years old and neglected for multiple seasons, Prestige Steam Restoration at $399 goes further with steam. But for most BBQs after a season or two of neglect, Signature is plenty.",
+    fr: "Le Signature, c'est l'équilibre entre prix raisonnable et résultat sérieux. Si votre BBQ a 10+ ans et a été négligé plusieurs saisons, la Restauration Prestige à partir de 399 $ va plus loin avec la vapeur. Mais pour la majorité des BBQ après une saison ou deux de négligence, le Signature suffit.",
+    en: "Signature is the balance between fair price and serious result. If your BBQ is 10+ years old and neglected for multiple seasons, Prestige Steam Restoration from $399 goes further with steam. But for most BBQs after a season or two of neglect, Signature is plenty.",
   },
   faq: [
     {
@@ -503,10 +507,10 @@ const signature: PackageDetail = {
       },
     },
     {
-      q: { fr: "Vous garantissez un résultat « comme neuf »?", en: "Do you guarantee a \"like-new\" result?" },
+      q: { fr: "Vous garantissez un résultat « comme neuf » ?", en: "Do you guarantee a \"like-new\" result?" },
       a: {
-        fr: "Non. Notre objectif est de rendre votre BBQ plus propre, plus performant et plus agréable à utiliser — pas de le transformer en BBQ neuf. Un BBQ qui a deux saisons d'utilisation va ressortir spectaculaire avec le Signature. Un BBQ qui a 8 ans de carbone cuit ne redeviendra jamais neuf — mais on peut le ramener à un état où il fonctionne mieux, cuit mieux, et durera plus longtemps. On est honnête sur les limites avant de commencer.",
-        en: "No. Our goal is to make your BBQ cleaner, better-performing and more pleasant to use — not to transform it into a new BBQ. A BBQ with two seasons of use will come out spectacular with Signature. A BBQ with 8 years of baked carbon will never look new — but we can bring it to a state where it functions better, cooks better, and lasts longer. We're honest about limits up front.",
+        fr: "Non. Nous ne promettons pas « comme neuf », « 100 % garanti » ni résultat showroom. Notre objectif est de rendre votre BBQ plus propre et plus agréable à utiliser, et d'aider à mieux entretenir l'équipement en identifiant les pièces à surveiller. Un BBQ qui a deux saisons d'utilisation va ressortir spectaculaire avec le Signature. Un BBQ qui a 8 ans de carbone cuit ne redeviendra jamais neuf — mais on peut le ramener à un état beaucoup plus propre. On est honnête sur les limites avant de commencer.",
+        en: "No. We don't promise \"like-new\", \"100% guaranteed\" or showroom-finish results. Our goal is to make your BBQ cleaner and more pleasant to use, and to help you better maintain the equipment by identifying parts to watch. A BBQ with two seasons of use will come out spectacular with Signature. A BBQ with 8 years of baked carbon will never look new — but we can bring it to a much cleaner state. We're honest about limits up front.",
       },
     },
     {
@@ -556,8 +560,8 @@ const prestige: PackageDetail = {
     en: "Prestige Steam Restoration — Premium BBQ Restoration | BBQTECH Gatineau & Ottawa",
   },
   metaDescription: {
-    fr: "Remise en état avancée à la vapeur pour BBQ premium, vieux ou très négligés. 399 $ + taxes. Inclut photos extensives et rapport sommaire. Gatineau et Ottawa.",
-    en: "Advanced steam restoration for premium, old or heavily neglected BBQs. $399 + tax. Includes extensive photos and summary report. Gatineau and Ottawa.",
+    fr: "Remise en état avancée à la vapeur pour BBQ très encrassés, premium, négligés depuis longtemps ou nécessitant une remise en état plus poussée. À partir de 399 $ + taxes. Inclut photos extensives et rapport sommaire. Gatineau et Ottawa.",
+    en: "Advanced steam restoration for heavily soiled, premium, long-neglected BBQs or those needing a more advanced restoration. From $399 + tax. Includes extensive photos and summary report. Gatineau and Ottawa.",
   },
   heroSubtitle: {
     fr: "La remise en état avancée. Vapeur, dégraissage en multiples passes, finition détaillée et rapport complet — pour les BBQ premium, vieux ou très négligés.",
@@ -595,9 +599,9 @@ const prestige: PackageDetail = {
         section: "Tout le Nettoyage Signature, plus",
         items: [
           "Inspection visuelle plus détaillée",
-          "Démontage plus poussé si sécuritaire",
-          "Test d'allumage et vérification approfondie des flammes et de l'uniformité de la cuisson",
-          "Photos avant extensives (10-15+ angles)",
+          "Démontage plus poussé si sécuritaire — pièces saisies, corrodées ou fragiles non forcées",
+          "Vérification de fonctionnement de base lorsque sécuritaire et applicable",
+          "Photos avant extensives (10-15+ angles, minimum extérieur + intérieur)",
         ],
       },
       {
@@ -630,10 +634,10 @@ const prestige: PackageDetail = {
       {
         section: "Documentation et rapport",
         items: [
-          "Photos après extensives (10-15+ angles)",
+          "Photos après extensives (10-15+ angles, minimum extérieur + intérieur)",
           "Rapport sommaire écrit envoyé par courriel après le service",
           "Liste des observations (pièces usées, recommandations d'entretien futur)",
-          "Estimation indicative de la durée de vie restante du BBQ",
+          "Observations générales sur l'état du BBQ et les pièces à surveiller",
         ],
       },
     ],
@@ -642,9 +646,9 @@ const prestige: PackageDetail = {
         section: "Everything in Signature, plus",
         items: [
           "More detailed visual inspection",
-          "Deeper disassembly if safe",
-          "Ignition test and thorough flame/cooking uniformity check",
-          "Extensive before photos (10–15+ angles)",
+          "Deeper disassembly if safe — seized, corroded or fragile parts not forced",
+          "Basic function check when safe and applicable",
+          "Extensive before photos (10–15+ angles, minimum exterior + interior)",
         ],
       },
       {
@@ -677,10 +681,10 @@ const prestige: PackageDetail = {
       {
         section: "Documentation & report",
         items: [
-          "Extensive after photos (10–15+ angles)",
+          "Extensive after photos (10–15+ angles, minimum exterior + interior)",
           "Written summary report emailed after service",
           "List of observations (worn parts, future maintenance recommendations)",
-          "Indicative estimate of remaining BBQ lifespan",
+          "General observations on the BBQ's condition and parts to watch",
         ],
       },
     ],
@@ -690,7 +694,8 @@ const prestige: PackageDetail = {
       "Réparations — on identifie les pièces à remplacer, on ne les remplace pas dans ce forfait",
       "Pièces de remplacement (brûleurs neufs, sear plates neuves, grilles neuves)",
       "Soudure, peinture, restauration de métal rouillé",
-      "Garantie « comme neuf » — un BBQ de 15 ans ne redeviendra jamais neuf, mais on s'approche du mieux raisonnable",
+      "Intervention sur les installations de gaz réglementées",
+      "Garantie « comme neuf », « 100 % garanti » ou résultat showroom — un BBQ de 15 ans ne redeviendra jamais neuf, mais on s'approche d'une remise en état visuelle importante",
       "Démontage de composantes liées au gaz (régulateur, valves) — c'est du diagnostic, pas du nettoyage",
       "BBQ avec dommages structurels majeurs (rouille perforante, cuve fissurée) — on évalue avant de procéder",
     ],
@@ -698,7 +703,8 @@ const prestige: PackageDetail = {
       "Repairs — we identify parts to replace, we don't replace them in this package",
       "Replacement parts (new burners, new sear plates, new grates)",
       "Welding, painting, rusted metal restoration",
-      "\"Like-new\" guarantee — a 15-year-old BBQ will never look new, but we get as close as reasonably possible",
+      "Work on regulated gas installations",
+      "\"Like-new\", \"100% guaranteed\" or showroom-finish promises — a 15-year-old BBQ will never look new, but we approach significant visual restoration",
       "Disassembly of gas-related components (regulator, valves) — that's diagnostic, not cleaning",
       "BBQs with major structural damage (rust perforation, cracked firebox) — we evaluate before proceeding",
     ],
@@ -711,7 +717,7 @@ const prestige: PackageDetail = {
       { title: "Vapeur + dégraissage avancé", body: "Application de vapeur sur firebox, hood interior, composantes appropriées. Dégraissant en multiples passes. Temps de contact contrôlé. Brossage minutieux." },
       { title: "Composantes individuelles", body: "Chaque grille, chaque sear plate, chaque brûleur traité individuellement. Inspection détaillée. On documente l'état de chaque pièce." },
       { title: "Finition esthétique", body: "Inox poli avec le grain (selon le matériau). Knobs et poignées détaillés. Badges nettoyés sans produit agressif. Aspect global le plus propre possible." },
-      { title: "Réassemblage, test, rapport", body: "Tout remonté avec attention. Test d'allumage et de fonctionnement complet. Photos extensives. Rapport sommaire envoyé par courriel après le service avec recommandations détaillées." },
+      { title: "Réassemblage, vérification, rapport", body: "Tout remonté avec attention. Vérification de fonctionnement de base lorsque sécuritaire et applicable. Photos avant / après extensives. Rapport sommaire envoyé par courriel après le service avec observations générales et recommandations." },
     ],
     en: [
       { title: "Detailed inspection (10–15 minutes)", body: "We take time to properly assess the BBQ's real condition. Brand, model, approximate age, buildup, critical parts. We confirm feasibility before starting." },
@@ -720,13 +726,13 @@ const prestige: PackageDetail = {
       { title: "Steam + advanced degreasing", body: "Steam applied to firebox, hood interior, appropriate components. Multi-pass degreaser. Controlled dwell time. Meticulous brushing." },
       { title: "Individual components", body: "Every grate, every sear plate, every burner treated individually. Detailed inspection. We document each part's condition." },
       { title: "Aesthetic finishing", body: "Stainless polished with the grain (per material). Knobs and handles detailed. Badges cleaned without aggressive products. Best possible overall finish." },
-      { title: "Reassembly, test, report", body: "Reassembled with care. Full ignition and function test. Extensive photos. Written summary report emailed after service with detailed recommendations." },
+      { title: "Reassembly, function check, report", body: "Reassembled with care. Basic function check when safe and applicable. Extensive before / after photos. Written summary report emailed after service with general observations and recommendations." },
     ],
   },
   duration: { fr: "5h à 7h+ sur place", en: "5 to 7+ hours on site" },
   durationNote: {
-    fr: "La Restauration Prestige prend le temps nécessaire pour bien faire le travail. Pour un BBQ extrêmement négligé, on peut proposer de scinder en deux visites. Toute condition particulière (BBQ très grand, encastré, commercial) peut nécessiter une estimation personnalisée — confirmée avant de commencer.",
-    en: "Prestige Steam Restoration takes the time needed to do it right. For an extremely neglected BBQ, we may suggest splitting into two visits. Any special condition (very large, built-in, commercial BBQ) may require a custom estimate — confirmed before starting.",
+    fr: "La Restauration Prestige prend le temps nécessaire pour bien faire le travail. Pour un BBQ extrêmement négligé, on peut proposer de scinder en deux visites. Toute condition particulière (BBQ très grand, encastré, commercial) peut nécessiter une estimation personnalisée — confirmée avant tout changement de service ou de tarif.",
+    en: "Prestige Steam Restoration takes the time needed to do it right. For an extremely neglected BBQ, we may suggest splitting into two visits. Any special condition (very large, built-in, commercial BBQ) may require a custom estimate — confirmed before any change of service or price.",
   },
   conditions: {
     fr: [
@@ -779,10 +785,10 @@ const prestige: PackageDetail = {
       },
     },
     {
-      q: { fr: "Vous garantissez « comme neuf »?", en: "Do you guarantee \"like-new\"?" },
+      q: { fr: "Vous garantissez « comme neuf » ?", en: "Do you guarantee \"like-new\"?" },
       a: {
-        fr: "Non. Un BBQ qui a 10-15 ans de carbone cuit, de rayures, de patine ne redeviendra jamais neuf — et c'est OK. Ce que la Restauration Prestige fait, c'est ramener le BBQ à l'état le plus propre et le plus fonctionnel raisonnablement possible selon son âge, son matériau et sa condition. Vous serez surpris du résultat, mais vous n'aurez pas un BBQ neuf — vous aurez votre BBQ, beaucoup plus agréable à utiliser.",
-        en: "No. A BBQ with 10–15 years of baked carbon, scratches, patina will never look new — and that's OK. What Prestige Steam Restoration does is bring the BBQ to the cleanest and most functional state reasonably possible given its age, material and condition. You'll be surprised by the result, but you won't have a new BBQ — you'll have your BBQ, much more pleasant to use.",
+        fr: "Non. Nous ne promettons pas « comme neuf », « 100 % garanti », ni résultat showroom. Un BBQ qui a 10-15 ans de carbone cuit, de rayures, de patine ne redeviendra jamais neuf — et c'est OK. Ce que la Restauration Prestige fait, c'est une remise en état visuelle importante : ramener le BBQ à l'état le plus propre raisonnablement possible selon son âge, son matériau et sa condition. Vous serez surpris du résultat, mais vous n'aurez pas un BBQ neuf — vous aurez votre BBQ, beaucoup plus agréable à utiliser.",
+        en: "No. We don't promise \"like-new\", \"100% guaranteed\" or showroom-finish results. A BBQ with 10–15 years of baked carbon, scratches, patina will never look new — and that's OK. What Prestige Steam Restoration does is significant visual restoration: bringing the BBQ to the cleanest state reasonably possible given its age, material and condition. You'll be surprised by the result, but you won't have a new BBQ — you'll have your BBQ, much more pleasant to use.",
       },
     },
     {
