@@ -338,7 +338,7 @@ const signature: PackageDetail = {
         ],
       },
       {
-        section: "Nettoyage approfondi (avec vapeur au besoin sur les composantes compatibles)",
+        section: "Nettoyage approfondi",
         items: [
           "Grilles : pré-grattage, dégraissant ciblé, brossage intensif, deuxième application si requis sur les zones tenaces, rinçage et séchage",
           "Sear plates : grattage prolongé, dégraissage, brossage à fond, rinçage contrôlé",
@@ -348,6 +348,7 @@ const signature: PackageDetail = {
           "Bac à graisse et grease management : dégraissage complet",
           "Extérieur : nettoyage détaillé des poignées, boutons, panneaux, côtés, traces de graisse",
           "Inox : nettoyage avec le grain, microfibre, produit approprié",
+          "Nettoyage vapeur utilisé au besoin sur les composantes compatibles, selon l'état du BBQ et les matériaux",
         ],
       },
       {
@@ -381,7 +382,7 @@ const signature: PackageDetail = {
         ],
       },
       {
-        section: "Deep cleaning (with steam as needed on compatible components)",
+        section: "Deep cleaning",
         items: [
           "Grates: pre-scraping, targeted degreaser, intensive brushing, second application on tough zones, rinse and dry",
           "Sear plates: extended scraping, degreasing, thorough brushing, controlled rinse",
@@ -391,6 +392,7 @@ const signature: PackageDetail = {
           "Grease pan and grease management: full degreasing",
           "Exterior: detailed cleaning of handles, knobs, panels, sides, grease traces",
           "Stainless: with the grain, microfiber, proper product",
+          "Steam cleaning used as needed on compatible components, depending on the BBQ's condition and materials",
         ],
       },
       {
@@ -408,7 +410,6 @@ const signature: PackageDetail = {
   },
   whatNotIncluded: {
     fr: [
-      "Vapeur garantie sur l'ensemble du BBQ — la vapeur est utilisée au besoin sur les composantes compatibles, selon l'état du BBQ et les matériaux",
       "Restauration esthétique avancée / polissage inox détaillé — c'est le forfait Restauration qui pousse cette finition",
       "Réparation ou remplacement de pièces (Diagnostic à 99 $, pièces et main-d'œuvre en sus si vous procédez)",
       "Démontage forcé de pièces corrodées, saisies ou fragiles",
@@ -419,7 +420,6 @@ const signature: PackageDetail = {
       "Garantie « comme neuf », « 100 % garanti » ou résultat showroom — votre BBQ va sortir beaucoup plus propre et plus agréable à utiliser, mais on n'efface pas plusieurs saisons d'usure",
     ],
     en: [
-      "Guaranteed steam over the entire BBQ — steam is used as needed on compatible components, depending on the BBQ's condition and materials",
       "Advanced aesthetic restoration / detailed stainless polishing — that finish lives in the Restoration package",
       "Repair or part replacement ($99 Diagnostic, parts + labor extra if you proceed)",
       "Forced disassembly of corroded, seized or fragile parts",
@@ -500,10 +500,10 @@ const signature: PackageDetail = {
       },
     },
     {
-      q: { fr: "Est-ce que la vapeur est utilisée dans le forfait Nettoyage ?", en: "Is steam used in the Cleaning package?" },
+      q: { fr: "Est-ce que la vapeur est incluse dans le forfait Nettoyage ?", en: "Is steam included in the Cleaning package?" },
       a: {
-        fr: "Au besoin, oui — sur les composantes compatibles, selon l'état du BBQ et les matériaux. La vapeur n'est pas une promesse automatique : c'est un outil qu'on utilise lorsque c'est pertinent pour aider au dégraissage. Pour la majorité des BBQ après une saison ou deux, le dégraissage approfondi du Nettoyage donne un excellent résultat. Quand le BBQ a été négligé plusieurs saisons, que les dépôts sont cuits-recuits, ou que c'est un BBQ premium de 10 ans et plus, le forfait Restauration (à partir de 399 $) va plus loin avec multiples passes et vapeur au besoin plus poussée selon l'état.",
-        en: "As needed, yes — on compatible components, depending on the BBQ's condition and materials. Steam isn't an automatic promise: it's a tool we use when it makes sense to help degreasing. For most BBQs after a season or two, the Cleaning package's deep degreasing gets excellent results. When the BBQ has been neglected for several seasons, deposits are baked-and-rebaked, or it's a premium BBQ 10+ years old, the Restoration package (from $399) goes further with multiple passes and more thorough steam as needed by condition.",
+        fr: "La vapeur peut être utilisée au besoin sur les composantes compatibles, selon l'état du BBQ, les matériaux et le jugement du technicien. Elle n'est pas promise systématiquement, car elle n'est pas toujours nécessaire ou appropriée.",
+        en: "Steam may be used as needed on compatible components, depending on the BBQ's condition, materials and the technician's judgment. It isn't promised systematically, because it isn't always necessary or appropriate.",
       },
     },
     {

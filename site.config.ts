@@ -455,7 +455,7 @@ export const siteConfig = {
       } satisfies Bilingual,
     },
     {
-      icon: "✅",
+      icon: "👍",
       title: { fr: "Service à la hauteur", en: "Service that holds up" } satisfies Bilingual,
       body: {
         fr: "Si quelque chose inclus dans le forfait n'est pas à la hauteur, contactez-nous rapidement et nous corrigerons la situation.",
