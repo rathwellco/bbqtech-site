@@ -23,10 +23,10 @@ export interface PackageDetail {
 
 const essential: PackageDetail = {
   key: "essential",
-  slug: { fr: "entretien-essentiel", en: "essential-maintenance" },
+  slug: { fr: "entretien", en: "maintenance" },
   metaTitle: {
-    fr: "Forfait Entretien BBQ — Préparation saisonnière | BBQTECH Gatineau & Ottawa",
-    en: "Maintenance package — Seasonal BBQ Prep | BBQTECH Gatineau & Ottawa",
+    fr: "Forfait Entretien BBQ à domicile | BBQTECH Gatineau & Ottawa",
+    en: "BBQ Maintenance Package at Home | BBQTECH Gatineau & Ottawa",
   },
   metaDescription: {
     fr: "Forfait Entretien : entretien saisonnier léger pour un BBQ fonctionnel — inspection visuelle, nettoyage de base et remise en ordre avant la saison. 199 $ + taxes. Gatineau, Aylmer, Hull, Ottawa.",
@@ -279,10 +279,10 @@ const essential: PackageDetail = {
 
 const signature: PackageDetail = {
   key: "signature",
-  slug: { fr: "nettoyage-signature", en: "signature-cleaning" },
+  slug: { fr: "nettoyage", en: "cleaning" },
   metaTitle: {
-    fr: "Forfait Nettoyage BBQ — Nettoyage annuel approfondi recommandé | BBQTECH Gatineau & Ottawa",
-    en: "Cleaning package — Recommended Deep BBQ Cleaning | BBQTECH Gatineau & Ottawa",
+    fr: "Forfait Nettoyage BBQ à domicile | BBQTECH Gatineau & Ottawa",
+    en: "BBQ Cleaning Package at Home | BBQTECH Gatineau & Ottawa",
   },
   metaDescription: {
     fr: "Nettoyage BBQ annuel plus approfondi : dégraissage à deux applications, composantes détaillées et vapeur au besoin sur les composantes compatibles. Forfait recommandé à 299 $ + taxes. Gatineau, Aylmer, Hull, Ottawa.",
@@ -495,8 +495,8 @@ const signature: PackageDetail = {
     {
       q: { fr: "C'est quoi la vraie différence entre l'Entretien et le Nettoyage ?", en: "What's the real difference between Maintenance and Cleaning?" },
       a: {
-        fr: "L'Entretien est un nettoyage léger avec inspection — idéal pour préparer le BBQ pour la saison. Le Nettoyage, c'est un vrai nettoyage annuel plus approfondi : pré-grattage, deux applications de dégraissant lorsque nécessaire sur les zones tenaces, brossage intensif, on retourne dans les coins. La vapeur peut être utilisée au besoin sur les composantes compatibles, selon l'état du BBQ et les matériaux. Pour un BBQ utilisé tout l'été sans nettoyage sérieux, l'Entretien ne décolle pas la graisse cuite. Le Nettoyage, oui.",
-        en: "Maintenance is light cleaning with inspection — ideal for season prep. Cleaning is a real, more thorough annual cleaning: pre-scraping, two degreaser applications when needed on stubborn zones, intensive brushing, comes back to corners. Steam may be used as needed on compatible components, depending on the BBQ's condition and materials. For a BBQ used all summer without serious cleaning, Maintenance won't lift baked grease. Cleaning will.",
+        fr: "L'Entretien est un nettoyage léger avec inspection — idéal pour préparer le BBQ pour la saison. Le forfait Nettoyage, c'est un vrai nettoyage annuel plus approfondi : pré-grattage, deux applications de dégraissant lorsque nécessaire sur les zones tenaces, brossage intensif, on retourne dans les coins. La vapeur peut être utilisée au besoin sur les composantes compatibles, selon l'état du BBQ et les matériaux. Pour un BBQ utilisé tout l'été sans nettoyage sérieux, l'Entretien ne suffit pas pour décoller la graisse cuite — le forfait Nettoyage est conçu pour ça.",
+        en: "Maintenance is light cleaning with inspection — ideal for season prep. The Cleaning package is a real, more thorough annual cleaning: pre-scraping, two degreaser applications when needed on stubborn zones, intensive brushing, comes back to corners. Steam may be used as needed on compatible components, depending on the BBQ's condition and materials. For a BBQ used all summer without serious cleaning, Maintenance won't lift baked grease — the Cleaning package is built for that.",
       },
     },
     {
@@ -554,10 +554,10 @@ const signature: PackageDetail = {
 
 const prestige: PackageDetail = {
   key: "prestige",
-  slug: { fr: "restauration-prestige-vapeur", en: "prestige-steam-restoration" },
+  slug: { fr: "restauration", en: "restoration" },
   metaTitle: {
-    fr: "Forfait Restauration BBQ — Remise en état plus poussée | BBQTECH Gatineau & Ottawa",
-    en: "Restoration package — More advanced BBQ restoration | BBQTECH Gatineau & Ottawa",
+    fr: "Forfait Restauration BBQ à domicile | BBQTECH Gatineau & Ottawa",
+    en: "BBQ Restoration Package at Home | BBQTECH Gatineau & Ottawa",
   },
   metaDescription: {
     fr: "Remise en état plus poussée pour BBQ très encrassés, premium, négligés depuis longtemps ou nécessitant plus de temps. Multiples passes, vapeur au besoin sur les composantes compatibles, finition détaillée. À partir de 399 $ + taxes. Photos extensives et rapport sommaire inclus. Gatineau et Ottawa.",
@@ -572,15 +572,15 @@ const prestige: PackageDetail = {
       "Votre BBQ a 8+ ans et a été négligé plusieurs saisons.",
       "C'est un BBQ premium : Napoleon Prestige, Weber Summit, Lynx, DCS, Twin Eagles, Viking, Fire Magic.",
       "La graisse est cuite-recuite, les sear plates sont noires, les brûleurs ne sont plus uniformes.",
-      "Vous voulez le maximum d'amélioration esthétique et de performance possible, sans le remplacer.",
-      "Vous tenez à votre BBQ comme à un meuble premium — vous voulez le sauver, pas le remplacer.",
+      "Vous voulez une remise en état plus poussée et des recommandations claires avant d'envisager un remplacement.",
+      "Vous tenez à votre BBQ et souhaitez évaluer s'il peut être remis en meilleur état avant d'envisager un remplacement.",
     ],
     en: [
       "Your BBQ is 8+ years old and has been neglected for multiple seasons.",
       "It's a premium BBQ: Napoleon Prestige, Weber Summit, Lynx, DCS, Twin Eagles, Viking, Fire Magic.",
       "Grease is baked-and-rebaked, sear plates are black, burners are no longer uniform.",
-      "You want maximum aesthetic improvement and performance possible, without replacing it.",
-      "You value your BBQ like a premium piece of furniture — you want to save it, not replace it.",
+      "You want a more advanced restoration and clear recommendations before considering replacement.",
+      "You value your BBQ and want to assess whether it can be brought back to better condition before considering replacement.",
     ],
   },
   whoNotFor: {
@@ -695,7 +695,7 @@ const prestige: PackageDetail = {
       "Pièces de remplacement (brûleurs neufs, sear plates neuves, grilles neuves)",
       "Soudure, peinture, restauration de métal rouillé",
       "Intervention sur les installations de gaz réglementées",
-      "Garantie « comme neuf », « 100 % garanti » ou résultat showroom — un BBQ de 15 ans ne redeviendra jamais neuf, mais on s'approche d'une remise en état visuelle importante",
+      "Garantie « comme neuf », « 100 % garanti » ou résultat showroom — un BBQ de 15 ans ne redeviendra jamais neuf, mais le service peut offrir une amélioration visuelle importante lorsque l'état des matériaux le permet.",
       "Démontage de composantes liées au gaz (régulateur, valves) — c'est du diagnostic, pas du nettoyage",
       "BBQ avec dommages structurels majeurs (rouille perforante, cuve fissurée) — on évalue avant de procéder",
     ],
@@ -704,7 +704,7 @@ const prestige: PackageDetail = {
       "Replacement parts (new burners, new sear plates, new grates)",
       "Welding, painting, rusted metal restoration",
       "Work on regulated gas installations",
-      "\"Like-new\", \"100% guaranteed\" or showroom-finish promises — a 15-year-old BBQ will never look new, but we approach significant visual restoration",
+      "\"Like-new\", \"100% guaranteed\" or showroom-finish promises — a 15-year-old BBQ will never look new, but the service can offer significant visual improvement when the materials' condition allows.",
       "Disassembly of gas-related components (regulator, valves) — that's diagnostic, not cleaning",
       "BBQs with major structural damage (rust perforation, cracked firebox) — we evaluate before proceeding",
     ],
@@ -787,8 +787,8 @@ const prestige: PackageDetail = {
     {
       q: { fr: "Vous garantissez « comme neuf » ?", en: "Do you guarantee \"like-new\"?" },
       a: {
-        fr: "Non. Nous ne promettons pas « comme neuf », « 100 % garanti », ni résultat showroom. Un BBQ qui a 10-15 ans de carbone cuit, de rayures, de patine ne redeviendra jamais neuf — et c'est OK. Ce que le forfait Restauration fait, c'est une remise en état visuelle importante : ramener le BBQ à l'état le plus propre raisonnablement possible selon son âge, son matériau et sa condition. Vous serez surpris du résultat, mais vous n'aurez pas un BBQ neuf — vous aurez votre BBQ, beaucoup plus agréable à utiliser.",
-        en: "No. We don't promise \"like-new\", \"100% guaranteed\" or showroom-finish results. A BBQ with 10–15 years of baked carbon, scratches, patina will never look new — and that's OK. What the Restoration package does is significant visual restoration: bringing the BBQ to the cleanest state reasonably possible given its age, material and condition. You'll be surprised by the result, but you won't have a new BBQ — you'll have your BBQ, much more pleasant to use.",
+        fr: "Non. Nous ne promettons pas « comme neuf », « 100 % garanti », ni résultat showroom. Un BBQ qui a 10-15 ans de carbone cuit, de rayures, de patine ne redeviendra jamais neuf — et c'est OK. Ce que le forfait Restauration peut offrir, c'est une amélioration visuelle importante lorsque l'état des matériaux le permet : ramener le BBQ à l'état le plus propre raisonnablement possible selon son âge, son matériau et sa condition. Vous serez surpris du résultat, mais vous n'aurez pas un BBQ neuf — vous aurez votre BBQ, beaucoup plus agréable à utiliser.",
+        en: "No. We don't promise \"like-new\", \"100% guaranteed\" or showroom-finish results. A BBQ with 10–15 years of baked carbon, scratches, patina will never look new — and that's OK. What the Restoration package can offer is significant visual improvement when the materials' condition allows: bringing the BBQ to the cleanest state reasonably possible given its age, material and condition. You'll be surprised by the result, but you won't have a new BBQ — you'll have your BBQ, much more pleasant to use.",
       },
     },
     {

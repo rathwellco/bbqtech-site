@@ -21,12 +21,15 @@ interface Props {
 const { pkgKey } = Astro.props;
 const detail = packageDetails[pkgKey];
 const lang = "fr" as const;
+const altLocaleUrl = `/en/packages/${detail.slug.en}/`;
 ---
 
 <Base
   lang={lang}
   title={t(detail.metaTitle, lang)}
   description={t(detail.metaDescription, lang)}
+  pageTitleOverride={t(detail.metaTitle, lang)}
+  altLocaleUrl={altLocaleUrl}
 >
   <PackageDetailPage lang={lang} pkgKey={pkgKey} />
 </Base>

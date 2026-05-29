@@ -76,7 +76,7 @@ const surchargeLabel = lang === "fr"
 
 const h1Text = lang === "fr"
   ? `Forfait ${t(cardPkg.name, lang)} BBQ à domicile`
-  : `${t(cardPkg.name, lang)} package — On-site BBQ service`;
+  : `BBQ ${t(cardPkg.name, lang)} Package at Home`;
 ---
 
 <!-- Breadcrumb -->
@@ -286,8 +286,8 @@ const h1Text = lang === "fr"
       {otherPkgs.map((other) => {
         const otherCard = siteConfig.packages.find((p) => p.key === other.key)!;
         const detailUrl = lang === "fr"
-          ? `/forfaits/${other.slug.fr}`
-          : `/en/packages/${other.slug.en}`;
+          ? `/forfaits/${other.slug.fr}/`
+          : `/en/packages/${other.slug.en}/`;
         return (
           <a
             href={detailUrl}

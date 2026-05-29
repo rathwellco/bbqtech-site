@@ -81,7 +81,7 @@ const labels = {
       {siteConfig.packages.map((pkg) => {
         const isRecommended = pkg.key === "signature";
         const detail = packageDetails[pkg.key as keyof typeof packageDetails];
-        const detailUrl = `${detailsBase}/${detail.slug[lang]}`;
+        const detailUrl = `${detailsBase}/${detail.slug[lang]}/`;
         return (
           <div class:list={[
             "relative bg-white border rounded-2xl p-6 md:p-7 flex flex-col transition-all",

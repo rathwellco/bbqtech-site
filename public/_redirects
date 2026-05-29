@@ -1,0 +1,14 @@
+# Package slug migration — 2026-05-29
+# Old → new (301 permanent)
+/forfaits/entretien-essentiel             /forfaits/entretien             301
+/forfaits/entretien-essentiel/            /forfaits/entretien/            301
+/forfaits/nettoyage-signature             /forfaits/nettoyage             301
+/forfaits/nettoyage-signature/            /forfaits/nettoyage/            301
+/forfaits/restauration-prestige-vapeur    /forfaits/restauration          301
+/forfaits/restauration-prestige-vapeur/   /forfaits/restauration/         301
+/en/packages/essential-maintenance        /en/packages/maintenance        301
+/en/packages/essential-maintenance/       /en/packages/maintenance/       301
+/en/packages/signature-cleaning           /en/packages/cleaning           301
+/en/packages/signature-cleaning/          /en/packages/cleaning/          301
+/en/packages/prestige-steam-restoration   /en/packages/restoration        301
+/en/packages/prestige-steam-restoration/  /en/packages/restoration/       301

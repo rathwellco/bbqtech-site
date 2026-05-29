@@ -11,15 +11,19 @@ interface Props {
   title: string;
   description?: string;
   canonicalUrl?: string;
+  /** Override the full <title> tag (skips the titleTemplate wrap). */
+  pageTitleOverride?: string;
+  /** Explicit other-locale path for hreflang pairing (e.g. /en/packages/maintenance/). */
+  altLocaleUrl?: string;
 }
 
-const { lang, title, description, canonicalUrl } = Astro.props;
-const pageTitle = t(siteConfig.seo.titleTemplate, lang).replace("%s", title);
+const { lang, title, description, canonicalUrl, pageTitleOverride, altLocaleUrl } = Astro.props;
+const pageTitle = pageTitleOverride ?? t(siteConfig.seo.titleTemplate, lang).replace("%s", title);
 const pageDescription = description || t(siteConfig.seo.defaultDescription, lang);
 const pageOgImage = siteConfig.seo.ogImage;
 
 const currentPath = Astro.url.pathname;
-const altUrl = getAltLocaleUrl(currentPath, lang);
+const altUrl = altLocaleUrl ?? getAltLocaleUrl(currentPath, lang);
 const frUrl = lang === "fr" ? currentPath : altUrl;
 const enUrl = lang === "en" ? currentPath : altUrl;
 const canonical = canonicalUrl || `${siteConfig.url}${currentPath}`;

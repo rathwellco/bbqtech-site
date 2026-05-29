@@ -78,7 +78,7 @@ const labels = {
     <div class="space-y-4">
       {labels.rows.map((row) => {
         const detail = packageDetails[row.forfaitKey];
-        const url = `${detailsBase}/${detail.slug[lang]}`;
+        const url = `${detailsBase}/${detail.slug[lang]}/`;
         return (
           <a
             href={url}
