@@ -101,8 +101,8 @@ export const siteConfig = {
       shortLabel: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       title: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       body: {
-        fr: "Forfaits clairs : Entretien Essentiel 199 $, Nettoyage Signature 299 $, Restauration Prestige à partir de 399 $. Assemblage à partir de 149 $, diagnostic réparation 99 $. Aucun changement de tarif sans votre accord.",
-        en: "Clear packages: Essential Maintenance $199, Signature Cleaning $299, Prestige Steam Restoration from $399. Assembly from $149, repair diagnostic $99. No price change without your approval.",
+        fr: "Forfaits clairs : Entretien 199 $, Nettoyage 299 $, Restauration à partir de 399 $. Assemblage à partir de 149 $, diagnostic réparation 99 $. Aucun changement de tarif sans votre accord.",
+        en: "Clear packages: Maintenance $199, Cleaning $299, Restoration from $399. Assembly from $149, repair diagnostic $99. No price change without your approval.",
       } satisfies Bilingual,
     },
     {
@@ -142,8 +142,8 @@ export const siteConfig = {
       name: { fr: "Nettoyage BBQ à domicile", en: "On-site BBQ Cleaning" } satisfies Bilingual,
       priceLabel: { fr: "À partir de 199 $", en: "From $199" } satisfies Bilingual,
       summary: {
-        fr: "Service mobile de nettoyage et d'entretien à domicile pour BBQ, grills, smokers et équipements de cuisson extérieure. 3 forfaits selon l'état : Entretien Essentiel, Nettoyage Signature, Restauration Prestige.",
-        en: "Mobile on-site cleaning and maintenance service for BBQs, grills, smokers and outdoor cooking equipment. 3 packages by condition: Essential Maintenance, Signature Cleaning, Prestige Steam Restoration.",
+        fr: "Service mobile de nettoyage et d'entretien à domicile pour BBQ, grills, smokers et équipements de cuisson extérieure. 3 forfaits selon l'état : Entretien, Nettoyage et Restauration.",
+        en: "Mobile on-site cleaning and maintenance service for BBQs, grills, smokers and outdoor cooking equipment. 3 packages by condition: Maintenance, Cleaning and Restoration.",
       } satisfies Bilingual,
     },
     {
@@ -158,7 +158,7 @@ export const siteConfig = {
     },
     {
       slug: "reparation",
-      icon: "🛠️",
+      icon: "🔧",
       name: { fr: "Diagnostic & Réparation", en: "Diagnostic & Repair" } satisfies Bilingual,
       priceLabel: { fr: "99 $", en: "$99" } satisfies Bilingual,
       summary: {
@@ -182,51 +182,51 @@ export const siteConfig = {
   packages: [
     {
       key: "essential",
-      name: { fr: "Entretien Essentiel", en: "Essential Maintenance" } satisfies Bilingual,
+      name: { fr: "Entretien", en: "Maintenance" } satisfies Bilingual,
       price: 199,
       priceLabel: { fr: "199 $ + tx", en: "$199 + tx" } satisfies Bilingual,
       surchargePerBurner: 49,
       method: {
-        fr: "Inspection · Nettoyage saisonnier léger",
-        en: "Inspection · Light seasonal cleaning",
+        fr: "Inspection · Entretien saisonnier léger",
+        en: "Inspection · Light seasonal upkeep",
       } satisfies Bilingual,
       useCase: {
-        fr: "Pour un BBQ fonctionnel qui a besoin d'un entretien saisonnier léger.",
-        en: "For a functional BBQ that needs light seasonal maintenance.",
+        fr: "Pour un BBQ fonctionnel qui a besoin d'un entretien saisonnier léger, d'une inspection visuelle, d'un nettoyage de base et d'une remise en ordre avant la saison.",
+        en: "For a functional BBQ that needs light seasonal upkeep, a visual inspection, basic cleaning and a tidy-up before the season.",
       } satisfies Bilingual,
       ctaLabel: { fr: "Réserver mon service", en: "Book my service" } satisfies Bilingual,
       badge: null,
     },
     {
       key: "signature",
-      name: { fr: "Nettoyage Signature", en: "Signature Cleaning" } satisfies Bilingual,
+      name: { fr: "Nettoyage", en: "Cleaning" } satisfies Bilingual,
       price: 299,
       priceLabel: { fr: "299 $ + tx", en: "$299 + tx" } satisfies Bilingual,
       surchargePerBurner: 49,
       method: {
-        fr: "Dégraissage approfondi · Deux applications · Composantes détaillées",
-        en: "Deep degreasing · Two passes · Detailed components",
+        fr: "Dégraissage approfondi · Composantes détaillées · Nettoyage annuel · Vapeur au besoin",
+        en: "Deep degreasing · Detailed components · Annual cleaning · Steam as needed",
       } satisfies Bilingual,
       useCase: {
-        fr: "Pour un BBQ utilisé régulièrement qui a besoin d'un nettoyage annuel plus approfondi.",
-        en: "For a BBQ used regularly that needs a more thorough annual cleaning.",
+        fr: "Pour un BBQ utilisé régulièrement qui a besoin d'un nettoyage annuel plus approfondi. Selon l'état du BBQ et les matériaux, la vapeur peut être utilisée au besoin sur les composantes compatibles.",
+        en: "For a BBQ used regularly that needs a more thorough annual cleaning. Depending on the BBQ's condition and materials, steam may be used as needed on compatible components.",
       } satisfies Bilingual,
       ctaLabel: { fr: "Réserver mon service", en: "Book my service" } satisfies Bilingual,
       badge: { fr: "Recommandé", en: "Recommended" } satisfies Bilingual,
     },
     {
       key: "prestige",
-      name: { fr: "Restauration Prestige", en: "Prestige Steam Restoration" } satisfies Bilingual,
+      name: { fr: "Restauration", en: "Restoration" } satisfies Bilingual,
       price: 399,
       priceLabel: { fr: "À partir de 399 $ + tx", en: "From $399 + tax" } satisfies Bilingual,
       surchargePerBurner: 49,
       method: {
-        fr: "Vapeur · Multiples passes · Finition détaillée · Rapport",
-        en: "Steam · Multiple passes · Detailed finish · Report",
+        fr: "Multiples passes · Vapeur au besoin · Finition détaillée · Observations",
+        en: "Multiple passes · Steam as needed · Detailed finish · Observations",
       } satisfies Bilingual,
       useCase: {
-        fr: "Pour les BBQ très encrassés, premium, négligés depuis longtemps ou nécessitant une remise en état plus poussée.",
-        en: "For very dirty, premium, long-neglected BBQs or those needing a more advanced restoration.",
+        fr: "Remise en état plus poussée pour les BBQ très encrassés, premium, négligés depuis longtemps ou nécessitant plus de temps. La vapeur peut être utilisée au besoin sur les composantes compatibles, selon l'état du BBQ et les matériaux.",
+        en: "More advanced restoration for heavily soiled, premium, long-neglected BBQs or those needing more time. Steam may be used as needed on compatible components, depending on the BBQ's condition and materials.",
       } satisfies Bilingual,
       ctaLabel: { fr: "Réserver mon service", en: "Book my service" } satisfies Bilingual,
       badge: null,
@@ -442,7 +442,7 @@ export const siteConfig = {
   // ─── COMMITMENTS ───
   commitments: [
     {
-      icon: "🛡️",
+      icon: "🔒",
       title: { fr: "Assuré", en: "Insured" } satisfies Bilingual,
       body: { fr: "Couverture responsabilité civile complète.", en: "Full liability coverage." } satisfies Bilingual,
     },
@@ -487,8 +487,8 @@ export const siteConfig = {
     {
       q: { fr: "Combien coûte un nettoyage de BBQ ?", en: "How much does a BBQ cleaning cost?" } satisfies Bilingual,
       a: {
-        fr: "Nos forfaits sont à 199 $ (Entretien Essentiel — entretien saisonnier léger), 299 $ (Nettoyage Signature — nettoyage annuel plus approfondi) et à partir de 399 $ (Restauration Prestige — pour BBQ très encrassé, premium ou négligé depuis longtemps). Le forfait approprié dépend de l'état de votre BBQ. Envoyez-nous une photo pour une recommandation précise.",
-        en: "Our packages are $199 (Essential Maintenance — light seasonal upkeep), $299 (Signature Cleaning — more thorough annual cleaning) and from $399 (Prestige Steam Restoration — for heavily soiled, premium or long-neglected BBQs). The right package depends on your BBQ's condition. Send us a photo for a precise recommendation.",
+        fr: "Nos forfaits sont à 199 $ (Entretien — entretien saisonnier léger), 299 $ (Nettoyage — nettoyage annuel plus approfondi) et à partir de 399 $ (Restauration — pour BBQ très encrassé, premium ou négligé depuis longtemps). Le forfait approprié dépend de l'état de votre BBQ. Envoyez-nous une photo pour une recommandation précise.",
+        en: "Our packages are $199 (Maintenance — light seasonal upkeep), $299 (Cleaning — more thorough annual cleaning) and from $399 (Restoration — for heavily soiled, premium or long-neglected BBQs). The right package depends on your BBQ's condition. Send us a photo for a precise recommendation.",
       } satisfies Bilingual,
     },
     {

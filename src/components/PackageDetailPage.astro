@@ -73,6 +73,10 @@ const labels = {
 const surchargeLabel = lang === "fr"
   ? `+${cardPkg.surchargePerBurner} $ par brûleur principal additionnel (au-delà de 4)`
   : `+$${cardPkg.surchargePerBurner} per additional main burner (beyond 4)`;
+
+const h1Text = lang === "fr"
+  ? `Forfait ${t(cardPkg.name, lang)} BBQ à domicile`
+  : `${t(cardPkg.name, lang)} package — On-site BBQ service`;
 ---
 
 <!-- Breadcrumb -->
@@ -95,7 +99,7 @@ const surchargeLabel = lang === "fr"
       </span>
     )}
     <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight">
-      {t(cardPkg.name, lang)}
+      {h1Text}
     </h1>
     <p class="text-lg md:text-xl text-white/85 max-w-3xl mb-8 leading-relaxed">
       {t(detail.heroSubtitle, lang)}

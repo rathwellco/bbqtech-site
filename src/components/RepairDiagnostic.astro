@@ -35,7 +35,7 @@ const gasLimitLabel = lang === "fr" ? "Limites — installations de gaz" : "Limi
             <span>{t(r.creditNote, lang)}</span>
           </p>
           <p class="flex items-start gap-2">
-            <span class="text-white/40 shrink-0 mt-0.5">ⓘ</span>
+            <span class="text-white/40 shrink-0 mt-0.5 font-bold">i</span>
             <span class="text-white/70">{t(r.disclaimer, lang)}</span>
           </p>
         </div>
@@ -82,14 +82,14 @@ const gasLimitLabel = lang === "fr" ? "Limites — installations de gaz" : "Limi
 
         <div class="mt-4 p-4 bg-white border-l-4 border-accent border border-grey-mid/50 rounded-lg">
           <p class="text-xs font-bold uppercase tracking-wider text-accent mb-2">
-            ⚠ {gasLimitLabel}
+            {gasLimitLabel}
           </p>
           <p class="text-sm text-dark leading-relaxed">{t(r.gasLimit, lang)}</p>
         </div>
 
         <div class="mt-4 p-4 bg-white border border-grey-mid/50 rounded-lg">
           <p class="text-xs font-bold uppercase tracking-wider text-grey mb-2">
-            🛠 {prepLabel}
+            {prepLabel}
           </p>
           <p class="text-sm text-grey leading-relaxed">{t(r.diagnosticPrep, lang)}</p>
         </div>

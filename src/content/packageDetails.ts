@@ -25,16 +25,16 @@ const essential: PackageDetail = {
   key: "essential",
   slug: { fr: "entretien-essentiel", en: "essential-maintenance" },
   metaTitle: {
-    fr: "Entretien Essentiel — Préparation BBQ saisonnière | BBQTECH Gatineau & Ottawa",
-    en: "Essential Maintenance — Seasonal BBQ Prep | BBQTECH Gatineau & Ottawa",
+    fr: "Forfait Entretien BBQ — Préparation saisonnière | BBQTECH Gatineau & Ottawa",
+    en: "Maintenance package — Seasonal BBQ Prep | BBQTECH Gatineau & Ottawa",
   },
   metaDescription: {
-    fr: "Entretien saisonnier léger pour un BBQ fonctionnel : inspection visuelle, nettoyage léger et vérification de fonctionnement de base lorsque sécuritaire. 199 $ + taxes. Gatineau, Aylmer, Hull, Ottawa.",
-    en: "Light seasonal maintenance for a functional BBQ: visual inspection, light cleaning and basic function check when safe. $199 + tax. Gatineau, Aylmer, Hull, Ottawa.",
+    fr: "Forfait Entretien : entretien saisonnier léger pour un BBQ fonctionnel — inspection visuelle, nettoyage de base et remise en ordre avant la saison. 199 $ + taxes. Gatineau, Aylmer, Hull, Ottawa.",
+    en: "Maintenance package: light seasonal upkeep for a functional BBQ — visual inspection, basic cleaning and tidy-up before the season. $199 + tax. Gatineau, Aylmer, Hull, Ottawa.",
   },
   heroSubtitle: {
-    fr: "L'entretien saisonnier. Inspection visuelle, nettoyage léger et vérification de fonctionnement de base — pour un BBQ fonctionnel qui a besoin d'un entretien saisonnier léger.",
-    en: "Seasonal maintenance. Visual inspection, light cleaning and basic function check — for a functional BBQ that needs light seasonal upkeep.",
+    fr: "Entretien saisonnier léger pour un BBQ fonctionnel : inspection visuelle, nettoyage de base et remise en ordre avant la saison.",
+    en: "Light seasonal upkeep for a functional BBQ: visual inspection, basic cleaning and tidy-up before the season.",
   },
   whoFor: {
     fr: [
@@ -52,12 +52,12 @@ const essential: PackageDetail = {
   },
   whoNotFor: {
     fr: [
-      { situation: "Votre BBQ a une saison ou plus de graisse accumulée et a besoin d'un vrai nettoyage en profondeur.", pointTo: "Nettoyage Signature à 299 $" },
-      { situation: "BBQ très encrassé, premium ou négligé depuis plusieurs saisons.", pointTo: "Restauration Prestige à partir de 399 $" },
+      { situation: "Votre BBQ a une saison ou plus de graisse accumulée et a besoin d'un vrai nettoyage en profondeur.", pointTo: "Forfait Nettoyage à 299 $" },
+      { situation: "BBQ très encrassé, premium ou négligé depuis plusieurs saisons.", pointTo: "Forfait Restauration à partir de 399 $" },
     ],
     en: [
-      { situation: "Your BBQ has a season or more of accumulated grease and needs real deep cleaning.", pointTo: "Signature Cleaning at $299" },
-      { situation: "Very dirty BBQ, premium, or neglected for multiple seasons.", pointTo: "Prestige Steam Restoration from $399" },
+      { situation: "Your BBQ has a season or more of accumulated grease and needs real deep cleaning.", pointTo: "Cleaning package at $299" },
+      { situation: "Very dirty BBQ, premium, or neglected for multiple seasons.", pointTo: "Restoration package from $399" },
     ],
   },
   whatIncluded: {
@@ -148,8 +148,8 @@ const essential: PackageDetail = {
   },
   whatNotIncluded: {
     fr: [
-      "Dégraissage approfondi en multiples passes — c'est le Nettoyage Signature à 299 $",
-      "Nettoyage vapeur — c'est la Restauration Prestige à partir de 399 $",
+      "Dégraissage approfondi en multiples passes — c'est le forfait Nettoyage à 299 $",
+      "Nettoyage vapeur — utilisé au besoin dans les forfaits Nettoyage et Restauration",
       "Polissage inox détaillé",
       "Démontage forcé de pièces corrodées, saisies ou fragiles",
       "Réparation ou remplacement de pièces (notre service Diagnostic à 99 $ couvre ça)",
@@ -157,8 +157,8 @@ const essential: PackageDetail = {
       "Garantie « comme neuf », « 100 % garanti » ou résultat showroom",
     ],
     en: [
-      "Deep multi-pass degreasing — that's Signature Cleaning at $299",
-      "Steam cleaning — that's Prestige Steam Restoration from $399",
+      "Deep multi-pass degreasing — that's the Cleaning package at $299",
+      "Steam cleaning — used as needed in the Cleaning and Restoration packages",
       "Detailed stainless polishing",
       "Forced disassembly of corroded, seized or fragile parts",
       "Repair or part replacement (our $99 Diagnostic service covers that)",
@@ -188,8 +188,8 @@ const essential: PackageDetail = {
   },
   duration: { fr: "2h à 2h30 sur place", en: "2 to 2.5 hours on site" },
   durationNote: {
-    fr: "Si l'inspection révèle un BBQ beaucoup plus sale que prévu, on vous le dit avant de continuer. On propose soit de rester dans les limites de l'Entretien Essentiel, soit de monter au Nettoyage Signature (299 $) ou à la Restauration Prestige (à partir de 399 $) si l'état le justifie. Aucun changement de prix sans votre accord.",
-    en: "If inspection reveals a much dirtier BBQ than expected, we tell you before continuing. We offer to either stay within Essential Maintenance limits or step up to Signature Cleaning ($299) or Prestige Steam Restoration (from $399) if warranted. No price change without your approval.",
+    fr: "Si l'inspection révèle un BBQ beaucoup plus sale que prévu, on vous le dit avant de continuer. On propose soit de rester dans les limites du forfait Entretien, soit de monter au forfait Nettoyage (299 $) ou Restauration (à partir de 399 $) si l'état le justifie. Aucun changement de prix sans votre accord.",
+    en: "If inspection reveals a much dirtier BBQ than expected, we tell you before continuing. We offer to either stay within the Maintenance package limits or step up to the Cleaning ($299) or Restoration (from $399) package if warranted. No price change without your approval.",
   },
   conditions: {
     fr: [
@@ -210,39 +210,39 @@ const essential: PackageDetail = {
       { situation: "5e brûleur principal et plus (au-delà de 4)", amount: "+49 $ / brûleur" },
       { situation: "Brûleur latéral / arrière / IR", amount: "À évaluer sur place" },
       { situation: "Pizza oven, smoker box, griddle", amount: "Prix séparé" },
-      { situation: "BBQ plus sale que prévu", amount: "Upgrade recommandé vers Signature ou Prestige" },
+      { situation: "BBQ plus sale que prévu", amount: "Upgrade recommandé vers Nettoyage ou Restauration" },
     ],
     en: [
       { situation: "5th main burner and beyond", amount: "+$49 / burner" },
       { situation: "Side / rear / IR burner", amount: "Evaluated on site" },
       { situation: "Pizza oven, smoker box, griddle", amount: "Separate price" },
-      { situation: "BBQ dirtier than expected", amount: "Upgrade recommended to Signature or Prestige" },
+      { situation: "BBQ dirtier than expected", amount: "Upgrade recommended to Cleaning or Restoration" },
     ],
   },
   comparisonNote: {
-    fr: "L'Entretien Essentiel, c'est le forfait d'entrée. Pour un BBQ qui a été utilisé tout l'été ou négligé depuis longtemps, le Nettoyage Signature à 299 $ va beaucoup plus loin avec un dégraissage approfondi en deux applications.",
-    en: "Essential Maintenance is the entry package. For a BBQ used all summer or long-neglected, Signature Cleaning at $299 goes much further with deep two-pass degreasing.",
+    fr: "Le forfait Entretien, c'est l'entrée de gamme. Pour un BBQ qui a été utilisé tout l'été ou négligé depuis longtemps, le forfait Nettoyage à 299 $ va beaucoup plus loin avec un dégraissage approfondi.",
+    en: "The Maintenance package is the entry level. For a BBQ used all summer or long-neglected, the Cleaning package at $299 goes much further with deep degreasing.",
   },
   faq: [
     {
       q: { fr: "C'est seulement un entretien léger? Ça vaut la peine?", en: "Is this just light maintenance? Is it worth it?" },
       a: {
-        fr: "Pour le bon profil de BBQ — fonctionnel, utilisé légèrement à modérément, début de saison — oui. Une inspection professionnelle peut détecter un brûleur qui commence à se boucher, un régulateur qui faiblit, des sear plates qui rouillent. Mieux vaut le savoir maintenant qu'au milieu d'un souper avec invités. Si votre BBQ est franchement sale, par contre, l'Entretien Essentiel ne fera pas de miracle — le Signature ou le Prestige sont mieux adaptés.",
-        en: "For the right BBQ profile — functional, lightly to moderately used, start of season — yes. A pro inspection can catch a burner starting to clog, a weakening regulator, sear plates rusting. Better to know now than mid-dinner with guests. If your BBQ is genuinely dirty though, Essential Maintenance won't work miracles — Signature or Prestige are better fits.",
+        fr: "Pour le bon profil de BBQ — fonctionnel, utilisé légèrement à modérément, début de saison — oui. Une inspection professionnelle peut détecter un brûleur qui commence à se boucher, un régulateur qui faiblit, des sear plates qui rouillent. Mieux vaut le savoir maintenant qu'au milieu d'un souper avec invités. Si votre BBQ est franchement sale, par contre, le forfait Entretien ne fera pas de miracle — le Nettoyage ou la Restauration sont mieux adaptés.",
+        en: "For the right BBQ profile — functional, lightly to moderately used, start of season — yes. A pro inspection can catch a burner starting to clog, a weakening regulator, sear plates rusting. Better to know now than mid-dinner with guests. If your BBQ is genuinely dirty though, the Maintenance package won't work miracles — Cleaning or Restoration are better fits.",
       },
     },
     {
-      q: { fr: "Quand prendre l'Entretien Essentiel vs le Nettoyage Signature?", en: "When to pick Essential Maintenance vs Signature Cleaning?" },
+      q: { fr: "Quand prendre l'Entretien vs le Nettoyage ?", en: "When to pick Maintenance vs Cleaning?" },
       a: {
-        fr: "Entretien Essentiel = BBQ qui a passé l'hiver dehors ou peu utilisé, vous voulez juste le préparer pour la saison. Signature = BBQ vraiment utilisé pendant l'été, où la graisse commence à s'accumuler, où les grilles ont besoin d'un vrai dégraissage. Si vous hésitez, envoyez-nous une photo et on vous dit franchement laquelle est appropriée.",
-        en: "Essential Maintenance = BBQ that wintered outside or was lightly used, you just want to prep it for the season. Signature = BBQ truly used over summer, with grease starting to accumulate, where grates need real degreasing. Not sure? Send us a photo and we'll tell you straight which one fits.",
+        fr: "Entretien = BBQ qui a passé l'hiver dehors ou peu utilisé, vous voulez juste le préparer pour la saison. Nettoyage = BBQ vraiment utilisé pendant l'été, où la graisse commence à s'accumuler, où les grilles ont besoin d'un vrai dégraissage. Si vous hésitez, envoyez-nous une photo et on vous dit franchement lequel est approprié.",
+        en: "Maintenance = BBQ that wintered outside or was lightly used, you just want to prep it for the season. Cleaning = BBQ truly used over summer, with grease starting to accumulate, where grates need real degreasing. Not sure? Send us a photo and we'll tell you straight which one fits.",
       },
     },
     {
       q: { fr: "Est-ce que ça aide à entretenir mon BBQ ?", en: "Does this help maintain my BBQ?" },
       a: {
-        fr: "Oui — l'Entretien Essentiel aide à mieux entretenir l'équipement et à identifier les pièces à surveiller. Un BBQ inspecté annuellement où on remplace les pièces usées avant qu'elles ne brisent reste fonctionnel plus longtemps. L'Entretien Essentiel seul ne remplace pas les pièces, mais il vous dit ce qui devrait l'être.",
-        en: "Yes — Essential Maintenance helps you better maintain the equipment and spot parts to watch. A BBQ inspected annually where worn parts get replaced before they break stays functional longer. Essential Maintenance alone doesn't replace parts, but it tells you what should be.",
+        fr: "Oui — le forfait Entretien aide à mieux entretenir l'équipement et à identifier les pièces à surveiller. Un BBQ inspecté annuellement où on remplace les pièces usées avant qu'elles ne brisent reste fonctionnel plus longtemps. L'Entretien seul ne remplace pas les pièces, mais il vous dit ce qui devrait l'être.",
+        en: "Yes — the Maintenance package helps you better maintain the equipment and spot parts to watch. A BBQ inspected annually where worn parts get replaced before they break stays functional longer. Maintenance alone doesn't replace parts, but it tells you what should be.",
       },
     },
     {
@@ -255,8 +255,8 @@ const essential: PackageDetail = {
     {
       q: { fr: "Combien de temps dure le résultat?", en: "How long does the result last?" },
       a: {
-        fr: "L'Entretien Essentiel est conçu pour préparer la saison. Si vous utilisez le BBQ 1-2 fois par semaine, vous serez bien jusqu'à la prochaine saison. Au fil de l'été, la graisse va naturellement s'accumuler — un Nettoyage Signature en milieu de saison ou la saison suivante peut être utile.",
-        en: "Essential Maintenance is built to prep the season. If you use the BBQ 1–2× per week, you'll be fine until next season. Through summer, grease will naturally build up — a Signature Cleaning mid-season or next season can help.",
+        fr: "L'Entretien est conçu pour préparer la saison. Si vous utilisez le BBQ 1-2 fois par semaine, vous serez bien jusqu'à la prochaine saison. Au fil de l'été, la graisse va naturellement s'accumuler — un forfait Nettoyage en milieu de saison ou la saison suivante peut être utile.",
+        en: "Maintenance is built to prep the season. If you use the BBQ 1–2× per week, you'll be fine until next season. Through summer, grease will naturally build up — a Cleaning package mid-season or next season can help.",
       },
     },
     {
@@ -272,8 +272,8 @@ const essential: PackageDetail = {
     en: "Get your BBQ ready for the season.",
   },
   ctaFinalBody: {
-    fr: "L'Entretien Essentiel, c'est la base solide : inspection, nettoyage léger, test et recommandations. Pour partir la saison du bon pied, sans surcomplication.",
-    en: "Essential Maintenance is the solid baseline: inspection, light cleaning, test and recommendations. To start the season right, without overcomplication.",
+    fr: "Le forfait Entretien, c'est la base solide : inspection visuelle, nettoyage de base, vérification de fonctionnement et recommandations. Pour partir la saison du bon pied, sans surcomplication.",
+    en: "The Maintenance package is the solid baseline: visual inspection, basic cleaning, function check and recommendations. To start the season right, without overcomplication.",
   },
 };
 
@@ -281,16 +281,16 @@ const signature: PackageDetail = {
   key: "signature",
   slug: { fr: "nettoyage-signature", en: "signature-cleaning" },
   metaTitle: {
-    fr: "Nettoyage Signature — Nettoyage BBQ approfondi recommandé | BBQTECH Gatineau & Ottawa",
-    en: "Signature Cleaning — Recommended Deep BBQ Cleaning | BBQTECH Gatineau & Ottawa",
+    fr: "Forfait Nettoyage BBQ — Nettoyage annuel approfondi recommandé | BBQTECH Gatineau & Ottawa",
+    en: "Cleaning package — Recommended Deep BBQ Cleaning | BBQTECH Gatineau & Ottawa",
   },
   metaDescription: {
-    fr: "Nettoyage BBQ approfondi avec dégraissage à deux applications, composantes détaillées et finition propre. Forfait recommandé à 299 $ + taxes. Gatineau, Aylmer, Hull, Ottawa.",
-    en: "Deep BBQ cleaning with two-pass degreasing, detailed components and clean finish. Recommended package at $299 + tax. Gatineau, Aylmer, Hull, Ottawa.",
+    fr: "Nettoyage BBQ annuel plus approfondi : dégraissage à deux applications, composantes détaillées et vapeur au besoin sur les composantes compatibles. Forfait recommandé à 299 $ + taxes. Gatineau, Aylmer, Hull, Ottawa.",
+    en: "More thorough annual BBQ cleaning: two-pass degreasing, detailed components and steam as needed on compatible components. Recommended package at $299 + tax. Gatineau, Aylmer, Hull, Ottawa.",
   },
   heroSubtitle: {
-    fr: "Notre forfait le plus populaire. Pour le BBQ qui a besoin d'un vrai nettoyage en profondeur, pas juste d'un coup de torchon.",
-    en: "Our most popular package. For the BBQ that needs a real deep clean, not just a quick wipe.",
+    fr: "Notre forfait recommandé. Pour le BBQ utilisé régulièrement qui a besoin d'un nettoyage annuel plus approfondi — avec vapeur au besoin sur les composantes compatibles.",
+    en: "Our recommended package. For the BBQ used regularly that needs a more thorough annual cleaning — with steam as needed on compatible components.",
   },
   whoFor: {
     fr: [
@@ -310,12 +310,12 @@ const signature: PackageDetail = {
   },
   whoNotFor: {
     fr: [
-      { situation: "Vous voulez juste préparer le BBQ pour la saison, peu d'accumulation.", pointTo: "Entretien Essentiel à 199 $" },
-      { situation: "BBQ premium 10+ ans très négligé avec graisse cuite-recuite.", pointTo: "Restauration Prestige à partir de 399 $" },
+      { situation: "Vous voulez juste préparer le BBQ pour la saison, peu d'accumulation.", pointTo: "Forfait Entretien à 199 $" },
+      { situation: "BBQ premium 10+ ans très négligé avec graisse cuite-recuite.", pointTo: "Forfait Restauration à partir de 399 $" },
     ],
     en: [
-      { situation: "You just want season prep, minimal buildup.", pointTo: "Essential Maintenance at $199" },
-      { situation: "Premium BBQ 10+ years, heavily neglected, baked-on grease.", pointTo: "Prestige Steam Restoration from $399" },
+      { situation: "You just want season prep, minimal buildup.", pointTo: "Maintenance package at $199" },
+      { situation: "Premium BBQ 10+ years, heavily neglected, baked-on grease.", pointTo: "Restoration package from $399" },
     ],
   },
   whatIncluded: {
@@ -338,7 +338,7 @@ const signature: PackageDetail = {
         ],
       },
       {
-        section: "Nettoyage approfondi (la différence Signature)",
+        section: "Nettoyage approfondi (avec vapeur au besoin sur les composantes compatibles)",
         items: [
           "Grilles : pré-grattage, dégraissant ciblé, brossage intensif, deuxième application si requis sur les zones tenaces, rinçage et séchage",
           "Sear plates : grattage prolongé, dégraissage, brossage à fond, rinçage contrôlé",
@@ -381,7 +381,7 @@ const signature: PackageDetail = {
         ],
       },
       {
-        section: "Deep cleaning (the Signature difference)",
+        section: "Deep cleaning (with steam as needed on compatible components)",
         items: [
           "Grates: pre-scraping, targeted degreaser, intensive brushing, second application on tough zones, rinse and dry",
           "Sear plates: extended scraping, degreasing, thorough brushing, controlled rinse",
@@ -408,25 +408,25 @@ const signature: PackageDetail = {
   },
   whatNotIncluded: {
     fr: [
-      "Nettoyage vapeur — c'est la Restauration Prestige qui l'ajoute",
-      "Restauration esthétique avancée / polissage inox détaillé — Prestige aussi",
+      "Vapeur garantie sur l'ensemble du BBQ — la vapeur est utilisée au besoin sur les composantes compatibles, selon l'état du BBQ et les matériaux",
+      "Restauration esthétique avancée / polissage inox détaillé — c'est le forfait Restauration qui pousse cette finition",
       "Réparation ou remplacement de pièces (Diagnostic à 99 $, pièces et main-d'œuvre en sus si vous procédez)",
       "Démontage forcé de pièces corrodées, saisies ou fragiles",
       "Intervention sur les installations de gaz réglementées",
       "BBQ encastrés / cuisines extérieures — sur évaluation",
       "BBQ commerciaux — sur évaluation",
-      "Rapport sommaire écrit envoyé par courriel — ça vient avec la Restauration Prestige",
+      "Rapport sommaire écrit envoyé par courriel — ça vient avec le forfait Restauration",
       "Garantie « comme neuf », « 100 % garanti » ou résultat showroom — votre BBQ va sortir beaucoup plus propre et plus agréable à utiliser, mais on n'efface pas plusieurs saisons d'usure",
     ],
     en: [
-      "Steam cleaning — that's added by Prestige Steam Restoration",
-      "Advanced aesthetic restoration / detailed stainless polishing — Prestige too",
+      "Guaranteed steam over the entire BBQ — steam is used as needed on compatible components, depending on the BBQ's condition and materials",
+      "Advanced aesthetic restoration / detailed stainless polishing — that finish lives in the Restoration package",
       "Repair or part replacement ($99 Diagnostic, parts + labor extra if you proceed)",
       "Forced disassembly of corroded, seized or fragile parts",
       "Work on regulated gas installations",
       "Built-in BBQs / outdoor kitchens — by evaluation",
       "Commercial BBQs — by evaluation",
-      "Written summary report by email — that's with Prestige Steam Restoration",
+      "Written summary report by email — that comes with the Restoration package",
       "\"Like-new\", \"100% guaranteed\" or showroom-finish promises — your BBQ will come out much cleaner and more pleasant to use, but we don't erase several seasons of wear",
     ],
   },
@@ -452,8 +452,8 @@ const signature: PackageDetail = {
   },
   duration: { fr: "3h à 4h sur place", en: "3 to 4 hours on site" },
   durationNote: {
-    fr: "Si on dépasse 4h, on s'arrête, on vous l'explique, et on propose soit de continuer dans les limites du Signature, soit de monter à la Restauration Prestige si l'état du BBQ le justifie. Aucun changement de prix sans votre accord.",
-    en: "If we go past 4h, we stop, we tell you, and offer to either stay within Signature limits or step up to Prestige Steam Restoration if the BBQ state warrants. No price change without your approval.",
+    fr: "Si on dépasse 4h, on s'arrête, on vous l'explique, et on propose soit de continuer dans les limites du forfait Nettoyage, soit de monter au forfait Restauration si l'état du BBQ le justifie. Aucun changement de prix sans votre accord.",
+    en: "If we go past 4h, we stop, we tell you, and offer to either stay within the Cleaning package limits or step up to the Restoration package if the BBQ state warrants. No price change without your approval.",
   },
   conditions: {
     fr: [
@@ -488,36 +488,36 @@ const signature: PackageDetail = {
     ],
   },
   comparisonNote: {
-    fr: "Le Signature, c'est l'équilibre entre prix raisonnable et résultat sérieux. Si votre BBQ a 10+ ans et a été négligé plusieurs saisons, la Restauration Prestige à partir de 399 $ va plus loin avec la vapeur. Mais pour la majorité des BBQ après une saison ou deux de négligence, le Signature suffit.",
-    en: "Signature is the balance between fair price and serious result. If your BBQ is 10+ years old and neglected for multiple seasons, Prestige Steam Restoration from $399 goes further with steam. But for most BBQs after a season or two of neglect, Signature is plenty.",
+    fr: "Le forfait Nettoyage, c'est l'équilibre entre prix raisonnable et résultat sérieux. Si votre BBQ a 10+ ans et a été négligé plusieurs saisons, le forfait Restauration à partir de 399 $ va plus loin avec multiples passes et finition plus détaillée. Mais pour la majorité des BBQ après une saison ou deux de négligence, le Nettoyage suffit.",
+    en: "The Cleaning package is the balance between fair price and serious result. If your BBQ is 10+ years old and neglected for multiple seasons, the Restoration package from $399 goes further with multiple passes and more detailed finishing. But for most BBQs after a season or two of neglect, Cleaning is plenty.",
   },
   faq: [
     {
-      q: { fr: "C'est quoi la vraie différence entre l'Entretien Essentiel et le Signature?", en: "What's the real difference between Essential Maintenance and Signature?" },
+      q: { fr: "C'est quoi la vraie différence entre l'Entretien et le Nettoyage ?", en: "What's the real difference between Maintenance and Cleaning?" },
       a: {
-        fr: "L'Entretien Essentiel est un nettoyage léger avec inspection — idéal pour préparer le BBQ pour la saison. Le Signature, c'est un vrai nettoyage approfondi : pré-grattage, deux applications de dégraissant si les zones sont tenaces, brossage intensif, on retourne dans les coins. Pour un BBQ utilisé tout l'été sans nettoyage sérieux, l'Essentiel ne décolle pas la graisse cuite. Le Signature, oui.",
-        en: "Essential Maintenance is light cleaning with inspection — ideal for season prep. Signature is real deep cleaning: pre-scraping, two degreaser applications on stubborn zones, intensive brushing, comes back to corners. For a BBQ used all summer without serious cleaning, Essential won't lift baked grease. Signature will.",
+        fr: "L'Entretien est un nettoyage léger avec inspection — idéal pour préparer le BBQ pour la saison. Le Nettoyage, c'est un vrai nettoyage annuel plus approfondi : pré-grattage, deux applications de dégraissant lorsque nécessaire sur les zones tenaces, brossage intensif, on retourne dans les coins. La vapeur peut être utilisée au besoin sur les composantes compatibles, selon l'état du BBQ et les matériaux. Pour un BBQ utilisé tout l'été sans nettoyage sérieux, l'Entretien ne décolle pas la graisse cuite. Le Nettoyage, oui.",
+        en: "Maintenance is light cleaning with inspection — ideal for season prep. Cleaning is a real, more thorough annual cleaning: pre-scraping, two degreaser applications when needed on stubborn zones, intensive brushing, comes back to corners. Steam may be used as needed on compatible components, depending on the BBQ's condition and materials. For a BBQ used all summer without serious cleaning, Maintenance won't lift baked grease. Cleaning will.",
       },
     },
     {
-      q: { fr: "Pourquoi pas la vapeur dans le Nettoyage Signature?", en: "Why no steam in Signature?" },
+      q: { fr: "Est-ce que la vapeur est utilisée dans le forfait Nettoyage ?", en: "Is steam used in the Cleaning package?" },
       a: {
-        fr: "La vapeur, c'est ce qui sépare un nettoyage approfondi d'une vraie restauration. Pour la majorité des BBQ après une saison ou deux, le dégraissage approfondi du Signature donne un excellent résultat. La vapeur (Restauration Prestige) vaut le coût quand le BBQ a été négligé plusieurs saisons, que les dépôts sont cuits-recuits, ou que c'est un BBQ premium de 10 ans et plus.",
-        en: "Steam is what separates deep cleaning from real restoration. For most BBQs after a season or two, Signature's deep degreasing gets excellent results. Steam (Prestige Restoration) pays off when the BBQ has been neglected for several seasons, deposits are baked-and-rebaked, or it's a premium BBQ 10+ years old.",
+        fr: "Au besoin, oui — sur les composantes compatibles, selon l'état du BBQ et les matériaux. La vapeur n'est pas une promesse automatique : c'est un outil qu'on utilise lorsque c'est pertinent pour aider au dégraissage. Pour la majorité des BBQ après une saison ou deux, le dégraissage approfondi du Nettoyage donne un excellent résultat. Quand le BBQ a été négligé plusieurs saisons, que les dépôts sont cuits-recuits, ou que c'est un BBQ premium de 10 ans et plus, le forfait Restauration (à partir de 399 $) va plus loin avec multiples passes et vapeur au besoin plus poussée selon l'état.",
+        en: "As needed, yes — on compatible components, depending on the BBQ's condition and materials. Steam isn't an automatic promise: it's a tool we use when it makes sense to help degreasing. For most BBQs after a season or two, the Cleaning package's deep degreasing gets excellent results. When the BBQ has been neglected for several seasons, deposits are baked-and-rebaked, or it's a premium BBQ 10+ years old, the Restoration package (from $399) goes further with multiple passes and more thorough steam as needed by condition.",
       },
     },
     {
       q: { fr: "Vous garantissez un résultat « comme neuf » ?", en: "Do you guarantee a \"like-new\" result?" },
       a: {
-        fr: "Non. Nous ne promettons pas « comme neuf », « 100 % garanti » ni résultat showroom. Notre objectif est de rendre votre BBQ plus propre et plus agréable à utiliser, et d'aider à mieux entretenir l'équipement en identifiant les pièces à surveiller. Un BBQ qui a deux saisons d'utilisation va ressortir spectaculaire avec le Signature. Un BBQ qui a 8 ans de carbone cuit ne redeviendra jamais neuf — mais on peut le ramener à un état beaucoup plus propre. On est honnête sur les limites avant de commencer.",
-        en: "No. We don't promise \"like-new\", \"100% guaranteed\" or showroom-finish results. Our goal is to make your BBQ cleaner and more pleasant to use, and to help you better maintain the equipment by identifying parts to watch. A BBQ with two seasons of use will come out spectacular with Signature. A BBQ with 8 years of baked carbon will never look new — but we can bring it to a much cleaner state. We're honest about limits up front.",
+        fr: "Non. Nous ne promettons pas « comme neuf », « 100 % garanti » ni résultat showroom. Notre objectif est de rendre votre BBQ plus propre et plus agréable à utiliser, et d'aider à mieux entretenir l'équipement en identifiant les pièces à surveiller. Un BBQ qui a deux saisons d'utilisation va ressortir spectaculaire avec le forfait Nettoyage. Un BBQ qui a 8 ans de carbone cuit ne redeviendra jamais neuf — mais on peut le ramener à un état beaucoup plus propre. On est honnête sur les limites avant de commencer.",
+        en: "No. We don't promise \"like-new\", \"100% guaranteed\" or showroom-finish results. Our goal is to make your BBQ cleaner and more pleasant to use, and to help you better maintain the equipment by identifying parts to watch. A BBQ with two seasons of use will come out spectacular with the Cleaning package. A BBQ with 8 years of baked carbon will never look new — but we can bring it to a much cleaner state. We're honest about limits up front.",
       },
     },
     {
       q: { fr: "Combien de temps dure le résultat?", en: "How long does the result last?" },
       a: {
-        fr: "Si vous utilisez votre BBQ 1-2 fois par semaine, un Nettoyage Signature tient bien jusqu'à la prochaine saison. Si vous l'utilisez 4-5 fois par semaine ou pour cuisiner gras (côtes levées, brisket), un entretien à mi-saison peut valoir la peine — souvent un Entretien Essentiel suffit à ce moment-là.",
-        en: "If you use your BBQ 1–2× per week, Signature holds well until next season. If you use it 4–5× per week or cook fatty (ribs, brisket), a mid-season service can pay off — often an Essential Maintenance is enough at that point.",
+        fr: "Si vous utilisez votre BBQ 1-2 fois par semaine, un forfait Nettoyage tient bien jusqu'à la prochaine saison. Si vous l'utilisez 4-5 fois par semaine ou pour cuisiner gras (côtes levées, brisket), un entretien à mi-saison peut valoir la peine — souvent un forfait Entretien suffit à ce moment-là.",
+        en: "If you use your BBQ 1–2× per week, a Cleaning package holds well until next season. If you use it 4–5× per week or cook fatty (ribs, brisket), a mid-season service can pay off — often a Maintenance package is enough at that point.",
       },
     },
     {
@@ -547,8 +547,8 @@ const signature: PackageDetail = {
     en: "Ready for a real deep clean?",
   },
   ctaFinalBody: {
-    fr: "Le Nettoyage Signature, c'est notre forfait le plus populaire pour une raison : c'est l'équilibre entre prix raisonnable et résultat sérieux.",
-    en: "Signature Cleaning is our most popular package for a reason: balance between fair price and serious result.",
+    fr: "Le forfait Nettoyage, c'est notre recommandé pour une raison : c'est l'équilibre entre prix raisonnable et résultat sérieux, avec vapeur au besoin sur les composantes compatibles.",
+    en: "The Cleaning package is our recommended one for a reason: balance between fair price and serious result, with steam as needed on compatible components.",
   },
 };
 
@@ -556,16 +556,16 @@ const prestige: PackageDetail = {
   key: "prestige",
   slug: { fr: "restauration-prestige-vapeur", en: "prestige-steam-restoration" },
   metaTitle: {
-    fr: "Restauration Prestige — Remise en état BBQ premium | BBQTECH Gatineau & Ottawa",
-    en: "Prestige Steam Restoration — Premium BBQ Restoration | BBQTECH Gatineau & Ottawa",
+    fr: "Forfait Restauration BBQ — Remise en état plus poussée | BBQTECH Gatineau & Ottawa",
+    en: "Restoration package — More advanced BBQ restoration | BBQTECH Gatineau & Ottawa",
   },
   metaDescription: {
-    fr: "Remise en état avancée à la vapeur pour BBQ très encrassés, premium, négligés depuis longtemps ou nécessitant une remise en état plus poussée. À partir de 399 $ + taxes. Inclut photos extensives et rapport sommaire. Gatineau et Ottawa.",
-    en: "Advanced steam restoration for heavily soiled, premium, long-neglected BBQs or those needing a more advanced restoration. From $399 + tax. Includes extensive photos and summary report. Gatineau and Ottawa.",
+    fr: "Remise en état plus poussée pour BBQ très encrassés, premium, négligés depuis longtemps ou nécessitant plus de temps. Multiples passes, vapeur au besoin sur les composantes compatibles, finition détaillée. À partir de 399 $ + taxes. Photos extensives et rapport sommaire inclus. Gatineau et Ottawa.",
+    en: "More advanced restoration for heavily soiled, premium, long-neglected BBQs or those needing more time. Multiple passes, steam as needed on compatible components, detailed finishing. From $399 + tax. Extensive photos and summary report included. Gatineau and Ottawa.",
   },
   heroSubtitle: {
-    fr: "La remise en état avancée. Vapeur, dégraissage en multiples passes, finition détaillée et rapport complet — pour les BBQ premium, vieux ou très négligés.",
-    en: "Advanced restoration. Steam, multi-pass degreasing, detailed finishing and complete report — for premium, old or heavily neglected BBQs.",
+    fr: "Remise en état plus poussée. Nettoyage avancé avec multiples passes, vapeur au besoin sur les composantes compatibles, finition plus détaillée et rapport — pour les BBQ premium, vieux ou très négligés.",
+    en: "More advanced restoration. Advanced cleaning with multiple passes, steam as needed on compatible components, more detailed finishing and a report — for premium, old or heavily neglected BBQs.",
   },
   whoFor: {
     fr: [
@@ -585,18 +585,18 @@ const prestige: PackageDetail = {
   },
   whoNotFor: {
     fr: [
-      { situation: "BBQ de 1-3 ans, raisonnablement entretenu.", pointTo: "Nettoyage Signature à 299 $" },
-      { situation: "Vous voulez juste préparer le BBQ pour la saison.", pointTo: "Entretien Essentiel à 199 $" },
+      { situation: "BBQ de 1-3 ans, raisonnablement entretenu.", pointTo: "Forfait Nettoyage à 299 $" },
+      { situation: "Vous voulez juste préparer le BBQ pour la saison.", pointTo: "Forfait Entretien à 199 $" },
     ],
     en: [
-      { situation: "BBQ 1–3 years old, reasonably maintained.", pointTo: "Signature Cleaning at $299" },
-      { situation: "You just want season prep.", pointTo: "Essential Maintenance at $199" },
+      { situation: "BBQ 1–3 years old, reasonably maintained.", pointTo: "Cleaning package at $299" },
+      { situation: "You just want season prep.", pointTo: "Maintenance package at $199" },
     ],
   },
   whatIncluded: {
     fr: [
       {
-        section: "Tout le Nettoyage Signature, plus",
+        section: "Tout le forfait Nettoyage, plus",
         items: [
           "Inspection visuelle plus détaillée",
           "Démontage plus poussé si sécuritaire — pièces saisies, corrodées ou fragiles non forcées",
@@ -605,21 +605,21 @@ const prestige: PackageDetail = {
         ],
       },
       {
-        section: "Nettoyage vapeur",
+        section: "Nettoyage avancé avec multiples passes",
         items: [
-          "Génératrice de vapeur à haute température utilisée sur les composantes appropriées",
-          "Aide à décoller les graisses cuites qui résistent aux dégraissants seuls",
-          "Sans produit chimique additionnel dans la cuve",
-          "Adapté selon le matériau (inox, fonte, fonte émaillée, porcelaine, acier peint)",
-        ],
-      },
-      {
-        section: "Dégraissage avancé",
-        items: [
-          "Plusieurs applications de dégraissant sur les zones les plus encrassées",
+          "Plusieurs applications de dégraissant lorsque nécessaire sur les zones les plus encrassées",
           "Temps de contact prolongé contrôlé",
           "Brossage et scrubbing plus long et plus minutieux",
           "Reprise systématique des zones difficiles",
+        ],
+      },
+      {
+        section: "Vapeur au besoin sur composantes compatibles",
+        items: [
+          "Génératrice de vapeur à haute température utilisée lorsque nécessaire et approprié, sur les composantes compatibles",
+          "Aide à décoller les graisses cuites qui résistent aux dégraissants seuls, lorsque pertinent",
+          "Sans produit chimique additionnel dans la cuve lorsque la vapeur est utilisée",
+          "Adapté selon le matériau (inox, fonte, fonte émaillée, porcelaine, acier peint) — pas systématique sur tout le BBQ",
         ],
       },
       {
@@ -643,7 +643,7 @@ const prestige: PackageDetail = {
     ],
     en: [
       {
-        section: "Everything in Signature, plus",
+        section: "Everything in the Cleaning package, plus",
         items: [
           "More detailed visual inspection",
           "Deeper disassembly if safe — seized, corroded or fragile parts not forced",
@@ -652,21 +652,21 @@ const prestige: PackageDetail = {
         ],
       },
       {
-        section: "Steam cleaning",
+        section: "Advanced cleaning with multiple passes",
         items: [
-          "High-temperature steam generator used on appropriate components",
-          "Helps lift baked grease that resists degreaser alone",
-          "No additional chemicals in the cookbox",
-          "Adapted by material (stainless, cast iron, porcelain, painted)",
-        ],
-      },
-      {
-        section: "Advanced degreasing",
-        items: [
-          "Multiple degreaser applications on the most soiled zones",
+          "Multiple degreaser applications when needed on the most soiled zones",
           "Extended controlled dwell time",
           "Longer, more meticulous brushing/scrubbing",
           "Systematic return to tough zones",
+        ],
+      },
+      {
+        section: "Steam as needed on compatible components",
+        items: [
+          "High-temperature steam generator used when needed and appropriate, on compatible components",
+          "Helps lift baked grease that resists degreaser alone, when relevant",
+          "No additional chemicals in the cookbox when steam is used",
+          "Adapted by material (stainless, cast iron, enameled cast iron, porcelain, painted steel) — not applied systematically to the whole BBQ",
         ],
       },
       {
@@ -714,7 +714,7 @@ const prestige: PackageDetail = {
       { title: "Inspection détaillée (10-15 minutes)", body: "On prend le temps de bien évaluer l'état réel du BBQ. Marque, modèle, âge approximatif, accumulation, pièces critiques. On confirme la faisabilité avant de commencer." },
       { title: "Préparation de la zone (renforcée)", body: "Spill berm + tapis additionnels. Génératrice de vapeur installée. Shop-vac wet de grande capacité prêt. Protection renforcée des surfaces sensibles." },
       { title: "Démontage approfondi", body: "Toutes les composantes accessibles retirées : grilles, sear plates, brûleurs, drip tray, heat shields. On va plus loin que les autres forfaits, mais on ne force jamais une pièce corrodée." },
-      { title: "Vapeur + dégraissage avancé", body: "Application de vapeur sur firebox, hood interior, composantes appropriées. Dégraissant en multiples passes. Temps de contact contrôlé. Brossage minutieux." },
+      { title: "Dégraissage avancé + vapeur au besoin", body: "Dégraissant en multiples passes lorsque nécessaire. Vapeur appliquée au besoin sur les composantes compatibles (firebox, hood interior, etc.) selon l'état du BBQ et les matériaux. Temps de contact contrôlé. Brossage minutieux." },
       { title: "Composantes individuelles", body: "Chaque grille, chaque sear plate, chaque brûleur traité individuellement. Inspection détaillée. On documente l'état de chaque pièce." },
       { title: "Finition esthétique", body: "Inox poli avec le grain (selon le matériau). Knobs et poignées détaillés. Badges nettoyés sans produit agressif. Aspect global le plus propre possible." },
       { title: "Réassemblage, vérification, rapport", body: "Tout remonté avec attention. Vérification de fonctionnement de base lorsque sécuritaire et applicable. Photos avant / après extensives. Rapport sommaire envoyé par courriel après le service avec observations générales et recommandations." },
@@ -723,7 +723,7 @@ const prestige: PackageDetail = {
       { title: "Detailed inspection (10–15 minutes)", body: "We take time to properly assess the BBQ's real condition. Brand, model, approximate age, buildup, critical parts. We confirm feasibility before starting." },
       { title: "Reinforced work zone prep", body: "Spill berm + additional mats. Steam generator set up. High-capacity wet shop-vac ready. Reinforced protection of sensitive surfaces." },
       { title: "Deep disassembly", body: "All accessible components removed: grates, sear plates, burners, drip tray, heat shields. We go further than other packages, but we never force a corroded part." },
-      { title: "Steam + advanced degreasing", body: "Steam applied to firebox, hood interior, appropriate components. Multi-pass degreaser. Controlled dwell time. Meticulous brushing." },
+      { title: "Advanced degreasing + steam as needed", body: "Multi-pass degreaser when needed. Steam applied as needed on compatible components (firebox, hood interior, etc.) depending on the BBQ's condition and materials. Controlled dwell time. Meticulous brushing." },
       { title: "Individual components", body: "Every grate, every sear plate, every burner treated individually. Detailed inspection. We document each part's condition." },
       { title: "Aesthetic finishing", body: "Stainless polished with the grain (per material). Knobs and handles detailed. Badges cleaned without aggressive products. Best possible overall finish." },
       { title: "Reassembly, function check, report", body: "Reassembled with care. Basic function check when safe and applicable. Extensive before / after photos. Written summary report emailed after service with general observations and recommendations." },
@@ -731,8 +731,8 @@ const prestige: PackageDetail = {
   },
   duration: { fr: "5h à 7h+ sur place", en: "5 to 7+ hours on site" },
   durationNote: {
-    fr: "La Restauration Prestige prend le temps nécessaire pour bien faire le travail. Pour un BBQ extrêmement négligé, on peut proposer de scinder en deux visites. Toute condition particulière (BBQ très grand, encastré, commercial) peut nécessiter une estimation personnalisée — confirmée avant tout changement de service ou de tarif.",
-    en: "Prestige Steam Restoration takes the time needed to do it right. For an extremely neglected BBQ, we may suggest splitting into two visits. Any special condition (very large, built-in, commercial BBQ) may require a custom estimate — confirmed before any change of service or price.",
+    fr: "Le forfait Restauration prend le temps nécessaire pour bien faire le travail. Pour un BBQ extrêmement négligé, on peut proposer de scinder en deux visites. Toute condition particulière (BBQ très grand, encastré, commercial) peut nécessiter une estimation personnalisée — confirmée avant tout changement de service ou de tarif.",
+    en: "The Restoration package takes the time needed to do it right. For an extremely neglected BBQ, we may suggest splitting into two visits. Any special condition (very large, built-in, commercial BBQ) may require a custom estimate — confirmed before any change of service or price.",
   },
   conditions: {
     fr: [
@@ -773,36 +773,36 @@ const prestige: PackageDetail = {
     ],
   },
   comparisonNote: {
-    fr: "La Restauration Prestige, c'est notre niveau le plus poussé. Si votre BBQ a 5 ans ou moins et a été entretenu, vous n'en avez probablement pas besoin — un Nettoyage Signature suffit. Mais pour un BBQ premium de 8-15 ans qui a vécu plusieurs saisons sans nettoyage sérieux, c'est l'option qui aide à le sauver.",
-    en: "Prestige Steam Restoration is our highest level. If your BBQ is 5 years or less and has been maintained, you probably don't need it — Signature is enough. But for a premium 8–15-year-old BBQ that's lived multiple seasons without serious cleaning, it's the option that helps save it.",
+    fr: "Le forfait Restauration, c'est notre niveau le plus poussé. Si votre BBQ a 5 ans ou moins et a été entretenu, vous n'en avez probablement pas besoin — le forfait Nettoyage suffit. Mais pour un BBQ premium de 8-15 ans qui a vécu plusieurs saisons sans nettoyage sérieux, c'est l'option qui aide à le sauver.",
+    en: "The Restoration package is our highest level. If your BBQ is 5 years or less and has been maintained, you probably don't need it — the Cleaning package is enough. But for a premium 8–15-year-old BBQ that's lived multiple seasons without serious cleaning, it's the option that helps save it.",
   },
   faq: [
     {
       q: { fr: "Pourquoi ce forfait coûte plus cher?", en: "Why does this package cost more?" },
       a: {
-        fr: "Parce qu'on y ajoute la vapeur, plusieurs passes de dégraissage, une finition plus détaillée et un rapport sommaire. Ça représente 5 à 7+ heures de travail sur place vs 3-4h pour le Signature. Pour les BBQ très grands, encastrés ou commerciaux, on peut faire une évaluation préalable et confirmer un prix personnalisé avant de procéder.",
-        en: "Because we add steam, multiple degreaser passes, more detailed finishing and a summary report. That's 5–7+ hours of on-site work vs 3–4h for Signature. For very large, built-in or commercial BBQs, we can do a pre-evaluation and confirm a custom price before proceeding.",
+        fr: "Parce qu'on y ajoute plusieurs passes de dégraissage, la vapeur au besoin sur les composantes compatibles, une finition plus détaillée et un rapport sommaire. Ça représente 5 à 7+ heures de travail sur place vs 3-4h pour le forfait Nettoyage. Pour les BBQ très grands, encastrés ou commerciaux, on peut faire une évaluation préalable et confirmer un prix personnalisé avant de procéder.",
+        en: "Because we add multiple degreaser passes, steam as needed on compatible components, more detailed finishing and a summary report. That's 5–7+ hours of on-site work vs 3–4h for the Cleaning package. For very large, built-in or commercial BBQs, we can do a pre-evaluation and confirm a custom price before proceeding.",
       },
     },
     {
       q: { fr: "Vous garantissez « comme neuf » ?", en: "Do you guarantee \"like-new\"?" },
       a: {
-        fr: "Non. Nous ne promettons pas « comme neuf », « 100 % garanti », ni résultat showroom. Un BBQ qui a 10-15 ans de carbone cuit, de rayures, de patine ne redeviendra jamais neuf — et c'est OK. Ce que la Restauration Prestige fait, c'est une remise en état visuelle importante : ramener le BBQ à l'état le plus propre raisonnablement possible selon son âge, son matériau et sa condition. Vous serez surpris du résultat, mais vous n'aurez pas un BBQ neuf — vous aurez votre BBQ, beaucoup plus agréable à utiliser.",
-        en: "No. We don't promise \"like-new\", \"100% guaranteed\" or showroom-finish results. A BBQ with 10–15 years of baked carbon, scratches, patina will never look new — and that's OK. What Prestige Steam Restoration does is significant visual restoration: bringing the BBQ to the cleanest state reasonably possible given its age, material and condition. You'll be surprised by the result, but you won't have a new BBQ — you'll have your BBQ, much more pleasant to use.",
+        fr: "Non. Nous ne promettons pas « comme neuf », « 100 % garanti », ni résultat showroom. Un BBQ qui a 10-15 ans de carbone cuit, de rayures, de patine ne redeviendra jamais neuf — et c'est OK. Ce que le forfait Restauration fait, c'est une remise en état visuelle importante : ramener le BBQ à l'état le plus propre raisonnablement possible selon son âge, son matériau et sa condition. Vous serez surpris du résultat, mais vous n'aurez pas un BBQ neuf — vous aurez votre BBQ, beaucoup plus agréable à utiliser.",
+        en: "No. We don't promise \"like-new\", \"100% guaranteed\" or showroom-finish results. A BBQ with 10–15 years of baked carbon, scratches, patina will never look new — and that's OK. What the Restoration package does is significant visual restoration: bringing the BBQ to the cleanest state reasonably possible given its age, material and condition. You'll be surprised by the result, but you won't have a new BBQ — you'll have your BBQ, much more pleasant to use.",
       },
     },
     {
-      q: { fr: "Mon Napoleon Prestige de 15 ans, c'est viable de le sauver ou je devrais le remplacer?", en: "My 15-year-old Napoleon Prestige — worth saving or should I replace?" },
+      q: { fr: "Mon Napoleon Prestige de 15 ans, c'est viable de le sauver ou je devrais le remplacer ?", en: "My 15-year-old Napoleon Prestige — worth saving or should I replace?" },
       a: {
-        fr: "Ça dépend de l'état. Un Napoleon Prestige bien construit peut souvent durer 18-20 ans avec entretien sérieux et remplacement des pièces critiques (brûleurs, sear plates, igniters). La Restauration Prestige va vous donner une réponse claire : on documente tout, on vous donne notre opinion honnête. Si le coût de la Restauration + pièces nécessaires dépasse 50 % du prix d'un BBQ neuf équivalent, on vous le dit franchement.",
-        en: "Depends on condition. A well-built Napoleon Prestige can often last 18–20 years with serious maintenance and replacement of critical parts (burners, sear plates, igniters). Prestige Steam Restoration gives you a clear answer: we document everything, give honest opinion. If Restoration + needed parts exceeds 50% of a new equivalent BBQ, we tell you straight up.",
+        fr: "Ça dépend de l'état. Un Napoleon Prestige bien construit peut souvent durer 18-20 ans avec entretien sérieux et remplacement des pièces critiques (brûleurs, sear plates, igniters). Le forfait Restauration va vous donner une réponse claire : on documente tout, on vous donne notre opinion honnête. Si le coût de la Restauration + pièces nécessaires dépasse 50 % du prix d'un BBQ neuf équivalent, on vous le dit franchement.",
+        en: "Depends on condition. A well-built Napoleon Prestige can often last 18–20 years with serious maintenance and replacement of critical parts (burners, sear plates, igniters). The Restoration package gives you a clear answer: we document everything, give honest opinion. If Restoration + needed parts exceeds 50% of a new equivalent BBQ, we tell you straight up.",
       },
     },
     {
       q: { fr: "Combien de temps dure le résultat?", en: "How long does the result last?" },
       a: {
-        fr: "Avec entretien régulier ensuite (un Nettoyage Signature ou même Entretien Essentiel chaque saison), le résultat d'une Restauration Prestige peut tenir 3-5 ans avant qu'une nouvelle restauration soit nécessaire. Sans entretien, c'est plutôt 12-18 mois avant que la graisse recommence à s'accumuler sérieusement.",
-        en: "With regular maintenance after (a Signature or even Essential Maintenance each season), the Prestige Steam Restoration result can hold 3–5 years before another restoration is needed. Without maintenance, more like 12–18 months before grease seriously rebuilds.",
+        fr: "Avec entretien régulier ensuite (un forfait Nettoyage ou même Entretien chaque saison), le résultat d'une Restauration peut tenir 3-5 ans avant qu'une nouvelle restauration soit nécessaire. Sans entretien, c'est plutôt 12-18 mois avant que la graisse recommence à s'accumuler sérieusement.",
+        en: "With regular maintenance after (a Cleaning or even Maintenance package each season), the Restoration result can hold 3–5 years before another restoration is needed. Without maintenance, more like 12–18 months before grease seriously rebuilds.",
       },
     },
     {
@@ -832,8 +832,8 @@ const prestige: PackageDetail = {
     en: "Save your premium BBQ.",
   },
   ctaFinalBody: {
-    fr: "La Restauration Prestige, c'est notre niveau le plus poussé. Vapeur, multiples passes, finition détaillée, photos et rapport sommaire. Pour le BBQ que vous voulez sauver, pas remplacer.",
-    en: "Prestige Steam Restoration is our highest level. Steam, multi-pass degreasing, detailed finish, photos and summary report. For the BBQ you want to save, not replace.",
+    fr: "Le forfait Restauration, c'est notre niveau le plus poussé. Multiples passes, vapeur au besoin sur les composantes compatibles, finition détaillée, photos et rapport sommaire. Pour le BBQ que vous voulez sauver, pas remplacer.",
+    en: "The Restoration package is our highest level. Multiple passes, steam as needed on compatible components, detailed finish, photos and summary report. For the BBQ you want to save, not replace.",
   },
 };
 
