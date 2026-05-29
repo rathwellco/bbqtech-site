@@ -162,8 +162,8 @@ export const siteConfig = {
       name: { fr: "Diagnostic & Réparation", en: "Diagnostic & Repair" } satisfies Bilingual,
       priceLabel: { fr: "99 $", en: "$99" } satisfies Bilingual,
       summary: {
-        fr: "Diagnostic à domicile pour identifier le problème, les pièces possiblement requises et les prochaines étapes recommandées. Réparation facturée selon le temps et le matériel.",
-        en: "On-site diagnostic to identify the issue, potentially required parts and recommended next steps. Repair billed based on time and materials.",
+        fr: "Diagnostic à domicile pour identifier un problème de fonctionnement. Les pièces, réparations et main-d'œuvre additionnelle sont facturées séparément. Une estimation est confirmée avant de procéder.",
+        en: "On-site diagnostic to identify a functional issue. Parts, repairs and additional labor are billed separately. An estimate is confirmed before proceeding.",
       } satisfies Bilingual,
     },
     {
@@ -184,7 +184,7 @@ export const siteConfig = {
       key: "essential",
       name: { fr: "Entretien", en: "Maintenance" } satisfies Bilingual,
       price: 199,
-      priceLabel: { fr: "199 $ + tx", en: "$199 + tx" } satisfies Bilingual,
+      priceLabel: { fr: "199 $ + taxes", en: "$199 + taxes" } satisfies Bilingual,
       surchargePerBurner: 49,
       method: {
         fr: "Inspection · Entretien saisonnier léger",
@@ -201,7 +201,7 @@ export const siteConfig = {
       key: "signature",
       name: { fr: "Nettoyage", en: "Cleaning" } satisfies Bilingual,
       price: 299,
-      priceLabel: { fr: "299 $ + tx", en: "$299 + tx" } satisfies Bilingual,
+      priceLabel: { fr: "299 $ + taxes", en: "$299 + taxes" } satisfies Bilingual,
       surchargePerBurner: 49,
       method: {
         fr: "Dégraissage approfondi · Composantes détaillées · Nettoyage annuel · Vapeur au besoin",
@@ -218,7 +218,7 @@ export const siteConfig = {
       key: "prestige",
       name: { fr: "Restauration", en: "Restoration" } satisfies Bilingual,
       price: 399,
-      priceLabel: { fr: "À partir de 399 $ + tx", en: "From $399 + tax" } satisfies Bilingual,
+      priceLabel: { fr: "À partir de 399 $ + taxes", en: "Starting at $399 + taxes" } satisfies Bilingual,
       surchargePerBurner: 49,
       method: {
         fr: "Multiples passes · Vapeur au besoin · Finition détaillée · Observations",
@@ -315,30 +315,45 @@ export const siteConfig = {
   // ─── REPAIR / DIAGNOSTIC ───
   repair: {
     title: {
-      fr: "Diagnostic & Réparation BBQ à domicile",
-      en: "On-site BBQ Diagnostic & Repair",
+      fr: "Diagnostic & Réparation",
+      en: "Diagnostic & Repair",
     } satisfies Bilingual,
     subtitle: {
-      fr: "Brûleurs, allumage, régulateur, grilles, plaques. Diagnostic à domicile pour identifier le problème, les pièces possiblement requises et les prochaines étapes recommandées.",
-      en: "Burners, ignition, regulator, grates, plates. On-site diagnostic to identify the issue, potentially required parts and recommended next steps.",
+      fr: "Allumage, flamme faible, brûleur défectueux, chaleur inégale, composante brisée ou autre symptôme : diagnostic à domicile pour identifier le problème et les prochaines étapes.",
+      en: "Ignition problem, weak flame, faulty burner, uneven heat, broken component or another symptom: on-site diagnostic to identify the issue and recommended next steps.",
     } satisfies Bilingual,
-    diagnosticPriceLabel: { fr: "99 $ + taxes", en: "$99 + tax" } satisfies Bilingual,
+    diagnosticPriceLabel: { fr: "99 $ + taxes", en: "$99 + taxes" } satisfies Bilingual,
     diagnosticHeading: { fr: "Diagnostic à domicile", en: "On-site diagnostic" } satisfies Bilingual,
-    creditNote: {
-      fr: "Le diagnostic inclut le déplacement à domicile, l'inspection du problème et l'identification des pièces ou travaux requis. Une fois le problème identifié, la réparation est facturée selon le temps et le matériel requis.",
-      en: "The diagnostic includes the on-site visit, inspection of the issue and identification of required parts or work. Once the issue is identified, repair work is billed based on time and materials.",
+    mainBody: {
+      fr: "Diagnostic à domicile pour identifier un problème de fonctionnement : allumage, flamme faible, brûleur défectueux, chaleur inégale, composante brisée ou autre symptôme à vérifier. Le diagnostic inclut le déplacement et l'identification du problème lorsque possible. Les pièces, réparations et main-d'œuvre additionnelle sont facturées séparément. Une estimation est confirmée avant de procéder.",
+      en: "On-site diagnostic to identify a functional issue: ignition problem, weak flame, faulty burner, uneven heat, broken component or another symptom to inspect. The diagnostic includes the on-site visit and issue identification when possible. Parts, repairs and additional labor are billed separately. An estimate is confirmed before proceeding.",
     } satisfies Bilingual,
-    disclaimer: {
-      fr: "Comme BBQTECH ne garde pas un inventaire complet de pièces dans le véhicule, certaines réparations peuvent nécessiter une deuxième visite après réception des pièces. Si une deuxième visite est nécessaire uniquement pour installer les pièces commandées, aucun frais de diagnostic additionnel n'est chargé.",
-      en: "Because BBQTECH does not carry a full parts inventory in the vehicle, some repairs may require a second visit after parts are received. If a second visit is needed only to install ordered parts, no additional diagnostic fee is charged.",
+    tiers: [
+      {
+        priceLabel: { fr: "49 $ + taxes", en: "$49 + taxes" } satisfies Bilingual,
+        name: { fr: "Diagnostic ajouté à un nettoyage", en: "Diagnostic added to a cleaning" } satisfies Bilingual,
+        body: {
+          fr: "Disponible seulement lorsqu'un forfait de nettoyage est effectué à la même visite. L'inspection visuelle de base est incluse avec le nettoyage. Le diagnostic s'applique lorsqu'un problème de fonctionnement doit être identifié : allumage, flamme faible, brûleur défectueux, chaleur inégale ou autre symptôme. Les pièces, réparations, main-d'œuvre additionnelle et visites futures sont facturées séparément. Une estimation est confirmée avant de procéder.",
+          en: "Available only when a cleaning package is performed during the same visit. A basic visual inspection is included with cleaning packages. The diagnostic applies when a functional issue needs to be identified: ignition problem, weak flame, faulty burner, uneven heat or another symptom. Parts, repairs, additional labor and future visits are billed separately. An estimate is confirmed before proceeding.",
+        } satisfies Bilingual,
+      },
+      {
+        priceLabel: { fr: "À partir de 99 $ + taxes", en: "Starting at $99 + taxes" } satisfies Bilingual,
+        name: { fr: "Installation / réparation", en: "Installation / repair" } satisfies Bilingual,
+        body: {
+          fr: "Si une pièce doit être remplacée et qu'une deuxième visite est nécessaire, l'installation est facturée à partir de 99 $ + taxes, pièces en sus. Une estimation est confirmée avant de procéder.",
+          en: "If a part needs to be replaced and a second visit is required, installation is billed starting at $99 + taxes, parts extra. An estimate is confirmed before proceeding.",
+        } satisfies Bilingual,
+      },
+    ],
+    tiersHeading: { fr: "Autres situations", en: "Other situations" } satisfies Bilingual,
+    inspectionDistinction: {
+      fr: "Inspection visuelle de base incluse avec les forfaits de nettoyage. Pendant le service, BBQTECH peut signaler les pièces visiblement usées, endommagées ou à surveiller. Cette inspection ne remplace pas un diagnostic de réparation complet.",
+      en: "Basic visual inspection included with cleaning packages. During the service, BBQTECH may point out visibly worn, damaged or concerning parts. This inspection does not replace a complete repair diagnostic.",
     } satisfies Bilingual,
     gasLimit: {
-      fr: "BBQTECH n'intervient pas sur les installations de gaz réglementées. Les travaux sont limités aux composantes accessibles du BBQ et aux pièces pouvant normalement être remplacées par un client selon les recommandations du fabricant. Nous ne modifions pas et ne certifions pas les lignes de gaz, raccordements permanents, conversions propane / gaz naturel ou installations encastrées. Lorsqu'un technicien certifié en gaz est requis, nous vous l'indiquons clairement et pouvons vous référer à un spécialiste qualifié.",
-      en: "BBQTECH does not work on regulated gas installations. Work is limited to accessible BBQ components and parts that can normally be replaced by a customer according to manufacturer recommendations. We do not modify or certify gas lines, permanent connections, propane / natural gas conversions or built-in gas installations. When a certified gas technician is required, we will clearly let you know and can refer you to a qualified specialist.",
-    } satisfies Bilingual,
-    comboNote: {
-      fr: "Astuce : combinez avec un nettoyage à domicile pour économiser une visite.",
-      en: "Tip: combine with an on-site cleaning to save a visit.",
+      fr: "BBQTECH n'intervient pas sur les installations de gaz réglementées. Les services se limitent aux composantes accessibles du BBQ et aux pièces pouvant normalement être nettoyées, retirées ou remplacées par un client selon les recommandations du fabricant. Nous ne modifions pas et ne certifions pas les lignes de gaz, raccordements permanents, conversions propane / gaz naturel ou installations encastrées. Lorsqu'un technicien certifié en gaz est requis, nous l'indiquons clairement et pouvons référer le client à un spécialiste qualifié.",
+      en: "BBQTECH does not work on regulated gas installations. Services are limited to accessible BBQ components and parts that can normally be cleaned, removed or replaced by a customer according to manufacturer recommendations. We do not modify or certify gas lines, permanent connections, propane / natural gas conversions or built-in installations. When a certified gas technician is required, we clearly let the customer know and can refer them to a qualified specialist.",
     } satisfies Bilingual,
     diagnosticPrep: {
       fr: "Pour accélérer le diagnostic, préparez si possible : marque ; modèle ; numéro de série ; photos du BBQ ; photos de la pièce problématique ; description du symptôme ; type de gaz : propane ou gaz naturel.",
@@ -358,16 +373,16 @@ export const siteConfig = {
         number: "2",
         title: { fr: "Diagnostic à domicile", en: "On-site diagnostic" } satisfies Bilingual,
         desc: {
-          fr: "99 $ + taxes. Inspection du problème et identification des pièces ou travaux requis.",
-          en: "$99 + tax. Inspection of the issue and identification of required parts or work.",
+          fr: "99 $ + taxes (ou 49 $ + taxes si ajouté à un nettoyage). Inspection du problème et identification des pièces ou travaux requis.",
+          en: "$99 + taxes ($49 + taxes if added to a cleaning). Inspection of the issue and identification of required parts or work.",
         } satisfies Bilingual,
       },
       {
         number: "3",
         title: { fr: "Estimation transparente", en: "Transparent estimate" } satisfies Bilingual,
         desc: {
-          fr: "Pièces et main-d'œuvre détaillées avant tout travail.",
-          en: "Parts and labor detailed before any work.",
+          fr: "Pièces, réparations et main-d'œuvre additionnelle détaillées avant tout travail.",
+          en: "Parts, repairs and additional labor detailed before any work.",
         } satisfies Bilingual,
       },
       {
@@ -380,10 +395,10 @@ export const siteConfig = {
       },
       {
         number: "5",
-        title: { fr: "Installation des pièces", en: "Parts installation" } satisfies Bilingual,
+        title: { fr: "Installation / réparation", en: "Installation / repair" } satisfies Bilingual,
         desc: {
-          fr: "Installation à domicile. Si une 2e visite est nécessaire uniquement pour installer les pièces commandées, aucun frais de diagnostic additionnel.",
-          en: "On-site installation. If a 2nd visit is needed only to install ordered parts, no additional diagnostic fee.",
+          fr: "Installation à domicile. Si une 2e visite est nécessaire pour installer la pièce commandée, l'installation est facturée à partir de 99 $ + taxes, pièces en sus.",
+          en: "On-site installation. If a 2nd visit is required to install the ordered part, installation is billed starting at $99 + taxes, parts extra.",
         } satisfies Bilingual,
       },
     ],
@@ -530,7 +545,7 @@ export const siteConfig = {
       q: { fr: "Combien coûte l'assemblage d'un BBQ ?", en: "How much does BBQ assembly cost?" } satisfies Bilingual,
       a: {
         fr: "L'assemblage à domicile débute à 149 $ + taxes pour la plupart des BBQ standards. Certains modèles grands formats, complexes, pellet, kamado ou cuisines extérieures peuvent nécessiter une soumission personnalisée.",
-        en: "On-site assembly starts at $149 + tax for most standard BBQs. Larger, more complex models, pellet, kamado or outdoor kitchens may require a custom quote.",
+        en: "On-site assembly starts at $149 + taxes for most standard BBQs. Larger, more complex models, pellet, kamado or outdoor kitchens may require a custom quote.",
       } satisfies Bilingual,
     },
     {
@@ -541,10 +556,31 @@ export const siteConfig = {
       } satisfies Bilingual,
     },
     {
-      q: { fr: "Comment fonctionne le diagnostic de réparation ?", en: "How does the repair diagnostic work?" } satisfies Bilingual,
+      q: { fr: "L'inspection est-elle incluse avec un nettoyage ?", en: "Is an inspection included with a cleaning?" } satisfies Bilingual,
       a: {
-        fr: "Diagnostic à domicile pour 99 $ + taxes. Le déplacement, l'inspection du problème et l'identification des pièces ou travaux requis sont inclus. Une fois le problème identifié, la réparation est facturée selon le temps et le matériel requis. Comme BBQTECH ne garde pas un inventaire complet de pièces dans le véhicule, certaines réparations peuvent nécessiter une deuxième visite après réception des pièces. Si une deuxième visite est nécessaire uniquement pour installer les pièces commandées, aucun frais de diagnostic additionnel n'est chargé. Astuce : combinez avec un nettoyage à domicile pour économiser une visite.",
-        en: "On-site diagnostic for $99 + tax. Includes the on-site visit, inspection of the issue and identification of required parts or work. Once the issue is identified, repair work is billed based on time and materials. Because BBQTECH does not carry a full parts inventory in the vehicle, some repairs may require a second visit after parts are received. If a second visit is needed only to install ordered parts, no additional diagnostic fee is charged. Tip: combine with an on-site cleaning to save a visit.",
+        fr: "Oui. Tous les forfaits de nettoyage incluent une inspection visuelle de base des composantes accessibles. Si nous voyons une pièce usée, endommagée ou à surveiller, nous vous le signalons. Cette inspection ne remplace pas un diagnostic de réparation complet.",
+        en: "Yes. Every cleaning package includes a basic visual inspection of accessible components. If we see a worn, damaged or concerning part, we will point it out. This inspection does not replace a complete repair diagnostic.",
+      } satisfies Bilingual,
+    },
+    {
+      q: { fr: "Quand est-ce qu'un diagnostic réparation s'applique ?", en: "When does a repair diagnostic apply?" } satisfies Bilingual,
+      a: {
+        fr: "Un diagnostic s'applique lorsqu'un problème de fonctionnement doit être identifié : allumage, flamme faible, brûleur qui ne fonctionne pas, chaleur inégale, problème d'allumeur ou autre symptôme. Le diagnostic réparation est 99 $ + taxes pour une visite dédiée.",
+        en: "A diagnostic applies when a functional issue needs to be identified: ignition problem, weak flame, burner not working, uneven heat, igniter issue or another symptom. The repair diagnostic is $99 + taxes for a dedicated visit.",
+      } satisfies Bilingual,
+    },
+    {
+      q: { fr: "Si je réserve un nettoyage, pouvez-vous aussi vérifier un problème ?", en: "If I book a cleaning, can you also check a problem?" } satisfies Bilingual,
+      a: {
+        fr: "Oui. Si vous avez déjà réservé un nettoyage, un diagnostic de fonctionnement peut être ajouté à la même visite pour 49 $ + taxes. Les pièces, réparations et visites futures sont facturées séparément. Une estimation est confirmée avant de procéder.",
+        en: "Yes. If you already booked a cleaning, a functional diagnostic can be added to the same visit for $49 + taxes. Parts, repairs and future visits are billed separately. An estimate is confirmed before proceeding.",
+      } satisfies Bilingual,
+    },
+    {
+      q: { fr: "Que se passe-t-il si une pièce doit être commandée ?", en: "What happens if a part needs to be ordered?" } satisfies Bilingual,
+      a: {
+        fr: "Si une pièce doit être remplacée, nous vous confirmons le coût avant de procéder. Si une deuxième visite est nécessaire pour installer la pièce, l'installation est facturée à partir de 99 $ + taxes, pièces en sus.",
+        en: "If a part needs to be replaced, we confirm the cost before proceeding. If a second visit is required to install the part, installation is billed starting at $99 + taxes, parts extra.",
       } satisfies Bilingual,
     },
     {

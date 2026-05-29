@@ -11,6 +11,7 @@ const booking = bookingHref(siteConfig.bookingUrl, lang);
 const r = siteConfig.repair;
 const prepLabel = lang === "fr" ? "Préparation pour accélérer le diagnostic" : "Preparation to speed up the diagnostic";
 const gasLimitLabel = lang === "fr" ? "Limites — installations de gaz" : "Limits — gas installations";
+const inspectionLabel = lang === "fr" ? "Inspection visuelle vs diagnostic" : "Visual inspection vs diagnostic";
 ---
 
 <section class="py-16 md:py-20 bg-light" id="reparation">
@@ -29,16 +30,9 @@ const gasLimitLabel = lang === "fr" ? "Limites — installations de gaz" : "Limi
         <p class="text-4xl md:text-5xl font-extrabold mb-4 leading-none">
           {t(r.diagnosticPriceLabel, lang)}
         </p>
-        <div class="space-y-3 text-sm text-white/85 leading-relaxed mb-6">
-          <p class="flex items-start gap-2">
-            <span class="text-accent font-bold shrink-0 mt-0.5">✓</span>
-            <span>{t(r.creditNote, lang)}</span>
-          </p>
-          <p class="flex items-start gap-2">
-            <span class="text-white/40 shrink-0 mt-0.5 font-bold">i</span>
-            <span class="text-white/70">{t(r.disclaimer, lang)}</span>
-          </p>
-        </div>
+        <p class="text-sm text-white/85 leading-relaxed mb-6">
+          {t(r.mainBody, lang)}
+        </p>
         <div class="space-y-3">
           <a
             href={booking.href}
@@ -57,14 +51,14 @@ const gasLimitLabel = lang === "fr" ? "Limites — installations de gaz" : "Limi
         </div>
       </div>
 
-      <!-- Process steps -->
+      <!-- Process steps + tiers + notes -->
       <div>
         <p class="text-xs font-bold uppercase tracking-wider text-grey mb-4">
           {t(r.processHeading, lang)}
         </p>
-        <ol class="space-y-4" style="list-style: none; padding: 0; margin: 0;">
+        <div class="space-y-4" role="list">
           {r.steps.map((step) => (
-            <li class="flex items-start gap-4 bg-white rounded-xl p-4 md:p-5 border border-grey-mid/40">
+            <div role="listitem" class="flex items-start gap-4 bg-white rounded-xl p-4 md:p-5 border border-grey-mid/40">
               <span class="w-9 h-9 rounded-full bg-accent text-white text-sm font-extrabold flex items-center justify-center shrink-0">
                 {step.number}
               </span>
@@ -72,13 +66,32 @@ const gasLimitLabel = lang === "fr" ? "Limites — installations de gaz" : "Limi
                 <h3 class="text-base font-bold text-dark mb-1">{t(step.title, lang)}</h3>
                 <p class="text-sm text-grey leading-relaxed">{t(step.desc, lang)}</p>
               </div>
-            </li>
+            </div>
           ))}
-        </ol>
+        </div>
 
-        <p class="mt-6 p-4 bg-accent/10 border border-accent/30 rounded-lg text-sm text-dark leading-relaxed">
-          💡 {t(r.comboNote, lang)}
+        <!-- Other tiers (add-on diagnostic + installation) -->
+        <p class="text-xs font-bold uppercase tracking-wider text-grey mt-8 mb-4">
+          {t(r.tiersHeading, lang)}
         </p>
+        <div class="space-y-4">
+          {r.tiers.map((tier) => (
+            <div class="bg-white rounded-xl p-5 md:p-6 border border-grey-mid/40">
+              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
+                <h3 class="text-base font-extrabold text-dark">{t(tier.name, lang)}</h3>
+                <span class="text-accent font-extrabold whitespace-nowrap">{t(tier.priceLabel, lang)}</span>
+              </div>
+              <p class="text-sm text-grey leading-relaxed">{t(tier.body, lang)}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-6 p-4 bg-white border border-grey-mid/50 rounded-lg">
+          <p class="text-xs font-bold uppercase tracking-wider text-grey mb-2">
+            {inspectionLabel}
+          </p>
+          <p class="text-sm text-grey leading-relaxed">{t(r.inspectionDistinction, lang)}</p>
+        </div>
 
         <div class="mt-4 p-4 bg-white border-l-4 border-accent border border-grey-mid/50 rounded-lg">
           <p class="text-xs font-bold uppercase tracking-wider text-accent mb-2">

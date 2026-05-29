@@ -30,7 +30,7 @@ const essential: PackageDetail = {
   },
   metaDescription: {
     fr: "Forfait Entretien : entretien saisonnier léger pour un BBQ fonctionnel — inspection visuelle, nettoyage de base et remise en ordre avant la saison. 199 $ + taxes. Gatineau, Aylmer, Hull, Ottawa.",
-    en: "Maintenance package: light seasonal upkeep for a functional BBQ — visual inspection, basic cleaning and tidy-up before the season. $199 + tax. Gatineau, Aylmer, Hull, Ottawa.",
+    en: "Maintenance package: light seasonal upkeep for a functional BBQ — visual inspection, basic cleaning and tidy-up before the season. $199 + taxes. Gatineau, Aylmer, Hull, Ottawa.",
   },
   heroSubtitle: {
     fr: "Entretien saisonnier léger pour un BBQ fonctionnel : inspection visuelle, nettoyage de base et remise en ordre avant la saison.",
@@ -286,7 +286,7 @@ const signature: PackageDetail = {
   },
   metaDescription: {
     fr: "Nettoyage BBQ annuel plus approfondi : dégraissage à deux applications, composantes détaillées et vapeur au besoin sur les composantes compatibles. Forfait recommandé à 299 $ + taxes. Gatineau, Aylmer, Hull, Ottawa.",
-    en: "More thorough annual BBQ cleaning: two-pass degreasing, detailed components and steam as needed on compatible components. Recommended package at $299 + tax. Gatineau, Aylmer, Hull, Ottawa.",
+    en: "More thorough annual BBQ cleaning: two-pass degreasing, detailed components and steam as needed on compatible components. Recommended package at $299 + taxes. Gatineau, Aylmer, Hull, Ottawa.",
   },
   heroSubtitle: {
     fr: "Notre forfait recommandé. Pour le BBQ utilisé régulièrement qui a besoin d'un nettoyage annuel plus approfondi — avec vapeur au besoin sur les composantes compatibles.",
@@ -561,7 +561,7 @@ const prestige: PackageDetail = {
   },
   metaDescription: {
     fr: "Remise en état plus poussée pour BBQ très encrassés, premium, négligés depuis longtemps ou nécessitant plus de temps. Multiples passes, vapeur au besoin sur les composantes compatibles, finition détaillée. À partir de 399 $ + taxes. Photos extensives et rapport sommaire inclus. Gatineau et Ottawa.",
-    en: "More advanced restoration for heavily soiled, premium, long-neglected BBQs or those needing more time. Multiple passes, steam as needed on compatible components, detailed finishing. From $399 + tax. Extensive photos and summary report included. Gatineau and Ottawa.",
+    en: "More advanced restoration for heavily soiled, premium, long-neglected BBQs or those needing more time. Multiple passes, steam as needed on compatible components, detailed finishing. Starting at $399 + taxes. Extensive photos and summary report included. Gatineau and Ottawa.",
   },
   heroSubtitle: {
     fr: "Remise en état plus poussée. Nettoyage avancé avec multiples passes, vapeur au besoin sur les composantes compatibles, finition plus détaillée et rapport — pour les BBQ premium, vieux ou très négligés.",
@@ -815,8 +815,8 @@ const prestige: PackageDetail = {
     {
       q: { fr: "Combien de pièces vais-je devoir remplacer après la Restauration?", en: "How many parts will I need to replace after Restoration?" },
       a: {
-        fr: "Variable. Sur un BBQ premium de 10+ ans, c'est commun de devoir remplacer un ou deux brûleurs, parfois les igniters, parfois les sear plates si elles sont trop rouillées. Le rapport sommaire vous donne la liste exacte. La Restauration elle-même n'inclut pas les pièces — c'est le service Diagnostic & Réparation à 99 $ + pièces + main-d'œuvre. Si une revisit est nécessaire pour installer les pièces, seulement les pièces et la main-d'œuvre sont facturées. On peut combiner les deux services en une visite si vous décidez de procéder pendant qu'on est sur place.",
-        en: "Variable. On a 10+ year premium BBQ, it's common to need 1–2 burner replacements, sometimes igniters, sometimes sear plates if too rusted. The summary report gives you the exact list. The Restoration itself doesn't include parts — that's the $99 Diagnostic & Repair service + parts + labor. If a revisit is needed to install parts, only parts and labor are billed. We can combine both services in one visit if you decide to proceed while we're there.",
+        fr: "Variable. Sur un BBQ premium de 10+ ans, c'est commun de devoir remplacer un ou deux brûleurs, parfois les igniters, parfois les sear plates si elles sont trop rouillées. Le rapport sommaire vous donne la liste exacte. La Restauration elle-même n'inclut pas les pièces — c'est le service Diagnostic & Réparation (99 $ + taxes, ou 49 $ + taxes ajouté à un nettoyage). Les pièces, réparations et main-d'œuvre additionnelle sont facturées séparément. Si une deuxième visite est nécessaire pour installer la pièce, l'installation est facturée à partir de 99 $ + taxes, pièces en sus. Une estimation est confirmée avant de procéder.",
+        en: "Variable. On a 10+ year premium BBQ, it's common to need 1–2 burner replacements, sometimes igniters, sometimes sear plates if too rusted. The summary report gives you the exact list. The Restoration itself doesn't include parts — that's the Diagnostic & Repair service ($99 + taxes, or $49 + taxes when added to a cleaning). Parts, repairs and additional labor are billed separately. If a second visit is required to install the part, installation is billed starting at $99 + taxes, parts extra. An estimate is confirmed before proceeding.",
       },
     },
     {
