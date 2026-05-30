@@ -502,8 +502,8 @@ export const siteConfig = {
     {
       q: { fr: "Combien coûte un nettoyage de BBQ ?", en: "How much does a BBQ cleaning cost?" } satisfies Bilingual,
       a: {
-        fr: "Nos forfaits sont à 199 $ (Entretien — entretien saisonnier léger), 299 $ (Nettoyage — nettoyage annuel plus approfondi) et à partir de 399 $ (Restauration — pour BBQ très encrassé, premium ou négligé depuis longtemps). Le forfait approprié dépend de l'état de votre BBQ. Envoyez-nous une photo pour une recommandation précise.",
-        en: "Our packages are $199 (Maintenance — light seasonal upkeep), $299 (Cleaning — more thorough annual cleaning) and from $399 (Restoration — for heavily soiled, premium or long-neglected BBQs). The right package depends on your BBQ's condition. Send us a photo for a precise recommendation.",
+        fr: "Nos forfaits sont à 199 $ + taxes (Entretien — entretien saisonnier léger), 299 $ + taxes (Nettoyage — nettoyage annuel plus approfondi) et à partir de 399 $ + taxes (Restauration — pour BBQ très encrassé, premium ou négligé depuis longtemps). Le forfait approprié dépend de l'état de votre BBQ. Envoyez-nous une photo pour une recommandation précise.",
+        en: "Our packages are $199 + taxes (Maintenance — light seasonal upkeep), $299 + taxes (Cleaning — more thorough annual cleaning) and from $399 + taxes (Restoration — for heavily soiled, premium or long-neglected BBQs). The right package depends on your BBQ's condition. Send us a photo for a precise recommendation.",
       } satisfies Bilingual,
     },
     {
