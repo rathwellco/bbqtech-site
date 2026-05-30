@@ -139,22 +139,26 @@ export const siteConfig = {
     {
       slug: "nettoyage",
       icon: "🔥",
-      name: { fr: "Nettoyage BBQ à domicile", en: "On-site BBQ Cleaning" } satisfies Bilingual,
+      name: { fr: "Nettoyage BBQ à domicile", en: "BBQ cleaning at home" } satisfies Bilingual,
       priceLabel: { fr: "À partir de 199 $ + taxes", en: "From $199 + taxes" } satisfies Bilingual,
       summary: {
-        fr: "Service mobile de nettoyage et d'entretien à domicile pour BBQ, grills, smokers et équipements de cuisson extérieure. 3 forfaits selon l'état : Entretien, Nettoyage et Restauration.",
-        en: "Mobile on-site cleaning and maintenance service for BBQs, grills, smokers and outdoor cooking equipment. 3 packages by condition: Maintenance, Cleaning and Restoration.",
+        fr: "Service mobile de nettoyage et d'entretien à domicile pour BBQ, grills, smokers et équipements de cuisson extérieure. Choisissez entre Entretien, Nettoyage ou Restauration selon l'état de votre BBQ.",
+        en: "Mobile cleaning and maintenance service at home for BBQs, grills, smokers and outdoor cooking equipment. Choose between Maintenance, Cleaning or Restoration based on your BBQ's condition.",
       } satisfies Bilingual,
+      ctaLabel: { fr: "Voir les forfaits", en: "View packages" } satisfies Bilingual,
+      cardHref: "#forfaits",
     },
     {
       slug: "assemblage",
       icon: "🔧",
-      name: { fr: "Assemblage BBQ", en: "BBQ Assembly" } satisfies Bilingual,
+      name: { fr: "Assemblage BBQ", en: "BBQ assembly" } satisfies Bilingual,
       priceLabel: { fr: "À partir de 149 $ + taxes", en: "From $149 + taxes" } satisfies Bilingual,
       summary: {
-        fr: "Assemblage à domicile d'un BBQ neuf chez le client. Modèles standards à partir de 149 $. Grand format, pellet, kamado ou cuisine extérieure : soumission personnalisée.",
-        en: "On-site assembly of a new BBQ at your home. Standard models from $149. Large format, pellet, kamado or outdoor kitchen: custom quote.",
+        fr: "Assemblage à domicile d'un BBQ neuf chez le client. Modèles standards à partir de 149 $ + taxes. Grand format, pellet, kamado ou cuisine extérieure : soumission personnalisée.",
+        en: "At-home assembly for a new BBQ. Standard models start at $149 + taxes. Large format, pellet, kamado or outdoor kitchen setups may require a custom quote.",
       } satisfies Bilingual,
+      ctaLabel: { fr: "Demander une soumission", en: "Request a quote" } satisfies Bilingual,
+      cardHref: "/contact",
     },
     {
       slug: "reparation",
@@ -162,19 +166,23 @@ export const siteConfig = {
       name: { fr: "Diagnostic & Réparation", en: "Diagnostic & Repair" } satisfies Bilingual,
       priceLabel: { fr: "99 $ + taxes", en: "$99 + taxes" } satisfies Bilingual,
       summary: {
-        fr: "Diagnostic à domicile pour identifier un problème de fonctionnement. Les pièces, réparations et main-d'œuvre additionnelle sont facturées séparément. Une estimation est confirmée avant de procéder.",
-        en: "On-site diagnostic to identify a functional issue. Parts, repairs and additional labor are billed separately. An estimate is confirmed before proceeding.",
+        fr: "Diagnostic à domicile pour identifier un problème de fonctionnement : allumage, flamme faible, brûleur défectueux, chaleur inégale ou composante brisée.",
+        en: "On-site diagnostic to identify a functional issue: ignition problem, weak flame, faulty burner, uneven heat or broken component.",
       } satisfies Bilingual,
+      ctaLabel: { fr: "Réserver un diagnostic", en: "Book a diagnostic" } satisfies Bilingual,
+      cardHref: "#reparation",
     },
     {
       slug: "commercial",
       icon: "🏢",
-      name: { fr: "Entretien commercial / multi-unités", en: "Commercial / Multi-unit Maintenance" } satisfies Bilingual,
+      name: { fr: "Entretien commercial / multi-unités", en: "Commercial / multi-unit maintenance" } satisfies Bilingual,
       priceLabel: { fr: "Sur soumission", en: "Custom quote" } satisfies Bilingual,
       summary: {
-        fr: "Entretien régulier pour restaurants, food trucks, condos, propriétés à plusieurs unités ou équipements commerciaux. Programme adapté selon le type d'équipement, la fréquence, l'accès, les exigences opérationnelles et le niveau de nettoyage requis. Sur soumission seulement.",
-        en: "Regular maintenance for restaurants, food trucks, condos, multi-unit properties or commercial equipment. Program tailored based on equipment type, frequency, access, operational requirements and cleaning level required. Custom quote only.",
+        fr: "Entretien régulier pour restaurants, food trucks, condos, propriétés à plusieurs unités ou équipements commerciaux. Programme adapté selon le type d'équipement, la fréquence, l'accès et le niveau de nettoyage requis.",
+        en: "Regular maintenance for restaurants, food trucks, condos, multi-unit properties or commercial equipment. Program adapted to equipment type, frequency, access and required cleaning level.",
       } satisfies Bilingual,
+      ctaLabel: { fr: "Demander une soumission", en: "Request a quote" } satisfies Bilingual,
+      cardHref: "/contact",
     },
   ],
 
@@ -584,22 +592,25 @@ export const siteConfig = {
       } satisfies Bilingual,
     },
     {
-      q: { fr: "Quand commence et finit la saison ?", en: "When does the season start and end?" } satisfies Bilingual,
+      q: { fr: "Est-ce que vous offrez des services à l'année ?", en: "Do you offer services year-round?" } satisfies Bilingual,
       a: {
-        fr: "Avril à octobre. Hors saison, on prend les assemblages et fermetures sur demande.",
-        en: "April to October. Off-season, we take assembly and close-down bookings on request.",
+        fr: "Oui. BBQTECH offre ses services à l'année, selon les conditions météo, l'accessibilité du BBQ et la sécurité de la zone de travail. La demande est plus forte au printemps et en été, mais les services sont offerts à l'année lorsque les conditions le permettent.",
+        en: "Yes. BBQTECH offers services year-round, depending on weather conditions, BBQ access and the safety of the work area. Demand is higher in spring and summer, but services are offered year-round when conditions allow.",
       } satisfies Bilingual,
     },
   ],
 
   // ─── CONTACT ───
   contact: {
-    hours: { fr: "Lun–Sam · 8h00–18h00", en: "Mon–Sat · 8:00 AM–6:00 PM" } satisfies Bilingual,
-    season: { fr: "Saison : Avril à Octobre", en: "Season: April to October" } satisfies Bilingual,
+    hours: { fr: "Ouvert 7 jours sur 7 · 8 h à 20 h", en: "Open 7 days a week · 8 AM to 8 PM" } satisfies Bilingual,
+    season: {
+      fr: "Services offerts à l'année selon les conditions météo, l'accessibilité du BBQ et la sécurité de la zone de travail.",
+      en: "Services offered year-round depending on weather conditions, BBQ access and the safety of the work area.",
+    } satisfies Bilingual,
     formHeading: { fr: "Réservez votre service BBQ", en: "Book your BBQ service" } satisfies Bilingual,
     formSub: {
-      fr: "Réservation de nettoyage, appel de service, demande de soumission ou question. Réponse confirmée sous 24 h pendant la saison. Joignez des photos par SMS au 819-561-0762 ou par courriel à info@bbqtech.com pour une recommandation précise.",
-      en: "Cleaning booking, service call, quote request, or general question. Confirmed reply within 24 h during the season. Send photos by SMS to 819-561-0762 or email info@bbqtech.com for a precise recommendation.",
+      fr: "Réservation de nettoyage, appel de service, demande de soumission ou question. Réponse confirmée sous 24 h. Joignez des photos par SMS au 819-561-0762 ou par courriel à info@bbqtech.com pour une recommandation précise.",
+      en: "Cleaning booking, service call, quote request, or general question. Confirmed reply within 24 h. Send photos by SMS to 819-561-0762 or email info@bbqtech.com for a precise recommendation.",
     } satisfies Bilingual,
   },
 

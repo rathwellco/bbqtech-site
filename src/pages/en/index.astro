@@ -33,8 +33,6 @@ const lang = "en" as const;
 
   <TrustBar lang={lang} />
 
-  <BeforeAfter lang={lang} />
-
   <section class="py-16 md:py-20 bg-white" id="services">
     <div class="max-w-[1200px] mx-auto px-6">
       <div class="text-center mb-12 md:mb-14">
@@ -48,25 +46,25 @@ const lang = "en" as const;
             title={t(s.name, lang)}
             price={t(s.priceLabel, lang)}
             description={t(s.summary, lang)}
-            ctaLabel="Request a quote"
-            ctaHref={localeHref("/contact", lang)}
+            ctaLabel={t(s.ctaLabel, lang)}
+            ctaHref={s.cardHref.startsWith("#") ? s.cardHref : localeHref(s.cardHref, lang)}
           />
         ))}
       </div>
     </div>
   </section>
 
-  <EquipmentTypes lang={lang} />
-
   <PricingTable
     lang={lang}
     title="Three BBQ cleaning packages"
-    subtitle="Pick the level that fits your BBQ: season prep, more thorough annual cleaning, or advanced restoration with multiple passes and steam as needed."
+    subtitle="Pick the level that fits your BBQ: light seasonal upkeep, more thorough annual cleaning, or advanced restoration with multiple passes and steam as needed."
   />
 
   <QuelForfait lang={lang} />
 
-  <OwnerOperator lang={lang} />
+  <BeforeAfter lang={lang} />
+
+  <EquipmentTypes lang={lang} />
 
   <CustomQuote lang={lang} />
 
@@ -79,6 +77,8 @@ const lang = "en" as const;
   />
 
   <ProcessSteps lang={lang} title="How it works" />
+
+  <OwnerOperator lang={lang} />
 
   <Philosophy lang={lang} />
 
