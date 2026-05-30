@@ -20,7 +20,8 @@ interface CaseStudy {
   bbqEn: string;
   forfaitFr: string;
   forfaitEn: string;
-  accentLabel: string;
+  accentLabelFr: string;
+  accentLabelEn: string;
   badgeStyle: "accent" | "dark";
   contextFr: { label: string; value: string }[];
   contextEn: { label: string; value: string }[];
@@ -34,7 +35,8 @@ const napoleonFreestyle: CaseStudy = {
   bbqEn: "Napoleon FreeStyle",
   forfaitFr: "Nettoyage — à partir de 299 $ + taxes",
   forfaitEn: "Cleaning — starting at $299 + taxes",
-  accentLabel: "Nettoyage",
+  accentLabelFr: "Nettoyage",
+  accentLabelEn: "Cleaning",
   badgeStyle: "accent",
   contextFr: [
     { label: "BBQ", value: "Napoleon FreeStyle — entretien annuel après une saison d'utilisation" },
@@ -85,7 +87,8 @@ const broilKing: CaseStudy = {
   bbqEn: "Broil King Signet 390",
   forfaitFr: "Restauration — à partir de 399 $ + taxes, pièces en sus si remplacement requis",
   forfaitEn: "Restoration — starting at $399 + taxes, parts extra if replacement required",
-  accentLabel: "Restauration",
+  accentLabelFr: "Restauration",
+  accentLabelEn: "Restoration",
   badgeStyle: "dark",
   contextFr: [
     { label: "BBQ", value: "Broil King Signet 390 — fortement encrassé, plusieurs saisons sans entretien" },
@@ -173,7 +176,7 @@ const labels = {
                 "inline-block text-white text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded",
                 cs.badgeStyle === "accent" ? "bg-accent" : "bg-dark"
               ]}>
-                {cs.accentLabel}
+                {lang === "fr" ? cs.accentLabelFr : cs.accentLabelEn}
               </span>
               <h3 class="text-2xl md:text-3xl font-extrabold text-dark">{bbq}</h3>
             </div>

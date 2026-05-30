@@ -151,7 +151,7 @@ const labels = {
                 const isRecommended = pkg.key === "signature";
                 return (
                   <th class:list={[
-                    "p-3 md:p-4 font-bold text-center min-w-[120px]",
+                    "p-3 md:p-4 font-bold text-center min-w-[140px] border-l border-white/20",
                     isRecommended ? "bg-accent" : ""
                   ]}>
                     <span class="block leading-tight">{t(pkg.name, lang)}</span>
@@ -168,7 +168,7 @@ const labels = {
                   const isRecommendedCol = colIdx === 1;
                   return (
                     <td class:list={[
-                      "p-3 md:p-4 text-center leading-snug",
+                      "p-3 md:p-4 text-center leading-snug whitespace-nowrap min-w-[140px] border-l border-grey-mid/30",
                       isRecommendedCol ? "font-bold" : ""
                     ]}>{v}</td>
                   );
