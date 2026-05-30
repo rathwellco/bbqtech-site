@@ -101,8 +101,8 @@ export const siteConfig = {
       shortLabel: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       title: { fr: "Prix de base clairs", en: "Clear base pricing" } satisfies Bilingual,
       body: {
-        fr: "Forfaits clairs : Entretien 199 $, Nettoyage 299 $, Restauration à partir de 399 $. Assemblage à partir de 149 $, diagnostic réparation 99 $. Aucun changement de tarif sans votre accord.",
-        en: "Clear packages: Maintenance $199, Cleaning $299, Restoration from $399. Assembly from $149, repair diagnostic $99. No price change without your approval.",
+        fr: "Forfaits clairs : Entretien 199 $ + taxes, Nettoyage 299 $ + taxes, Restauration à partir de 399 $ + taxes. Assemblage à partir de 149 $ + taxes, diagnostic réparation 99 $ + taxes. Aucun changement de tarif sans votre accord.",
+        en: "Clear packages: Maintenance $199 + taxes, Cleaning $299 + taxes, Restoration from $399 + taxes. Assembly from $149 + taxes, repair diagnostic $99 + taxes. No price change without your approval.",
       } satisfies Bilingual,
     },
     {
@@ -140,7 +140,7 @@ export const siteConfig = {
       slug: "nettoyage",
       icon: "🔥",
       name: { fr: "Nettoyage BBQ à domicile", en: "On-site BBQ Cleaning" } satisfies Bilingual,
-      priceLabel: { fr: "À partir de 199 $", en: "From $199" } satisfies Bilingual,
+      priceLabel: { fr: "À partir de 199 $ + taxes", en: "From $199 + taxes" } satisfies Bilingual,
       summary: {
         fr: "Service mobile de nettoyage et d'entretien à domicile pour BBQ, grills, smokers et équipements de cuisson extérieure. 3 forfaits selon l'état : Entretien, Nettoyage et Restauration.",
         en: "Mobile on-site cleaning and maintenance service for BBQs, grills, smokers and outdoor cooking equipment. 3 packages by condition: Maintenance, Cleaning and Restoration.",
@@ -150,7 +150,7 @@ export const siteConfig = {
       slug: "assemblage",
       icon: "🔧",
       name: { fr: "Assemblage BBQ", en: "BBQ Assembly" } satisfies Bilingual,
-      priceLabel: { fr: "À partir de 149 $", en: "From $149" } satisfies Bilingual,
+      priceLabel: { fr: "À partir de 149 $ + taxes", en: "From $149 + taxes" } satisfies Bilingual,
       summary: {
         fr: "Assemblage à domicile d'un BBQ neuf chez le client. Modèles standards à partir de 149 $. Grand format, pellet, kamado ou cuisine extérieure : soumission personnalisée.",
         en: "On-site assembly of a new BBQ at your home. Standard models from $149. Large format, pellet, kamado or outdoor kitchen: custom quote.",
@@ -160,7 +160,7 @@ export const siteConfig = {
       slug: "reparation",
       icon: "🔧",
       name: { fr: "Diagnostic & Réparation", en: "Diagnostic & Repair" } satisfies Bilingual,
-      priceLabel: { fr: "99 $", en: "$99" } satisfies Bilingual,
+      priceLabel: { fr: "99 $ + taxes", en: "$99 + taxes" } satisfies Bilingual,
       summary: {
         fr: "Diagnostic à domicile pour identifier un problème de fonctionnement. Les pièces, réparations et main-d'œuvre additionnelle sont facturées séparément. Une estimation est confirmée avant de procéder.",
         en: "On-site diagnostic to identify a functional issue. Parts, repairs and additional labor are billed separately. An estimate is confirmed before proceeding.",
