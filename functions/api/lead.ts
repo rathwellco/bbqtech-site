@@ -1,21 +1,29 @@
-// BBQTECH lead intake — emails every form submission to the operator.
+// BBQTECH lead intake — emails every form submission to the operator and
+// forwards it to Jobber as a Work Request via the GraphQL API.
 //
-// Delivery via Resend (https://resend.com). Free tier covers ~3000/month,
-// 100/day — plenty for Phase 2 traffic. Replaces the previous Zoho Flow
-// webhook relay; keeps Turnstile bot verification.
+// Order of operations (email is the canonical safety net):
+//   1. Turnstile bot verification (if configured)
+//   2. Send email via Resend
+//   3. Forward to Jobber as Client + Request (best-effort, logs but never blocks)
+//   4. Return success to the user
 //
-// Required env (set in Cloudflare Pages → Settings → Environment variables):
-//   RESEND_API_KEY        — API key from resend.com dashboard
+// Required env:
+//   RESEND_API_KEY           — Resend API key
 //
 // Optional env:
-//   LEAD_TO_EMAIL         — comma-separated recipients. Default: nick@grouperathwell.com
-//   LEAD_FROM_EMAIL       — sender. Default: BBQTECH Leads <onboarding@resend.dev>
-//                           Once bbqtech.com is verified in Resend, switch to
-//                           "BBQTECH Leads <leads@bbqtech.com>".
-//   TURNSTILE_SECRET_KEY  — enables Cloudflare Turnstile bot check when set.
+//   LEAD_TO_EMAIL            — comma-separated recipients. Default: nick@grouperathwell.com
+//   LEAD_FROM_EMAIL          — sender. Default: BBQTECH Leads <onboarding@resend.dev>
+//   TURNSTILE_SECRET_KEY     — enables Cloudflare Turnstile bot check
+//   JOBBER_CLIENT_ID         — Jobber OAuth client id (required for Jobber sync)
+//   JOBBER_CLIENT_SECRET     — Jobber OAuth client secret (required for Jobber sync)
+//   JOBBER_REFRESH_TOKEN     — captured via one-time /api/jobber-authorize flow (required for Jobber sync)
+//   JOBBER_API_VERSION       — Jobber GraphQL API version date. Default: 2024-04-10. Bump if Jobber deprecates.
 
 const TURNSTILE_VERIFY = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
+const JOBBER_TOKEN_ENDPOINT = "https://api.getjobber.com/api/oauth/token";
+const JOBBER_GRAPHQL_ENDPOINT = "https://api.getjobber.com/api/graphql";
+const DEFAULT_JOBBER_API_VERSION = "2024-04-10";
 
 const DEFAULT_TO = "nick@grouperathwell.com";
 const DEFAULT_FROM = "BBQTECH Leads <onboarding@resend.dev>";
@@ -25,6 +33,10 @@ interface Env {
   LEAD_TO_EMAIL?: string;
   LEAD_FROM_EMAIL?: string;
   TURNSTILE_SECRET_KEY?: string;
+  JOBBER_CLIENT_ID?: string;
+  JOBBER_CLIENT_SECRET?: string;
+  JOBBER_REFRESH_TOKEN?: string;
+  JOBBER_API_VERSION?: string;
 }
 
 const FIELD_LABELS_FR: Record<string, string> = {
@@ -164,6 +176,176 @@ async function verifyTurnstile(token: string, secret: string, remoteip: string |
   }
 }
 
+// ─── Jobber GraphQL sync ───────────────────────────────────────────────
+
+interface JobberTokenResponse {
+  access_token?: string;
+  refresh_token?: string;
+  expires_in?: number;
+  error?: string;
+  error_description?: string;
+}
+
+async function refreshJobberAccessToken(env: Env): Promise<string | null> {
+  if (!env.JOBBER_CLIENT_ID || !env.JOBBER_CLIENT_SECRET || !env.JOBBER_REFRESH_TOKEN) {
+    return null;
+  }
+  const body = new URLSearchParams({
+    client_id: env.JOBBER_CLIENT_ID,
+    client_secret: env.JOBBER_CLIENT_SECRET,
+    grant_type: "refresh_token",
+    refresh_token: env.JOBBER_REFRESH_TOKEN,
+  });
+  const res = await fetch(JOBBER_TOKEN_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: body.toString(),
+  });
+  const data = (await res.json().catch(() => ({}))) as JobberTokenResponse;
+  if (!res.ok || !data.access_token) {
+    console.error("Jobber token refresh failed:", { status: res.status, data });
+    return null;
+  }
+  return data.access_token;
+}
+
+async function postJobberGraphQL(
+  accessToken: string,
+  apiVersion: string,
+  query: string,
+  variables: Record<string, unknown>
+): Promise<{ ok: boolean; data?: unknown; errors?: unknown; status: number }> {
+  const res = await fetch(JOBBER_GRAPHQL_ENDPOINT, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "X-JOBBER-GRAPHQL-VERSION": apiVersion,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query, variables }),
+  });
+  const json = (await res.json().catch(() => ({}))) as { data?: unknown; errors?: unknown };
+  return { ok: res.ok && !json.errors, data: json.data, errors: json.errors, status: res.status };
+}
+
+const CLIENT_CREATE_MUTATION = `
+  mutation ClientCreate($input: ClientCreateInput!) {
+    clientCreate(input: $input) {
+      client { id }
+      userErrors { message path }
+    }
+  }
+`;
+
+const REQUEST_CREATE_MUTATION = `
+  mutation RequestCreate($input: RequestCreateInput!) {
+    requestCreate(input: $input) {
+      request { id title }
+      userErrors { message path }
+    }
+  }
+`;
+
+function splitName(full: string): { firstName: string; lastName: string } {
+  const trimmed = (full || "").trim();
+  if (!trimmed) return { firstName: "Lead", lastName: "Web" };
+  const parts = trimmed.split(/\s+/);
+  if (parts.length === 1) return { firstName: parts[0], lastName: "—" };
+  return { firstName: parts[0], lastName: parts.slice(1).join(" ") };
+}
+
+function buildRequestBody(payload: Record<string, string>): string {
+  const lines: string[] = [];
+  if (payload.service) lines.push(`Service demandé : ${payload.service}`);
+  if (payload.message) lines.push("", payload.message);
+  if (payload.address) lines.push("", `Adresse : ${payload.address}`);
+  if (payload.phone) lines.push(`Téléphone : ${payload.phone}`);
+  if (payload.email) lines.push(`Courriel : ${payload.email}`);
+  if (payload.language) lines.push("", `Langue : ${payload.language}`);
+  if (payload.landing_page) lines.push(`Page d'arrivée : ${payload.landing_page}`);
+  if (payload.referrer) lines.push(`Référent : ${payload.referrer}`);
+  if (payload.submitted_at) lines.push(`Soumis : ${payload.submitted_at}`);
+  return lines.join("\n");
+}
+
+async function syncLeadToJobber(
+  payload: Record<string, string>,
+  env: Env
+): Promise<{ ok: boolean; detail?: string; clientId?: string; requestId?: string }> {
+  if (!env.JOBBER_CLIENT_ID || !env.JOBBER_CLIENT_SECRET || !env.JOBBER_REFRESH_TOKEN) {
+    return { ok: false, detail: "Jobber env vars not fully configured" };
+  }
+  const apiVersion = env.JOBBER_API_VERSION || DEFAULT_JOBBER_API_VERSION;
+
+  const accessToken = await refreshJobberAccessToken(env);
+  if (!accessToken) {
+    return { ok: false, detail: "Could not refresh Jobber access token" };
+  }
+
+  const { firstName, lastName } = splitName(payload.name || "");
+  const clientInput: Record<string, unknown> = {
+    firstName,
+    lastName,
+  };
+  if (payload.email) {
+    clientInput.emails = [{ address: payload.email, primary: true, description: "MAIN" }];
+  }
+  if (payload.phone) {
+    clientInput.phones = [{ number: payload.phone, primary: true, description: "MAIN" }];
+  }
+
+  const clientResp = await postJobberGraphQL(accessToken, apiVersion, CLIENT_CREATE_MUTATION, {
+    input: clientInput,
+  });
+  if (!clientResp.ok) {
+    console.error("Jobber clientCreate failed:", { status: clientResp.status, errors: clientResp.errors, data: clientResp.data });
+    return { ok: false, detail: "clientCreate failed — see logs" };
+  }
+  const clientData = clientResp.data as
+    | { clientCreate?: { client?: { id?: string }; userErrors?: Array<{ message: string; path: string[] }> } }
+    | undefined;
+  const userErrors = clientData?.clientCreate?.userErrors;
+  if (userErrors && userErrors.length > 0) {
+    console.error("Jobber clientCreate userErrors:", userErrors);
+    return { ok: false, detail: `clientCreate userErrors: ${userErrors.map((e) => e.message).join("; ")}` };
+  }
+  const clientId = clientData?.clientCreate?.client?.id;
+  if (!clientId) {
+    console.error("Jobber clientCreate returned no client id:", clientData);
+    return { ok: false, detail: "clientCreate returned no client id" };
+  }
+
+  const requestTitle = payload.service
+    ? `${payload.service} — bbqtech.com`
+    : "Demande site web — bbqtech.com";
+  const requestInput = {
+    clientId,
+    title: requestTitle,
+    request: buildRequestBody(payload),
+    source: "Website - bbqtech.com",
+  };
+
+  const requestResp = await postJobberGraphQL(accessToken, apiVersion, REQUEST_CREATE_MUTATION, {
+    input: requestInput,
+  });
+  if (!requestResp.ok) {
+    console.error("Jobber requestCreate failed:", { status: requestResp.status, errors: requestResp.errors, data: requestResp.data, clientId });
+    return { ok: false, detail: "requestCreate failed — see logs", clientId };
+  }
+  const requestData = requestResp.data as
+    | { requestCreate?: { request?: { id?: string }; userErrors?: Array<{ message: string; path: string[] }> } }
+    | undefined;
+  const requestErrors = requestData?.requestCreate?.userErrors;
+  if (requestErrors && requestErrors.length > 0) {
+    console.error("Jobber requestCreate userErrors:", requestErrors);
+    return { ok: false, detail: `requestCreate userErrors: ${requestErrors.map((e) => e.message).join("; ")}`, clientId };
+  }
+  const requestId = requestData?.requestCreate?.request?.id;
+  return { ok: true, clientId, requestId };
+}
+
+// ─── Email delivery ────────────────────────────────────────────────────
+
 async function sendLeadEmail(
   payload: Record<string, string>,
   env: Env
@@ -237,15 +419,29 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     }
     delete payload["cf-turnstile-response"];
 
-    const result = await sendLeadEmail(payload, context.env);
-
-    if (!result.ok) {
+    const emailResult = await sendLeadEmail(payload, context.env);
+    if (!emailResult.ok) {
       // Log full payload so no lead is lost if email send fails.
-      // Surface to user as success — the operator follows up from logs.
       console.error("BBQTECH lead email send failed:", {
-        status: result.status,
-        detail: result.detail,
+        status: emailResult.status,
+        detail: emailResult.detail,
         payload,
+      });
+    }
+
+    // Best-effort Jobber sync — never blocks the response.
+    const jobberResult = await syncLeadToJobber(payload, context.env);
+    if (!jobberResult.ok) {
+      console.warn("BBQTECH Jobber sync skipped/failed:", {
+        detail: jobberResult.detail,
+        clientId: jobberResult.clientId,
+        name: payload.name,
+        email: payload.email,
+      });
+    } else {
+      console.log("BBQTECH Jobber sync ok:", {
+        clientId: jobberResult.clientId,
+        requestId: jobberResult.requestId,
       });
     }
 
