@@ -206,10 +206,29 @@ async function refreshJobberAccessToken(env: Env): Promise<string | null> {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: body.toString(),
   });
-  const data = (await res.json().catch(() => ({}))) as JobberTokenResponse;
+  const rawBody = await res.text();
+  let data: JobberTokenResponse = {};
+  try {
+    data = JSON.parse(rawBody);
+  } catch {
+    // non-JSON body — kept in rawBody for logging
+  }
   if (!res.ok || !data.access_token) {
-    console.error("Jobber token refresh failed:", { status: res.status, data });
+    console.error("Jobber token refresh failed:", { status: res.status, rawBody: rawBody.slice(0, 1000) });
     return null;
+  }
+  // If Jobber returned a new refresh_token, rotation is active — surface it so
+  // the operator can update JOBBER_REFRESH_TOKEN in CF Pages env vars to keep
+  // future calls working. Token storage in KV is a future improvement.
+  if (data.refresh_token && data.refresh_token !== env.JOBBER_REFRESH_TOKEN) {
+    console.warn(
+      "Jobber returned a NEW refresh_token — rotation is active. Update JOBBER_REFRESH_TOKEN env var with this value before the next submission, or the next refresh will fail with 401:",
+      { newRefreshToken: data.refresh_token, expiresIn: data.expires_in }
+    );
+  } else if (data.refresh_token) {
+    console.log("Jobber token refresh ok — same refresh_token returned (no rotation).", { expiresIn: data.expires_in });
+  } else {
+    console.log("Jobber token refresh ok — no refresh_token in response.", { expiresIn: data.expires_in });
   }
   return data.access_token;
 }
