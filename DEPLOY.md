@@ -153,3 +153,41 @@ Each submission produces a single HTML + plain-text email with: name, phone, ema
 ### If email send fails
 
 `lead.ts` logs the full payload to Cloudflare function logs (Pages dashboard → Functions → Real-time Logs) and still returns success to the form, so no one ever sees a broken form. Check function logs if leads stop arriving.
+
+---
+
+## Jobber OAuth setup (one-time)
+
+`lead.ts` (Phase 2b) will also forward leads to Jobber as Work Requests via Jobber's GraphQL API. This requires a one-time OAuth authorization to capture a long-lived refresh token. Refresh-token-rotation is OFF in the Jobber app settings so the token stays valid until revoked.
+
+### Endpoints involved
+
+- `functions/api/jobber-authorize.ts` — visit this once to kick off OAuth
+- `functions/api/jobber-oauth-callback.ts` — Jobber redirects here after authorization; exchanges code → refresh_token; displays the token for copy-paste
+
+### Required env (Cloudflare Pages → Production)
+
+| Variable | Source | Required for |
+|----------|--------|--------------|
+| `JOBBER_CLIENT_ID` | Jobber developer center → app detail | OAuth + GraphQL calls |
+| `JOBBER_CLIENT_SECRET` | Jobber developer center → app detail | OAuth + token refresh |
+| `JOBBER_REFRESH_TOKEN` | Captured during one-time authorization (see flow below) | GraphQL calls |
+
+### One-time authorization flow
+
+1. Confirm `JOBBER_CLIENT_ID` + `JOBBER_CLIENT_SECRET` are set in CF Pages env vars and a deploy has gone out since they were added.
+2. In a browser, visit `https://bbqtech.com/api/jobber-authorize`.
+3. You'll be redirected to Jobber and prompted to authorize the **BBQTECH Lead Intake** app for your Jobber account. Approve.
+4. Jobber redirects to `https://bbqtech.com/api/jobber-oauth-callback?code=...`. The page exchanges the code for a refresh_token and displays it.
+5. Copy the `refresh_token` value.
+6. CF Pages → `bbqtech-site` → Settings → Environment variables → Production → add `JOBBER_REFRESH_TOKEN` = (pasted value).
+7. Save, then redeploy (push any commit, or click *Retry deployment*).
+8. Once redeployed, the lead handler can refresh access tokens on demand. Submit the form once to verify a Request appears in Jobber.
+
+### When to redo this
+
+- If you revoke the app in Jobber.
+- If you turn refresh-token-rotation ON (token rotates on every use — needs different storage approach).
+- If you accidentally delete the env var.
+
+Re-running just means visiting `/api/jobber-authorize` again and updating the env var with the new token.
