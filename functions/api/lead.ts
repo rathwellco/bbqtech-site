@@ -365,11 +365,13 @@ async function syncLeadToJobber(
   const requestTitle = payload.service
     ? `${payload.service} — bbqtech.com`
     : "Demande site web — bbqtech.com";
+  // Note: Jobber's RequestCreateInput does NOT have `request` or `source` fields
+  // (confirmed via API error 2026-06-01). Body goes in `description`; the
+  // "source" concept is tracked elsewhere or via custom fields if needed.
   const requestInput = {
     clientId,
     title: requestTitle,
-    request: buildRequestBody(payload),
-    source: "Website - bbqtech.com",
+    description: buildRequestBody(payload),
   };
 
   const requestResp = await postJobberGraphQL(accessToken, apiVersion, REQUEST_CREATE_MUTATION, {
