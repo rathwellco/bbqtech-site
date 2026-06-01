@@ -36,6 +36,13 @@ const FIELD_LABELS_FR: Record<string, string> = {
   message: "Détails",
   language: "Langue du formulaire",
   source: "Source",
+  landing_page: "Page d'arrivée",
+  referrer: "Référent",
+  session_start: "Début de session",
+  page_url: "URL de la page",
+  page_title: "Titre de la page",
+  user_agent: "Navigateur",
+  submitted_at: "Soumis le",
 };
 
 const FIELD_LABELS_EN: Record<string, string> = {
@@ -47,7 +54,18 @@ const FIELD_LABELS_EN: Record<string, string> = {
   message: "Details",
   language: "Form language",
   source: "Source",
+  landing_page: "Landing page",
+  referrer: "Referrer",
+  session_start: "Session start",
+  page_url: "Page URL",
+  page_title: "Page title",
+  user_agent: "Browser",
+  submitted_at: "Submitted at",
 };
+
+// Lead fields shown first, in this order. Tracking metadata appears after.
+const PRIMARY_FIELDS = ["name", "phone", "email", "address", "service", "message"];
+const META_FIELDS = ["language", "source", "landing_page", "referrer", "page_url", "page_title", "session_start", "submitted_at", "user_agent"];
 
 function escapeHtml(value: string): string {
   return value
@@ -65,49 +83,69 @@ function formatSubject(payload: Record<string, string>): string {
 }
 
 function formatText(payload: Record<string, string>, labels: Record<string, string>): string {
-  const ordered = ["name", "phone", "email", "address", "service", "message", "language", "source"];
   const lines: string[] = [];
-  for (const key of ordered) {
+  const push = (key: string) => {
     const value = payload[key];
-    if (!value) continue;
+    if (!value) return;
     lines.push(`${labels[key] || key}: ${value}`);
-  }
-  // Append any extra fields not in the ordered list
-  for (const [key, value] of Object.entries(payload)) {
-    if (ordered.includes(key) || !value) continue;
-    lines.push(`${labels[key] || key}: ${value}`);
+  };
+  for (const key of PRIMARY_FIELDS) push(key);
+  lines.push("", "---");
+  for (const key of META_FIELDS) push(key);
+  // Catch any unexpected extras
+  for (const key of Object.keys(payload)) {
+    if (PRIMARY_FIELDS.includes(key) || META_FIELDS.includes(key)) continue;
+    push(key);
   }
   return lines.join("\n");
 }
 
-function formatHtml(payload: Record<string, string>, labels: Record<string, string>): string {
-  const ordered = ["name", "phone", "email", "address", "service", "message", "language", "source"];
-  const rows: string[] = [];
-  const renderRow = (key: string, value: string) => {
+function formatHtml(payload: Record<string, string>, labels: Record<string, string>, lang: string): string {
+  const isFr = lang !== "en";
+  const headline = isFr ? "Nouveau lead reçu" : "New lead received";
+  const metaHeading = isFr ? "Métadonnées" : "Metadata";
+
+  const renderRow = (key: string, value: string, isMeta: boolean): string => {
     const safeKey = escapeHtml(labels[key] || key);
     const safeValue = escapeHtml(value).replace(/\n/g, "<br/>");
-    rows.push(
-      `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;color:#333;width:35%;vertical-align:top;">${safeKey}</td><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#111;">${safeValue}</td></tr>`
-    );
+    const labelColor = isMeta ? "#777" : "#333";
+    const valueColor = isMeta ? "#555" : "#111";
+    const valueSize = isMeta ? "13px" : "14px";
+    return `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;color:${labelColor};width:38%;vertical-align:top;font-size:${valueSize};">${safeKey}</td><td style="padding:8px 12px;border-bottom:1px solid #eee;color:${valueColor};font-size:${valueSize};word-break:break-word;">${safeValue}</td></tr>`;
   };
-  for (const key of ordered) {
+
+  const primaryRows: string[] = [];
+  for (const key of PRIMARY_FIELDS) {
     const value = payload[key];
     if (!value) continue;
-    renderRow(key, value);
+    primaryRows.push(renderRow(key, value, false));
+  }
+
+  const metaRows: string[] = [];
+  for (const key of META_FIELDS) {
+    const value = payload[key];
+    if (!value) continue;
+    metaRows.push(renderRow(key, value, true));
   }
   for (const [key, value] of Object.entries(payload)) {
-    if (ordered.includes(key) || !value) continue;
-    renderRow(key, value);
+    if (PRIMARY_FIELDS.includes(key) || META_FIELDS.includes(key) || !value) continue;
+    metaRows.push(renderRow(key, value, true));
   }
+
+  const metaBlock = metaRows.length
+    ? `<div style="padding:12px 24px 4px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#888;font-weight:700;">${metaHeading}</div><table style="width:100%;border-collapse:collapse;">${metaRows.join("")}</table>`
+    : "";
+
   return `<!doctype html><html><body style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:#f5f5f5;padding:24px;">
 <div style="max-width:640px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e5e5e5;">
   <div style="background:#000;color:#fff;padding:20px 24px;">
     <div style="font-size:13px;letter-spacing:1px;color:#E81B1B;text-transform:uppercase;font-weight:700;">BBQTECH</div>
-    <div style="font-size:22px;font-weight:800;margin-top:4px;">Nouveau lead reçu</div>
+    <div style="font-size:22px;font-weight:800;margin-top:4px;">${headline}</div>
   </div>
-  <table style="width:100%;border-collapse:collapse;font-size:14px;">${rows.join("")}</table>
+  <table style="width:100%;border-collapse:collapse;">${primaryRows.join("")}</table>
+  ${metaBlock}
   <div style="padding:16px 24px;background:#fafafa;font-size:12px;color:#666;">
-    Envoyé depuis bbqtech.com · ${new Date().toISOString()}
+    bbqtech.com · ${new Date().toISOString()}
   </div>
 </div></body></html>`;
 }
@@ -148,7 +186,7 @@ async function sendLeadEmail(
     reply_to: replyTo,
     subject: formatSubject(payload),
     text: formatText(payload, labels),
-    html: formatHtml(payload, labels),
+    html: formatHtml(payload, labels, lang),
   };
 
   const res = await fetch(RESEND_ENDPOINT, {
