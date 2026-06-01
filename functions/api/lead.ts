@@ -23,7 +23,10 @@ const TURNSTILE_VERIFY = "https://challenges.cloudflare.com/turnstile/v0/sitever
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 const JOBBER_TOKEN_ENDPOINT = "https://api.getjobber.com/api/oauth/token";
 const JOBBER_GRAPHQL_ENDPOINT = "https://api.getjobber.com/api/graphql";
-const DEFAULT_JOBBER_API_VERSION = "2024-04-10";
+// Empty default — omit the X-JOBBER-GRAPHQL-VERSION header and let Jobber
+// use whatever its current stable version is. Override via env var if you
+// need to pin a specific date.
+const DEFAULT_JOBBER_API_VERSION = "";
 
 const DEFAULT_TO = "nick@grouperathwell.com";
 const DEFAULT_FROM = "BBQTECH Leads <onboarding@resend.dev>";
@@ -214,18 +217,34 @@ async function postJobberGraphQL(
   apiVersion: string,
   query: string,
   variables: Record<string, unknown>
-): Promise<{ ok: boolean; data?: unknown; errors?: unknown; status: number }> {
+): Promise<{ ok: boolean; data?: unknown; errors?: unknown; status: number; rawBody?: string }> {
+  const headers: Record<string, string> = {
+    Authorization: `Bearer ${accessToken}`,
+    "Content-Type": "application/json",
+  };
+  // Only send the version header when explicitly configured. Jobber uses
+  // the latest stable version when the header is absent.
+  if (apiVersion) headers["X-JOBBER-GRAPHQL-VERSION"] = apiVersion;
+
   const res = await fetch(JOBBER_GRAPHQL_ENDPOINT, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      "X-JOBBER-GRAPHQL-VERSION": apiVersion,
-      "Content-Type": "application/json",
-    },
+    headers,
     body: JSON.stringify({ query, variables }),
   });
-  const json = (await res.json().catch(() => ({}))) as { data?: unknown; errors?: unknown };
-  return { ok: res.ok && !json.errors, data: json.data, errors: json.errors, status: res.status };
+  const rawBody = await res.text();
+  let parsed: { data?: unknown; errors?: unknown } = {};
+  try {
+    parsed = JSON.parse(rawBody);
+  } catch {
+    // Non-JSON response (e.g. HTML 404 page) — keep rawBody for the caller to log.
+  }
+  return {
+    ok: res.ok && !parsed.errors,
+    data: parsed.data,
+    errors: parsed.errors,
+    status: res.status,
+    rawBody,
+  };
 }
 
 const CLIENT_CREATE_MUTATION = `
@@ -298,8 +317,15 @@ async function syncLeadToJobber(
     input: clientInput,
   });
   if (!clientResp.ok) {
-    console.error("Jobber clientCreate failed:", { status: clientResp.status, errors: clientResp.errors, data: clientResp.data });
-    return { ok: false, detail: "clientCreate failed — see logs" };
+    console.error("Jobber clientCreate failed:", {
+      status: clientResp.status,
+      errors: clientResp.errors,
+      data: clientResp.data,
+      rawBody: clientResp.rawBody?.slice(0, 2000),
+      endpoint: JOBBER_GRAPHQL_ENDPOINT,
+      apiVersionSent: apiVersion || "(omitted)",
+    });
+    return { ok: false, detail: `clientCreate HTTP ${clientResp.status} — see logs` };
   }
   const clientData = clientResp.data as
     | { clientCreate?: { client?: { id?: string }; userErrors?: Array<{ message: string; path: string[] }> } }
@@ -329,8 +355,14 @@ async function syncLeadToJobber(
     input: requestInput,
   });
   if (!requestResp.ok) {
-    console.error("Jobber requestCreate failed:", { status: requestResp.status, errors: requestResp.errors, data: requestResp.data, clientId });
-    return { ok: false, detail: "requestCreate failed — see logs", clientId };
+    console.error("Jobber requestCreate failed:", {
+      status: requestResp.status,
+      errors: requestResp.errors,
+      data: requestResp.data,
+      rawBody: requestResp.rawBody?.slice(0, 2000),
+      clientId,
+    });
+    return { ok: false, detail: `requestCreate HTTP ${requestResp.status} — see logs`, clientId };
   }
   const requestData = requestResp.data as
     | { requestCreate?: { request?: { id?: string }; userErrors?: Array<{ message: string; path: string[] }> } }
