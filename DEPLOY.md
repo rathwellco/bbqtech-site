@@ -115,3 +115,41 @@ When the Astro + Tailwind site is ready (ROG pattern):
 3. Auto-deploys on push. No DNS changes needed — the domain is already wired.
 
 The placeholder gets naturally replaced; DNS records and M365 email persist unchanged.
+
+---
+
+## Lead intake — `functions/api/lead.ts`
+
+The Astro ContactForm POSTs to `/api/lead.ts` (Cloudflare Pages Function). Each submission is emailed to the operator via **Resend**. No Zoho, no webhook chain — every lead lands in the inbox directly.
+
+### One-time setup
+
+1. **Sign up at [resend.com](https://resend.com)** (free tier: 100 emails/day, 3000/month).
+2. **Get an API key** from the Resend dashboard → API Keys → Create.
+3. **In Cloudflare Pages** → project `bbqtech-site` → Settings → Environment variables → Production:
+
+   | Variable | Value | Required |
+   |----------|-------|----------|
+   | `RESEND_API_KEY` | `re_xxxxxxxxxx` (from Resend) | ✅ Required |
+   | `LEAD_TO_EMAIL` | `nick@grouperathwell.com` (comma-separated for multiple) | Optional — defaults to `nick@grouperathwell.com` |
+   | `LEAD_FROM_EMAIL` | `BBQTECH Leads <onboarding@resend.dev>` (default until domain verified) → switch to `BBQTECH Leads <leads@bbqtech.com>` after Resend domain verification | Optional |
+   | `TURNSTILE_SECRET_KEY` | from Cloudflare Turnstile dashboard | Optional — fail-open when unset |
+
+4. **Redeploy** (push any commit, or "Retry deployment" in CF Pages) — env vars only apply to new builds.
+
+### Domain verification (do after first emails confirmed working)
+
+1. In Resend → Domains → Add Domain → `bbqtech.com`.
+2. Resend gives 3 DNS records (TXT for verification, TXT for SPF, CNAME for DKIM). Add them to Cloudflare DNS as **DNS only (grey cloud, not proxied)**.
+3. Wait ~10 minutes, click Verify in Resend.
+4. Update `LEAD_FROM_EMAIL` to `BBQTECH Leads <leads@bbqtech.com>` and redeploy.
+
+Until verified, emails come from `onboarding@resend.dev`. They still land, but show as third-party sender in some inboxes.
+
+### What gets emailed
+
+Each submission produces a single HTML + plain-text email with: name, phone, email, address, service selection, message body, language, source. `Reply-To` is set to the lead's email so replying goes straight back to them.
+
+### If email send fails
+
+`lead.ts` logs the full payload to Cloudflare function logs (Pages dashboard → Functions → Real-time Logs) and still returns success to the form, so no one ever sees a broken form. Check function logs if leads stop arriving.
