@@ -23,10 +23,12 @@ const TURNSTILE_VERIFY = "https://challenges.cloudflare.com/turnstile/v0/sitever
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 const JOBBER_TOKEN_ENDPOINT = "https://api.getjobber.com/api/oauth/token";
 const JOBBER_GRAPHQL_ENDPOINT = "https://api.getjobber.com/api/graphql";
-// Empty default — omit the X-JOBBER-GRAPHQL-VERSION header and let Jobber
-// use whatever its current stable version is. Override via env var if you
-// need to pin a specific date.
-const DEFAULT_JOBBER_API_VERSION = "";
+// Jobber REQUIRES X-JOBBER-GRAPHQL-VERSION on every request. Latest stable
+// per the changelog at developer.getjobber.com/docs/changelog/ as of
+// 2026-06-01 is 2025-04-16. Override via JOBBER_API_VERSION env var when
+// Jobber publishes a newer breaking change you want to opt into.
+// Old versions are supported for ~12-18 months from release.
+const DEFAULT_JOBBER_API_VERSION = "2025-04-16";
 
 const DEFAULT_TO = "nick@grouperathwell.com";
 const DEFAULT_FROM = "BBQTECH Leads <onboarding@resend.dev>";
