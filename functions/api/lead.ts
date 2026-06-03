@@ -38,6 +38,7 @@ interface Env {
   LEAD_TO_EMAIL?: string;
   LEAD_FROM_EMAIL?: string;
   TURNSTILE_SECRET_KEY?: string;
+  JOBBER_SYNC_ENABLED?: string;
   JOBBER_CLIENT_ID?: string;
   JOBBER_CLIENT_SECRET?: string;
   JOBBER_REFRESH_TOKEN?: string;
@@ -484,20 +485,25 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       });
     }
 
-    // Best-effort Jobber sync — never blocks the response.
-    const jobberResult = await syncLeadToJobber(payload, context.env);
-    if (!jobberResult.ok) {
-      console.warn("BBQTECH Jobber sync skipped/failed:", {
-        detail: jobberResult.detail,
-        clientId: jobberResult.clientId,
-        name: payload.name,
-        email: payload.email,
-      });
-    } else {
-      console.log("BBQTECH Jobber sync ok:", {
-        clientId: jobberResult.clientId,
-        requestId: jobberResult.requestId,
-      });
+    // Jobber sync is opt-in via JOBBER_SYNC_ENABLED=true. Paused 2026-06-01
+    // (KISS — email is sufficient for now). Re-enable by setting the env var
+    // to "true" and confirming RequestCreateInput field names against the
+    // current Jobber schema (see commit history for prior schema work).
+    if (context.env.JOBBER_SYNC_ENABLED === "true") {
+      const jobberResult = await syncLeadToJobber(payload, context.env);
+      if (!jobberResult.ok) {
+        console.warn("BBQTECH Jobber sync skipped/failed:", {
+          detail: jobberResult.detail,
+          clientId: jobberResult.clientId,
+          name: payload.name,
+          email: payload.email,
+        });
+      } else {
+        console.log("BBQTECH Jobber sync ok:", {
+          clientId: jobberResult.clientId,
+          requestId: jobberResult.requestId,
+        });
+      }
     }
 
     return new Response(
