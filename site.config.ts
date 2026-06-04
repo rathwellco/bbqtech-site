@@ -44,13 +44,14 @@ export const siteConfig = {
   ],
   // ─── BOOKING URL (Zoho Calendar — placeholder until provided) ───
   // When set to a non-empty string, all "Réserver" CTAs link to this URL
-  // (in a new tab). When empty, they fall back to /contact.
+  // (in a new tab). When empty, they fall back to /reservation (FR) /
+  // /en/booking (EN) — see bookingHref() in src/i18n/utils.ts.
   bookingUrl: "",
 
   cta: {
     primary: {
       label: { fr: "Réserver mon service", en: "Book my service" } satisfies Bilingual,
-      hrefPath: "/contact",
+      hrefPath: "/reservation",
     },
     secondary: {
       label: { fr: "Demander une soumission", en: "Request a quote" } satisfies Bilingual,
@@ -158,7 +159,7 @@ export const siteConfig = {
         en: "At-home assembly for a new BBQ. Standard models start at $149 + taxes. Large format, pellet, kamado or outdoor kitchen setups may require a custom quote.",
       } satisfies Bilingual,
       ctaLabel: { fr: "Demander une soumission", en: "Request a quote" } satisfies Bilingual,
-      cardHref: "/contact",
+      cardHref: "/reservation?forfait=assemblage",
     },
     {
       slug: "reparation",
@@ -170,7 +171,7 @@ export const siteConfig = {
         en: "On-site diagnostic to identify a functional issue: ignition problem, weak flame, faulty burner, uneven heat or broken component.",
       } satisfies Bilingual,
       ctaLabel: { fr: "Réserver un diagnostic", en: "Book a diagnostic" } satisfies Bilingual,
-      cardHref: "#reparation",
+      cardHref: "/diagnostic",
     },
     {
       slug: "commercial",
@@ -182,7 +183,7 @@ export const siteConfig = {
         en: "Regular maintenance for restaurants, food trucks, condos, multi-unit properties or commercial equipment. Program adapted to equipment type, frequency, access and required cleaning level.",
       } satisfies Bilingual,
       ctaLabel: { fr: "Demander une soumission", en: "Request a quote" } satisfies Bilingual,
-      cardHref: "/contact",
+      cardHref: "/reservation?forfait=commercial",
     },
   ],
 

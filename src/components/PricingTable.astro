@@ -10,11 +10,16 @@ interface Props {
 }
 
 const { lang, title, subtitle } = Astro.props;
-const booking = bookingHref(siteConfig.bookingUrl, lang);
 const baseScope = siteConfig.packagesBaseScope;
 const baseScopeItems = baseScope.items[lang] ?? baseScope.items.fr;
 
 const detailsBase = lang === "fr" ? "/forfaits" : "/en/packages";
+
+// Per-package booking link with ?forfait= query param so the reservation
+// form pre-selects the right tier when arriving from a pricing card.
+function bookingHrefForPackage(pkgKey: string) {
+  return bookingHref(siteConfig.bookingUrl, lang, `/reservation?forfait=${pkgKey}`);
+}
 
 const labels = {
   fr: {
@@ -111,19 +116,24 @@ const labels = {
             <p class="relative z-10 text-sm text-grey leading-relaxed mb-5 pointer-events-none">{t(pkg.useCase, lang)}</p>
 
             <div class="relative z-10 mt-auto space-y-2">
-              <a
-                href={booking.href}
-                target={booking.external ? "_blank" : undefined}
-                rel={booking.external ? "noopener noreferrer" : undefined}
-                class:list={[
-                  "block text-center px-5 py-3 rounded-lg text-sm font-bold no-underline transition-all",
-                  isRecommended
-                    ? "bg-accent text-white hover:bg-accent-hover"
-                    : "bg-dark text-white hover:bg-accent"
-                ]}
-              >
-                {t(pkg.ctaLabel, lang)}
-              </a>
+              {(() => {
+                const pkgBooking = bookingHrefForPackage(pkg.key);
+                return (
+                  <a
+                    href={pkgBooking.href}
+                    target={pkgBooking.external ? "_blank" : undefined}
+                    rel={pkgBooking.external ? "noopener noreferrer" : undefined}
+                    class:list={[
+                      "block text-center px-5 py-3 rounded-lg text-sm font-bold no-underline transition-all",
+                      isRecommended
+                        ? "bg-accent text-white hover:bg-accent-hover"
+                        : "bg-dark text-white hover:bg-accent"
+                    ]}
+                  >
+                    {t(pkg.ctaLabel, lang)}
+                  </a>
+                );
+              })()}
               <a
                 href={detailUrl}
                 class="block text-center px-5 py-2 text-sm font-bold text-accent hover:text-accent-hover no-underline transition-colors"

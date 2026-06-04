@@ -1,15 +1,30 @@
 ---
 import { siteConfig } from "../../site.config";
-import { type Locale, t } from "../i18n/utils";
+import { type Locale } from "../i18n/utils";
+
+type Variant = "reservation" | "diagnostic" | "general";
 
 interface Props {
   lang: Locale;
+  variant?: Variant;
+  defaultForfait?: string;
   source?: string;
 }
 
-const { lang, source = "Website - Contact Page" } = Astro.props;
+const {
+  lang,
+  variant = "general",
+  defaultForfait,
+  source,
+} = Astro.props;
 
 const isFr = lang === "fr";
+
+const autoSource =
+  variant === "reservation" ? "Website - Reservation"
+  : variant === "diagnostic" ? "Website - Diagnostic"
+  : "Website - Contact";
+const resolvedSource = source || autoSource;
 
 const labels = isFr
   ? {
@@ -18,14 +33,20 @@ const labels = isFr
       email: "Courriel",
       address: "Adresse",
       addressPlaceholder: "123 rue Principale, Gatineau QC J8X 1A1",
-      service: "Service demandé",
-      servicePlaceholder: "Recommandez-moi",
-      message: "Détails",
-      messagePlaceholder: "Marque/modèle, taille, état du BBQ, particularités…",
-      submit: "Envoyer ma demande",
+      bbqBrand: "Marque et modèle du BBQ",
+      bbqBrandPlaceholder: "Weber Genesis II, Napoleon Prestige 500, etc.",
+      symptom: "Symptôme ou problème observé",
+      symptomPlaceholder: "Ne s'allume pas, flamme faible, rouille des brûleurs…",
+      message: "Détails supplémentaires",
+      messagePlaceholder: "Particularités, accès, préférences d'horaire…",
+      submitReservation: "Envoyer ma réservation",
+      submitDiagnostic: "Demander un diagnostic",
+      submitGeneral: "Envoyer ma demande",
       privacy: "Réponse confirmée sous 24 h. Aucun pourriel.",
       sentSuccess: "Merci, votre demande a été reçue. On vous répond sous 24 h.",
       sentError: "Une erreur est survenue. Appelez 819-561-0762 ou réessayez.",
+      diagnosticBanner: "Frais d'évaluation à domicile : 99 $ + taxes. Le diagnostic identifie la cause et les réparations recommandées. Pièces et main-d'œuvre facturées séparément si vous approuvez la réparation.",
+      forfaitLabel: "Quel forfait vous intéresse ?",
     }
   : {
       name: "Full name",
@@ -33,123 +54,188 @@ const labels = isFr
       email: "Email",
       address: "Address",
       addressPlaceholder: "123 Main St, Gatineau QC J8X 1A1",
-      service: "Service needed",
-      servicePlaceholder: "Recommend me",
-      message: "Details",
-      messagePlaceholder: "Brand/model, size, BBQ condition, specifics…",
-      submit: "Send my request",
+      bbqBrand: "BBQ brand and model",
+      bbqBrandPlaceholder: "Weber Genesis II, Napoleon Prestige 500, etc.",
+      symptom: "Symptom or observed issue",
+      symptomPlaceholder: "Won't ignite, weak flame, rusty burners…",
+      message: "Additional details",
+      messagePlaceholder: "Specifics, access, schedule preferences…",
+      submitReservation: "Send my booking",
+      submitDiagnostic: "Request a diagnostic",
+      submitGeneral: "Send my request",
       privacy: "Confirmed reply within 24 h. No spam, ever.",
       sentSuccess: "Thanks, your request was received. We'll reply within 24 h.",
       sentError: "Something went wrong. Call 819-561-0762 or try again.",
+      diagnosticBanner: "On-site assessment fee: $99 + taxes. The diagnostic identifies the cause and the recommended repairs. Parts and labour billed separately if you approve the repair.",
+      forfaitLabel: "Which package fits your needs?",
     };
 
-const serviceOptions = isFr
+const submitLabel =
+  variant === "reservation" ? labels.submitReservation
+  : variant === "diagnostic" ? labels.submitDiagnostic
+  : labels.submitGeneral;
+
+// Forfait options for the reservation variant (visual radio cards).
+const forfaitOptions = isFr
   ? [
-      { v: "Entretien", l: "Entretien — 199 $ + taxes" },
-      { v: "Nettoyage", l: "Nettoyage — 299 $ + taxes" },
-      { v: "Restauration", l: "Restauration — à partir de 399 $ + taxes" },
-      { v: "Diagnostic", l: "Diagnostic réparation — 99 $ + taxes" },
-      { v: "Diagnostic + Nettoyage", l: "Diagnostic ajouté à un nettoyage — 49 $ + taxes" },
-      { v: "Installation", l: "Installation / réparation — à partir de 99 $ + taxes" },
-      { v: "Assemblage", l: "Assemblage BBQ — à partir de 149 $ + taxes" },
-      { v: "Commercial", l: "Entretien commercial / multi-unités" },
-      { v: "Soumission", l: "Je ne suis pas certain / demande de soumission" },
+      { v: "Entretien", title: "Entretien", price: "199 $ + tx", desc: "Inspection + entretien saisonnier léger" },
+      { v: "Nettoyage", title: "Nettoyage", price: "299 $ + tx", desc: "Dégraissage approfondi · RECOMMANDÉ" },
+      { v: "Restauration", title: "Restauration", price: "à partir de 399 $ + tx", desc: "Vapeur + multiples passes + finition" },
+      { v: "Assemblage", title: "Assemblage BBQ", price: "à partir de 149 $ + tx", desc: "Montage à domicile d'un BBQ neuf" },
+      { v: "Commercial", title: "Commercial / multi-unités", price: "sur soumission", desc: "Restaurants, food trucks, condos" },
+      { v: "Soumission", title: "Pas certain", price: "—", desc: "Je veux une recommandation" },
     ]
   : [
-      { v: "Maintenance", l: "Maintenance — $199 + taxes" },
-      { v: "Cleaning", l: "Cleaning — $299 + taxes" },
-      { v: "Restoration", l: "Restoration — starting at $399 + taxes" },
-      { v: "Diagnostic", l: "Repair diagnostic — $99 + taxes" },
-      { v: "Diagnostic + Cleaning", l: "Diagnostic added to a cleaning — $49 + taxes" },
-      { v: "Installation", l: "Installation / repair — starting at $99 + taxes" },
-      { v: "Assembly", l: "BBQ assembly — starting at $149 + taxes" },
-      { v: "Commercial", l: "Commercial / Multi-unit maintenance" },
-      { v: "Quote", l: "Not sure / request a quote" },
+      { v: "Maintenance", title: "Maintenance", price: "$199 + tx", desc: "Inspection + light seasonal upkeep" },
+      { v: "Cleaning", title: "Cleaning", price: "$299 + tx", desc: "Deep degreasing · RECOMMENDED" },
+      { v: "Restoration", title: "Restoration", price: "from $399 + tx", desc: "Steam + multiple passes + finish" },
+      { v: "Assembly", title: "BBQ assembly", price: "from $149 + tx", desc: "On-site new BBQ assembly" },
+      { v: "Commercial", title: "Commercial / multi-unit", price: "custom quote", desc: "Restaurants, food trucks, condos" },
+      { v: "Quote", title: "Not sure", price: "—", desc: "I want a recommendation" },
     ];
+
+// Map common URL-friendly slugs to forfait `v` values so ?forfait=signature works.
+const forfaitSlugMap: Record<string, string> = {
+  // FR slugs
+  entretien: isFr ? "Entretien" : "Maintenance",
+  essentiel: isFr ? "Entretien" : "Maintenance",
+  essential: isFr ? "Entretien" : "Maintenance",
+  nettoyage: isFr ? "Nettoyage" : "Cleaning",
+  signature: isFr ? "Nettoyage" : "Cleaning",
+  restauration: isFr ? "Restauration" : "Restoration",
+  prestige: isFr ? "Restauration" : "Restoration",
+  assemblage: isFr ? "Assemblage" : "Assembly",
+  commercial: "Commercial",
+  soumission: isFr ? "Soumission" : "Quote",
+  // EN slugs
+  maintenance: isFr ? "Entretien" : "Maintenance",
+  cleaning: isFr ? "Nettoyage" : "Cleaning",
+  restoration: isFr ? "Restauration" : "Restoration",
+  assembly: isFr ? "Assemblage" : "Assembly",
+  quote: isFr ? "Soumission" : "Quote",
+};
+const resolvedDefaultForfait = defaultForfait
+  ? (forfaitSlugMap[defaultForfait.toLowerCase()] ?? defaultForfait)
+  : undefined;
 ---
 
-<section class="py-12 md:py-16 bg-light" id="contact-form">
-  <div class="max-w-[1200px] mx-auto px-6">
-    <div class="max-w-[640px] mx-auto">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-3">{t(siteConfig.contact.formHeading, lang)}</h2>
-      <p class="text-center text-grey mb-8">{t(siteConfig.contact.formSub, lang)}</p>
-
-      <div id="form-status-success" class="hidden mb-6 p-4 bg-green-50 border border-green-200 text-green-800 rounded-lg text-sm">
-        {labels.sentSuccess}
-      </div>
-      <div id="form-status-error" class="hidden mb-6 p-4 bg-red-50 border border-red-200 text-red-800 rounded-lg text-sm">
-        {labels.sentError}
-      </div>
-
-      <form
-        method="POST"
-        action="/api/lead"
-        accept-charset="UTF-8"
-        class="bg-white rounded-xl p-6 md:p-8 shadow-sm border border-grey-mid/40"
-        data-lead-form
-        id="bbqtech-lead-form"
-      >
-        <input type="hidden" name="source" value={source} />
-        <input type="hidden" name="language" value={lang} />
-
-        <div class="mb-4">
-          <label for="name" class="block text-sm font-bold text-dark mb-1.5">{labels.name} *</label>
-          <input type="text" id="name" name="name" required autocomplete="name"
-            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-          <div>
-            <label for="phone" class="block text-sm font-bold text-dark mb-1.5">{labels.phone} *</label>
-            <input type="tel" id="phone" name="phone" required autocomplete="tel"
-              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
-          </div>
-          <div>
-            <label for="email" class="block text-sm font-bold text-dark mb-1.5">{labels.email} *</label>
-            <input type="email" id="email" name="email" required autocomplete="email"
-              class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
-          </div>
-        </div>
-
-        <div class="mb-4">
-          <label for="address" class="block text-sm font-bold text-dark mb-1.5">{labels.address}</label>
-          <input type="text" id="address" name="address" autocomplete="street-address"
-            placeholder={labels.addressPlaceholder}
-            data-places-key={siteConfig.googleMapsApiKey || ""}
-            data-places-lang={lang}
-            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
-        </div>
-
-        <div class="mb-4">
-          <label for="service" class="block text-sm font-bold text-dark mb-1.5">{labels.service}</label>
-          <select id="service" name="service"
-            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm">
-            <option value="">{labels.servicePlaceholder}</option>
-            {serviceOptions.map((o) => <option value={o.v}>{o.l}</option>)}
-          </select>
-        </div>
-
-        <div class="mb-6">
-          <label for="message" class="block text-sm font-bold text-dark mb-1.5">{labels.message}</label>
-          <textarea id="message" name="message" rows="4"
-            placeholder={labels.messagePlaceholder}
-            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
-        </div>
-
-        <button type="submit"
-          class="w-full bg-accent text-white py-4 rounded-lg font-bold text-base hover:bg-accent-hover hover:-translate-y-0.5 transition-all cursor-pointer border-none">
-          {labels.submit}
-        </button>
-        <p class="text-center text-xs text-grey mt-3">{labels.privacy}</p>
-      </form>
-    </div>
+<div class="max-w-[640px] mx-auto">
+  <div id="form-status-success" class="hidden mb-6 p-4 bg-green-50 border border-green-200 text-green-800 rounded-lg text-sm">
+    {labels.sentSuccess}
   </div>
-</section>
+  <div id="form-status-error" class="hidden mb-6 p-4 bg-red-50 border border-red-200 text-red-800 rounded-lg text-sm">
+    {labels.sentError}
+  </div>
+
+  {variant === "diagnostic" && (
+    <div class="mb-6 p-4 bg-accent/5 border-l-4 border-accent rounded-r-lg text-sm text-dark leading-relaxed">
+      <strong class="text-accent">99 $ + tx</strong> · {labels.diagnosticBanner}
+    </div>
+  )}
+
+  <form
+    method="POST"
+    action="/api/lead"
+    accept-charset="UTF-8"
+    class="bg-white rounded-xl p-6 md:p-8 shadow-sm border border-grey-mid/40"
+    data-lead-form
+    id="bbqtech-lead-form"
+  >
+    <input type="hidden" name="source" value={resolvedSource} />
+    <input type="hidden" name="language" value={lang} />
+    <input type="hidden" name="variant" value={variant} />
+
+    {variant === "reservation" && (
+      <fieldset class="mb-6 border-0 p-0">
+        <legend class="block text-sm font-bold text-dark mb-2">{labels.forfaitLabel}</legend>
+        <div class="grid grid-cols-1 gap-2">
+          {forfaitOptions.map((o) => (
+            <label class="relative flex items-start gap-3 p-3 border border-grey-mid rounded-lg cursor-pointer hover:border-accent hover:bg-accent/5 transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/5 has-[:checked]:shadow-sm">
+              <input
+                type="radio"
+                name="forfait"
+                value={o.v}
+                checked={resolvedDefaultForfait === o.v}
+                class="mt-0.5 accent-accent w-4 h-4 flex-shrink-0"
+              />
+              <span class="flex-1 min-w-0">
+                <span class="flex items-baseline justify-between gap-2 flex-wrap">
+                  <span class="font-bold text-dark text-sm">{o.title}</span>
+                  <span class="text-xs text-accent font-bold">{o.price}</span>
+                </span>
+                <span class="block text-xs text-grey mt-0.5">{o.desc}</span>
+              </span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+    )}
+
+    <div class="mb-4">
+      <label for="name" class="block text-sm font-bold text-dark mb-1.5">{labels.name} *</label>
+      <input type="text" id="name" name="name" required autocomplete="name"
+        class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+      <div>
+        <label for="phone" class="block text-sm font-bold text-dark mb-1.5">{labels.phone} *</label>
+        <input type="tel" id="phone" name="phone" required autocomplete="tel"
+          class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-bold text-dark mb-1.5">{labels.email} *</label>
+        <input type="email" id="email" name="email" required autocomplete="email"
+          class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
+      </div>
+    </div>
+
+    {(variant === "reservation" || variant === "diagnostic") && (
+      <div class="mb-4">
+        <label for="address" class="block text-sm font-bold text-dark mb-1.5">{labels.address}</label>
+        <input type="text" id="address" name="address" autocomplete="street-address"
+          placeholder={labels.addressPlaceholder}
+          data-places-key={siteConfig.googleMapsApiKey || ""}
+          data-places-lang={lang}
+          class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
+      </div>
+    )}
+
+    {(variant === "reservation" || variant === "diagnostic") && (
+      <div class="mb-4">
+        <label for="bbq_brand" class="block text-sm font-bold text-dark mb-1.5">{labels.bbqBrand}</label>
+        <input type="text" id="bbq_brand" name="bbq_brand"
+          placeholder={labels.bbqBrandPlaceholder}
+          class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
+      </div>
+    )}
+
+    {variant === "diagnostic" && (
+      <div class="mb-4">
+        <label for="symptom" class="block text-sm font-bold text-dark mb-1.5">{labels.symptom}</label>
+        <textarea id="symptom" name="symptom" rows="3"
+          placeholder={labels.symptomPlaceholder}
+          class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
+      </div>
+    )}
+
+    <div class="mb-6">
+      <label for="message" class="block text-sm font-bold text-dark mb-1.5">{labels.message}</label>
+      <textarea id="message" name="message" rows={variant === "general" ? 5 : 3}
+        placeholder={labels.messagePlaceholder}
+        class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
+    </div>
+
+    <button type="submit"
+      class="w-full bg-accent text-white py-4 rounded-lg font-bold text-base hover:bg-accent-hover hover:-translate-y-0.5 transition-all cursor-pointer border-none">
+      {submitLabel}
+    </button>
+    <p class="text-center text-xs text-grey mt-3">{labels.privacy}</p>
+  </form>
+</div>
 
 <script>
   // ───── Google Places Autocomplete (lazy-loaded on address focus) ─────
-  // Only activates if siteConfig.googleMapsApiKey is set. Otherwise the
-  // input keeps native HTML5 autofill (autocomplete="street-address").
   const addressInput = document.getElementById("address") as HTMLInputElement | null;
   if (addressInput) {
     const apiKey = addressInput.dataset.placesKey || "";
