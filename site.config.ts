@@ -640,8 +640,8 @@ export const siteConfig = {
   // See DEPLOY.md → "Analytics & tracking" for the Cloudflare Tag Gateway
   // first-party routing (/analytics/*).
   tracking: {
-    gtmId: "", // e.g. "GTM-XXXXXXX" — get from tagmanager.google.com
-    ga4Id: "", // e.g. "G-XXXXXXXXXX" — reference only, configured inside GTM
+    gtmId: "GTM-WCN6GZ6M",
+    ga4Id: "G-1MM59TF539", // reference only — configured as a tag inside GTM
     metaPixelId: "", // reference only — configured inside GTM if needed
     googleAdsId: "", // e.g. "AW-XXXXXXXXX" — reference only, configured inside GTM
   },
