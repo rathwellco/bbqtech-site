@@ -221,6 +221,15 @@ const serviceOptions = isFr
 
         const res = await fetch("/api/lead", { method: "POST", body: fd });
         if (res.ok) {
+          // Fire GTM dataLayer event so analytics + ads tags can react
+          // (mirror ROG pattern — actual GA4/Ads tags live in GTM, not in code).
+          (window as any).dataLayer = (window as any).dataLayer || [];
+          (window as any).dataLayer.push({
+            event: "form_submission",
+            form_source: (fd.get("source") as string) || "Website - Contact Page",
+            form_language: (fd.get("language") as string) || "fr",
+            form_service: (fd.get("service") as string) || "",
+          });
           form.reset();
           success?.classList.remove("hidden");
           success?.scrollIntoView({ behavior: "smooth", block: "center" });

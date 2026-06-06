@@ -98,20 +98,25 @@ const localBusinessJsonLd = {
   <!-- LocalBusiness Schema -->
   <script type="application/ld+json" set:html={JSON.stringify(localBusinessJsonLd)} />
 
-  <!-- Tracking (placeholder) -->
-  {siteConfig.tracking.ga4Id && (
-    <script is:inline src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.tracking.ga4Id}`}></script>
-  )}
-  {siteConfig.tracking.ga4Id && (
-    <script is:inline define:vars={{ ga4Id: siteConfig.tracking.ga4Id }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', ga4Id);
+  <!-- GTM (via Cloudflare Tag Gateway — first-party path /analytics).
+       GA4 + Google Ads conversion tags are configured INSIDE GTM, not here.
+       Mirrors the ROG pattern (see clients/rog/06_build/site/src/layouts/Base.astro).
+       Setup: Cloudflare → bbqtech.com zone → Zaraz / Tag Gateway → rewrite
+       /analytics/* to https://www.googletagmanager.com/. -->
+  {siteConfig.tracking.gtmId && (
+    <script is:inline define:vars={{ gtmId: siteConfig.tracking.gtmId }}>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      '/analytics/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer',gtmId);
     </script>
   )}
 </head>
 <body class="text-dark leading-relaxed bg-white" style={`font-family: ${siteConfig.fonts.body}`}>
+  {siteConfig.tracking.gtmId && (
+    <noscript><iframe src={`/analytics/ns.html?id=${siteConfig.tracking.gtmId}`} height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  )}
   <Nav lang={lang} />
   <main>
     <slot />

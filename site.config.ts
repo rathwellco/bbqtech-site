@@ -633,11 +633,17 @@ export const siteConfig = {
   googleMapsApiKey: "",
 
   // ─── TRACKING ───
+  // Single source: GTM. Configure GA4 + Google Ads + Meta Pixel etc. as
+  // tags INSIDE the GTM container. The ga4Id / metaPixelId / googleAdsId
+  // fields below are kept for reference / GTM-side use but are NOT loaded
+  // by this codebase — only gtmId is read by Base.astro.
+  // See DEPLOY.md → "Analytics & tracking" for the Cloudflare Tag Gateway
+  // first-party routing (/analytics/*).
   tracking: {
-    ga4Id: "",
-    gtmId: "",
-    metaPixelId: "",
-    googleAdsId: "",
+    gtmId: "", // e.g. "GTM-XXXXXXX" — get from tagmanager.google.com
+    ga4Id: "", // e.g. "G-XXXXXXXXXX" — reference only, configured inside GTM
+    metaPixelId: "", // reference only — configured inside GTM if needed
+    googleAdsId: "", // e.g. "AW-XXXXXXXXX" — reference only, configured inside GTM
   },
 
   // ─── SEO ───

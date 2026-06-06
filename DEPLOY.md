@@ -156,6 +156,50 @@ Each submission produces a single HTML + plain-text email with: name, phone, ema
 
 ---
 
+## Analytics & tracking
+
+**Pattern:** Single GTM container loaded via Cloudflare Tag Gateway (first-party `/analytics/*` path). GA4, Google Ads conversion, Meta Pixel, etc. all configured as tags **inside GTM** — never injected directly in code. Mirrors the ROG setup at `clients/rog/06_build/site/`.
+
+### Why first-party Tag Gateway
+
+- Loads from `bbqtech.com/analytics/gtm.js` instead of `googletagmanager.com/gtm.js` — bypasses most ad blockers
+- Faster (same TCP connection, same Cloudflare edge as the rest of the site)
+- Privacy-friendlier (cookies stay first-party)
+
+### One-time setup
+
+1. **Create GA4 property** at [analytics.google.com](https://analytics.google.com/) for bbqtech.com → note the **Measurement ID** (`G-XXXXXXXXXX`)
+2. **Create GTM container** at [tagmanager.google.com](https://tagmanager.google.com/) for bbqtech.com (web) → note the **Container ID** (`GTM-XXXXXXX`)
+3. **Inside GTM**, create a **Google Analytics: GA4 Configuration** tag using the Measurement ID; set it to fire on **All Pages**. Add custom event tags later as conversions take shape (form_submission, etc.).
+4. **Enable Cloudflare Tag Gateway** on the bbqtech.com zone:
+   - Cloudflare dashboard → `bbqtech.com` zone → Workers Routes / Zaraz → check whether "Tag Gateway" is available on the plan
+   - If using Zaraz: configure the GTM tool there and let Zaraz handle first-party routing automatically
+   - If using a direct rewrite rule: create a Transform Rule that rewrites `/analytics/gtm.js` → `https://www.googletagmanager.com/gtm.js` and `/analytics/ns.html` → `https://www.googletagmanager.com/ns.html` (preserve query string)
+5. **Set the IDs** in `site.config.ts` (commit + push):
+   ```ts
+   tracking: {
+     gtmId: "GTM-XXXXXXX",
+     ga4Id: "G-XXXXXXXXXX",  // reference only
+     // ...
+   },
+   ```
+6. **Verify** after deploy: open bbqtech.com in a browser → DevTools Network → confirm `/analytics/gtm.js?id=GTM-XXX` loads with 200. In GA4 → Reports → Realtime, you should see your visit within ~30s.
+
+### Events emitted from this codebase
+
+- `form_submission` — fires from `ContactForm.astro` after a successful POST to `/api/lead`. Payload:
+  - `form_source` (e.g. "Website - Contact Page")
+  - `form_language` ("fr" or "en")
+  - `form_service` (selected service dropdown value, may be empty)
+
+  Map this to a GA4 event + a Google Ads conversion tag in GTM. Conversion value / currency belong in GTM tag config, not in code.
+
+### Attribution capture
+
+`Base.astro` writes a `bbqtech_attribution` object to `sessionStorage` on first page view of each session, capturing `utm_*`, `gclid`, `gbraid`, `wbraid`, `fbclid`, `msclkid`, `referrer`, and `landing_page`. `ContactForm.astro` injects these into the form payload, so they reach the email and any downstream CRM. No external dependencies.
+
+---
+
 ## Jobber OAuth setup (one-time)
 
 `lead.ts` (Phase 2b) will also forward leads to Jobber as Work Requests via Jobber's GraphQL API. This requires a one-time OAuth authorization to capture a long-lived refresh token. Refresh-token-rotation is OFF in the Jobber app settings so the token stays valid until revoked.
