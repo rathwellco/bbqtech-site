@@ -265,60 +265,70 @@ const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfai
   if (addressInput) {
     const apiKey = addressInput.dataset.placesKey || "";
     const placesLang = addressInput.dataset.placesLang || "fr";
+    const debug = (...args: unknown[]) => console.log("[BBQTECH Places]", ...args);
 
-    async function initPlacesElement() {
+    debug("init", { apiKeyPresent: !!apiKey, apiKeyLength: apiKey.length, placesLang });
+
+    function initPlacesElement() {
       const g = (window as any).google;
-      if (!g?.maps?.importLibrary) return;
+      const PlaceAutocompleteElement = g?.maps?.places?.PlaceAutocompleteElement;
+      if (!PlaceAutocompleteElement) {
+        console.warn(
+          "[BBQTECH Places] PlaceAutocompleteElement is missing. Check that 'Places API (New)' is ENABLED in GCP for this project (https://console.cloud.google.com/apis/library/places.googleapis.com)."
+        );
+        return;
+      }
+      if (!addressInput) return;
+      debug("loaded — creating element");
+
       try {
-        const placesLib: any = await g.maps.importLibrary("places");
-        const PlaceAutocompleteElement = placesLib?.PlaceAutocompleteElement;
-        if (!PlaceAutocompleteElement || !addressInput) return;
-
-        const pac = new PlaceAutocompleteElement({
-          includedRegionCodes: ["ca"],
-          // No "types" filter — Google deprecated the legacy "address" filter.
-          // The default returns mixed results, but most picks will be addresses.
-        });
-
-        // Match the Tailwind styling of our other inputs as closely as possible.
-        // The element renders inside its Shadow DOM; expose just a width hint here.
+        const pac = new PlaceAutocompleteElement({ includedRegionCodes: ["ca"] });
         (pac as HTMLElement).style.width = "100%";
         (pac as HTMLElement).style.display = "block";
 
-        // Insert AFTER the original input, hide the original (it stays the
-        // form control — we copy formattedAddress into its value on select).
         addressInput.insertAdjacentElement("afterend", pac as HTMLElement);
         addressInput.style.display = "none";
 
-        // Hand focus to the new element's internal input so user can keep typing.
+        // Hand focus to the new element so the user can keep typing without re-clicking.
         setTimeout(() => (pac as any).focus?.(), 0);
 
         pac.addEventListener("gmp-select", async (event: any) => {
+          debug("gmp-select fired", event);
           const prediction = event.placePrediction;
           if (!prediction) return;
           const place = prediction.toPlace();
           await place.fetchFields({ fields: ["formattedAddress"] });
           addressInput.value = place.formattedAddress || "";
+          debug("selected", addressInput.value);
         });
       } catch (err) {
-        // Silent fall-through — the plain input keeps working as a fallback.
-        console.warn("Places autocomplete unavailable:", err);
+        console.warn("[BBQTECH Places] element creation failed:", err);
       }
     }
 
     function loadMapsApi() {
-      if ((window as any).google?.maps?.importLibrary) {
-        // Already loaded — just init.
+      if (!apiKey) {
+        console.warn(
+          "[BBQTECH Places] No API key in data-places-key. The PUBLIC_GOOGLE_MAPS_API_KEY env var was either unset at build time or the deploy is stale."
+        );
+        return;
+      }
+      // If the script tag has already been added (e.g., user focused twice), bail.
+      if ((window as any).google?.maps) {
+        debug("Maps already loaded — init now");
         initPlacesElement();
         return;
       }
-      if (!apiKey) return;
+      debug("Adding Maps script tag…");
       const script = document.createElement("script");
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&loading=async&v=weekly&language=${encodeURIComponent(placesLang)}&region=CA`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&libraries=places&v=weekly&language=${encodeURIComponent(placesLang)}&region=CA`;
       script.async = true;
       script.defer = true;
-      script.onload = () => initPlacesElement();
-      script.onerror = () => console.warn("Google Maps script failed to load");
+      script.onload = () => {
+        debug("Maps script onload fired");
+        initPlacesElement();
+      };
+      script.onerror = (e) => console.warn("[BBQTECH Places] Maps script failed to load:", e);
       document.head.appendChild(script);
     }
 
