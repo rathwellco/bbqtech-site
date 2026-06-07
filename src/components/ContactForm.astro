@@ -255,6 +255,32 @@ const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfai
   </form>
 </div>
 
+<style is:global>
+  /* Force light scheme on the Google PlaceAutocompleteElement so it doesn't
+     inherit a dark background from the browser's color-scheme preference.
+     Without color-scheme: light the element renders dark text on dark surface
+     when the OS is set to dark mode. */
+  gmp-place-autocomplete {
+    color-scheme: light;
+    width: 100%;
+    display: block;
+    /* Material design tokens consumed by the element's Shadow DOM */
+    --gmp-mat-color-surface: #ffffff;
+    --gmp-mat-color-on-surface: #111111;
+    --gmp-mat-color-on-surface-variant: #333333;
+    --gmp-mat-color-primary: #E81B1B;
+    --gmp-mat-color-on-primary: #ffffff;
+    --gmp-mat-color-outline: #d4d4d4;
+    --gmp-mat-color-outline-variant: #e5e5e5;
+    --gmp-mat-color-surface-container: #ffffff;
+    --gmp-mat-color-surface-container-high: #f5f5f5;
+    --gmp-mat-color-secondary-container: #fde8e8;
+    --gmp-mat-color-on-secondary-container: #111111;
+    --gmp-mat-font-family-body: 'Montserrat', sans-serif;
+    --gmp-mat-font-family-headline: 'Montserrat', sans-serif;
+  }
+</style>
+
 <script>
   // ───── Google Places Autocomplete (lazy-loaded on address focus) ─────
   // Uses the modern PlaceAutocompleteElement (Web Component). The legacy
