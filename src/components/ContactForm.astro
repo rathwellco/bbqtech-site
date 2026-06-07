@@ -312,9 +312,10 @@ const resolvedDefaultForfait = defaultForfait
           (window as any).dataLayer = (window as any).dataLayer || [];
           (window as any).dataLayer.push({
             event: "form_submission",
-            form_source: (fd.get("source") as string) || "Website - Contact Page",
+            form_source: (fd.get("source") as string) || "Website - Contact",
+            form_variant: (fd.get("variant") as string) || "general",
             form_language: (fd.get("language") as string) || "fr",
-            form_service: (fd.get("service") as string) || "",
+            form_forfait: (fd.get("forfait") as string) || "",
           });
           form.reset();
           success?.classList.remove("hidden");
