@@ -2,7 +2,6 @@
 import Base from "../layouts/Base.astro";
 import Hero from "../components/Hero.astro";
 import ContactForm from "../components/ContactForm.astro";
-import { siteConfig } from "../../site.config";
 
 const lang = "fr" as const;
 const defaultForfait = Astro.url.searchParams.get("forfait") ?? undefined;
@@ -10,27 +9,20 @@ const defaultForfait = Astro.url.searchParams.get("forfait") ?? undefined;
 
 <Base
   lang={lang}
-  title="Réservation BBQ"
-  description="Réservez votre forfait BBQTECH : entretien, nettoyage, restauration ou assemblage. Réponse confirmée sous 24 h. Gatineau et Ottawa."
+  title="Réserver un service BBQ"
+  description="Réservez un service BBQTECH à Gatineau ou Ottawa. Nettoyage, diagnostic, assemblage, restauration. Réponse en 24 h."
 >
   <Hero
     lang={lang}
-    title="Réservez votre forfait BBQ"
-    subtitle="Sélectionnez le forfait qui correspond à votre BBQ. Réponse confirmée sous 24 h. Pour une recommandation rapide, envoyez une photo par SMS au 819-561-0762."
+    title="Réserver un service BBQ"
+    subtitle="Mobile · Gatineau et Ottawa · Réponse en 24 h"
     short={true}
     showCtas={false}
     showHeroImage={false}
   />
 
-  <section class="py-10 md:py-14 bg-light">
+  <section class="py-8 md:py-12 bg-light">
     <div class="max-w-[1200px] mx-auto px-6">
-      <div class="max-w-[640px] mx-auto mb-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-xs md:text-sm text-grey">
-        <a href={`tel:${siteConfig.phoneRaw}`} class="text-dark font-bold no-underline hover:text-accent">📞 {siteConfig.phone}</a>
-        <span class="hidden sm:inline">·</span>
-        <span>Réponse sous 24 h</span>
-        <span class="hidden sm:inline">·</span>
-        <span>Gatineau · Ottawa</span>
-      </div>
       <ContactForm lang={lang} variant="reservation" defaultForfait={defaultForfait} />
     </div>
   </section>

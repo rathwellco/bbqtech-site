@@ -2,7 +2,6 @@
 import Base from "../../layouts/Base.astro";
 import Hero from "../../components/Hero.astro";
 import ContactForm from "../../components/ContactForm.astro";
-import { siteConfig } from "../../../site.config";
 
 const lang = "en" as const;
 const defaultForfait = Astro.url.searchParams.get("forfait") ?? undefined;
@@ -10,27 +9,20 @@ const defaultForfait = Astro.url.searchParams.get("forfait") ?? undefined;
 
 <Base
   lang={lang}
-  title="BBQ booking"
-  description="Book your BBQTECH package: maintenance, cleaning, restoration or assembly. Confirmed reply within 24 h. Gatineau and Ottawa."
+  title="Book a BBQ service"
+  description="Book a BBQTECH service in Gatineau or Ottawa. Cleaning, diagnostic, assembly, restoration. Reply within 24 h."
 >
   <Hero
     lang={lang}
-    title="Book your BBQ package"
-    subtitle="Select the package that fits your BBQ. Confirmed reply within 24 h. For a quick recommendation, text a photo to 819-561-0762."
+    title="Book a BBQ service"
+    subtitle="Mobile · Gatineau and Ottawa · Reply within 24 h"
     short={true}
     showCtas={false}
     showHeroImage={false}
   />
 
-  <section class="py-10 md:py-14 bg-light">
+  <section class="py-8 md:py-12 bg-light">
     <div class="max-w-[1200px] mx-auto px-6">
-      <div class="max-w-[640px] mx-auto mb-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-xs md:text-sm text-grey">
-        <a href={`tel:${siteConfig.phoneRaw}`} class="text-dark font-bold no-underline hover:text-accent">📞 {siteConfig.phone}</a>
-        <span class="hidden sm:inline">·</span>
-        <span>Reply within 24 h</span>
-        <span class="hidden sm:inline">·</span>
-        <span>Gatineau · Ottawa</span>
-      </div>
       <ContactForm lang={lang} variant="reservation" defaultForfait={defaultForfait} />
     </div>
   </section>

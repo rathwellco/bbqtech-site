@@ -44,7 +44,11 @@ const labels = isFr
       sentError: "Une erreur est survenue. Appelez 819-561-0762 ou réessayez.",
       requireOneError: "Téléphone ou courriel requis (au moins un).",
       diagnosticBanner: "Frais d'évaluation à domicile : 99 $ + taxes. Le diagnostic identifie la cause et les réparations recommandées. Pièces et main-d'œuvre facturées séparément si vous approuvez la réparation.",
-      forfaitLabel: "Quel forfait vous intéresse ?",
+      serviceLabel: "De quel service avez-vous besoin ?",
+      cleaningGroupLabel: "Forfaits de nettoyage",
+      otherGroupLabel: "Autres services",
+      recommendedBadge: "RECOMMANDÉ",
+      detailsToggle: "Ajouter des détails (facultatif)",
     }
   : {
       name: "Full name",
@@ -66,28 +70,41 @@ const labels = isFr
       sentError: "Something went wrong. Call 819-561-0762 or try again.",
       requireOneError: "Phone or email required (at least one).",
       diagnosticBanner: "On-site assessment fee: $99 + taxes. The diagnostic identifies the cause and the recommended repairs. Parts and labour billed separately if you approve the repair.",
-      forfaitLabel: "Which package fits your needs?",
+      serviceLabel: "Which service do you need?",
+      cleaningGroupLabel: "Cleaning packages",
+      otherGroupLabel: "Other services",
+      recommendedBadge: "RECOMMENDED",
+      detailsToggle: "Add more details (optional)",
     };
 
 const submitLabel = variant === "reservation" ? labels.submitReservation : labels.submitGeneral;
 
-// Forfait options for the reservation variant (visual radio cards).
-// Diagnostic is included here — when selected, JS reveals the banner +
-// symptom field. Replaces the deprecated /diagnostic dedicated page.
-const forfaitOptions = isFr
+// Two-bucket selector — Hick's Law (https://lawsofux.com/hicks-law/) says
+// 7 options of equal weight is cognitive friction. Splitting into
+// "cleaning packages" + "other services" + a Recommended badge on the
+// most common pick (Nettoyage) guides the indecisive without removing options.
+type ForfaitOption = { v: string; title: string; price: string; desc: string; recommended?: boolean };
+
+const cleaningPackages: ForfaitOption[] = isFr
   ? [
       { v: "Entretien", title: "Entretien", price: "199 $ + tx", desc: "Inspection + entretien saisonnier léger" },
-      { v: "Nettoyage", title: "Nettoyage", price: "299 $ + tx", desc: "Dégraissage approfondi · RECOMMANDÉ" },
+      { v: "Nettoyage", title: "Nettoyage", price: "299 $ + tx", desc: "Dégraissage approfondi en 2 applications", recommended: true },
       { v: "Restauration", title: "Restauration", price: "à partir de 399 $ + tx", desc: "Vapeur + multiples passes + finition" },
+    ]
+  : [
+      { v: "Maintenance", title: "Maintenance", price: "$199 + tx", desc: "Inspection + light seasonal upkeep" },
+      { v: "Cleaning", title: "Cleaning", price: "$299 + tx", desc: "Deep degreasing in 2 passes", recommended: true },
+      { v: "Restoration", title: "Restoration", price: "from $399 + tx", desc: "Steam + multiple passes + finish" },
+    ];
+
+const otherServices: ForfaitOption[] = isFr
+  ? [
       { v: "Diagnostic", title: "Diagnostic / réparation", price: "99 $ + tx", desc: "Évaluation à domicile pour un BBQ qui ne fonctionne pas" },
       { v: "Assemblage", title: "Assemblage BBQ", price: "à partir de 149 $ + tx", desc: "Montage à domicile d'un BBQ neuf" },
       { v: "Commercial", title: "Commercial / multi-unités", price: "sur soumission", desc: "Restaurants, food trucks, condos" },
       { v: "Soumission", title: "Pas certain", price: "—", desc: "Je veux une recommandation" },
     ]
   : [
-      { v: "Maintenance", title: "Maintenance", price: "$199 + tx", desc: "Inspection + light seasonal upkeep" },
-      { v: "Cleaning", title: "Cleaning", price: "$299 + tx", desc: "Deep degreasing · RECOMMENDED" },
-      { v: "Restoration", title: "Restoration", price: "from $399 + tx", desc: "Steam + multiple passes + finish" },
       { v: "Diagnostic", title: "Diagnostic / repair", price: "$99 + tx", desc: "On-site assessment for a BBQ that's not working" },
       { v: "Assembly", title: "BBQ assembly", price: "from $149 + tx", desc: "On-site new BBQ assembly" },
       { v: "Commercial", title: "Commercial / multi-unit", price: "custom quote", desc: "Restaurants, food trucks, condos" },
@@ -151,26 +168,61 @@ const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfai
 
     {variant === "reservation" && (
       <fieldset class="mb-6 border-0 p-0">
-        <legend class="block text-sm font-bold text-dark mb-2">{labels.forfaitLabel}</legend>
-        <div class="grid grid-cols-1 gap-2">
-          {forfaitOptions.map((o) => (
-            <label class="relative flex items-start gap-3 p-3 border border-grey-mid rounded-lg cursor-pointer hover:border-accent hover:bg-accent/5 transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/5 has-[:checked]:shadow-sm">
-              <input
-                type="radio"
-                name="forfait"
-                value={o.v}
-                checked={resolvedDefaultForfait === o.v}
-                class="mt-0.5 accent-accent w-4 h-4 flex-shrink-0"
-              />
-              <span class="flex-1 min-w-0">
-                <span class="flex items-baseline justify-between gap-2 flex-wrap">
-                  <span class="font-bold text-dark text-sm">{o.title}</span>
-                  <span class="text-xs text-accent font-bold">{o.price}</span>
+        <legend class="block text-sm font-bold text-dark mb-3">{labels.serviceLabel}</legend>
+
+        {/* Group 1 — cleaning packages (with Recommandé badge on Nettoyage) */}
+        <div class="mb-4">
+          <p class="text-[11px] font-bold uppercase tracking-wider text-grey mb-2">{labels.cleaningGroupLabel}</p>
+          <div class="grid grid-cols-1 gap-2">
+            {cleaningPackages.map((o) => (
+              <label class="relative flex items-start gap-3 p-3 border border-grey-mid rounded-lg cursor-pointer hover:border-accent hover:bg-accent/5 transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/5 has-[:checked]:shadow-sm">
+                <input
+                  type="radio"
+                  name="forfait"
+                  value={o.v}
+                  checked={resolvedDefaultForfait === o.v}
+                  class="mt-0.5 accent-accent w-4 h-4 flex-shrink-0"
+                />
+                <span class="flex-1 min-w-0">
+                  <span class="flex items-baseline justify-between gap-2 flex-wrap">
+                    <span class="flex items-center gap-2 flex-wrap">
+                      <span class="font-bold text-dark text-sm">{o.title}</span>
+                      {o.recommended && (
+                        <span class="bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded leading-none">{labels.recommendedBadge}</span>
+                      )}
+                    </span>
+                    <span class="text-xs text-accent font-bold">{o.price}</span>
+                  </span>
+                  <span class="block text-xs text-grey mt-0.5">{o.desc}</span>
                 </span>
-                <span class="block text-xs text-grey mt-0.5">{o.desc}</span>
-              </span>
-            </label>
-          ))}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* Group 2 — other services (Diagnostic, Assemblage, Commercial, Pas sûr) */}
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-wider text-grey mb-2">{labels.otherGroupLabel}</p>
+          <div class="grid grid-cols-1 gap-2">
+            {otherServices.map((o) => (
+              <label class="relative flex items-start gap-3 p-3 border border-grey-mid rounded-lg cursor-pointer hover:border-accent hover:bg-accent/5 transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/5 has-[:checked]:shadow-sm">
+                <input
+                  type="radio"
+                  name="forfait"
+                  value={o.v}
+                  checked={resolvedDefaultForfait === o.v}
+                  class="mt-0.5 accent-accent w-4 h-4 flex-shrink-0"
+                />
+                <span class="flex-1 min-w-0">
+                  <span class="flex items-baseline justify-between gap-2 flex-wrap">
+                    <span class="font-bold text-dark text-sm">{o.title}</span>
+                    <span class="text-xs text-accent font-bold">{o.price}</span>
+                  </span>
+                  <span class="block text-xs text-grey mt-0.5">{o.desc}</span>
+                </span>
+              </label>
+            ))}
+          </div>
         </div>
       </fieldset>
     )}
@@ -218,16 +270,9 @@ const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfai
       </div>
     )}
 
-    {variant === "reservation" && (
-      <div class="mb-4">
-        <label for="bbq_brand" class="block text-sm font-bold text-dark mb-1.5">{labels.bbqBrand}</label>
-        <input type="text" id="bbq_brand" name="bbq_brand"
-          placeholder={labels.bbqBrandPlaceholder}
-          class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
-      </div>
-    )}
-
-    {/* Conditional symptom field — visible only when Diagnostic forfait selected */}
+    {/* Conditional symptom field — stays outside <details> so it's prominent
+        when the Diagnostic forfait is selected (a genuinely useful field in
+        that context). Hidden by default; revealed by the forfait-sync script. */}
     {variant === "reservation" && (
       <div
         class:list={["mb-4", showDiagnosticInitial ? "" : "hidden"]}
@@ -240,12 +285,40 @@ const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfai
       </div>
     )}
 
-    <div class="mb-6">
-      <label for="message" class="block text-sm font-bold text-dark mb-1.5">{labels.message}</label>
-      <textarea id="message" name="message" rows={variant === "general" ? 5 : 3}
-        placeholder={labels.messagePlaceholder}
-        class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
-    </div>
+    {/* Progressive disclosure — BBQ brand + Message collapsed by default on
+        the reservation form to keep visible field count under the 3-5 optimum.
+        Native <details> = zero JS, accessible, mobile-friendly. */}
+    {variant === "reservation" && (
+      <details class="mb-6 group">
+        <summary class="cursor-pointer text-sm font-bold text-accent hover:underline list-none flex items-center gap-1.5 py-2 mb-3">
+          <span class="transition-transform group-open:rotate-90 inline-block text-xs">▸</span>
+          {labels.detailsToggle}
+        </summary>
+        <div class="mb-4">
+          <label for="bbq_brand" class="block text-sm font-bold text-dark mb-1.5">{labels.bbqBrand}</label>
+          <input type="text" id="bbq_brand" name="bbq_brand"
+            placeholder={labels.bbqBrandPlaceholder}
+            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
+        </div>
+        <div>
+          <label for="message" class="block text-sm font-bold text-dark mb-1.5">{labels.message}</label>
+          <textarea id="message" name="message" rows="3"
+            placeholder={labels.messagePlaceholder}
+            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
+        </div>
+      </details>
+    )}
+
+    {/* For the general variant, Message stays visible — it's the only
+        free-text field on that simpler form, no value in hiding it. */}
+    {variant === "general" && (
+      <div class="mb-6">
+        <label for="message" class="block text-sm font-bold text-dark mb-1.5">{labels.message}</label>
+        <textarea id="message" name="message" rows="5"
+          placeholder={labels.messagePlaceholder}
+          class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
+      </div>
+    )}
 
     <button type="submit"
       class="w-full bg-accent text-white py-4 rounded-lg font-bold text-base hover:bg-accent-hover hover:-translate-y-0.5 transition-all cursor-pointer border-none">
