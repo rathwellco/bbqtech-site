@@ -628,12 +628,10 @@ export const siteConfig = {
   turnstileSiteKey: "0x4AAAAAADAqUwa51-U7rdhD", // TODO: replace with bbqtech.com Turnstile site key
 
   // ─── GOOGLE PLACES API (address autocomplete on contact form) ───
-  // Leave empty to fall back to HTML5 browser autofill only.
-  // When set, the contact form will lazy-load the Google Maps JS API on
-  // address-input focus and offer live Place suggestions restricted to Canada.
-  // Setup: GCP project → enable Places API → create API key → restrict
-  // HTTP referrers to https://bbqtech.com/* and https://*.pages.dev/* (preview).
-  googleMapsApiKey: "",
+  // Lazy-loaded on address-input focus. Restricted to Canada addresses.
+  // Key is HTTP-referrer-restricted in GCP to bbqtech.com + *.pages.dev so
+  // exposure in client JS is non-sensitive (standard for client-side Maps keys).
+  googleMapsApiKey: "AIzaSyAhaJ0iq_1yNgviYfULR50B1otv_GioWGM",
 
   // ─── TRACKING ───
   // Single source: GTM. Configure GA4 + Google Ads + Meta Pixel etc. as
