@@ -106,15 +106,16 @@ function formatSubject(payload: Record<string, string>): string {
   const name = payload.name?.trim() || "Nouveau lead";
   const variant = (payload.variant || "").toLowerCase();
   const source = (payload.source || "").toLowerCase();
+  const forfait = payload.forfait?.trim() || "";
 
-  // Reservation form → highlight selected forfait when present
+  // Reservation form → highlight selected forfait when present. Diagnostic is
+  // now a forfait option (collapsed from the deprecated /diagnostic page) so
+  // detect it via forfait value and route to the Diagnostic subject prefix.
   if (variant === "reservation" || source.includes("reservation")) {
-    const forfait = payload.forfait?.trim();
+    if (forfait === "Diagnostic") {
+      return `[BBQTECH Diagnostic] ${name}`;
+    }
     return forfait ? `[BBQTECH Réservation] ${name} — ${forfait}` : `[BBQTECH Réservation] ${name}`;
-  }
-  // Diagnostic form → flag urgency for inbox triage
-  if (variant === "diagnostic" || source.includes("diagnostic")) {
-    return `[BBQTECH Diagnostic] ${name}`;
   }
   // General catch-all
   return `[BBQTECH Question] ${name}`;

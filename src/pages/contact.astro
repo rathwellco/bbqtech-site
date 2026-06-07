@@ -11,22 +11,15 @@ const intentCards = [
   {
     href: "/reservation",
     icon: "🧽",
-    title: "Réserver un forfait",
-    desc: "Entretien, Nettoyage, Restauration, Assemblage",
-    price: "à partir de 149 $ + tx",
-  },
-  {
-    href: "/diagnostic",
-    icon: "🔧",
-    title: "Diagnostic / réparation",
-    desc: "Évaluation à domicile pour un BBQ qui ne fonctionne pas",
-    price: "99 $ + tx",
+    title: "Réserver un service",
+    desc: "Entretien, Nettoyage, Restauration, Assemblage ou Diagnostic / réparation",
+    price: "à partir de 99 $ + tx",
   },
   {
     href: "#general-form",
     icon: "💬",
-    title: "Autre question",
-    desc: "Commercial, multi-unités, soumission, ou question générale",
+    title: "Question générale",
+    desc: "Commercial, multi-unités, soumission ou toute autre question",
     price: "Réponse sous 24 h",
   },
 ];
@@ -48,7 +41,7 @@ const intentCards = [
 
   <section class="py-10 md:py-14 bg-light">
     <div class="max-w-[1200px] mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mb-12 md:mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-12 md:mb-16 max-w-[920px] mx-auto">
         {intentCards.map((card) => (
           <a
             href={card.href}
@@ -66,7 +59,7 @@ const intentCards = [
         <div>
           <div id="general-form" class="scroll-mt-24">
             <h2 class="text-2xl md:text-3xl font-extrabold text-dark mb-2 text-center">Posez votre question</h2>
-            <p class="text-center text-sm text-grey mb-6">Pour toute autre demande qui ne rentre pas dans les deux catégories ci-haut.</p>
+            <p class="text-center text-sm text-grey mb-6">Pour toute demande qui n'est pas une réservation de service.</p>
             <ContactForm lang={lang} variant="general" />
           </div>
         </div>

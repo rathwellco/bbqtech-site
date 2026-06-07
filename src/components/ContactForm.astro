@@ -2,7 +2,7 @@
 import { siteConfig } from "../../site.config";
 import { type Locale } from "../i18n/utils";
 
-type Variant = "reservation" | "diagnostic" | "general";
+type Variant = "reservation" | "general";
 
 interface Props {
   lang: Locale;
@@ -20,10 +20,7 @@ const {
 
 const isFr = lang === "fr";
 
-const autoSource =
-  variant === "reservation" ? "Website - Reservation"
-  : variant === "diagnostic" ? "Website - Diagnostic"
-  : "Website - Contact";
+const autoSource = variant === "reservation" ? "Website - Reservation" : "Website - Contact";
 const resolvedSource = source || autoSource;
 
 const labels = isFr
@@ -31,7 +28,8 @@ const labels = isFr
       name: "Nom complet",
       phone: "Téléphone",
       email: "Courriel",
-      address: "Adresse",
+      contactGroupHint: "Téléphone ou courriel — au moins un",
+      address: "Adresse où effectuer le service",
       addressPlaceholder: "123 rue Principale, Gatineau QC J8X 1A1",
       bbqBrand: "Marque et modèle du BBQ",
       bbqBrandPlaceholder: "Weber Genesis II, Napoleon Prestige 500, etc.",
@@ -39,12 +37,12 @@ const labels = isFr
       symptomPlaceholder: "Ne s'allume pas, flamme faible, rouille des brûleurs…",
       message: "Détails supplémentaires",
       messagePlaceholder: "Particularités, accès, préférences d'horaire…",
-      submitReservation: "Envoyer ma réservation",
-      submitDiagnostic: "Demander un diagnostic",
+      submitReservation: "Envoyer ma demande",
       submitGeneral: "Envoyer ma demande",
       privacy: "Réponse confirmée sous 24 h. Aucun pourriel.",
       sentSuccess: "Merci, votre demande a été reçue. On vous répond sous 24 h.",
       sentError: "Une erreur est survenue. Appelez 819-561-0762 ou réessayez.",
+      requireOneError: "Téléphone ou courriel requis (au moins un).",
       diagnosticBanner: "Frais d'évaluation à domicile : 99 $ + taxes. Le diagnostic identifie la cause et les réparations recommandées. Pièces et main-d'œuvre facturées séparément si vous approuvez la réparation.",
       forfaitLabel: "Quel forfait vous intéresse ?",
     }
@@ -52,7 +50,8 @@ const labels = isFr
       name: "Full name",
       phone: "Phone",
       email: "Email",
-      address: "Address",
+      contactGroupHint: "Phone or email — at least one",
+      address: "Service address",
       addressPlaceholder: "123 Main St, Gatineau QC J8X 1A1",
       bbqBrand: "BBQ brand and model",
       bbqBrandPlaceholder: "Weber Genesis II, Napoleon Prestige 500, etc.",
@@ -60,27 +59,27 @@ const labels = isFr
       symptomPlaceholder: "Won't ignite, weak flame, rusty burners…",
       message: "Additional details",
       messagePlaceholder: "Specifics, access, schedule preferences…",
-      submitReservation: "Send my booking",
-      submitDiagnostic: "Request a diagnostic",
+      submitReservation: "Send my request",
       submitGeneral: "Send my request",
       privacy: "Confirmed reply within 24 h. No spam, ever.",
       sentSuccess: "Thanks, your request was received. We'll reply within 24 h.",
       sentError: "Something went wrong. Call 819-561-0762 or try again.",
+      requireOneError: "Phone or email required (at least one).",
       diagnosticBanner: "On-site assessment fee: $99 + taxes. The diagnostic identifies the cause and the recommended repairs. Parts and labour billed separately if you approve the repair.",
       forfaitLabel: "Which package fits your needs?",
     };
 
-const submitLabel =
-  variant === "reservation" ? labels.submitReservation
-  : variant === "diagnostic" ? labels.submitDiagnostic
-  : labels.submitGeneral;
+const submitLabel = variant === "reservation" ? labels.submitReservation : labels.submitGeneral;
 
 // Forfait options for the reservation variant (visual radio cards).
+// Diagnostic is included here — when selected, JS reveals the banner +
+// symptom field. Replaces the deprecated /diagnostic dedicated page.
 const forfaitOptions = isFr
   ? [
       { v: "Entretien", title: "Entretien", price: "199 $ + tx", desc: "Inspection + entretien saisonnier léger" },
       { v: "Nettoyage", title: "Nettoyage", price: "299 $ + tx", desc: "Dégraissage approfondi · RECOMMANDÉ" },
       { v: "Restauration", title: "Restauration", price: "à partir de 399 $ + tx", desc: "Vapeur + multiples passes + finition" },
+      { v: "Diagnostic", title: "Diagnostic / réparation", price: "99 $ + tx", desc: "Évaluation à domicile pour un BBQ qui ne fonctionne pas" },
       { v: "Assemblage", title: "Assemblage BBQ", price: "à partir de 149 $ + tx", desc: "Montage à domicile d'un BBQ neuf" },
       { v: "Commercial", title: "Commercial / multi-unités", price: "sur soumission", desc: "Restaurants, food trucks, condos" },
       { v: "Soumission", title: "Pas certain", price: "—", desc: "Je veux une recommandation" },
@@ -89,6 +88,7 @@ const forfaitOptions = isFr
       { v: "Maintenance", title: "Maintenance", price: "$199 + tx", desc: "Inspection + light seasonal upkeep" },
       { v: "Cleaning", title: "Cleaning", price: "$299 + tx", desc: "Deep degreasing · RECOMMENDED" },
       { v: "Restoration", title: "Restoration", price: "from $399 + tx", desc: "Steam + multiple passes + finish" },
+      { v: "Diagnostic", title: "Diagnostic / repair", price: "$99 + tx", desc: "On-site assessment for a BBQ that's not working" },
       { v: "Assembly", title: "BBQ assembly", price: "from $149 + tx", desc: "On-site new BBQ assembly" },
       { v: "Commercial", title: "Commercial / multi-unit", price: "custom quote", desc: "Restaurants, food trucks, condos" },
       { v: "Quote", title: "Not sure", price: "—", desc: "I want a recommendation" },
@@ -107,6 +107,10 @@ const forfaitSlugMap: Record<string, string> = {
   assemblage: isFr ? "Assemblage" : "Assembly",
   commercial: "Commercial",
   soumission: isFr ? "Soumission" : "Quote",
+  // Diagnostic slugs (collapses the former /diagnostic page)
+  diagnostic: "Diagnostic",
+  reparation: "Diagnostic",
+  repair: "Diagnostic",
   // EN slugs
   maintenance: isFr ? "Entretien" : "Maintenance",
   cleaning: isFr ? "Nettoyage" : "Cleaning",
@@ -117,6 +121,10 @@ const forfaitSlugMap: Record<string, string> = {
 const resolvedDefaultForfait = defaultForfait
   ? (forfaitSlugMap[defaultForfait.toLowerCase()] ?? defaultForfait)
   : undefined;
+
+// Visible-by-default on initial render only if Diagnostic is pre-selected.
+// Client script flips visibility on every forfait change.
+const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfait === "Diagnostic";
 ---
 
 <div class="max-w-[640px] mx-auto">
@@ -127,18 +135,14 @@ const resolvedDefaultForfait = defaultForfait
     {labels.sentError}
   </div>
 
-  {variant === "diagnostic" && (
-    <div class="mb-6 p-4 bg-accent/5 border-l-4 border-accent rounded-r-lg text-sm text-dark leading-relaxed">
-      <strong class="text-accent">99 $ + tx</strong> · {labels.diagnosticBanner}
-    </div>
-  )}
-
   <form
     method="POST"
     action="/api/lead"
     accept-charset="UTF-8"
     class="bg-white rounded-xl p-6 md:p-8 shadow-sm border border-grey-mid/40"
     data-lead-form
+    data-error-require-one={labels.requireOneError}
+    data-error-default={labels.sentError}
     id="bbqtech-lead-form"
   >
     <input type="hidden" name="source" value={resolvedSource} />
@@ -171,26 +175,39 @@ const resolvedDefaultForfait = defaultForfait
       </fieldset>
     )}
 
+    {/* Conditional banner — visible only when forfait Diagnostic is selected */}
+    {variant === "reservation" && (
+      <div
+        class:list={["mb-6 p-4 bg-accent/5 border-l-4 border-accent rounded-r-lg text-sm text-dark leading-relaxed", showDiagnosticInitial ? "" : "hidden"]}
+        data-show-when-forfait="Diagnostic"
+      >
+        <strong class="text-accent">99 $ + tx</strong> · {labels.diagnosticBanner}
+      </div>
+    )}
+
     <div class="mb-4">
       <label for="name" class="block text-sm font-bold text-dark mb-1.5">{labels.name} *</label>
       <input type="text" id="name" name="name" required autocomplete="name"
         class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-      <div>
-        <label for="phone" class="block text-sm font-bold text-dark mb-1.5">{labels.phone} *</label>
-        <input type="tel" id="phone" name="phone" required autocomplete="tel"
-          class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
-      </div>
-      <div>
-        <label for="email" class="block text-sm font-bold text-dark mb-1.5">{labels.email} *</label>
-        <input type="email" id="email" name="email" required autocomplete="email"
-          class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
+    <div class="mb-4">
+      <p class="text-xs text-grey mb-1.5 font-semibold">{labels.contactGroupHint} *</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="phone" class="block text-xs font-bold text-dark mb-1">{labels.phone}</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" data-require-one="contact"
+            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
+        </div>
+        <div>
+          <label for="email" class="block text-xs font-bold text-dark mb-1">{labels.email}</label>
+          <input type="email" id="email" name="email" autocomplete="email" data-require-one="contact"
+            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
+        </div>
       </div>
     </div>
 
-    {(variant === "reservation" || variant === "diagnostic") && (
+    {variant === "reservation" && (
       <div class="mb-4">
         <label for="address" class="block text-sm font-bold text-dark mb-1.5">{labels.address}</label>
         <input type="text" id="address" name="address" autocomplete="street-address"
@@ -201,7 +218,7 @@ const resolvedDefaultForfait = defaultForfait
       </div>
     )}
 
-    {(variant === "reservation" || variant === "diagnostic") && (
+    {variant === "reservation" && (
       <div class="mb-4">
         <label for="bbq_brand" class="block text-sm font-bold text-dark mb-1.5">{labels.bbqBrand}</label>
         <input type="text" id="bbq_brand" name="bbq_brand"
@@ -210,8 +227,12 @@ const resolvedDefaultForfait = defaultForfait
       </div>
     )}
 
-    {variant === "diagnostic" && (
-      <div class="mb-4">
+    {/* Conditional symptom field — visible only when Diagnostic forfait selected */}
+    {variant === "reservation" && (
+      <div
+        class:list={["mb-4", showDiagnosticInitial ? "" : "hidden"]}
+        data-show-when-forfait="Diagnostic"
+      >
         <label for="symptom" class="block text-sm font-bold text-dark mb-1.5">{labels.symptom}</label>
         <textarea id="symptom" name="symptom" rows="3"
           placeholder={labels.symptomPlaceholder}
@@ -274,16 +295,47 @@ const resolvedDefaultForfait = defaultForfait
     }
   }
 
-  // ───── Form submission ─────
+  // ───── Form behaviors (conditional UI + submit) ─────
   const form = document.getElementById("bbqtech-lead-form") as HTMLFormElement | null;
   const success = document.getElementById("form-status-success");
   const error = document.getElementById("form-status-error");
+
+  // Conditional UI: show banner + symptom field when the Diagnostic forfait is selected
+  const syncForfaitUI = () => {
+    if (!form) return;
+    const selected = form.querySelector<HTMLInputElement>('input[name="forfait"]:checked');
+    const value = selected?.value || "";
+    document.querySelectorAll<HTMLElement>('[data-show-when-forfait]').forEach((el) => {
+      const target = el.dataset.showWhenForfait;
+      el.classList.toggle("hidden", value !== target);
+    });
+  };
+
+  if (form) {
+    form.querySelectorAll<HTMLInputElement>('input[name="forfait"]').forEach((r) =>
+      r.addEventListener("change", syncForfaitUI)
+    );
+    // initial sync (covers pre-selected via ?forfait=)
+    syncForfaitUI();
+  }
 
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       success?.classList.add("hidden");
       error?.classList.add("hidden");
+
+      // Phone OR email — at least one required
+      const requireOne = Array.from(form.querySelectorAll<HTMLInputElement>('[data-require-one="contact"]'));
+      const hasOne = requireOne.some((input) => input.value.trim().length > 0);
+      if (!hasOne) {
+        if (error) {
+          error.textContent = form.dataset.errorRequireOne || "Phone or email required.";
+          error.classList.remove("hidden");
+          error.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        return;
+      }
 
       const submitBtn = form.querySelector("button[type=submit]") as HTMLButtonElement | null;
       if (submitBtn) submitBtn.disabled = true;
@@ -318,13 +370,20 @@ const resolvedDefaultForfait = defaultForfait
             form_forfait: (fd.get("forfait") as string) || "",
           });
           form.reset();
+          syncForfaitUI();
           success?.classList.remove("hidden");
           success?.scrollIntoView({ behavior: "smooth", block: "center" });
         } else {
-          error?.classList.remove("hidden");
+          if (error) {
+            error.textContent = form.dataset.errorDefault || "Something went wrong.";
+            error.classList.remove("hidden");
+          }
         }
       } catch {
-        error?.classList.remove("hidden");
+        if (error) {
+          error.textContent = form.dataset.errorDefault || "Something went wrong.";
+          error.classList.remove("hidden");
+        }
       } finally {
         if (submitBtn) submitBtn.disabled = false;
       }

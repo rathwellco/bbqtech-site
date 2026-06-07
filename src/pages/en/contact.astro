@@ -11,22 +11,15 @@ const intentCards = [
   {
     href: "/en/booking",
     icon: "🧽",
-    title: "Book a package",
-    desc: "Maintenance, Cleaning, Restoration, Assembly",
-    price: "from $149 + tx",
-  },
-  {
-    href: "/en/diagnostic",
-    icon: "🔧",
-    title: "Diagnostic / repair",
-    desc: "On-site assessment for a BBQ that's not working",
-    price: "$99 + tx",
+    title: "Book a service",
+    desc: "Maintenance, Cleaning, Restoration, Assembly or Diagnostic / repair",
+    price: "from $99 + tx",
   },
   {
     href: "#general-form",
     icon: "💬",
-    title: "Other question",
-    desc: "Commercial, multi-unit, quote, or general question",
+    title: "General question",
+    desc: "Commercial, multi-unit, quote or any other question",
     price: "Reply within 24 h",
   },
 ];
@@ -48,7 +41,7 @@ const intentCards = [
 
   <section class="py-10 md:py-14 bg-light">
     <div class="max-w-[1200px] mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mb-12 md:mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-12 md:mb-16 max-w-[920px] mx-auto">
         {intentCards.map((card) => (
           <a
             href={card.href}
@@ -66,7 +59,7 @@ const intentCards = [
         <div>
           <div id="general-form" class="scroll-mt-24">
             <h2 class="text-2xl md:text-3xl font-extrabold text-dark mb-2 text-center">Ask your question</h2>
-            <p class="text-center text-sm text-grey mb-6">For any request that doesn't fit the two categories above.</p>
+            <p class="text-center text-sm text-grey mb-6">For any request that isn't a service booking.</p>
             <ContactForm lang={lang} variant="general" />
           </div>
         </div>

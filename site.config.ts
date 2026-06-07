@@ -35,12 +35,14 @@ export const siteConfig = {
   },
 
   // ─── NAV ───
+  // Hrefs use absolute paths (/#section) so the menu works from any page.
+  // localeHref() turns these into /en/#section when lang === "en".
   nav: [
-    { href: "#services", label: { fr: "Services", en: "Services" } satisfies Bilingual },
-    { href: "#forfaits", label: { fr: "Forfaits", en: "Packages" } satisfies Bilingual },
-    { href: "#reparation", label: { fr: "Réparation", en: "Repair" } satisfies Bilingual },
-    { href: "#pourquoi", label: { fr: "Pourquoi BBQTECH", en: "Why BBQTECH" } satisfies Bilingual },
-    { href: "#faq", label: { fr: "FAQ", en: "FAQ" } satisfies Bilingual },
+    { href: "/#services", label: { fr: "Services", en: "Services" } satisfies Bilingual },
+    { href: "/#forfaits", label: { fr: "Forfaits", en: "Packages" } satisfies Bilingual },
+    { href: "/#reparation", label: { fr: "Réparation", en: "Repair" } satisfies Bilingual },
+    { href: "/#pourquoi", label: { fr: "Pourquoi BBQTECH", en: "Why BBQTECH" } satisfies Bilingual },
+    { href: "/#faq", label: { fr: "FAQ", en: "FAQ" } satisfies Bilingual },
   ],
   // ─── BOOKING URL (Zoho Calendar — placeholder until provided) ───
   // When set to a non-empty string, all "Réserver" CTAs link to this URL
@@ -171,7 +173,7 @@ export const siteConfig = {
         en: "On-site diagnostic to identify a functional issue: ignition problem, weak flame, faulty burner, uneven heat or broken component.",
       } satisfies Bilingual,
       ctaLabel: { fr: "Réserver un diagnostic", en: "Book a diagnostic" } satisfies Bilingual,
-      cardHref: "/diagnostic",
+      cardHref: "/reservation?forfait=diagnostic",
     },
     {
       slug: "commercial",
