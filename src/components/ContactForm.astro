@@ -257,42 +257,73 @@ const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfai
 
 <script>
   // ───── Google Places Autocomplete (lazy-loaded on address focus) ─────
+  // Uses the modern PlaceAutocompleteElement (Web Component). The legacy
+  // `google.maps.places.Autocomplete` constructor is no longer available
+  // to GCP projects created after March 2025 — we use the new element +
+  // importLibrary loader pattern instead.
   const addressInput = document.getElementById("address") as HTMLInputElement | null;
   if (addressInput) {
     const apiKey = addressInput.dataset.placesKey || "";
     const placesLang = addressInput.dataset.placesLang || "fr";
-    if (apiKey) {
-      let placesLoaded = false;
-      addressInput.addEventListener(
-        "focus",
-        () => {
-          if (placesLoaded) return;
-          placesLoaded = true;
-          (window as any).__bbqtechInitPlaces = function () {
-            const g = (window as any).google;
-            if (!g?.maps?.places?.Autocomplete) return;
-            const ac = new g.maps.places.Autocomplete(addressInput, {
-              componentRestrictions: { country: ["ca"] },
-              fields: ["formatted_address"],
-              types: ["address"],
-            });
-            ac.addListener("place_changed", () => {
-              const place = ac.getPlace();
-              if (place?.formatted_address) {
-                addressInput.value = place.formatted_address;
-                addressInput.dispatchEvent(new Event("input", { bubbles: true }));
-              }
-            });
-          };
-          const script = document.createElement("script");
-          script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&libraries=places&language=${encodeURIComponent(placesLang)}&region=CA&loading=async&callback=__bbqtechInitPlaces`;
-          script.async = true;
-          script.defer = true;
-          document.head.appendChild(script);
-        },
-        { once: true }
-      );
+
+    async function initPlacesElement() {
+      const g = (window as any).google;
+      if (!g?.maps?.importLibrary) return;
+      try {
+        const placesLib: any = await g.maps.importLibrary("places");
+        const PlaceAutocompleteElement = placesLib?.PlaceAutocompleteElement;
+        if (!PlaceAutocompleteElement || !addressInput) return;
+
+        const pac = new PlaceAutocompleteElement({
+          includedRegionCodes: ["ca"],
+          // No "types" filter — Google deprecated the legacy "address" filter.
+          // The default returns mixed results, but most picks will be addresses.
+        });
+
+        // Match the Tailwind styling of our other inputs as closely as possible.
+        // The element renders inside its Shadow DOM; expose just a width hint here.
+        (pac as HTMLElement).style.width = "100%";
+        (pac as HTMLElement).style.display = "block";
+
+        // Insert AFTER the original input, hide the original (it stays the
+        // form control — we copy formattedAddress into its value on select).
+        addressInput.insertAdjacentElement("afterend", pac as HTMLElement);
+        addressInput.style.display = "none";
+
+        // Hand focus to the new element's internal input so user can keep typing.
+        setTimeout(() => (pac as any).focus?.(), 0);
+
+        pac.addEventListener("gmp-select", async (event: any) => {
+          const prediction = event.placePrediction;
+          if (!prediction) return;
+          const place = prediction.toPlace();
+          await place.fetchFields({ fields: ["formattedAddress"] });
+          addressInput.value = place.formattedAddress || "";
+        });
+      } catch (err) {
+        // Silent fall-through — the plain input keeps working as a fallback.
+        console.warn("Places autocomplete unavailable:", err);
+      }
     }
+
+    function loadMapsApi() {
+      if ((window as any).google?.maps?.importLibrary) {
+        // Already loaded — just init.
+        initPlacesElement();
+        return;
+      }
+      if (!apiKey) return;
+      const script = document.createElement("script");
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&loading=async&v=weekly&language=${encodeURIComponent(placesLang)}&region=CA`;
+      script.async = true;
+      script.defer = true;
+      script.onload = () => initPlacesElement();
+      script.onerror = () => console.warn("Google Maps script failed to load");
+      document.head.appendChild(script);
+    }
+
+    // Lazy-load on first focus so the API key isn't fetched on every page view.
+    addressInput.addEventListener("focus", loadMapsApi, { once: true });
   }
 
   // ───── Form behaviors (conditional UI + submit) ─────
