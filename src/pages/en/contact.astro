@@ -9,17 +9,24 @@ const lang = "en" as const;
 
 const intentCards = [
   {
-    href: "/en/booking",
+    href: "/en/booking-cleaning",
     icon: "🧽",
-    title: "Book a service",
-    desc: "Maintenance, Cleaning, Restoration, Assembly or Diagnostic / repair",
-    price: "from $99 + tx",
+    title: "Book a cleaning",
+    desc: "Maintenance, Cleaning or Restoration",
+    price: "from $199 + tx",
+  },
+  {
+    href: "/en/booking-repair",
+    icon: "🔧",
+    title: "Diagnostic / repair",
+    desc: "On-site assessment for a BBQ that's not working",
+    price: "$99 + tx",
   },
   {
     href: "#general-form",
     icon: "💬",
-    title: "General question",
-    desc: "Commercial, multi-unit, quote or any other question",
+    title: "Other request",
+    desc: "Assembly, commercial, quote or general question",
     price: "Reply within 24 h",
   },
 ];
@@ -41,7 +48,7 @@ const intentCards = [
 
   <section class="py-10 md:py-14 bg-light">
     <div class="max-w-[1200px] mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-12 md:mb-16 max-w-[920px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mb-12 md:mb-16">
         {intentCards.map((card) => (
           <a
             href={card.href}
@@ -58,8 +65,8 @@ const intentCards = [
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10 lg:gap-14">
         <div>
           <div id="general-form" class="scroll-mt-24">
-            <h2 class="text-2xl md:text-3xl font-extrabold text-dark mb-2 text-center">Ask your question</h2>
-            <p class="text-center text-sm text-grey mb-6">For any request that isn't a service booking.</p>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-dark mb-2 text-center">Other request</h2>
+            <p class="text-center text-sm text-grey mb-6">Assembly, commercial, multi-unit or any other question that doesn't match the two options above.</p>
             <ContactForm lang={lang} variant="general" />
           </div>
         </div>

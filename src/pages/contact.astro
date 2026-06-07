@@ -9,17 +9,24 @@ const lang = "fr" as const;
 
 const intentCards = [
   {
-    href: "/reservation",
+    href: "/reservation-nettoyage",
     icon: "🧽",
-    title: "Réserver un service",
-    desc: "Entretien, Nettoyage, Restauration, Assemblage ou Diagnostic / réparation",
-    price: "à partir de 99 $ + tx",
+    title: "Réserver un nettoyage",
+    desc: "Entretien, Nettoyage ou Restauration",
+    price: "à partir de 199 $ + tx",
+  },
+  {
+    href: "/reservation-reparation",
+    icon: "🔧",
+    title: "Diagnostic / réparation",
+    desc: "Évaluation à domicile pour un BBQ qui ne fonctionne pas",
+    price: "99 $ + tx",
   },
   {
     href: "#general-form",
     icon: "💬",
-    title: "Question générale",
-    desc: "Commercial, multi-unités, soumission ou toute autre question",
+    title: "Autre demande",
+    desc: "Assemblage, commercial, soumission ou question générale",
     price: "Réponse sous 24 h",
   },
 ];
@@ -41,7 +48,7 @@ const intentCards = [
 
   <section class="py-10 md:py-14 bg-light">
     <div class="max-w-[1200px] mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-12 md:mb-16 max-w-[920px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mb-12 md:mb-16">
         {intentCards.map((card) => (
           <a
             href={card.href}
@@ -58,8 +65,8 @@ const intentCards = [
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10 lg:gap-14">
         <div>
           <div id="general-form" class="scroll-mt-24">
-            <h2 class="text-2xl md:text-3xl font-extrabold text-dark mb-2 text-center">Posez votre question</h2>
-            <p class="text-center text-sm text-grey mb-6">Pour toute demande qui n'est pas une réservation de service.</p>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-dark mb-2 text-center">Autre demande</h2>
+            <p class="text-center text-sm text-grey mb-6">Assemblage, commercial, multi-unités ou toute question qui ne correspond pas aux deux options ci-haut.</p>
             <ContactForm lang={lang} variant="general" />
           </div>
         </div>

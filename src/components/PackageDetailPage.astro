@@ -13,8 +13,8 @@ const detail = packageDetails[pkgKey];
 const cardPkg = siteConfig.packages.find((p) => p.key === pkgKey);
 if (!cardPkg) throw new Error(`Package ${pkgKey} not found in siteConfig.packages`);
 
-// Pre-select this package on the reservation form when arriving from its detail page.
-const booking = bookingHref(siteConfig.bookingUrl, lang, `/reservation?forfait=${pkgKey}`);
+// Pre-select this package on the cleaning reservation form when arriving from its detail page.
+const booking = bookingHref(siteConfig.bookingUrl, lang, `/reservation-nettoyage?forfait=${pkgKey}`);
 const sms = smsHref(siteConfig.phoneRaw, t(siteConfig.smsBody, lang));
 
 // Locale-specific URLs to other forfaits

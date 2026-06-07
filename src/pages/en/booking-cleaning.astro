@@ -9,13 +9,13 @@ const defaultForfait = Astro.url.searchParams.get("forfait") ?? undefined;
 
 <Base
   lang={lang}
-  title="Book a BBQ service"
-  description="Book a BBQTECH service in Gatineau or Ottawa. Cleaning, diagnostic, assembly, restoration. Reply within 24 h."
+  title="Book a BBQ cleaning"
+  description="Book a BBQTECH cleaning package in Gatineau or Ottawa: Maintenance, Cleaning or Restoration. Reply within 24 h."
 >
   <Hero
     lang={lang}
-    title="Book a BBQ service"
-    subtitle="Mobile · Gatineau and Ottawa · Reply within 24 h"
+    title="Book a BBQ cleaning"
+    subtitle="3 transparent packages · Gatineau and Ottawa · Reply within 24 h"
     short={true}
     showCtas={false}
     showHeroImage={false}
@@ -23,7 +23,7 @@ const defaultForfait = Astro.url.searchParams.get("forfait") ?? undefined;
 
   <section class="py-8 md:py-12 bg-light">
     <div class="max-w-[1200px] mx-auto px-6">
-      <ContactForm lang={lang} variant="reservation" defaultForfait={defaultForfait} />
+      <ContactForm lang={lang} variant="cleaning" defaultForfait={defaultForfait} />
     </div>
   </section>
 </Base>

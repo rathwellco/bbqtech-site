@@ -108,16 +108,21 @@ function formatSubject(payload: Record<string, string>): string {
   const source = (payload.source || "").toLowerCase();
   const forfait = payload.forfait?.trim() || "";
 
-  // Reservation form → highlight selected forfait when present. Diagnostic is
-  // now a forfait option (collapsed from the deprecated /diagnostic page) so
-  // detect it via forfait value and route to the Diagnostic subject prefix.
-  if (variant === "reservation" || source.includes("reservation")) {
-    if (forfait === "Diagnostic") {
-      return `[BBQTECH Diagnostic] ${name}`;
-    }
+  // Iteration 4: variants are "cleaning" | "repair" | "general".
+  // Cleaning form → forfait highlighted in subject.
+  // Repair form → fixed [BBQTECH Diagnostic] prefix (the form hard-codes
+  // hidden forfait="Diagnostic" so legacy code paths still match).
+  // General catch-all → [BBQTECH Question].
+  if (variant === "cleaning" || source.includes("reservation nettoyage")) {
     return forfait ? `[BBQTECH Réservation] ${name} — ${forfait}` : `[BBQTECH Réservation] ${name}`;
   }
-  // General catch-all
+  if (variant === "repair" || source.includes("reservation reparation") || forfait === "Diagnostic") {
+    return `[BBQTECH Diagnostic] ${name}`;
+  }
+  // Legacy compat: pre-iteration-4 submissions used variant="reservation".
+  if (variant === "reservation" || source.includes("reservation")) {
+    return forfait ? `[BBQTECH Réservation] ${name} — ${forfait}` : `[BBQTECH Réservation] ${name}`;
+  }
   return `[BBQTECH Question] ${name}`;
 }
 

@@ -1,0 +1,28 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import ContactForm from "../components/ContactForm.astro";
+
+const lang = "fr" as const;
+---
+
+<Base
+  lang={lang}
+  title="Diagnostic et réparation de BBQ"
+  description="Évaluation à domicile d'un BBQ qui ne fonctionne pas correctement : allumage, flamme faible, brûleur défectueux. 99 $ + tx. Gatineau et Ottawa."
+>
+  <Hero
+    lang={lang}
+    title="Diagnostic et réparation de BBQ"
+    subtitle="Évaluation à domicile 99 $ + tx · Gatineau et Ottawa · Réponse en 24 h"
+    short={true}
+    showCtas={false}
+    showHeroImage={false}
+  />
+
+  <section class="py-8 md:py-12 bg-light">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <ContactForm lang={lang} variant="repair" />
+    </div>
+  </section>
+</Base>

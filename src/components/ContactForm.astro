@@ -2,7 +2,7 @@
 import { siteConfig } from "../../site.config";
 import { type Locale } from "../i18n/utils";
 
-type Variant = "reservation" | "general";
+type Variant = "cleaning" | "repair" | "general";
 
 interface Props {
   lang: Locale;
@@ -20,7 +20,11 @@ const {
 
 const isFr = lang === "fr";
 
-const autoSource = variant === "reservation" ? "Website - Reservation" : "Website - Contact";
+// Auto-derived source — drives lead.ts subject differentiation + GTM segmentation.
+const autoSource =
+  variant === "cleaning" ? "Website - Reservation Nettoyage"
+  : variant === "repair" ? "Website - Reservation Reparation"
+  : "Website - Contact";
 const resolvedSource = source || autoSource;
 
 const labels = isFr
@@ -33,22 +37,22 @@ const labels = isFr
       addressPlaceholder: "123 rue Principale, Gatineau QC J8X 1A1",
       bbqBrand: "Marque et modèle du BBQ",
       bbqBrandPlaceholder: "Weber Genesis II, Napoleon Prestige 500, etc.",
-      symptom: "Symptôme ou problème observé",
-      symptomPlaceholder: "Ne s'allume pas, flamme faible, rouille des brûleurs…",
+      symptom: "Décrivez le problème",
+      symptomPlaceholder: "Ne s'allume pas, flamme faible, rouille des brûleurs, chaleur inégale…",
       message: "Détails supplémentaires",
       messagePlaceholder: "Particularités, accès, préférences d'horaire…",
-      submitReservation: "Envoyer ma demande",
+      submitCleaning: "Réserver mon nettoyage",
+      submitRepair: "Demander un diagnostic",
       submitGeneral: "Envoyer ma demande",
       privacy: "Réponse confirmée sous 24 h. Aucun pourriel.",
       sentSuccess: "Merci, votre demande a été reçue. On vous répond sous 24 h.",
       sentError: "Une erreur est survenue. Appelez 819-561-0762 ou réessayez.",
       requireOneError: "Téléphone ou courriel requis (au moins un).",
-      diagnosticBanner: "Frais d'évaluation à domicile : 99 $ + taxes. Le diagnostic identifie la cause et les réparations recommandées. Pièces et main-d'œuvre facturées séparément si vous approuvez la réparation.",
-      serviceLabel: "De quel service avez-vous besoin ?",
-      cleaningGroupLabel: "Forfaits de nettoyage",
-      otherGroupLabel: "Autres services",
+      repairBanner: "Frais d'évaluation à domicile : 99 $ + taxes. Le diagnostic identifie la cause et les réparations recommandées. Pièces et main-d'œuvre facturées séparément si vous approuvez la réparation.",
+      serviceLabel: "Quel forfait vous intéresse ?",
       recommendedBadge: "RECOMMANDÉ",
       detailsToggle: "Ajouter des détails (facultatif)",
+      smsHint: "Une photo SMS au 819-561-0762 accélère le diagnostic.",
     }
   : {
       name: "Full name",
@@ -59,30 +63,31 @@ const labels = isFr
       addressPlaceholder: "123 Main St, Gatineau QC J8X 1A1",
       bbqBrand: "BBQ brand and model",
       bbqBrandPlaceholder: "Weber Genesis II, Napoleon Prestige 500, etc.",
-      symptom: "Symptom or observed issue",
-      symptomPlaceholder: "Won't ignite, weak flame, rusty burners…",
+      symptom: "Describe the problem",
+      symptomPlaceholder: "Won't ignite, weak flame, rusty burners, uneven heat…",
       message: "Additional details",
       messagePlaceholder: "Specifics, access, schedule preferences…",
-      submitReservation: "Send my request",
+      submitCleaning: "Book my cleaning",
+      submitRepair: "Request a diagnostic",
       submitGeneral: "Send my request",
       privacy: "Confirmed reply within 24 h. No spam, ever.",
       sentSuccess: "Thanks, your request was received. We'll reply within 24 h.",
       sentError: "Something went wrong. Call 819-561-0762 or try again.",
       requireOneError: "Phone or email required (at least one).",
-      diagnosticBanner: "On-site assessment fee: $99 + taxes. The diagnostic identifies the cause and the recommended repairs. Parts and labour billed separately if you approve the repair.",
-      serviceLabel: "Which service do you need?",
-      cleaningGroupLabel: "Cleaning packages",
-      otherGroupLabel: "Other services",
+      repairBanner: "On-site assessment fee: $99 + taxes. The diagnostic identifies the cause and the recommended repairs. Parts and labour billed separately if you approve the repair.",
+      serviceLabel: "Which package fits your needs?",
       recommendedBadge: "RECOMMENDED",
       detailsToggle: "Add more details (optional)",
+      smsHint: "Text a photo to 819-561-0762 to speed up the diagnostic.",
     };
 
-const submitLabel = variant === "reservation" ? labels.submitReservation : labels.submitGeneral;
+const submitLabel =
+  variant === "cleaning" ? labels.submitCleaning
+  : variant === "repair" ? labels.submitRepair
+  : labels.submitGeneral;
 
-// Two-bucket selector — Hick's Law (https://lawsofux.com/hicks-law/) says
-// 7 options of equal weight is cognitive friction. Splitting into
-// "cleaning packages" + "other services" + a Recommended badge on the
-// most common pick (Nettoyage) guides the indecisive without removing options.
+// Cleaning packages — only shown on the cleaning variant. 3 options, sub-Hick's-Law
+// threshold, no grouping needed. Recommended badge on Nettoyage.
 type ForfaitOption = { v: string; title: string; price: string; desc: string; recommended?: boolean };
 
 const cleaningPackages: ForfaitOption[] = isFr
@@ -97,23 +102,8 @@ const cleaningPackages: ForfaitOption[] = isFr
       { v: "Restoration", title: "Restoration", price: "from $399 + tx", desc: "Steam + multiple passes + finish" },
     ];
 
-const otherServices: ForfaitOption[] = isFr
-  ? [
-      { v: "Diagnostic", title: "Diagnostic / réparation", price: "99 $ + tx", desc: "Évaluation à domicile pour un BBQ qui ne fonctionne pas" },
-      { v: "Assemblage", title: "Assemblage BBQ", price: "à partir de 149 $ + tx", desc: "Montage à domicile d'un BBQ neuf" },
-      { v: "Commercial", title: "Commercial / multi-unités", price: "sur soumission", desc: "Restaurants, food trucks, condos" },
-      { v: "Soumission", title: "Pas certain", price: "—", desc: "Je veux une recommandation" },
-    ]
-  : [
-      { v: "Diagnostic", title: "Diagnostic / repair", price: "$99 + tx", desc: "On-site assessment for a BBQ that's not working" },
-      { v: "Assembly", title: "BBQ assembly", price: "from $149 + tx", desc: "On-site new BBQ assembly" },
-      { v: "Commercial", title: "Commercial / multi-unit", price: "custom quote", desc: "Restaurants, food trucks, condos" },
-      { v: "Quote", title: "Not sure", price: "—", desc: "I want a recommendation" },
-    ];
-
-// Map common URL-friendly slugs to forfait `v` values so ?forfait=signature works.
+// Pre-select a forfait from URL slug (e.g. /reservation-nettoyage?forfait=signature).
 const forfaitSlugMap: Record<string, string> = {
-  // FR slugs
   entretien: isFr ? "Entretien" : "Maintenance",
   essentiel: isFr ? "Entretien" : "Maintenance",
   essential: isFr ? "Entretien" : "Maintenance",
@@ -121,27 +111,13 @@ const forfaitSlugMap: Record<string, string> = {
   signature: isFr ? "Nettoyage" : "Cleaning",
   restauration: isFr ? "Restauration" : "Restoration",
   prestige: isFr ? "Restauration" : "Restoration",
-  assemblage: isFr ? "Assemblage" : "Assembly",
-  commercial: "Commercial",
-  soumission: isFr ? "Soumission" : "Quote",
-  // Diagnostic slugs (collapses the former /diagnostic page)
-  diagnostic: "Diagnostic",
-  reparation: "Diagnostic",
-  repair: "Diagnostic",
-  // EN slugs
   maintenance: isFr ? "Entretien" : "Maintenance",
   cleaning: isFr ? "Nettoyage" : "Cleaning",
   restoration: isFr ? "Restauration" : "Restoration",
-  assembly: isFr ? "Assemblage" : "Assembly",
-  quote: isFr ? "Soumission" : "Quote",
 };
 const resolvedDefaultForfait = defaultForfait
   ? (forfaitSlugMap[defaultForfait.toLowerCase()] ?? defaultForfait)
   : undefined;
-
-// Visible-by-default on initial render only if Diagnostic is pre-selected.
-// Client script flips visibility on every forfait change.
-const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfait === "Diagnostic";
 ---
 
 <div class="max-w-[640px] mx-auto">
@@ -151,6 +127,13 @@ const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfai
   <div id="form-status-error" class="hidden mb-6 p-4 bg-red-50 border border-red-200 text-red-800 rounded-lg text-sm">
     {labels.sentError}
   </div>
+
+  {/* Repair variant — always-visible banner with the $99 assessment fee info */}
+  {variant === "repair" && (
+    <div class="mb-6 p-4 bg-accent/5 border-l-4 border-accent rounded-r-lg text-sm text-dark leading-relaxed">
+      <strong class="text-accent">99 $ + tx</strong> · {labels.repairBanner}
+    </div>
+  )}
 
   <form
     method="POST"
@@ -166,75 +149,42 @@ const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfai
     <input type="hidden" name="language" value={lang} />
     <input type="hidden" name="variant" value={variant} />
 
-    {variant === "reservation" && (
+    {/* Cleaning variant — 3 radio cards with Recommandé badge on Nettoyage */}
+    {variant === "cleaning" && (
       <fieldset class="mb-6 border-0 p-0">
         <legend class="block text-sm font-bold text-dark mb-3">{labels.serviceLabel}</legend>
-
-        {/* Group 1 — cleaning packages (with Recommandé badge on Nettoyage) */}
-        <div class="mb-4">
-          <p class="text-[11px] font-bold uppercase tracking-wider text-grey mb-2">{labels.cleaningGroupLabel}</p>
-          <div class="grid grid-cols-1 gap-2">
-            {cleaningPackages.map((o) => (
-              <label class="relative flex items-start gap-3 p-3 border border-grey-mid rounded-lg cursor-pointer hover:border-accent hover:bg-accent/5 transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/5 has-[:checked]:shadow-sm">
-                <input
-                  type="radio"
-                  name="forfait"
-                  value={o.v}
-                  checked={resolvedDefaultForfait === o.v}
-                  class="mt-0.5 accent-accent w-4 h-4 flex-shrink-0"
-                />
-                <span class="flex-1 min-w-0">
-                  <span class="flex items-baseline justify-between gap-2 flex-wrap">
-                    <span class="flex items-center gap-2 flex-wrap">
-                      <span class="font-bold text-dark text-sm">{o.title}</span>
-                      {o.recommended && (
-                        <span class="bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded leading-none">{labels.recommendedBadge}</span>
-                      )}
-                    </span>
-                    <span class="text-xs text-accent font-bold">{o.price}</span>
-                  </span>
-                  <span class="block text-xs text-grey mt-0.5">{o.desc}</span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </div>
-
-        {/* Group 2 — other services (Diagnostic, Assemblage, Commercial, Pas sûr) */}
-        <div>
-          <p class="text-[11px] font-bold uppercase tracking-wider text-grey mb-2">{labels.otherGroupLabel}</p>
-          <div class="grid grid-cols-1 gap-2">
-            {otherServices.map((o) => (
-              <label class="relative flex items-start gap-3 p-3 border border-grey-mid rounded-lg cursor-pointer hover:border-accent hover:bg-accent/5 transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/5 has-[:checked]:shadow-sm">
-                <input
-                  type="radio"
-                  name="forfait"
-                  value={o.v}
-                  checked={resolvedDefaultForfait === o.v}
-                  class="mt-0.5 accent-accent w-4 h-4 flex-shrink-0"
-                />
-                <span class="flex-1 min-w-0">
-                  <span class="flex items-baseline justify-between gap-2 flex-wrap">
+        <div class="grid grid-cols-1 gap-2">
+          {cleaningPackages.map((o) => (
+            <label class="relative flex items-start gap-3 p-3 border border-grey-mid rounded-lg cursor-pointer hover:border-accent hover:bg-accent/5 transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/5 has-[:checked]:shadow-sm">
+              <input
+                type="radio"
+                name="forfait"
+                value={o.v}
+                checked={resolvedDefaultForfait === o.v}
+                class="mt-0.5 accent-accent w-4 h-4 flex-shrink-0"
+              />
+              <span class="flex-1 min-w-0">
+                <span class="flex items-baseline justify-between gap-2 flex-wrap">
+                  <span class="flex items-center gap-2 flex-wrap">
                     <span class="font-bold text-dark text-sm">{o.title}</span>
-                    <span class="text-xs text-accent font-bold">{o.price}</span>
+                    {o.recommended && (
+                      <span class="bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded leading-none">{labels.recommendedBadge}</span>
+                    )}
                   </span>
-                  <span class="block text-xs text-grey mt-0.5">{o.desc}</span>
+                  <span class="text-xs text-accent font-bold">{o.price}</span>
                 </span>
-              </label>
-            ))}
-          </div>
+                <span class="block text-xs text-grey mt-0.5">{o.desc}</span>
+              </span>
+            </label>
+          ))}
         </div>
       </fieldset>
     )}
 
-    {/* Conditional banner — visible only when forfait Diagnostic is selected */}
-    {variant === "reservation" && (
-      <div
-        class:list={["mb-6 p-4 bg-accent/5 border-l-4 border-accent rounded-r-lg text-sm text-dark leading-relaxed", showDiagnosticInitial ? "" : "hidden"]}
-        data-show-when-forfait="Diagnostic"
-      >
-        <strong class="text-accent">99 $ + tx</strong> · {labels.diagnosticBanner}
-      </div>
+    {/* Repair variant — hidden forfait=Diagnostic so lead.ts subject differentiation + GTM
+        form_forfait dataLayer dimension keep working unchanged */}
+    {variant === "repair" && (
+      <input type="hidden" name="forfait" value="Diagnostic" />
     )}
 
     <div class="mb-4">
@@ -259,7 +209,7 @@ const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfai
       </div>
     </div>
 
-    {variant === "reservation" && (
+    {(variant === "cleaning" || variant === "repair") && (
       <div class="mb-4">
         <label for="address" class="block text-sm font-bold text-dark mb-1.5">{labels.address}</label>
         <input type="text" id="address" name="address" autocomplete="street-address"
@@ -270,25 +220,30 @@ const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfai
       </div>
     )}
 
-    {/* Conditional symptom field — stays outside <details> so it's prominent
-        when the Diagnostic forfait is selected (a genuinely useful field in
-        that context). Hidden by default; revealed by the forfait-sync script. */}
-    {variant === "reservation" && (
-      <div
-        class:list={["mb-4", showDiagnosticInitial ? "" : "hidden"]}
-        data-show-when-forfait="Diagnostic"
-      >
+    {/* Repair variant — BBQ brand + symptom are always visible and important.
+        The symptom field is the FOCUS of the repair form (replaces the conditional
+        UI that was on /reservation?forfait=diagnostic). */}
+    {variant === "repair" && (
+      <div class="mb-4">
+        <label for="bbq_brand" class="block text-sm font-bold text-dark mb-1.5">{labels.bbqBrand}</label>
+        <input type="text" id="bbq_brand" name="bbq_brand"
+          placeholder={labels.bbqBrandPlaceholder}
+          class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
+      </div>
+    )}
+
+    {variant === "repair" && (
+      <div class="mb-4">
         <label for="symptom" class="block text-sm font-bold text-dark mb-1.5">{labels.symptom}</label>
         <textarea id="symptom" name="symptom" rows="3"
           placeholder={labels.symptomPlaceholder}
           class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
+        <p class="text-xs text-grey mt-1.5">📱 {labels.smsHint}</p>
       </div>
     )}
 
-    {/* Progressive disclosure — BBQ brand + Message collapsed by default on
-        the reservation form to keep visible field count under the 3-5 optimum.
-        Native <details> = zero JS, accessible, mobile-friendly. */}
-    {variant === "reservation" && (
+    {/* Cleaning variant — progressive disclosure for optional BBQ brand + message */}
+    {variant === "cleaning" && (
       <details class="mb-6 group">
         <summary class="cursor-pointer text-sm font-bold text-accent hover:underline list-none flex items-center gap-1.5 py-2 mb-3">
           <span class="transition-transform group-open:rotate-90 inline-block text-xs">▸</span>
@@ -309,8 +264,23 @@ const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfai
       </details>
     )}
 
-    {/* For the general variant, Message stays visible — it's the only
-        free-text field on that simpler form, no value in hiding it. */}
+    {/* Repair variant — optional Message under a progressive disclosure toggle */}
+    {variant === "repair" && (
+      <details class="mb-6 group">
+        <summary class="cursor-pointer text-sm font-bold text-accent hover:underline list-none flex items-center gap-1.5 py-2 mb-3">
+          <span class="transition-transform group-open:rotate-90 inline-block text-xs">▸</span>
+          {labels.detailsToggle}
+        </summary>
+        <div>
+          <label for="message" class="block text-sm font-bold text-dark mb-1.5">{labels.message}</label>
+          <textarea id="message" name="message" rows="3"
+            placeholder={labels.messagePlaceholder}
+            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
+        </div>
+      </details>
+    )}
+
+    {/* General variant — Message stays visible */}
     {variant === "general" && (
       <div class="mb-6">
         <label for="message" class="block text-sm font-bold text-dark mb-1.5">{labels.message}</label>
@@ -330,14 +300,11 @@ const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfai
 
 <style is:global>
   /* Force light scheme on the Google PlaceAutocompleteElement so it doesn't
-     inherit a dark background from the browser's color-scheme preference.
-     Without color-scheme: light the element renders dark text on dark surface
-     when the OS is set to dark mode. */
+     inherit a dark background from the browser's color-scheme preference. */
   gmp-place-autocomplete {
     color-scheme: light;
     width: 100%;
     display: block;
-    /* Material design tokens consumed by the element's Shadow DOM */
     --gmp-mat-color-surface: #ffffff;
     --gmp-mat-color-on-surface: #111111;
     --gmp-mat-color-on-surface-variant: #333333;
@@ -356,49 +323,28 @@ const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfai
 
 <script>
   // ───── Google Places Autocomplete (lazy-loaded on address focus) ─────
-  // Uses the modern PlaceAutocompleteElement (Web Component). The legacy
-  // `google.maps.places.Autocomplete` constructor is no longer available
-  // to GCP projects created after March 2025 — we use the new element +
-  // importLibrary loader pattern instead.
   const addressInput = document.getElementById("address") as HTMLInputElement | null;
   if (addressInput) {
     const apiKey = addressInput.dataset.placesKey || "";
     const placesLang = addressInput.dataset.placesLang || "fr";
-    const debug = (...args: unknown[]) => console.log("[BBQTECH Places]", ...args);
-
-    debug("init", { apiKeyPresent: !!apiKey, apiKeyLength: apiKey.length, placesLang });
 
     function initPlacesElement() {
       const g = (window as any).google;
       const PlaceAutocompleteElement = g?.maps?.places?.PlaceAutocompleteElement;
-      if (!PlaceAutocompleteElement) {
-        console.warn(
-          "[BBQTECH Places] PlaceAutocompleteElement is missing. Check that 'Places API (New)' is ENABLED in GCP for this project (https://console.cloud.google.com/apis/library/places.googleapis.com)."
-        );
-        return;
-      }
-      if (!addressInput) return;
-      debug("loaded — creating element");
-
+      if (!PlaceAutocompleteElement || !addressInput) return;
       try {
         const pac = new PlaceAutocompleteElement({ includedRegionCodes: ["ca"] });
         (pac as HTMLElement).style.width = "100%";
         (pac as HTMLElement).style.display = "block";
-
         addressInput.insertAdjacentElement("afterend", pac as HTMLElement);
         addressInput.style.display = "none";
-
-        // Hand focus to the new element so the user can keep typing without re-clicking.
         setTimeout(() => (pac as any).focus?.(), 0);
-
         pac.addEventListener("gmp-select", async (event: any) => {
-          debug("gmp-select fired", event);
           const prediction = event.placePrediction;
           if (!prediction) return;
           const place = prediction.toPlace();
           await place.fetchFields({ fields: ["formattedAddress"] });
           addressInput.value = place.formattedAddress || "";
-          debug("selected", addressInput.value);
         });
       } catch (err) {
         console.warn("[BBQTECH Places] element creation failed:", err);
@@ -406,58 +352,27 @@ const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfai
     }
 
     function loadMapsApi() {
-      if (!apiKey) {
-        console.warn(
-          "[BBQTECH Places] No API key in data-places-key. The PUBLIC_GOOGLE_MAPS_API_KEY env var was either unset at build time or the deploy is stale."
-        );
-        return;
-      }
-      // If the script tag has already been added (e.g., user focused twice), bail.
+      if (!apiKey) return;
       if ((window as any).google?.maps) {
-        debug("Maps already loaded — init now");
         initPlacesElement();
         return;
       }
-      debug("Adding Maps script tag…");
       const script = document.createElement("script");
       script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&libraries=places&v=weekly&language=${encodeURIComponent(placesLang)}&region=CA`;
       script.async = true;
       script.defer = true;
-      script.onload = () => {
-        debug("Maps script onload fired");
-        initPlacesElement();
-      };
+      script.onload = () => initPlacesElement();
       script.onerror = (e) => console.warn("[BBQTECH Places] Maps script failed to load:", e);
       document.head.appendChild(script);
     }
 
-    // Lazy-load on first focus so the API key isn't fetched on every page view.
     addressInput.addEventListener("focus", loadMapsApi, { once: true });
   }
 
-  // ───── Form behaviors (conditional UI + submit) ─────
+  // ───── Form submission ─────
   const form = document.getElementById("bbqtech-lead-form") as HTMLFormElement | null;
   const success = document.getElementById("form-status-success");
   const error = document.getElementById("form-status-error");
-
-  // Conditional UI: show banner + symptom field when the Diagnostic forfait is selected
-  const syncForfaitUI = () => {
-    if (!form) return;
-    const selected = form.querySelector<HTMLInputElement>('input[name="forfait"]:checked');
-    const value = selected?.value || "";
-    document.querySelectorAll<HTMLElement>('[data-show-when-forfait]').forEach((el) => {
-      const target = el.dataset.showWhenForfait;
-      el.classList.toggle("hidden", value !== target);
-    });
-  };
-
-  if (form) {
-    form.querySelectorAll<HTMLInputElement>('input[name="forfait"]').forEach((r) =>
-      r.addEventListener("change", syncForfaitUI)
-    );
-    // initial sync (covers pre-selected via ?forfait=)
-    syncForfaitUI();
-  }
 
   if (form) {
     form.addEventListener("submit", async (e) => {
@@ -499,18 +414,20 @@ const showDiagnosticInitial = variant === "reservation" && resolvedDefaultForfai
 
         const res = await fetch("/api/lead", { method: "POST", body: fd });
         if (res.ok) {
-          // Fire GTM dataLayer event so analytics + ads tags can react
-          // (mirror ROG pattern — actual GA4/Ads tags live in GTM, not in code).
+          // Fire GTM dataLayer event.
+          // form_variant stays "reservation"/"general" for baseline-friendly GA4 reporting.
+          // form_intent is the new dimension that captures cleaning/repair/general specifically.
+          const variantValue = (fd.get("variant") as string) || "general";
           (window as any).dataLayer = (window as any).dataLayer || [];
           (window as any).dataLayer.push({
             event: "form_submission",
             form_source: (fd.get("source") as string) || "Website - Contact",
-            form_variant: (fd.get("variant") as string) || "general",
+            form_variant: variantValue === "general" ? "general" : "reservation",
+            form_intent: variantValue,
             form_language: (fd.get("language") as string) || "fr",
             form_forfait: (fd.get("forfait") as string) || "",
           });
           form.reset();
-          syncForfaitUI();
           success?.classList.remove("hidden");
           success?.scrollIntoView({ behavior: "smooth", block: "center" });
         } else {

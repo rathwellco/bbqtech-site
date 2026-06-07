@@ -15,10 +15,10 @@ const baseScopeItems = baseScope.items[lang] ?? baseScope.items.fr;
 
 const detailsBase = lang === "fr" ? "/forfaits" : "/en/packages";
 
-// Per-package booking link with ?forfait= query param so the reservation
-// form pre-selects the right tier when arriving from a pricing card.
+// Per-package booking link with ?forfait= query param so the cleaning
+// reservation form pre-selects the right tier when arriving from a pricing card.
 function bookingHrefForPackage(pkgKey: string) {
-  return bookingHref(siteConfig.bookingUrl, lang, `/reservation?forfait=${pkgKey}`);
+  return bookingHref(siteConfig.bookingUrl, lang, `/reservation-nettoyage?forfait=${pkgKey}`);
 }
 
 const labels = {

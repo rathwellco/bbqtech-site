@@ -9,13 +9,13 @@ const defaultForfait = Astro.url.searchParams.get("forfait") ?? undefined;
 
 <Base
   lang={lang}
-  title="Réserver un service BBQ"
-  description="Réservez un service BBQTECH à Gatineau ou Ottawa. Nettoyage, diagnostic, assemblage, restauration. Réponse en 24 h."
+  title="Réserver un nettoyage de BBQ"
+  description="Réservez un forfait de nettoyage BBQTECH à Gatineau ou Ottawa : Entretien, Nettoyage ou Restauration. Réponse en 24 h."
 >
   <Hero
     lang={lang}
-    title="Réserver un service BBQ"
-    subtitle="Mobile · Gatineau et Ottawa · Réponse en 24 h"
+    title="Réserver un nettoyage de BBQ"
+    subtitle="3 forfaits transparents · Gatineau et Ottawa · Réponse en 24 h"
     short={true}
     showCtas={false}
     showHeroImage={false}
@@ -23,7 +23,7 @@ const defaultForfait = Astro.url.searchParams.get("forfait") ?? undefined;
 
   <section class="py-8 md:py-12 bg-light">
     <div class="max-w-[1200px] mx-auto px-6">
-      <ContactForm lang={lang} variant="reservation" defaultForfait={defaultForfait} />
+      <ContactForm lang={lang} variant="cleaning" defaultForfait={defaultForfait} />
     </div>
   </section>
 </Base>

@@ -7,9 +7,9 @@ interface Props {
 }
 
 const { lang } = Astro.props;
-// Diagnostic section CTA → /reservation with the Diagnostic forfait pre-selected.
-// The dedicated /diagnostic page was collapsed into /reservation 2026-06-07.
-const booking = bookingHref(siteConfig.bookingUrl, lang, "/reservation?forfait=diagnostic");
+// Diagnostic section CTA → dedicated /reservation-reparation page (split out
+// from the unified reservation flow in iteration 4).
+const booking = bookingHref(siteConfig.bookingUrl, lang, "/reservation-reparation");
 const r = siteConfig.repair;
 const prepLabel = lang === "fr" ? "Préparation pour accélérer le diagnostic" : "Preparation to speed up the diagnostic";
 const gasLimitLabel = lang === "fr" ? "Limites — installations de gaz" : "Limits — gas installations";
