@@ -629,9 +629,13 @@ export const siteConfig = {
 
   // ─── GOOGLE PLACES API (address autocomplete on contact form) ───
   // Lazy-loaded on address-input focus. Restricted to Canada addresses.
-  // Key is HTTP-referrer-restricted in GCP to bbqtech.com + *.pages.dev so
-  // exposure in client JS is non-sensitive (standard for client-side Maps keys).
-  googleMapsApiKey: "AIzaSyAhaJ0iq_1yNgviYfULR50B1otv_GioWGM",
+  // The key is read from CF Pages env var PUBLIC_GOOGLE_MAPS_API_KEY at
+  // build time (Astro requires the PUBLIC_ prefix to expose env to client).
+  // Setting the var in CF Pages → Settings → Environment variables keeps the
+  // raw key out of git history and lets us rotate it without a commit.
+  // GCP-side: restrict the key to bbqtech.com/* + *.pages.dev/* HTTP referrers
+  // and to Maps JS API + Places API only — that's where the real security lives.
+  googleMapsApiKey: import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY || "",
 
   // ─── TRACKING ───
   // Single source: GTM. Configure GA4 + Google Ads + Meta Pixel etc. as
