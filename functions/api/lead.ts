@@ -50,10 +50,14 @@ const FIELD_LABELS_FR: Record<string, string> = {
   phone: "Téléphone",
   email: "Courriel",
   address: "Adresse",
+  forfait: "Forfait choisi",
+  bbq_brand: "Marque / modèle BBQ",
+  symptom: "Symptôme / problème",
   service: "Service demandé",
   message: "Détails",
   language: "Langue du formulaire",
   source: "Source",
+  variant: "Type de demande",
   landing_page: "Page d'arrivée",
   referrer: "Référent",
   session_start: "Début de session",
@@ -68,10 +72,14 @@ const FIELD_LABELS_EN: Record<string, string> = {
   phone: "Phone",
   email: "Email",
   address: "Address",
+  forfait: "Selected package",
+  bbq_brand: "BBQ brand / model",
+  symptom: "Symptom / issue",
   service: "Service requested",
   message: "Details",
   language: "Form language",
   source: "Source",
+  variant: "Request type",
   landing_page: "Landing page",
   referrer: "Referrer",
   session_start: "Session start",
@@ -82,8 +90,8 @@ const FIELD_LABELS_EN: Record<string, string> = {
 };
 
 // Lead fields shown first, in this order. Tracking metadata appears after.
-const PRIMARY_FIELDS = ["name", "phone", "email", "address", "service", "message"];
-const META_FIELDS = ["language", "source", "landing_page", "referrer", "page_url", "page_title", "session_start", "submitted_at", "user_agent"];
+const PRIMARY_FIELDS = ["name", "phone", "email", "address", "forfait", "bbq_brand", "symptom", "service", "message"];
+const META_FIELDS = ["variant", "language", "source", "landing_page", "referrer", "page_url", "page_title", "session_start", "submitted_at", "user_agent"];
 
 function escapeHtml(value: string): string {
   return value
@@ -96,8 +104,20 @@ function escapeHtml(value: string): string {
 
 function formatSubject(payload: Record<string, string>): string {
   const name = payload.name?.trim() || "Nouveau lead";
-  const service = payload.service?.trim();
-  return service ? `[BBQTECH] ${name} — ${service}` : `[BBQTECH] ${name}`;
+  const variant = (payload.variant || "").toLowerCase();
+  const source = (payload.source || "").toLowerCase();
+
+  // Reservation form → highlight selected forfait when present
+  if (variant === "reservation" || source.includes("reservation")) {
+    const forfait = payload.forfait?.trim();
+    return forfait ? `[BBQTECH Réservation] ${name} — ${forfait}` : `[BBQTECH Réservation] ${name}`;
+  }
+  // Diagnostic form → flag urgency for inbox triage
+  if (variant === "diagnostic" || source.includes("diagnostic")) {
+    return `[BBQTECH Diagnostic] ${name}`;
+  }
+  // General catch-all
+  return `[BBQTECH Question] ${name}`;
 }
 
 function formatText(payload: Record<string, string>, labels: Record<string, string>): string {

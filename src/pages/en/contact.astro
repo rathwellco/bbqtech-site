@@ -6,51 +6,96 @@ import { siteConfig } from "../../../site.config";
 import { t } from "../../i18n/utils";
 
 const lang = "en" as const;
+
+const intentCards = [
+  {
+    href: "/en/booking",
+    icon: "🧽",
+    title: "Book a package",
+    desc: "Maintenance, Cleaning, Restoration, Assembly",
+    price: "from $149 + tx",
+  },
+  {
+    href: "/en/diagnostic",
+    icon: "🔧",
+    title: "Diagnostic / repair",
+    desc: "On-site assessment for a BBQ that's not working",
+    price: "$99 + tx",
+  },
+  {
+    href: "#general-form",
+    icon: "💬",
+    title: "Other question",
+    desc: "Commercial, multi-unit, quote, or general question",
+    price: "Reply within 24 h",
+  },
+];
 ---
 
 <Base
   lang={lang}
   title="Contact"
-  description="BBQ quote requests in Gatineau and Ottawa. Confirmed reply within 24 h. Call 819-561-0762."
+  description="Choose the type of request: book a package, repair diagnostic, or general question. Confirmed reply within 24 h. Call 819-561-0762."
 >
   <Hero
     lang={lang}
-    title="Book your BBQ service"
-    subtitle="Cleaning booking, service call, quote request, or question. Confirmed reply within 24 h. For faster service, call directly at 819-561-0762."
+    title="How can we help?"
+    subtitle="Choose the type of request that fits your need. Confirmed reply within 24 h. For faster service, call directly at 819-561-0762."
     short={true}
     showCtas={false}
+    showHeroImage={false}
   />
 
-  <div class="py-12 md:py-16 bg-white">
-    <div class="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-10 lg:gap-14">
-      <div>
-        <ContactForm lang={lang} />
+  <section class="py-10 md:py-14 bg-light">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mb-12 md:mb-16">
+        {intentCards.map((card) => (
+          <a
+            href={card.href}
+            class="block bg-white rounded-xl p-5 md:p-6 border-2 border-grey-mid/40 hover:border-accent hover:shadow-lg hover:-translate-y-0.5 transition-all no-underline group"
+          >
+            <div class="text-3xl mb-3">{card.icon}</div>
+            <h3 class="text-lg md:text-xl font-extrabold text-dark mb-1.5 group-hover:text-accent transition-colors">{card.title}</h3>
+            <p class="text-sm text-grey mb-3 leading-relaxed">{card.desc}</p>
+            <span class="text-xs font-bold text-accent">{card.price} →</span>
+          </a>
+        ))}
       </div>
 
-      <aside class="space-y-7 lg:pt-20">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10 lg:gap-14">
         <div>
-          <h3 class="text-sm font-bold uppercase tracking-wider text-grey mb-2">Phone</h3>
-          <a href={`tel:${siteConfig.phoneRaw}`} class="text-2xl text-accent font-extrabold no-underline hover:underline">
-            📞 {siteConfig.phone}
-          </a>
+          <div id="general-form" class="scroll-mt-24">
+            <h2 class="text-2xl md:text-3xl font-extrabold text-dark mb-2 text-center">Ask your question</h2>
+            <p class="text-center text-sm text-grey mb-6">For any request that doesn't fit the two categories above.</p>
+            <ContactForm lang={lang} variant="general" />
+          </div>
         </div>
-        <div>
-          <h3 class="text-sm font-bold uppercase tracking-wider text-grey mb-2">Email</h3>
-          <a href={`mailto:${siteConfig.email}`} class="text-base text-dark font-semibold no-underline hover:text-accent">
-            {siteConfig.email}
-          </a>
-        </div>
-        <div>
-          <h3 class="text-sm font-bold uppercase tracking-wider text-grey mb-2">Service area</h3>
-          <p class="text-base text-dark">Gatineau · Ottawa</p>
-          <p class="text-sm text-grey mt-1">Aylmer · Hull · Plateau · Buckingham · Ottawa</p>
-        </div>
-        <div>
-          <h3 class="text-sm font-bold uppercase tracking-wider text-grey mb-2">Hours</h3>
-          <p class="text-base text-dark">{t(siteConfig.contact.hours, lang)}</p>
-          <p class="text-sm text-grey mt-1">{t(siteConfig.contact.season, lang)}</p>
-        </div>
-      </aside>
+
+        <aside class="space-y-6 lg:pt-4">
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-grey mb-1.5">Phone</h3>
+            <a href={`tel:${siteConfig.phoneRaw}`} class="text-xl text-accent font-extrabold no-underline hover:underline">
+              📞 {siteConfig.phone}
+            </a>
+          </div>
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-grey mb-1.5">Email</h3>
+            <a href={`mailto:${siteConfig.email}`} class="text-sm text-dark font-semibold no-underline hover:text-accent break-all">
+              {siteConfig.email}
+            </a>
+          </div>
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-grey mb-1.5">Service area</h3>
+            <p class="text-sm text-dark">Gatineau · Ottawa</p>
+            <p class="text-xs text-grey mt-0.5">Aylmer · Hull · Plateau · Buckingham · Ottawa</p>
+          </div>
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-grey mb-1.5">Hours</h3>
+            <p class="text-sm text-dark">{t(siteConfig.contact.hours, lang)}</p>
+            <p class="text-xs text-grey mt-0.5">{t(siteConfig.contact.season, lang)}</p>
+          </div>
+        </aside>
+      </div>
     </div>
-  </div>
+  </section>
 </Base>

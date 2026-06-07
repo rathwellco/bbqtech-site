@@ -7,7 +7,9 @@ interface Props {
 }
 
 const { lang } = Astro.props;
-const booking = bookingHref(siteConfig.bookingUrl, lang);
+// Diagnostic section CTA → /diagnostic (the repair-specific form), NOT the
+// generic /reservation fallback used by other "Réserver" CTAs.
+const booking = bookingHref(siteConfig.bookingUrl, lang, "/diagnostic");
 const r = siteConfig.repair;
 const prepLabel = lang === "fr" ? "Préparation pour accélérer le diagnostic" : "Preparation to speed up the diagnostic";
 const gasLimitLabel = lang === "fr" ? "Limites — installations de gaz" : "Limits — gas installations";
