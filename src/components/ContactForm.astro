@@ -422,6 +422,49 @@ const resolvedDefaultForfait = defaultForfait
     addressInput.addEventListener("focus", loadMapsApi, { once: true });
   }
 
+  // ───── Pre-select forfait from ?forfait= URL query param ─────
+  // Astro pages are statically generated → Astro.url.searchParams is null at
+  // build time → the SSR-side `checked` attribute never matches. We resolve
+  // the slug here on the client so PricingTable / PackageDetailPage CTAs that
+  // include ?forfait=signature actually pre-select the right radio card.
+  (function preselectForfait() {
+    const params = new URLSearchParams(window.location.search);
+    const requested = params.get("forfait");
+    if (!requested) return;
+    const isFrPage = (document.documentElement.lang || "fr").startsWith("fr");
+    const slugMap: Record<string, string> = isFrPage ? {
+      entretien: "Entretien",
+      essentiel: "Entretien",
+      essential: "Entretien",
+      nettoyage: "Nettoyage",
+      signature: "Nettoyage",
+      restauration: "Restauration",
+      prestige: "Restauration",
+      maintenance: "Entretien",
+      cleaning: "Nettoyage",
+      restoration: "Restauration",
+    } : {
+      entretien: "Maintenance",
+      essentiel: "Maintenance",
+      essential: "Maintenance",
+      nettoyage: "Cleaning",
+      signature: "Cleaning",
+      restauration: "Restoration",
+      prestige: "Restoration",
+      maintenance: "Maintenance",
+      cleaning: "Cleaning",
+      restoration: "Restoration",
+    };
+    const target = slugMap[requested.toLowerCase()] || requested;
+    const radio = document.querySelector<HTMLInputElement>(
+      `input[name="forfait"][value="${target.replace(/"/g, '\\"')}"]`
+    );
+    if (radio) {
+      radio.checked = true;
+      radio.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  })();
+
   // ───── Form submission ─────
   const form = document.getElementById("bbqtech-lead-form") as HTMLFormElement | null;
   const success = document.getElementById("form-status-success");
