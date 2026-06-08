@@ -1,0 +1,75 @@
+---
+import Base from "../../layouts/Base.astro";
+import Hero from "../../components/Hero.astro";
+
+const lang = "en" as const;
+
+const intentCards = [
+  {
+    href: "/en/booking-cleaning",
+    icon: "🧽",
+    title: "BBQ cleaning",
+    desc: "Seasonal upkeep, deep cleaning or restoration of your BBQ.",
+    cta: "Pick a cleaning package",
+  },
+  {
+    href: "/en/booking-repair",
+    icon: "🔧",
+    title: "Repair / Diagnostic",
+    desc: "Ignition issue, weak flame, damaged burner, regulator, worn parts or a BBQ that isn't working properly.",
+    cta: "Book a diagnostic",
+  },
+  {
+    href: "/en/booking-assembly",
+    icon: "🔩",
+    title: "BBQ assembly",
+    desc: "Assembly of a new BBQ, smoker, grill or outdoor cooking equipment.",
+    cta: "Request an assembly",
+  },
+  {
+    href: "/en/contact",
+    icon: "💬",
+    title: "I'm not sure",
+    desc: "Send us a few details or a photo and we'll recommend the right service.",
+    cta: "Get a recommendation",
+  },
+];
+---
+
+<Base
+  lang={lang}
+  title="Book a BBQ service"
+  description="Which service do you need? Cleaning, diagnostic, assembly or recommendation. Book in 2 minutes. Reply within 24 h."
+>
+  <Hero
+    lang={lang}
+    title="Which service do you need?"
+    subtitle="Choose the option that best matches your need. Reply within 24 h."
+    short={true}
+    showCtas={false}
+    showHeroImage={false}
+  />
+
+  <section class="py-10 md:py-14 bg-light">
+    <div class="max-w-[1100px] mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+        {intentCards.map((card) => (
+          <a
+            href={card.href}
+            class="block bg-white rounded-xl p-5 md:p-6 border-2 border-grey-mid/40 hover:border-accent hover:shadow-lg hover:-translate-y-0.5 transition-all no-underline group"
+          >
+            <div class="text-3xl mb-3">{card.icon}</div>
+            <h3 class="text-lg md:text-xl font-extrabold text-dark mb-2 group-hover:text-accent transition-colors">{card.title}</h3>
+            <p class="text-sm text-grey mb-4 leading-relaxed">{card.desc}</p>
+            <span class="inline-block text-sm font-bold text-accent">{card.cta} →</span>
+          </a>
+        ))}
+      </div>
+
+      <p class="text-center text-sm text-grey mt-10">
+        Prefer the phone?
+        <a href="tel:+18195610762" class="text-accent font-bold no-underline hover:underline">📞 819-561-0762</a>
+      </p>
+    </div>
+  </section>
+</Base>

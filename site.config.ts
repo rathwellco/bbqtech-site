@@ -46,14 +46,15 @@ export const siteConfig = {
   ],
   // ─── BOOKING URL (Zoho Calendar — placeholder until provided) ───
   // When set to a non-empty string, all "Réserver" CTAs link to this URL
-  // (in a new tab). When empty, they fall back to /reservation-nettoyage
-  // (FR) / /en/booking-cleaning (EN) — see bookingHref() in src/i18n/utils.ts.
+  // (in a new tab). When empty, they fall back to /reservation (FR) /
+  // /en/booking (EN) — the triage hub where users pick cleaning / repair /
+  // assembly / "not sure". See bookingHref() in src/i18n/utils.ts.
   bookingUrl: "",
 
   cta: {
     primary: {
       label: { fr: "Réserver mon service", en: "Book my service" } satisfies Bilingual,
-      hrefPath: "/reservation-nettoyage",
+      hrefPath: "/reservation",
     },
     secondary: {
       label: { fr: "Demander une soumission", en: "Request a quote" } satisfies Bilingual,
@@ -160,8 +161,8 @@ export const siteConfig = {
         fr: "Assemblage à domicile d'un BBQ neuf chez le client. Modèles standards à partir de 149 $ + taxes. Grand format, pellet, kamado ou cuisine extérieure : soumission personnalisée.",
         en: "At-home assembly for a new BBQ. Standard models start at $149 + taxes. Large format, pellet, kamado or outdoor kitchen setups may require a custom quote.",
       } satisfies Bilingual,
-      ctaLabel: { fr: "Demander une soumission", en: "Request a quote" } satisfies Bilingual,
-      cardHref: "/contact",
+      ctaLabel: { fr: "Demander un assemblage", en: "Request an assembly" } satisfies Bilingual,
+      cardHref: "/reservation-assemblage",
     },
     {
       slug: "reparation",

@@ -12,8 +12,10 @@ export type Bilingual<T = string> = { fr: T; en: T };
  * explicit altLocaleUrl props (see src/pages/forfaits/[slug].astro).
  */
 const FR_TO_EN_SLUGS: Record<string, string> = {
+  "reservation": "booking",
   "reservation-nettoyage": "booking-cleaning",
   "reservation-reparation": "booking-repair",
+  "reservation-assemblage": "booking-assembly",
 };
 const EN_TO_FR_SLUGS: Record<string, string> = Object.fromEntries(
   Object.entries(FR_TO_EN_SLUGS).map(([fr, en]) => [en, fr])
@@ -95,14 +97,15 @@ export function localeHref(path: string, lang: Locale): string {
 /**
  * Resolve the "Réserver" CTA href. If siteConfig.bookingUrl is set
  * (Zoho Calendar or external scheduler), use it externally. Otherwise
- * fall back to the in-app cleaning booking page (/reservation-nettoyage in FR,
- * /en/booking-cleaning in EN) — that's the primary booking funnel.
- * Returns { href, external } so callers can render target=_blank when needed.
+ * fall back to the central triage hub (/reservation in FR, /en/booking in EN)
+ * so users self-route to cleaning / repair / assembly / "not sure".
+ * Direct-intent CTAs (PricingTable cards, RepairDiagnostic section) override
+ * this fallback by passing a more specific path.
  */
 export function bookingHref(
   bookingUrl: string,
   lang: Locale,
-  fallbackPath: string = "/reservation-nettoyage"
+  fallbackPath: string = "/reservation"
 ): { href: string; external: boolean } {
   const trimmed = (bookingUrl || "").trim();
   if (trimmed) {

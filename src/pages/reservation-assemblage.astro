@@ -1,0 +1,28 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import ContactForm from "../components/ContactForm.astro";
+
+const lang = "fr" as const;
+---
+
+<Base
+  lang={lang}
+  title="Assemblage de BBQ"
+  description="Assemblage à domicile d'un BBQ neuf, fumoir, gril ou équipement de cuisson extérieure. À partir de 149 $ + tx. Gatineau et Ottawa."
+>
+  <Hero
+    lang={lang}
+    title="Assemblage de BBQ"
+    subtitle="Montage à domicile d'un BBQ neuf · à partir de 149 $ + tx · Gatineau et Ottawa · Réponse en 24 h"
+    short={true}
+    showCtas={false}
+    showHeroImage={false}
+  />
+
+  <section class="py-8 md:py-12 bg-light">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <ContactForm lang={lang} variant="assembly" />
+    </div>
+  </section>
+</Base>

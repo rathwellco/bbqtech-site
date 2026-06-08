@@ -50,9 +50,11 @@ const FIELD_LABELS_FR: Record<string, string> = {
   phone: "Téléphone",
   email: "Courriel",
   address: "Adresse",
+  city_area: "Ville / secteur",
   forfait: "Forfait choisi",
   bbq_brand: "Marque / modèle BBQ",
-  symptom: "Symptôme / problème",
+  symptom: "Problème observé",
+  date_requested: "Date souhaitée",
   service: "Service demandé",
   message: "Détails",
   language: "Langue du formulaire",
@@ -72,9 +74,11 @@ const FIELD_LABELS_EN: Record<string, string> = {
   phone: "Phone",
   email: "Email",
   address: "Address",
+  city_area: "City / area",
   forfait: "Selected package",
   bbq_brand: "BBQ brand / model",
-  symptom: "Symptom / issue",
+  symptom: "Observed problem",
+  date_requested: "Preferred date",
   service: "Service requested",
   message: "Details",
   language: "Form language",
@@ -90,7 +94,7 @@ const FIELD_LABELS_EN: Record<string, string> = {
 };
 
 // Lead fields shown first, in this order. Tracking metadata appears after.
-const PRIMARY_FIELDS = ["name", "phone", "email", "address", "forfait", "bbq_brand", "symptom", "service", "message"];
+const PRIMARY_FIELDS = ["name", "phone", "email", "address", "city_area", "forfait", "bbq_brand", "symptom", "date_requested", "service", "message"];
 const META_FIELDS = ["variant", "language", "source", "landing_page", "referrer", "page_url", "page_title", "session_start", "submitted_at", "user_agent"];
 
 function escapeHtml(value: string): string {
@@ -108,16 +112,19 @@ function formatSubject(payload: Record<string, string>): string {
   const source = (payload.source || "").toLowerCase();
   const forfait = payload.forfait?.trim() || "";
 
-  // Iteration 4: variants are "cleaning" | "repair" | "general".
+  // Iteration 5: variants are "cleaning" | "repair" | "assembly" | "general".
   // Cleaning form → forfait highlighted in subject.
-  // Repair form → fixed [BBQTECH Diagnostic] prefix (the form hard-codes
-  // hidden forfait="Diagnostic" so legacy code paths still match).
+  // Repair form → fixed [BBQTECH Diagnostic] prefix (hidden forfait="Diagnostic").
+  // Assembly form → [BBQTECH Assemblage] prefix.
   // General catch-all → [BBQTECH Question].
   if (variant === "cleaning" || source.includes("reservation nettoyage")) {
     return forfait ? `[BBQTECH Réservation] ${name} — ${forfait}` : `[BBQTECH Réservation] ${name}`;
   }
   if (variant === "repair" || source.includes("reservation reparation") || forfait === "Diagnostic") {
     return `[BBQTECH Diagnostic] ${name}`;
+  }
+  if (variant === "assembly" || source.includes("reservation assemblage") || forfait === "Assemblage") {
+    return `[BBQTECH Assemblage] ${name}`;
   }
   // Legacy compat: pre-iteration-4 submissions used variant="reservation".
   if (variant === "reservation" || source.includes("reservation")) {

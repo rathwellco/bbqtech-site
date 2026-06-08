@@ -2,7 +2,7 @@
 import { siteConfig } from "../../site.config";
 import { type Locale } from "../i18n/utils";
 
-type Variant = "cleaning" | "repair" | "general";
+type Variant = "cleaning" | "repair" | "assembly" | "general";
 
 interface Props {
   lang: Locale;
@@ -24,6 +24,7 @@ const isFr = lang === "fr";
 const autoSource =
   variant === "cleaning" ? "Website - Reservation Nettoyage"
   : variant === "repair" ? "Website - Reservation Reparation"
+  : variant === "assembly" ? "Website - Reservation Assemblage"
   : "Website - Contact";
 const resolvedSource = source || autoSource;
 
@@ -33,57 +34,76 @@ const labels = isFr
       phone: "Téléphone",
       email: "Courriel",
       contactGroupHint: "Téléphone ou courriel — au moins un",
-      address: "Adresse où effectuer le service",
+      address: "Adresse ou secteur",
       addressPlaceholder: "123 rue Principale, Gatineau QC J8X 1A1",
+      cityArea: "Ville ou secteur",
+      cityAreaPlaceholder: "Gatineau, Aylmer, Ottawa, etc.",
       bbqBrand: "Marque et modèle du BBQ",
+      bbqBrandLabel: "Marque / modèle si connu",
       bbqBrandPlaceholder: "Weber Genesis II, Napoleon Prestige 500, etc.",
-      symptom: "Décrivez le problème",
+      symptom: "Problème observé",
       symptomPlaceholder: "Ne s'allume pas, flamme faible, rouille des brûleurs, chaleur inégale…",
-      message: "Détails supplémentaires",
-      messagePlaceholder: "Particularités, accès, préférences d'horaire…",
+      cleaningMessage: "Message ou état du BBQ",
+      cleaningMessagePlaceholder: "État général, accès, particularités, préférences d'horaire…",
+      assemblyDate: "Date souhaitée",
+      assemblyMessage: "Message",
+      assemblyMessagePlaceholder: "Type d'équipement, marque, accès, préférences…",
+      message: "Message",
+      messagePlaceholder: "Détails de votre demande…",
+      optional: "facultatif",
       submitCleaning: "Réserver mon nettoyage",
       submitRepair: "Demander un diagnostic",
+      submitAssembly: "Demander un assemblage",
       submitGeneral: "Envoyer ma demande",
       privacy: "Réponse confirmée sous 24 h. Aucun pourriel.",
       sentSuccess: "Merci, votre demande a été reçue. On vous répond sous 24 h.",
       sentError: "Une erreur est survenue. Appelez 819-561-0762 ou réessayez.",
       requireOneError: "Téléphone ou courriel requis (au moins un).",
       repairBanner: "Frais d'évaluation à domicile : 99 $ + taxes. Le diagnostic identifie la cause et les réparations recommandées. Pièces et main-d'œuvre facturées séparément si vous approuvez la réparation.",
-      serviceLabel: "Quel forfait vous intéresse ?",
+      forfaitLabel: "Forfait souhaité",
       recommendedBadge: "RECOMMANDÉ",
-      detailsToggle: "Ajouter des détails (facultatif)",
-      smsHint: "Une photo SMS au 819-561-0762 accélère le diagnostic.",
+      smsPhotoHint: "📱 Pour accélérer la confirmation, vous pouvez aussi envoyer une photo de votre BBQ par SMS au 819-561-0762.",
     }
   : {
       name: "Full name",
       phone: "Phone",
       email: "Email",
       contactGroupHint: "Phone or email — at least one",
-      address: "Service address",
+      address: "Address or area",
       addressPlaceholder: "123 Main St, Gatineau QC J8X 1A1",
+      cityArea: "City or area",
+      cityAreaPlaceholder: "Gatineau, Aylmer, Ottawa, etc.",
       bbqBrand: "BBQ brand and model",
+      bbqBrandLabel: "Brand / model if known",
       bbqBrandPlaceholder: "Weber Genesis II, Napoleon Prestige 500, etc.",
-      symptom: "Describe the problem",
+      symptom: "Observed problem",
       symptomPlaceholder: "Won't ignite, weak flame, rusty burners, uneven heat…",
-      message: "Additional details",
-      messagePlaceholder: "Specifics, access, schedule preferences…",
+      cleaningMessage: "Message or BBQ condition",
+      cleaningMessagePlaceholder: "Overall condition, access, specifics, schedule preferences…",
+      assemblyDate: "Preferred date",
+      assemblyMessage: "Message",
+      assemblyMessagePlaceholder: "Equipment type, brand, access, preferences…",
+      message: "Message",
+      messagePlaceholder: "Details about your request…",
+      optional: "optional",
       submitCleaning: "Book my cleaning",
       submitRepair: "Request a diagnostic",
+      submitAssembly: "Request an assembly",
       submitGeneral: "Send my request",
       privacy: "Confirmed reply within 24 h. No spam, ever.",
       sentSuccess: "Thanks, your request was received. We'll reply within 24 h.",
       sentError: "Something went wrong. Call 819-561-0762 or try again.",
       requireOneError: "Phone or email required (at least one).",
       repairBanner: "On-site assessment fee: $99 + taxes. The diagnostic identifies the cause and the recommended repairs. Parts and labour billed separately if you approve the repair.",
-      serviceLabel: "Which package fits your needs?",
+      forfaitLabel: "Preferred package",
       recommendedBadge: "RECOMMENDED",
-      detailsToggle: "Add more details (optional)",
-      smsHint: "Text a photo to 819-561-0762 to speed up the diagnostic.",
+      smsPhotoHint: "📱 To speed up confirmation, you can also text a photo of your BBQ to 819-561-0762.",
     };
 
 const submitLabel =
   variant === "cleaning" ? labels.submitCleaning
   : variant === "repair" ? labels.submitRepair
+  : variant === "assembly" ? labels.submitAssembly
   : labels.submitGeneral;
 
 // Cleaning packages — only shown on the cleaning variant. 3 options, sub-Hick's-Law
@@ -152,7 +172,7 @@ const resolvedDefaultForfait = defaultForfait
     {/* Cleaning variant — 3 radio cards with Recommandé badge on Nettoyage */}
     {variant === "cleaning" && (
       <fieldset class="mb-6 border-0 p-0">
-        <legend class="block text-sm font-bold text-dark mb-3">{labels.serviceLabel}</legend>
+        <legend class="block text-sm font-bold text-dark mb-3">{labels.forfaitLabel}</legend>
         <div class="grid grid-cols-1 gap-2">
           {cleaningPackages.map((o) => (
             <label class="relative flex items-start gap-3 p-3 border border-grey-mid rounded-lg cursor-pointer hover:border-accent hover:bg-accent/5 transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/5 has-[:checked]:shadow-sm">
@@ -181,10 +201,14 @@ const resolvedDefaultForfait = defaultForfait
       </fieldset>
     )}
 
-    {/* Repair variant — hidden forfait=Diagnostic so lead.ts subject differentiation + GTM
-        form_forfait dataLayer dimension keep working unchanged */}
+    {/* Repair variant — hidden forfait=Diagnostic so lead.ts + GTM tracking know this is a repair */}
     {variant === "repair" && (
       <input type="hidden" name="forfait" value="Diagnostic" />
+    )}
+
+    {/* Assembly variant — hidden forfait=Assemblage */}
+    {variant === "assembly" && (
+      <input type="hidden" name="forfait" value="Assemblage" />
     )}
 
     <div class="mb-4">
@@ -209,7 +233,8 @@ const resolvedDefaultForfait = defaultForfait
       </div>
     </div>
 
-    {(variant === "cleaning" || variant === "repair") && (
+    {/* Address — full address with Places autocomplete on service-booking variants */}
+    {(variant === "cleaning" || variant === "repair" || variant === "assembly") && (
       <div class="mb-4">
         <label for="address" class="block text-sm font-bold text-dark mb-1.5">{labels.address}</label>
         <input type="text" id="address" name="address" autocomplete="street-address"
@@ -220,71 +245,90 @@ const resolvedDefaultForfait = defaultForfait
       </div>
     )}
 
-    {/* Repair variant — BBQ brand + symptom are always visible and important.
-        The symptom field is the FOCUS of the repair form (replaces the conditional
-        UI that was on /reservation?forfait=diagnostic). */}
-    {variant === "repair" && (
+    {/* City or area — lighter commitment for general "I'm not sure" inquiries */}
+    {variant === "general" && (
       <div class="mb-4">
-        <label for="bbq_brand" class="block text-sm font-bold text-dark mb-1.5">{labels.bbqBrand}</label>
+        <label for="city_area" class="block text-sm font-bold text-dark mb-1.5">{labels.cityArea} <span class="text-grey font-normal">({labels.optional})</span></label>
+        <input type="text" id="city_area" name="city_area"
+          placeholder={labels.cityAreaPlaceholder}
+          class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
+      </div>
+    )}
+
+    {/* BBQ brand/model — visible (optional) on all service-booking variants */}
+    {(variant === "cleaning" || variant === "repair" || variant === "assembly") && (
+      <div class="mb-4">
+        <label for="bbq_brand" class="block text-sm font-bold text-dark mb-1.5">
+          {labels.bbqBrandLabel} <span class="text-grey font-normal">({labels.optional})</span>
+        </label>
         <input type="text" id="bbq_brand" name="bbq_brand"
           placeholder={labels.bbqBrandPlaceholder}
           class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
       </div>
     )}
 
+    {/* Repair variant — Problem observed (focal field) */}
     {variant === "repair" && (
       <div class="mb-4">
         <label for="symptom" class="block text-sm font-bold text-dark mb-1.5">{labels.symptom}</label>
         <textarea id="symptom" name="symptom" rows="3"
           placeholder={labels.symptomPlaceholder}
           class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
-        <p class="text-xs text-grey mt-1.5">📱 {labels.smsHint}</p>
       </div>
     )}
 
-    {/* Cleaning variant — progressive disclosure for optional BBQ brand + message */}
+    {/* Assembly variant — Preferred date */}
+    {variant === "assembly" && (
+      <div class="mb-4">
+        <label for="date_requested" class="block text-sm font-bold text-dark mb-1.5">
+          {labels.assemblyDate} <span class="text-grey font-normal">({labels.optional})</span>
+        </label>
+        <input type="date" id="date_requested" name="date_requested"
+          class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
+      </div>
+    )}
+
+    {/* Cleaning variant — Message / BBQ condition (visible per spec, no toggle) */}
     {variant === "cleaning" && (
-      <details class="mb-6 group">
-        <summary class="cursor-pointer text-sm font-bold text-accent hover:underline list-none flex items-center gap-1.5 py-2 mb-3">
-          <span class="transition-transform group-open:rotate-90 inline-block text-xs">▸</span>
-          {labels.detailsToggle}
-        </summary>
-        <div class="mb-4">
-          <label for="bbq_brand" class="block text-sm font-bold text-dark mb-1.5">{labels.bbqBrand}</label>
-          <input type="text" id="bbq_brand" name="bbq_brand"
-            placeholder={labels.bbqBrandPlaceholder}
-            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm" />
-        </div>
-        <div>
-          <label for="message" class="block text-sm font-bold text-dark mb-1.5">{labels.message}</label>
-          <textarea id="message" name="message" rows="3"
-            placeholder={labels.messagePlaceholder}
-            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
-        </div>
-      </details>
+      <div class="mb-6">
+        <label for="message" class="block text-sm font-bold text-dark mb-1.5">
+          {labels.cleaningMessage} <span class="text-grey font-normal">({labels.optional})</span>
+        </label>
+        <textarea id="message" name="message" rows="3"
+          placeholder={labels.cleaningMessagePlaceholder}
+          class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
+      </div>
     )}
 
-    {/* Repair variant — optional Message under a progressive disclosure toggle */}
+    {/* Assembly variant — Message */}
+    {variant === "assembly" && (
+      <div class="mb-6">
+        <label for="message" class="block text-sm font-bold text-dark mb-1.5">
+          {labels.assemblyMessage} <span class="text-grey font-normal">({labels.optional})</span>
+        </label>
+        <textarea id="message" name="message" rows="3"
+          placeholder={labels.assemblyMessagePlaceholder}
+          class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
+      </div>
+    )}
+
+    {/* Repair variant — Message (optional context after the focal Symptom field) */}
     {variant === "repair" && (
-      <details class="mb-6 group">
-        <summary class="cursor-pointer text-sm font-bold text-accent hover:underline list-none flex items-center gap-1.5 py-2 mb-3">
-          <span class="transition-transform group-open:rotate-90 inline-block text-xs">▸</span>
-          {labels.detailsToggle}
-        </summary>
-        <div>
-          <label for="message" class="block text-sm font-bold text-dark mb-1.5">{labels.message}</label>
-          <textarea id="message" name="message" rows="3"
-            placeholder={labels.messagePlaceholder}
-            class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
-        </div>
-      </details>
+      <div class="mb-6">
+        <label for="message" class="block text-sm font-bold text-dark mb-1.5">
+          {labels.message} <span class="text-grey font-normal">({labels.optional})</span>
+        </label>
+        <textarea id="message" name="message" rows="3"
+          placeholder={labels.messagePlaceholder}
+          class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
+      </div>
     )}
 
-    {/* General variant — Message stays visible */}
+    {/* General variant — Message (the focal field for "I'm not sure" inquiries) */}
     {variant === "general" && (
       <div class="mb-6">
-        <label for="message" class="block text-sm font-bold text-dark mb-1.5">{labels.message}</label>
-        <textarea id="message" name="message" rows="5"
+        <label for="message" class="block text-sm font-bold text-dark mb-1.5">{labels.message} *</label>
+        <textarea id="message" name="message" rows="5" required
           placeholder={labels.messagePlaceholder}
           class="w-full px-4 py-3 border border-grey-mid rounded-lg bg-white text-dark text-sm resize-y"></textarea>
       </div>
@@ -295,6 +339,15 @@ const resolvedDefaultForfait = defaultForfait
       {submitLabel}
     </button>
     <p class="text-center text-xs text-grey mt-3">{labels.privacy}</p>
+
+    {/* SMS-photo hint — present on all variants per iteration 5 spec.
+        Tappable on mobile (opens SMS app), copyable on desktop. */}
+    <a
+      href="sms:+18195610762"
+      class="block mt-4 p-3 bg-light border border-grey-mid/40 rounded-lg text-xs text-dark text-center no-underline hover:bg-accent/5 hover:border-accent transition-colors leading-relaxed"
+    >
+      {labels.smsPhotoHint}
+    </a>
   </form>
 </div>
 
@@ -398,7 +451,6 @@ const resolvedDefaultForfait = defaultForfait
       try {
         const fd = new FormData(form);
 
-        // Inject first-touch attribution captured in Base.astro
         try {
           const attribution = JSON.parse(sessionStorage.getItem("bbqtech_attribution") || "{}");
           Object.entries(attribution).forEach(([k, v]) => fd.append(k, String(v)));
@@ -406,7 +458,6 @@ const resolvedDefaultForfait = defaultForfait
           /* sessionStorage unavailable or malformed — skip silently */
         }
 
-        // Last-touch context captured at submit time
         fd.append("page_url", window.location.href);
         fd.append("page_title", document.title);
         fd.append("user_agent", navigator.userAgent);
@@ -414,9 +465,9 @@ const resolvedDefaultForfait = defaultForfait
 
         const res = await fetch("/api/lead", { method: "POST", body: fd });
         if (res.ok) {
-          // Fire GTM dataLayer event.
+          // GTM dataLayer push.
           // form_variant stays "reservation"/"general" for baseline-friendly GA4 reporting.
-          // form_intent is the new dimension that captures cleaning/repair/general specifically.
+          // form_intent captures cleaning/repair/assembly/general specifically.
           const variantValue = (fd.get("variant") as string) || "general";
           (window as any).dataLayer = (window as any).dataLayer || [];
           (window as any).dataLayer.push({

@@ -1,0 +1,28 @@
+---
+import Base from "../../layouts/Base.astro";
+import Hero from "../../components/Hero.astro";
+import ContactForm from "../../components/ContactForm.astro";
+
+const lang = "en" as const;
+---
+
+<Base
+  lang={lang}
+  title="BBQ assembly"
+  description="On-site assembly of a new BBQ, smoker, grill or outdoor cooking equipment. From $149 + tx. Gatineau and Ottawa."
+>
+  <Hero
+    lang={lang}
+    title="BBQ assembly"
+    subtitle="On-site assembly of a new BBQ · from $149 + tx · Gatineau and Ottawa · Reply within 24 h"
+    short={true}
+    showCtas={false}
+    showHeroImage={false}
+  />
+
+  <section class="py-8 md:py-12 bg-light">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <ContactForm lang={lang} variant="assembly" />
+    </div>
+  </section>
+</Base>
